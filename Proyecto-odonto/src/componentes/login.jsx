@@ -31,7 +31,7 @@ function Login() {
             </div>
             <div className="recordar">
               ¿Olvidó su contraseña?{" "}
-              <Link to="/forgot-password">Recupérala</Link>
+              <Link to="/olvidecontraseña">Recupérala</Link>
             </div>
             <input type="submit" value="LOGIN" />
           </form>

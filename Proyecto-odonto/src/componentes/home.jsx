@@ -74,7 +74,7 @@ function Home() {
               <img src="/imagenes/inventarioLogo.png" alt="Inventario" className="icono-boton2" />INVENTARIO
             </button>
             <button onClick={() => navigate('/clinica')}>
-              <img src="/imagenes/ubicacionLogo.png" alt="Inventario" className="icono-boton2" />CLINICA
+              <img src="/imagenes/ubicacionLogo.png" alt="Clínica" className="icono-boton2" />CLINICA
             </button>
           </div>
         </main>

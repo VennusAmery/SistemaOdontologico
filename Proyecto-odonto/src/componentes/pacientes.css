@@ -4,7 +4,7 @@
 /* Estructura general */
 
 /* Contenedor principal de la página */
-.home-container {
+.pacientes-container {
     display: flex; /* Usa un layout flexbox */
     height: 100vh; /* Altura del contenedor igual a la altura de la ventana */
     width: 100%; /* Ancho completo */
@@ -177,48 +177,4 @@
     margin-bottom: 25px; /* Espaciado inferior */
     text-align: left; /* Alinea el texto a la izquierda */
     padding-left: 120px; /* Espaciado izquierdo */
-}
-
-/*lo de arriba es lo que se va a copiar para las demas*/
-
-/* Grid de botones */
-
-/* Contenedor de los botones principales */
-.grid-botones {
-    display: grid; /* Usa un layout de grid */
-    grid-template-columns: repeat(2, 500px); /* Dos columnas de 500px */
-    grid-gap: 20px; /* Espaciado entre botones */
-    justify-content: center; /* Centra el grid horizontalmente */
-}
-
-/* Botones principales */
-.grid-botones button {
-    height: 120px; /* Altura del botón */
-    border: none; /* Sin borde */
-    color: white; /* Texto blanco */
-    font-size: 30px; /* Tamaño de fuente */
-    font-weight: bold; /* Texto en negrita */
-    cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
-    text-align: left; /* Alinea el texto a la izquierda */
-    border-radius: 10px; /* Esquinas redondeadas */
-    transition: transform 0.2s ease; /* Transición suave */
-}
-
-/* Colores personalizados para los botones */
-.grid-botones button:nth-child(1) { background-color: #6EB8DB; } /* Pacientes */
-.grid-botones button:nth-child(2) { background-color: #6EDBDB; } /* Citas */
-.grid-botones button:nth-child(3) { background-color: #6CDBB6; } /* Calendario */
-.grid-botones button:nth-child(4) { background-color: #9BD7D7; } /* Empleados */
-.grid-botones button:nth-child(5) { background-color: #769BDB; } /* Contactos */
-.grid-botones button:nth-child(6) { background-color: #6EDB92; } /* Inventario */
-.grid-botones button:nth-child(7) {
-    background-color: #7CDDE1; /* Clínica */
-    grid-column: span 2; /* Ocupa dos columnas */
-    justify-self: center; /* Centra el botón horizontalmente */
-    width: 500px; /* Ancho del botón */
-}
-
-/* Efecto hover en los botones principales */
-.grid-botones button:hover {
-    transform: scale(1.05); /* Aumenta ligeramente el tamaño */
 }

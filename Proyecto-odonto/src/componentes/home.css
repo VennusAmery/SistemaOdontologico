@@ -1,224 +1,60 @@
 /* Importa la fuente 'Poppins' desde Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;600;800&display=swap');
 
-/* Estructura general */
+  /* Contenido principal */
+  .home-content {
+    flex: 1;
+    background-color: #fefefe;
+    padding-top: 0px; /* Altura de tu rectangulo-superior */
+    height: calc(100vh - 0px); /* Resta la altura de la barra */
+    padding-left: 100px;
+    padding-right: 140px;
+  }
+  
+  /* Ajusta el título */
+  .home-content h1 {
+    color: #FF987B;
+    font-size: 40px;
+    margin-bottom: 25px;
+    text-align: left;
+    padding-left: 0px;
+  }
+  
+  /* Grid de botones */
+  .grid-botones {
+    display: grid;
+    grid-template-columns: repeat(2, 500px);
+    grid-gap: 20px;
+    justify-content: center;
+  }
+  
+  /* Botones principales */
+  .grid-botones button {
+    height: 120px;
+    border: none;
+    color: white;
+    font-size: 30px;
+    font-weight: bold;
+    cursor: pointer;
+    text-align: left;
+    border-radius: 10px;
+    transition: transform 0.2s ease;
+  }
 
-/* Contenedor principal de la página */
-.home-container {
-    display: flex; /* Usa un layout flexbox */
-    height: 100vh; /* Altura del contenedor igual a la altura de la ventana */
-    width: 100%; /* Ancho completo */
-    font-family: 'Poppins', sans-serif; /* Aplica la fuente importada */
-    padding-top: 40px; /* Espaciado superior igual a la altura de la franja superior */
-}
-
-/* Barra superior fija */
-.rectangulo-superior {
-    background-color: #B4DDDE; /* Color de fondo */
-    height: 50px; /* Altura de la barra */
-    width: 100%; /* Ancho completo */
-    position: fixed; /* Fija la barra en la parte superior */
-    top: 0; /* Posiciona en la parte superior */
-    left: 0; /* Alinea al borde izquierdo */
-    z-index: 1000; /* Asegura que esté por encima de otros elementos */
-}
-
-/* Sidebar lateral */
-
-/* Contenedor del sidebar */
-.sidebar {
-    width: 250px; /* Ancho del sidebar */
-    background-color: #6bbbc1; /* Color de fondo */
-    color: white; /* Color del texto */
-    display: flex; /* Usa flexbox */
-    flex-direction: column; /* Coloca los elementos en columna */
-    align-items: center; /* Centra los elementos horizontalmente */
-    padding-top: 0px; /* Sin espaciado superior */
-}
-
-/* Rectángulo decorativo dentro del sidebar */
-.rectangulo {
-    background-color: #56B0B3; /* Color de fondo */
-    height: 80px; /* Altura del rectángulo */
-    width: 200px; /* Ancho del rectángulo */
-    display: flex; /* Usa flexbox */
-    justify-content: center; /* Centra el contenido horizontalmente */
-    align-items: center; /* Centra el contenido verticalmente */
-    border: 5px solid white; /* Borde blanco */
-    margin-top: 40px; /* Espaciado superior */
-}
-
-/* Variación del rectángulo con elementos en columna */
-.rectangulo--2 {
-    background-color: white; /* Fondo blanco */
-    display: flex; /* Usa flexbox */
-    flex-direction: column; /* Coloca los elementos en columna */
-    align-items: center; /* Centra los elementos horizontalmente */
-}
-
-/* Imagen dentro del rectángulo */
-.rectangulo--2 img {
-    width: 180px; /* Ancho de la imagen */
-    height: auto; /* Mantiene la proporción */
-}
-
-/* Información del usuario en el sidebar */
-.user-info {
-    text-align: center; /* Centra el texto */
-    font-size: 14px; /* Tamaño de fuente */
-    margin-bottom: 10px; /* Espaciado inferior */
-    margin-top: 80px; /* Espaciado superior */
-}
-
-/* Navegación del sidebar */
-.sidebar-nav {
-    display: flex; /* Usa flexbox */
-    flex-direction: column; /* Coloca los botones en columna */
-    width: 100%; /* Ancho completo */
-    padding: 0 50px; /* Espaciado horizontal */
-}
-
-/* Botones de navegación del sidebar */
-.sidebar-nav button {
-    background-color: transparent; /* Fondo transparente */
-    border: none; /* Sin borde */
-    color: white; /* Texto blanco */
-    padding: 10px; /* Espaciado interno */
-    text-align: left; /* Alinea el texto a la izquierda */
-    padding-left: 30px; /* Espaciado adicional a la izquierda */
-    width: 100%; /* Ancho completo */
-    cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
-    font-weight: bold; /* Texto en negrita */
-}
-
-/* Efecto hover y focus en los botones del sidebar */
-.sidebar-nav button:hover,
-.sidebar-nav button:focus {
-    background-color: #FF987B; /* Cambia el fondo a naranja */
-    color: #fff; /* Texto blanco */
-    padding-left: 10px; /* Reduce el espaciado izquierdo */
-    width: 85%; /* Reduce el ancho */
-    margin-left: 10px; /* Agrega margen izquierdo */
-    border-radius: 10px; /* Esquinas redondeadas */
-    transition: all 0.3s ease; /* Transición suave */
-}
-
-/* Iconos dentro de los botones del sidebar */
-.icono-boton {
-    width: 20px; /* Ancho del icono */
-    height: 20px; /* Altura del icono */
-    margin-right: 8px; /* Espaciado derecho */
-    vertical-align: middle; /* Alinea verticalmente */
-    filter: invert(100%); /* Invierte los colores (blanco) */
-}
-
-/* Iconos más grandes */
-.icono-boton2 {
-    width: 60px; /* Ancho del icono */
-    height: 60px; /* Altura del icono */
-    margin-right: 50px; /* Espaciado derecho */
-    vertical-align: middle; /* Alinea verticalmente */
-    filter: invert(100%); /* Invierte los colores */
-}
-
-/* Footer del sidebar */
-.sidebar-footer {
-    display: flex; /* Usa flexbox */
-    flex-direction: row; /* Coloca los botones en fila */
-    justify-content: flex-start; /* Alinea los botones al inicio */
-    gap: 0px; /* Sin espacio entre botones */
-    width: 100%; /* Ancho completo */
-    padding: 25px 0; /* Espaciado vertical */
-    padding-left: 45px; /* Espaciado izquierdo */
-}
-
-/* Botones del footer */
-.sidebar-footer button {
-    background-color: transparent; /* Fondo transparente */
-    border: none; /* Sin borde */
-    color: white; /* Texto blanco */
-    width: 45px; /* Ancho del botón */
-    height: 45px; /* Altura del botón */
-    cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
-    display: flex; /* Usa flexbox */
-    align-items: center; /* Centra el contenido verticalmente */
-    justify-content: center; /* Centra el contenido horizontalmente */
-    border-radius: 10px; /* Esquinas redondeadas */
-    transition: background-color 0.3s ease; /* Transición suave */
-}
-
-/* Efecto hover y focus en los botones del footer */
-.sidebar-footer button:hover,
-.sidebar-footer button:focus {
-    background-color: #FF987B; /* Cambia el fondo a naranja */
-}
-
-/* Iconos pequeños en el footer */
-.icono-boton3 {
-    width: 25px; /* Ancho del icono */
-    height: 25px; /* Altura del icono */
-    vertical-align: middle; /* Alinea verticalmente */
-    filter: invert(100%); /* Invierte los colores */
-}
-
-/* Contenido principal */
-
-/* Contenedor del contenido principal */
-.main-content {
-    flex: 1; /* Ocupa el espacio restante */
-    background-color: #fefefe; /* Fondo blanco */
-    padding: 0px; /* Sin espaciado interno */
-}
-
-/* Título principal */
-.main-content h1 {
-    color: #FF987B; /* Color del texto */
-    font-size: 40px; /* Tamaño de fuente */
-    margin-bottom: 25px; /* Espaciado inferior */
-    text-align: left; /* Alinea el texto a la izquierda */
-    padding-left: 120px; /* Espaciado izquierdo */
-}
-
-/*lo de arriba es lo que se va a copiar para las demas*/
-
-/* Grid de botones */
-
-/* Contenedor de los botones principales */
-.grid-botones {
-    display: grid; /* Usa un layout de grid */
-    grid-template-columns: repeat(2, 500px); /* Dos columnas de 500px */
-    grid-gap: 20px; /* Espaciado entre botones */
-    justify-content: center; /* Centra el grid horizontalmente */
-}
-
-/* Botones principales */
-.grid-botones button {
-    height: 120px; /* Altura del botón */
-    border: none; /* Sin borde */
-    color: white; /* Texto blanco */
-    font-size: 30px; /* Tamaño de fuente */
-    font-weight: bold; /* Texto en negrita */
-    cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
-    text-align: left; /* Alinea el texto a la izquierda */
-    border-radius: 10px; /* Esquinas redondeadas */
-    transition: transform 0.2s ease; /* Transición suave */
-}
-
-/* Colores personalizados para los botones */
-.grid-botones button:nth-child(1) { background-color: #6EB8DB; } /* Pacientes */
-.grid-botones button:nth-child(2) { background-color: #6EDBDB; } /* Citas */
-.grid-botones button:nth-child(3) { background-color: #6CDBB6; } /* Calendario */
-.grid-botones button:nth-child(4) { background-color: #9BD7D7; } /* Empleados */
-.grid-botones button:nth-child(5) { background-color: #769BDB; } /* Contactos */
-.grid-botones button:nth-child(6) { background-color: #6EDB92; } /* Inventario */
-.grid-botones button:nth-child(7) {
+  
+  /* Colores personalizados */
+  .grid-botones button:nth-child(1) { background-color: #6EB8DB; } /* Pacientes */
+  .grid-botones button:nth-child(2) { background-color: #6EDBDB; } /* Citas */
+  .grid-botones button:nth-child(3) { background-color: #6CDBB6; } /* Calendario */
+  .grid-botones button:nth-child(4) { background-color: #9BD7D7; } /* Empleados */
+  .grid-botones button:nth-child(5) { background-color: #769BDB; } /* Contactos */
+  .grid-botones button:nth-child(6) { background-color: #6EDB92; } /* Inventario */
+  .grid-botones button:nth-child(7) {
     background-color: #7CDDE1; /* Clínica */
     grid-column: span 2; /* Ocupa dos columnas */
     justify-self: center; /* Centra el botón horizontalmente */
-    width: 500px; /* Ancho del botón */
-}
-
-/* Efecto hover en los botones principales */
-.grid-botones button:hover {
-    transform: scale(1.05); /* Aumenta ligeramente el tamaño */
-}
+    width: 500px;
+  }
+  .grid-botones button:hover {
+    transform: scale(1.05);
+  }

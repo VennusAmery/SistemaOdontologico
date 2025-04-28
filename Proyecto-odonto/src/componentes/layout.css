@@ -1,19 +1,15 @@
-/* Importa la fuente 'Poppins' desde Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;600;800&display=swap');
 
 /* Estructura general */
-
-/* Contenedor principal de la página */
 .main-container {
-    display: flex; /* Usa un layout flexbox */
-    height: 100vh; /* Altura del contenedor igual a la altura de la ventana */
-    width: 100%; /* Ancho completo */
-    font-family: 'Poppins', sans-serif; /* Aplica la fuente importada */
-    padding-top: 40px; /* Espaciado superior igual a la altura de la franja superior */
-}
-
-/* Barra superior fija */
-.rectangulo-superior {
+    display: flex;
+    height: 100vh;
+    width: 100%;
+    font-family: 'Poppins', sans-serif;
+    padding-top: 40px; /* igual al height de la franja superior */
+  }
+  
+  .rectangulo-superior {
     background-color: #B4DDDE; /* Color de fondo */
     height: 50px; /* Altura de la barra */
     width: 100%; /* Ancho completo */
@@ -160,3 +156,7 @@
     vertical-align: middle; /* Alinea verticalmente */
     filter: invert(100%); /* Invierte los colores */
 }
+
+
+
+

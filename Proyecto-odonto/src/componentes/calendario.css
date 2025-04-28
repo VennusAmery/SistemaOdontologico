@@ -1,0 +1,377 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;600;800&display=swap');
+
+.calendar-content {
+    flex: 1;
+    background-color: #fefefe;
+    padding-top: 5px; /* Altura de tu rectangulo-superior */
+    height: calc(100vh - 10px); /* Resta la altura de la barra */
+    padding-left: 200px;
+    padding-right: 200px;
+  }
+  
+  /* Ajusta el título */
+  .calendar-content h1 {
+    color: #FF987B;
+    font-size: 60px;
+    text-align: left;
+    margin-left: -5%;
+  }
+
+/*son los nmbres de los dias*/
+abbr {
+    text-decoration: none;
+    border-bottom: none;
+  }
+  
+  .calendar-wrapper {
+    display: flex;
+    justify-content: center;
+    padding: 2rem;
+    margin: auto;  /* Asegura que el contenedor se centre */
+    margin-top: -25px;  /* sube el calendario */
+  }
+  
+  .calendar-layout {
+    display: flex;
+    gap: 2rem;
+    align-items: flex-start;
+    margin-left: -5rem; 
+}
+
+  
+  .calendar-container {
+    background: #56B0B3;
+    padding: 2rem; /* más espacio interno */
+    border-radius: 16px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+    max-width: 700px; /* antes era 500px */
+}
+  
+  /* Fondo del calendario */
+  .react-calendar {
+    width: 100%;
+    max-width: 700px; /* antes era 600px */
+    background-color: #ffffff;
+    border-radius: 12px;
+    padding: 2rem; /* más espacio interno */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    color: #333;
+}
+  
+  /* Cabecera (mes y botones de navegación) */
+  .react-calendar__navigation {
+    gap: 2.5px;
+    border-radius: 50px;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+  }
+  
+  .react-calendar__navigation button {
+    background-color: #56B0B3;
+    color: white;
+    font-weight: bold;
+    border-radius: 5px;
+    font-size: 1rem;  /* Aumentar tamaño de fuente */
+    padding: 5px;  /* Aumentar padding */
+    margin: 1 10px;  /* Separar los botones */
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .react-calendar__navigation button:hover {
+    background-color: #449ba0 !important;
+  }
+  
+  /* Días que no pertenecen al mes actual */
+  .react-calendar__month-view__days__day--neighboringMonth {
+    color: #FF987B !important;
+    opacity: 1;
+  }
+  
+  /* Días del calendario */
+  .react-calendar__month-view__days__day {
+    color: #333;
+    background-color: #ffffff;
+    border-radius: 8px;
+    margin: 2px;
+  }
+  
+  .react-calendar__tile--now {
+    background: #56B0B3;
+    color: white;
+    font-weight: bold;
+  }
+  
+  .react-calendar__tile--active {
+    background-color: #56B0B3 !important;
+    color: white !important;
+  }
+  
+  .react-calendar__tile:hover {
+    background-color: #c7e8ea;
+    cursor: pointer;
+  }
+  
+  .day-events {
+    background: #56B0B3;
+    padding: 2rem; /* antes era 1.5rem */
+    border-radius: 12px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+    width: 550px; /* antes era 350px */
+    color: white;
+}
+  
+  .day-events h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: white;
+  }
+  
+  .day-events ul {
+    list-style: none;
+    padding-left: 0;
+  }
+  
+  .day-events li {
+    margin-bottom: 0.75rem;
+    font-size: 1.2rem;
+    color: white;
+  }
+  
+  .event-dot {
+    width: 8px;
+    height: 8px;
+    background-color: #56B0B3;
+    border-radius: 50%;
+    margin: auto;
+    margin-top: 4px;
+  }
+  
+  .modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /*no toquen no se porque arruna todo si lo tocan*/ 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+  }
+  
+  .modal {
+    background: #56B0B3;
+    padding: 2rem;
+    border-radius: 12px;
+    width: 350px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    color: white; /* texto blanco para contraste */
+  }
+  
+  .modal h2 {
+    margin-bottom: 1rem;
+  }
+  
+  .modal label {
+    display: block;
+    margin-bottom: 1rem;
+    font-size: 0.95rem;
+  }
+  
+  .modal input[type="text"],
+  .modal select {
+    width: 95%;
+    padding: 7px 10px;
+    margin-top: 4px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    background-color: white; /*color del fondo de donde meten la informacion*/
+    color: black; /*color de la legra de eso*/
+  }
+  
+  
+  input[type="time"] {
+    background-color: #ffffff;
+    color: #000000;
+    border: 1px solid #ccc;
+    padding: 4px 8px;
+    border-radius: 6px;
+    font-size: 1rem;
+    width: 95%;
+  }
+  
+  
+  /* Estilo del contenedor del checkbox y el texto */
+  .checkbox-container {
+    display: inline-flex;          /* Flexbox en línea para alinear */
+    align-items: center;           /* Alinea el checkbox y el texto verticalmente */
+    gap: 10px;                     /* Espacio entre el checkbox y el texto */
+  }
+  
+  /* Estilo del checkbox */
+  input[type="checkbox"] {
+    -webkit-appearance: none; /* Elimina el estilo predeterminado del navegador */
+    -moz-appearance: none; /* Elimina el estilo predeterminado del navegador en Firefox */
+    appearance: none; /* Elimina el estilo predeterminado en otros navegadores */
+    width: 20px;          
+    height: 20px;      
+    border: 2px solid #56B0B3; /* Borde de color */
+    background-color: white;   /* Fondo blanco */
+    border-radius: 5px;  
+    position: relative;  
+    cursor: pointer; 
+    float: center;
+  }
+  
+  /* Estilo cuando está seleccionado */
+  input[type="checkbox"]:checked {
+    background-color: #FF987B;  /* Cambia el fondo a color cuando está marcado */
+    border-color: #FF987B;      /* Borde en el estado seleccionado */
+  }
+  
+  /* Crea el chequesito cuando está seleccionado */
+  input[type="checkbox"]:checked::after {
+    content: ''; /* Genera un contenido vacío */
+    position: absolute; /* Posición absoluta dentro del checkbox */
+    top: 2px; /* Un poco hacia abajo */
+    left: 5px; /* Un poco hacia la derecha */
+    width: 6px; /* Ancho del tick */
+    height: 10px; /* Alto del tick */
+    border: solid white; /* Color del tick (blanco) */
+    border-width: 0 3px 3px 0; /* Estilo del tick */
+    transform: rotate(45deg); /* Rotar el tick para que parezca una marca */
+  }
+  
+  /* Opcional: Efecto de foco */
+  input[type="checkbox"]:focus {
+    outline: none; /* Elimina el borde de enfoque predeterminado */
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3); /* Agrega sombra al enfoque */
+  }
+  
+  /* Icono de seleccionar la hora */
+  input[type="time"]::-webkit-calendar-picker-indicator {
+    background-color: #000; /* Icono negro */
+    mask: url('data:image/svg+xml;utf8,<svg fill="black" width="181px" height="181px" viewBox="0 0 1920 1920" xmlns="http://www.w3.org/2000/svg" stroke="black" stroke-width="0.0192"><path d="M960 112.941c-467.125 0-847.059 379.934-847.059 847.059 0 467.125 379.934 847.059 847.059 847.059 467.125 0 847.059-379.934 847.059-847.059 0-467.125-379.934-847.059-847.059-847.059M960 1920C430.645 1920 0 1489.355 0 960S430.645 0 960 0s960 430.645 960 960-430.645 960-960 960m417.905-575.955L903.552 988.28V395.34h112.941v536.47l429.177 321.77-67.765 90.465Z" fill-rule="evenodd"/></svg>') center / contain no-repeat;
+    -webkit-mask: url('data:image/svg+xml;utf8,<svg fill="black" width="181px" height="181px" viewBox="0 0 1920 1920" xmlns="http://www.w3.org/2000/svg" stroke="black" stroke-width="0.0192"><path d="M960 112.941c-467.125 0-847.059 379.934-847.059 847.059 0 467.125 379.934 847.059 847.059 847.059 467.125 0 847.059-379.934 847.059-847.059 0-467.125-379.934-847.059-847.059-847.059M960 1920C430.645 1920 0 1489.355 0 960S430.645 0 960 0s960 430.645 960 960-430.645 960-960 960m417.905-575.955L903.552 988.28V395.34h112.941v536.47l429.177 321.77-67.765 90.465Z" fill-rule="evenodd"/></svg>') center / contain no-repeat;
+    size-adjust: auto;
+  }
+  
+  
+  /* Oculta el checkbox por defecto */
+  .custom-checkbox input[type="checkbox"] {
+    width: 100%;
+    appearance: none;
+    -webkit-appearance: none;
+    width: 25px;
+    height: 18px;
+    border: 2px solid white;
+    border-radius: 4px;
+    background-color: white;
+    cursor: pointer;
+    position: relative;
+  }
+  
+  /* Estilo cuando está marcado */
+  .custom-checkbox input[type="checkbox"]:checked::after {
+    content: '✓';
+    position: absolute;
+    top: 0px;
+    left: 3px;
+    color: #56B0B3;
+    font-size: 14px;
+    font-weight: bold;
+  }
+  
+  .modal-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1rem;
+  }
+  
+  .modal-buttons button {
+    padding: 0.5rem 1rem;
+    background-color: #56B0B3;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  
+  .react-calendar__tile--neighboringMonth:hover {
+    background: #FF987B !important; /* Cambiar color de hover para días del mes siguiente */
+    color: white !important; /* Color que tendrá la letra al ponerse encima del número */
+    cursor: pointer;
+  }
+  
+  
+  .react-calendar__year-view__months {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr); /* Esto asegura que haya 3 columnas */
+    gap: 2.5px; /* Añadir espacio entre los botones de los meses */
+  }
+  
+  .react-calendar__tile.react-calendar__year-view__months__month {
+    background-color: #56B0B3; /* Fondo de los botones */
+    color: white; /* Texto blanco */
+    font-weight: bold;
+    padding: 15px 0;
+    text-align: center;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin: 1px; /* Reducir el margen para hacer los botones más compactos */
+  }
+  
+  
+  /* Efecto hover en los botones de los meses */
+  .react-calendar__tile.react-calendar__year-view__months__month:hover {
+    background-color: #449ba0; /* Fondo más oscuro al pasar el mouse */
+  }
+  
+  
+  /* Estilo para la fecha actual (por ejemplo, el mes de marzo) */
+  .react-calendar__tile--now {
+    border: 2px solid #56B0B3; /* Borde para la fecha seleccionada */
+  }
+  
+  
+  .react-calendar__decade-view__years{
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr); /* Esto asegura que haya 3 columnas */
+    gap: 2.5px; /* Añadir espacio entre los botones de los meses */
+  }
+  
+  .react-calendar__tile.react-calendar__decade-view__years__year {
+    background-color: #56B0B3; /* Fondo de los botones */
+    color: white; /* Texto blanco */
+    font-weight: bold;
+    padding: 15px 0;
+    text-align: center;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin: 1px; /* Reducir el margen para hacer los botones más compactos */
+  }
+  
+  /* Efecto hover en los botones de los meses */
+  .react-calendar__tile.react-calendar__decade-view__years__year:hover {
+    background-color: #449ba0; /* Fondo más oscuro al pasar el mouse */
+  }
+  
+  .react-calendar__navigation__label {
+    background-color: #56B0B3;
+    color: white;
+    font-weight: bold;
+    border: none;
+    padding: 8px 0;
+    border-radius: 6px;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+  }
+  
+  /* Hover más oscuro */
+  .react-calendar__navigation__label:hover {
+    background-color: #449ba0 !important;
+  }

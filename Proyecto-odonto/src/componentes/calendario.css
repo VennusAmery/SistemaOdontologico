@@ -1,20 +1,23 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;600;800&display=swap');
+
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;  /* Elimina el scroll */
+  height: 100%;
+}
 
 .calendar-content {
-    flex: 1;
-    background-color: #fefefe;
-    padding-top: 5px; /* Altura de tu rectangulo-superior */
-    height: calc(100vh - 10px); /* Resta la altura de la barra */
-    padding-left: 200px;
-    padding-right: 200px;
-  }
+  flex: 1; /* Ocupa todo el espacio restante */
+  background-color: #fefefe; /* Fondo blanco */
+  padding: 20px; /* Espaciado interno */
+}
   
   /* Ajusta el título */
   .calendar-content h1 {
     color: #FF987B;
     font-size: 60px;
     text-align: left;
-    margin-left: -5%;
+    margin-left: 0%;
   }
 
 /*son los nmbres de los dias*/
@@ -26,16 +29,16 @@ abbr {
   .calendar-wrapper {
     display: flex;
     justify-content: center;
-    padding: 2rem;
+    padding: 10rem;
     margin: auto;  /* Asegura que el contenedor se centre */
-    margin-top: -25px;  /* sube el calendario */
+    margin-top: -150px;  /* sube el calendario */
   }
   
   .calendar-layout {
     display: flex;
     gap: 2rem;
     align-items: flex-start;
-    margin-left: -5rem; 
+    margin-left: -10rem; 
 }
 
   
@@ -44,13 +47,14 @@ abbr {
     padding: 2rem; /* más espacio interno */
     border-radius: 16px;
     box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
-    max-width: 700px; /* antes era 500px */
+    max-width: 500px; /* antes era 500px */
+
 }
   
   /* Fondo del calendario */
   .react-calendar {
     width: 100%;
-    max-width: 700px; /* antes era 600px */
+    max-width: 500px; /* antes era 600px */
     background-color: #ffffff;
     border-radius: 12px;
     padding: 2rem; /* más espacio interno */

@@ -2,16 +2,16 @@
 
 /* Estructura general */
 .main-container {
-    display: flex;
-    height: 100vh;
-    width: 100%;
-    font-family: 'Poppins', sans-serif;
-    padding-top: 40px; /* igual al height de la franja superior */
+    display: flex; /* Usa un layout flexbox */
+    height: calc(100vh - 40px);
+    width: 100%; /* Ancho completo */
+    font-family: 'Poppins', sans-serif; /* Aplica la fuente importada */
+    padding-top: 40px; /* Espaciado superior igual a la altura de la franja superior */
   }
   
   .rectangulo-superior {
     background-color: #B4DDDE; /* Color de fondo */
-    height: 50px; /* Altura de la barra */
+    height: 40px; /* Altura de la barra */
     width: 100%; /* Ancho completo */
     position: fixed; /* Fija la barra en la parte superior */
     top: 0; /* Posiciona en la parte superior */
@@ -30,6 +30,7 @@
     flex-direction: column; /* Coloca los elementos en columna */
     align-items: center; /* Centra los elementos horizontalmente */
     padding-top: 0px; /* Sin espaciado superior */
+    height: calc(100vh - 40px); /* Ajusta la altura al espacio disponible */
 }
 
 /* Rectángulo decorativo dentro del sidebar */
@@ -63,7 +64,7 @@
     text-align: center; /* Centra el texto */
     font-size: 14px; /* Tamaño de fuente */
     margin-bottom: 10px; /* Espaciado inferior */
-    margin-top: 80px; /* Espaciado superior */
+    margin-top: 60px; /* Espaciado superior */
 }
 
 /* Navegación del sidebar */
@@ -157,6 +158,11 @@
     filter: invert(100%); /* Invierte los colores */
 }
 
+.main-content {
+    flex: 1; /* Ocupa el espacio restante */
+    background-color: #fefefe; /* Fondo blanco */
+    padding: 0px; /* Sin espaciado interno */
+}
 
 
 

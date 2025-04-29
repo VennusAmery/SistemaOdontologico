@@ -6,6 +6,7 @@ import Home from "./componentes/home";
 import Pacientes from "./componentes/pacientes";
 import CalendarComponent from "./componentes/calendario";
 import Layout from "./componentes/layout";
+import CitasComponent from "./componentes/citas";
 import "./App.css";
 
 function App() {
@@ -20,6 +21,8 @@ function App() {
         <Route path="/home" element={<Home />} />
         <Route path="/pacientes" element={<Pacientes />} />
         <Route path="/calendario" element={<CalendarComponent />} />
+        <Route path="/citas" element={<CitasComponent />} />
+
         {/* Aquí puedes añadir más rutas protegidas/con sidebar */}
       </Route>
     </Routes>

@@ -26,15 +26,15 @@ function Citas() {
             <h3>Recientes</h3>
             <div className="citas-grid">
               <div className="cita-card">
-                <img src="/imagenes/iconoUsuario.jpg" alt="Usuario" />
+                <img src="/imagenes/iconoUsuario.png" alt="Usuario" />
                 <p>CODIGO CITA</p>
               </div>
               <div className="cita-card">
-                <img src="/imagenes/iconoUsuario.jpg" alt="Usuario" />
+                <img src="/imagenes/iconoUsuario.png" alt="Usuario" />
                 <p>CODIGO CITA</p>
               </div>
               <div className="cita-card">
-                <img src="/imagenes/iconoUsuario.jpg" alt="Usuario" />
+                <img src="/imagenes/iconoUsuario.png" alt="Usuario" />
                 <p>CODIGO CITA</p>
               </div>
             </div>

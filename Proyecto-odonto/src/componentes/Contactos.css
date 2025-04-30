@@ -1,0 +1,190 @@
+/* Importa la fuente 'Poppins' desde Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;600;800&display=swap');
+
+/* Contenido principal */
+
+/* Contenedor del contenido principal */
+.contactos-content {
+    flex: 1; /* Ocupa el espacio restante */
+    background-color: #fefefe; /* Fondo blanco */
+    padding: 0px; /* Sin espaciado interno */
+}
+
+/* Título principal */
+.contactos-content h1 {
+    color: #FF987B; /* Color del texto */
+    font-size: 40px; /* Tamaño de fuente */
+    margin-bottom: 25px; /* Espaciado inferior */
+    text-align: left; /* Alinea el texto a la izquierda */
+    padding-left: 25px; /* Espaciado izquierdo */
+}
+
+/* Título principal */
+.titulo-contactos {
+    font-size: 2.5rem;
+    color: #FF7F50; /* Naranja */
+    margin-bottom: 1rem;
+    text-align: left; /* Alinear a la izquierda */
+    padding-left: 250px; /* Espaciado desde el sidebar */
+}
+
+/* Contenedor de la cabecera de citas */
+.contactos-header h2 {
+    font-size: 1.3rem;
+    color: #757575; /* Azul */
+    font-weight: normal; /* Normal */
+    margin-bottom: 2rem;
+    text-align: left; /* Alinear a la izquierda */
+    padding-left: 25px; /* Espaciado desde el sidebar */
+    position: relative; /* Para las líneas superior e inferior */
+}
+
+.contactos-header h2::before,
+.contactos-header h2::after {
+    content: ""; /* Línea decorativa */
+    display: block;
+    height: 2px; /* Grosor de la línea */
+    background-color: #6bbbc1; /* Color del sidebar */
+    width: 100%; /* Ancho completo */
+    position: absolute;
+    left: 0;
+}
+
+.contactos-header h2::before {
+    top: -10px; /* Línea superior */
+}
+
+.contactos-header h2::after {
+    bottom: -10px; /* Línea inferior */
+}
+
+/* Estilo para la barra de búsqueda */
+.busqueda {
+    display: flex;
+    justify-content: center; /* Centrar horizontalmente */
+    align-items: center;
+    gap: 1rem;
+    margin-top: 3rem; /* Agrega un margen superior para separar el contenido */
+}
+
+.busqueda label {
+    font-size: 1rem;
+    color: #666;
+}
+
+.busqueda input {
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 300px;
+    background-color: #E0F7F8; /* Azul claro */
+}
+
+.busqueda button {
+    background-color: #FF7F50; /* Naranja */
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.busqueda button:hover {
+    background-color: #FF987B; /* Naranja más claro */
+}
+
+
+
+.contactos-recientes h3 {
+    text-align: left;
+    left: 2%; /* Posicionar al lado derecho del texto */
+
+}
+
+
+/* Título "Recientes" con línea al lado derecho */
+.contactos-recientes h3 {
+    font-size: 1.3rem;
+    color: #757575; /* Azul */
+    font-weight: normal; /* Normal */
+    margin-bottom: 1rem;
+    position: relative; /* Para posicionar el pseudoelemento */
+}
+
+.contactos-recientes h3::after {
+    content: ""; /* Línea decorativa */
+    display: block;
+    height: 2px; /* Grosor de la línea */
+    background-color: #6bbbc1; /* Color del sidebar */
+    width: 80%; /* Ancho completo */
+    position: absolute;
+    top: 50%; /* Centrar verticalmente */
+    left: 12%; /* Posicionar al lado derecho del texto */
+}
+
+/* Grid para las tarjetas de citas */
+.contactos-grid {
+    display: flex;
+    justify-content: center; /* Centrar las tarjetas */
+    gap: 2rem; /* Reducir el espacio entre las tarjetas */
+    margin-bottom: 2rem; /* Reducir el espacio inferior para subir el botón */
+}
+
+/* Tarjetas de citas */
+.contactos-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centrar verticalmente */
+    align-items: center; /* Centrar horizontalmente */
+    border: 6px solid #56B0B3; /* Borde del mismo color que la imagen */
+    margin-bottom: 2rem; /* Reducir el espacio inferior para subir el botón */
+    border-radius: 8px;
+    padding: 1.5rem; /* Reducir el padding interno */
+    width: 250px; /* Mantener el ancho */
+    height: 249px; /* Aumentar ligeramente la altura */
+    background-color: #fefefe; /* Fondo blanco */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transición suave */
+    cursor: pointer; /* Mostrar el cursor de botón */
+    margin-top: 100px;
+}
+
+.contactos-card:hover {
+    transform: scale(1.05); /* Efecto de zoom */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra más pronunciada */
+}
+
+.contactos-card img {
+    width: 120px; /* Aumentar el tamaño del ícono */
+    height: 120px; /* Aumentar el tamaño del ícono */
+    margin-bottom: 1rem; /* Espaciado entre la imagen y el texto */
+}
+
+.contactos-card p {
+    font-size: 1.5rem; /* Mantener el tamaño del texto */
+    color: #56B0B3; /* Mismo color que el ícono */
+    font-weight: bold;
+    text-align: center; /* Asegurar que el texto esté centrado */
+    margin: 0; /* Eliminar márgenes adicionales */
+}
+
+/* Botón de regresar */
+.btn-regresar {
+    display: block;
+    margin: 2rem auto; /* Subir el botón más cerca de las tarjetas */
+    background-color: #FF7F50; /* Naranja */
+    color: white;
+    border: none;
+    padding: 0.7rem 2.5rem; /* Mantener el tamaño del botón */
+    border-radius: 4px;
+    cursor: pointer; /* Mostrar el cursor de botón */
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Transición suave */
+}
+
+.btn-regresar:hover {
+    background-color: #FF987B; /* Naranja más claro */
+    transform: scale(1.05); /* Efecto de zoom */
+}

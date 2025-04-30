@@ -2,10 +2,13 @@ import React, { useState } from "react";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import "./Calendario.css";
+import { useNavigate } from "react-router-dom";
+
 
 export default function CalendarComponent() {
   const [value, setValue] = useState(new Date());
   const [events, setEvents] = useState([]);
+  const navigate = useNavigate();
   const [showEventDetail, setShowEventDetail] = useState(false);
   const [selectedEvent, setSelectedEvent] = useState(null);
   const [showModal, setShowModal] = useState(false);
@@ -57,6 +60,7 @@ export default function CalendarComponent() {
   return (
     <main className="calendar-content">
       <h1>Calendario</h1>
+
     <div className="calendar-wrapper">   
       <div className="calendar-layout">    
        <div className="calendar-container">
@@ -164,12 +168,15 @@ export default function CalendarComponent() {
       <div className="modal-buttons">
         <button onClick={() => setShowEventDetail(false)}>Cerrar</button>
       </div>
+      
+    </div>
+    <div className="back-button-container">
+      <button className="btn-regresar" onClick={() => navigate("/home")}> Regresar </button>
     </div>
   </div>
 )}
-
     </div>
-    
+
     </main>
   );
 }

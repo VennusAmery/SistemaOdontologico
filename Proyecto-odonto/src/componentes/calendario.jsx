@@ -6,6 +6,8 @@ import "./Calendario.css";
 export default function CalendarComponent() {
   const [value, setValue] = useState(new Date());
   const [events, setEvents] = useState([]);
+  const [showEventDetail, setShowEventDetail] = useState(false);
+  const [selectedEvent, setSelectedEvent] = useState(null);
   const [showModal, setShowModal] = useState(false);
   const [newEvent, setNewEvent] = useState({
     title: "",
@@ -41,8 +43,12 @@ export default function CalendarComponent() {
   };
 
   const renderDot = (date) => {
-    return events.some((e) => e.date === date.toDateString()) ? (
-      <div className="event-dot" />
+    const hasEvent = events.some((e) => e.date === date.toDateString());
+  
+    return hasEvent ? (
+      <div className="event-dot-wrapper">
+        <div className="event-dot" />
+      </div>
     ) : null;
   };
 
@@ -63,23 +69,38 @@ export default function CalendarComponent() {
         </div>
 
         <div className="day-events">
-  <h3>Eventos del {value.toLocaleDateString('es-ES', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}:</h3>
+  <h3>
+    Eventos del{" "}
+    {value.toLocaleDateString("es-ES", {
+      weekday: "long",
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    })}
+    :
+  </h3>
   {todayEvents.length === 0 ? (
     <p>No hay eventos.</p>
   ) : (
     <ul>
       {todayEvents.map((event, idx) => (
         <li key={idx}>
-          <strong>{event.title}</strong> a las {event.time || "No definida"} — Repite:{" "}
-          {event.repetition || "No"} — {event.reminder ? "Con recordatorio" : "Sin recordatorio"}
+          <button
+            className="event-button"
+            onClick={() => {
+              setSelectedEvent(event);
+              setShowEventDetail(true);
+            }}
+          >
+            {event.title}
+          </button>
         </li>
       ))}
     </ul>
   )}
 </div>
+
 </div>
-
-
 
       {/* Modal */}
       {showModal && (
@@ -130,6 +151,23 @@ export default function CalendarComponent() {
           </div>
         </div>
       )}
+
+
+{showEventDetail && selectedEvent && (
+  <div className="modal-overlay">
+    <div className="modal">
+      <h2>Detalles del evento</h2>
+      <p><strong>Nombre:</strong> {selectedEvent.title}</p>
+      <p><strong>Hora:</strong> {selectedEvent.time || "No definida"}</p>
+      <p><strong>Repetición:</strong> {selectedEvent.repetition}</p>
+      <p><strong>Recordatorio:</strong> {selectedEvent.reminder ? "Sí" : "No"}</p>
+      <div className="modal-buttons">
+        <button onClick={() => setShowEventDetail(false)}>Cerrar</button>
+      </div>
+    </div>
+  </div>
+)}
+
     </div>
     
     </main>

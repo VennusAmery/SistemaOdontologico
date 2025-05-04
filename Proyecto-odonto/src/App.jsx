@@ -8,6 +8,7 @@ import CalendarComponent from "./componentes/calendario";
 import Layout from "./componentes/layout";
 import CitasComponent from "./componentes/citas";
 import ContactosComponent from "./componentes/Contactos";
+import ProveedoresComponent from "./componentes/Proveedores"; // Aquí importa tu componente
 
 import "./App.css";
 
@@ -25,6 +26,7 @@ function App() {
         <Route path="/calendario" element={<CalendarComponent />} />
         <Route path="/citas" element={<CitasComponent />} />
         <Route path="/Contactos" element={<ContactosComponent />} />
+        <Route path="/Proveedores" element={<ProveedoresComponent />} />
 
         {/* Aquí puedes añadir más rutas protegidas/con sidebar */}
       </Route>

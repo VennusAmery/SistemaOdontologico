@@ -56,6 +56,8 @@ export default function CalendarComponent() {
   return (
     <main className="calendar-content">
       <h1>Calendario</h1>
+      <hr></hr>
+      <hr></hr>
       <div className="calendar-wrapper">
         <div className="calendar-layout">
           {/* Calendario */}

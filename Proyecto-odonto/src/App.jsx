@@ -9,6 +9,7 @@ import Layout from "./componentes/layout";
 import CitasComponent from "./componentes/citas";
 import ContactosComponent from "./componentes/Contactos";
 import ProveedoresComponent from "./componentes/Proveedores"; // Aquí importa tu componente
+import ProgramarCita from "./componentes/programarcita"; // Importa el componente ProgramarCita
 
 import "./App.css";
 
@@ -27,6 +28,7 @@ function App() {
         <Route path="/citas" element={<CitasComponent />} />
         <Route path="/Contactos" element={<ContactosComponent />} />
         <Route path="/Proveedores" element={<ProveedoresComponent />} />
+        <Route path="/programarcita" element={<ProgramarCita />} /> {/* Nueva ruta */}
 
         {/* Aquí puedes añadir más rutas protegidas/con sidebar */}
       </Route>

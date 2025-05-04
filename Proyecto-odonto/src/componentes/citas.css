@@ -14,6 +14,7 @@
 .citas-content h1 {
     color: #FF987B; /* Color del texto */
     font-size: 40px; /* Tamaño de fuente */
+    margin-top: 25px;
     margin-bottom: 25px; /* Espaciado inferior */
     text-align: left; /* Alinea el texto a la izquierda */
     padding-left: 25px; /* Espaciado izquierdo */
@@ -78,6 +79,7 @@
     border-radius: 4px;
     width: 300px;
     background-color: #E0F7F8; /* Azul claro */
+    color: #757575;
 }
 
 .busqueda button {

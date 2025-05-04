@@ -4,7 +4,7 @@ html, body {
   overflow: hidden; /* Evita scroll doble */
 }
 
-body > #root, .proveedores-container {
+.proveedores-container {
   height: 100%;
   overflow-y: auto;
   background-color: white;

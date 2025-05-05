@@ -1,9 +1,8 @@
 html, body {
   margin: 0;
   padding: 0;
-  height: 100%;
-  overflow: hidden; /* solo oculta scroll horizontal */
-  }
+  overflow-y: auto;      /* activa scroll vertical si hace falta */
+}
 
   h1 {
     font-size: 35px !important;      /* Ajusta el tamaño a tu gusto */
@@ -12,7 +11,6 @@ html, body {
     font-weight: bold;
   }
   
-
 /*DOBLES LINEAS DE ARRIBA*/
 hr {
   border: none;
@@ -20,12 +18,12 @@ hr {
   margin: 10px 0PX 20PX !important;
 }
 
-
-
 .calendar-content {
   flex: 1; /* Ocupa todo el espacio restante */
   background-color: #fefefe; /* Fondo blanco */
   padding: 20px; /* Espaciado interno */
+  overflow-y: auto;      /* activa scroll interno si es necesario */
+
 }
   
   /* Ajusta el título */
@@ -40,13 +38,13 @@ hr {
 abbr {
     text-decoration: none;
     border-bottom: none;
-    position: sticky;
   }
   
   .calendar-wrapper {
     display: flex;
     justify-content: center;
     padding: 10rem;
+    overflow: visible; /* permite que crezca naturalmente */
     margin: auto;  /* Asegura que el contenedor se centre */
     margin-top: -170px;  /* sube el calendario */
   }
@@ -60,14 +58,12 @@ abbr {
     align-items: flex-start; /* Esto es lo importante */
 }
 
-  
   .calendar-container {
     background: #56B0B3;
     padding: 2rem; /* más espacio interno */
     border-radius: 16px;
     box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
     max-width: 100%; /* antes era 500px */
-
 }
   
   /* Fondo del calendario */
@@ -137,7 +133,6 @@ abbr {
     cursor: pointer;
   }
   
-
   /*los eventos del dia */
   .day-events {
     background: #56B0B3;
@@ -148,7 +143,6 @@ abbr {
     max-height: 400px; /* Aumenta la altura aquí */
     max-width: 600px;
     overflow-y: auto;
-    
 }
   
   .day-events h3 {
@@ -437,19 +431,12 @@ abbr {
     background-color: #449ba0 !important;
   }
 
-
 /*AÑOS*/
-
-.react-calendar__navigation__label {
-  background-color: #56B0B3 !important;
-}
-
 .react-calendar__century-view__decades {
   display: grid !important;
   grid-template-columns: repeat(3, 1fr) !important;/* Tres columnas */
   gap: 2.5px; /* Espacio entre los botones */
 }
-
 
 .react-calendar__tile.react-calendar__century-view__decades__decade {
   background-color: #56B0B3; /* Fondo de los botones */
@@ -475,8 +462,6 @@ abbr {
 .react-calendar__tile.react-calendar__century-view__decades__decade:hover {
   background-color: #449ba0; /* Fondo más oscuro al pasar el mouse */
 }
-
-
 
 
 /*BOTONES DE LOS EVENTOS*/
@@ -521,38 +506,6 @@ abbr {
 
 
 
-/* Contenedor del botón fijo */
-.fixed-back-button {
-  position: fixed;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 999;
-  text-align: center;
-  bottom: -0.02cm;
-}
-
-/* Botón en sí */
-.btn-regresar {
-  background-color: #FF7F50;
-  color: white;
-  border: none;
-  padding: 0.7rem 2.5rem;
-  border-radius: 4px;
-  cursor: pointer;
-  font-weight: bold;
-  transition: background-color 0.3s ease, transform 0.3s ease;
-}
-
-.btn-regresar:hover {
-  background-color: #FF987B;
-  transform: scale(1.05);
-}
-
-
-
-
-
 /*MENSAJE DE ELIMINADO*/
 .toast {
   position: fixed;
@@ -590,4 +543,118 @@ abbr {
 .react-calendar__century-view__decades {
   gap: 8px;
   width: 350PX;
+}
+
+
+/*RESPONSIVE*/
+@media (max-width: 768px) {
+  .calendar-wrapper {
+    padding: 0.125rem;
+    margin-top: 0;  /* Ajustar para evitar que el calendario se suba demasiado */
+  }
+
+  .calendar-layout {
+    display: block; /* Hacer que se apilen los elementos */
+    margin-left: 0;
+  }
+
+  .react-calendar {
+    width: 100%;
+    max-width: 100%;
+    padding: 1.5rem;  /* Reducir el padding */
+  }
+
+  .calendar-content h1 {
+    font-size: 30px;  /* Reducir el tamaño del título */
+    margin-left: 0;
+  }
+
+  /* Ajuste del tamaño de los eventos */
+  .day-events {
+    max-height: 300px;  /* Limitar la altura de los eventos */
+  }
+
+  .react-calendar__navigation button {
+    font-size: 0.9rem;  /* Reducir el tamaño de los botones */
+    padding: 4px;  /* Ajustar el padding */
+  }
+
+  .react-calendar__tile--now, .react-calendar__tile--active {
+    font-size: 0.8rem;  /* Reducir el tamaño del texto de los días */
+  }
+
+  .event-button {
+    width: 100%; /* Hacer que los botones de los eventos se ajusten al ancho */
+    font-size: 16px;  /* Reducir el tamaño de fuente */
+  }
+  
+  .modal {
+    width: 90%;  /* Reducir el ancho del modal en dispositivos pequeños */
+    padding: 1.5rem;  /* Ajustar el padding */
+  }
+  
+  .modal-buttons button {
+    padding: 0.3rem 0.8rem;
+  }
+}
+
+/* Responsivo para dispositivos aún más pequeños (móviles) */
+@media (max-width: 480px) {
+  .react-calendar__navigation {
+    flex-direction: column;  /* Colocar los botones de navegación en columna */
+  }
+
+  .calendar-wrapper {
+    padding: 1rem;
+    margin-top: 0;
+  }
+
+  .react-calendar {
+    width: 100%;
+    padding: 1rem;
+  }
+
+  .calendar-content h1 {
+    font-size: 25px;  /* Reducir aún más el tamaño del título */
+  }
+
+  .event-button {
+    font-size: 14px;  /* Reducir el tamaño del texto */
+  }
+
+  .day-events {
+    max-height: 200px;  /* Reducir la altura de los eventos */
+  }
+
+  .modal {
+    width: 100%;
+    padding: 1rem;
+  }
+
+  .react-calendar__tile {
+    font-size: 0.75rem; /* Reducir aún más el tamaño de los días */
+  }
+
+  .react-calendar__tile--now, .react-calendar__tile--active {
+    font-size: 0.7rem;
+  }
+}
+
+/* Para el scrollbar */
+.day-events::-webkit-scrollbar {
+  width: 6px;  /* Reducir el tamaño del scrollbar */
+}
+
+.day-events::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+.day-events::-webkit-scrollbar-thumb {
+  background: #56B0B3;
+  border-radius: 10px;
+}
+
+.day-events::-webkit-scrollbar-thumb:hover {
+  background: #217578;
 }

@@ -16,7 +16,7 @@ function Citas() {
             <div className="busqueda">
               <label htmlFor="buscar">Buscar:</label>
               <input type="text" id="buscar" placeholder="Buscar..." />
-              <button className="btn-programar">PROGRAMAR CITA</button>
+              <button className="btn-programar" onClick={() => navigate('/programarcita')}>PROGRAMAR CITA</button>
               <button className="btn-filtro">FILTRO</button>
               <button className="btn-historial">HISTORIAL</button>
             </div>

@@ -74,9 +74,7 @@ body {
 
 .campo input {
     background-color: #B4DDDE; 
-    color: #ffffff; /* Texto blanco */
-    
-    
+    color: #352e2e;
 }
 
 .campo input:focus {

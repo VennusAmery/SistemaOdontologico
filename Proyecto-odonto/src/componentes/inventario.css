@@ -1,0 +1,92 @@
+hr {
+    border: none;
+    border-top: 2px solid #56B0B3;
+    margin-top: 10px !important;
+    margin-bottom: 10px !important;
+    width: 100%;
+  }
+
+.inv-container {
+    padding: 20px;
+    font-family: sans-serif;
+  }
+  
+
+  /*NOMBRE DE INVENTARIO*/
+  .inv-title {
+    color: #f28c8c;
+    font-weight: bold;
+    font-size: 15px;
+    margin-bottom: 10px;
+    margin-top: -10PX;
+    align-items: left;
+  }
+  
+  /*NAVEGACION*/ 
+  .inv-tab {
+    background: none;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-weight: bold;
+    color: #444;
+  }
+  
+  .inv-tab.active {
+    border-bottom: 2px solid #007bff;
+    color: #007bff;
+  }
+  
+  
+
+
+  /*SECCION DEL LISTADO*/
+  .inv-search-section {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .inv-search-label {
+    margin-right: 10px;
+    font-weight: bold;
+  }
+  
+  .inv-list-section {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Esto alinea todo el contenido hacia la izquierda */
+    text-align: left;
+    padding-left: 20px; /* Opcional: da un margen interno izquierdo */
+  }
+  
+  .inv-letter-section {
+    width: 100%; /* Asegura que cada sección ocupe el ancho completo */
+    margin-bottom: 20px;
+  }
+  
+  .inv-name-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .inv-search-input {
+    width: 100%;
+    padding: 10px;
+    background-color: #d6f3f4;
+    border: none;
+    border-radius: 2px;
+  }
+  
+  .inv-letter {
+    font-weight: bold;
+    border-bottom: 1px solid #999;
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+  }
+  
+  .inv-name-list li {
+    padding: 3px 0;
+  }
+  

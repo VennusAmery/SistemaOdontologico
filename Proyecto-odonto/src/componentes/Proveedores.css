@@ -158,6 +158,8 @@ hr {
   box-sizing: border-box;
   margin-top: 2px;}
 
+
+  
 /* CHECKBOX */
 .radio-group {
   display: flex;
@@ -217,6 +219,12 @@ hr {
 .custom-radio input[type="radio"]:checked ~ .radio-mark::after {
   display: block;
 }
+
+
+
+
+
+
 
 /* Sección de contacto*/
 .contact-info-section .contact-form {

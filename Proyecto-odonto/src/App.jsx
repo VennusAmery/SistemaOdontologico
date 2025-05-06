@@ -10,8 +10,6 @@ import CitasComponent from "./componentes/citas";
 import ContactosComponent from "./componentes/Contactos";
 import ProveedoresComponent from "./componentes/Proveedores"; 
 import ProgramarCita from "./componentes/programarcita"; // Importa el componente ProgramarCita
-import Doctores from "./componentes/Doctores";
-
 
 import "./App.css";
 
@@ -31,7 +29,6 @@ function App() {
         <Route path="/Contactos" element={<ContactosComponent />} />
         <Route path="/Proveedores" element={<ProveedoresComponent />} />
         <Route path="/programarcita" element={<ProgramarCita />} /> {/* Nueva ruta */}
-        <Route path="/Doctores" element={<Doctores />} />
 
         {/* Aquí puedes añadir más rutas protegidas/con sidebar */}
       </Route>

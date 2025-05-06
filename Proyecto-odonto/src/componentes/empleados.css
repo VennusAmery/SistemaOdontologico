@@ -1,0 +1,105 @@
+/* Importa la fuente 'Poppins' desde Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;600;800&display=swap');
+
+
+  
+  .titulo-empleados {
+    color: #FF987B; /* Color del texto */
+    font-size: 40px; /* Tamaño de fuente */
+    margin-top: 25px;
+    margin-bottom: 25px; /* Espaciado inferior */
+    text-align: left; /* Alinea el texto a la izquierda */
+    padding-left: 25px; /* Espaciado izquierdo */
+  }
+
+.empleados-header {
+  margin-top: 20px;
+  text-align: center;
+}
+  
+.subtitulo-empleados h2 {
+    font-size: 1.3rem;
+    color: #757575; /* Azul */
+    font-weight: normal; /* Normal */
+    margin-bottom: 2rem;
+    text-align: left; /* Alinear a la izquierda */
+    padding-left: 25px; /* Espaciado desde el sidebar */
+    position: relative; /* Para las líneas superior e inferior */
+  }
+  
+  .subtitulo-empleados h2::before,
+  .subtitulo-empleados h2::after {
+    content: ""; /* Línea decorativa */
+    display: block;
+    height: 2px; /* Grosor de la línea */
+    background-color: #6bbbc1; /* Color del sidebar */
+    width: 100%;
+    position: absolute;
+    left: 0px;
+  }
+  
+  .subtitulo-empleados h2::before {
+    top: -10px; /* Línea superior */
+  }
+  
+  .subtitulo-empleados h2::after {
+    bottom: -10px; /* Línea inferior */
+  }
+
+  .empleados-busqueda {
+    display: flex;
+  justify-content: center; /* Alinear elementos al inicio */
+  align-items: center;
+  gap: 1rem; /* Espaciado entre los elementos */
+  margin-top: 3rem;
+  padding-left: 25px;
+  }
+  
+  .empleados-busqueda input {
+    width: 300px; /* Ajusta el ancho del campo de búsqueda */
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .btn-agregar, .btn-filtro {
+    background-color: #ff7f7f;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+  
+  .btn-agregar:hover, .btn-filtro:hover {
+    background-color: #ff4f4f;
+  }
+  
+  .empleados-lista-scroll {
+    max-height: 400px; /* Altura máxima del contenedor */
+    overflow-y: auto; /* Habilita el scroll vertical */
+    margin-top: 20px;
+    padding-right: 10px; /* Espaciado para evitar que el scroll tape contenido */
+  }
+  
+  .empleados-lista-scroll::-webkit-scrollbar {
+    width: 8px; /* Ancho del scroll */
+  }
+  
+  .empleados-lista-scroll::-webkit-scrollbar-thumb {
+    background-color: #6bbbc1; /* Color del scroll */
+    border-radius: 4px; /* Bordes redondeados */
+  }
+  
+  .empleados-lista-scroll::-webkit-scrollbar-thumb:hover {
+    background-color: #4a9a9d; /* Color al pasar el mouse */
+  }
+  
+  .empleados-footer {
+    margin-top: 20px;
+    text-align: right;
+  }
+
+
+

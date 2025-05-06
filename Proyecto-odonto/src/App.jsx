@@ -12,6 +12,7 @@ import ProveedoresComponent from "./componentes/Proveedores";
 import ProgramarCita from "./componentes/programarcita"; // Importa el componente ProgramarCita
 import HistorialCita from "./componentes/historialcita"; // Importa el componente ProgramarCita
 import Doctores from "./componentes/Doctores";
+import Empleados from "./componentes/empleados";
 
 
 import "./App.css";
@@ -34,7 +35,7 @@ function App() {
         <Route path="/programarcita" element={<ProgramarCita />} /> {/* Nueva ruta */}
         <Route path="/historialcita" element={<HistorialCita />} /> {/* Nueva ruta */}
         <Route path="/Doctores" element={<Doctores />} /> {/* Nueva ruta */}
-
+        <Route path="/empleados" element={<Empleados />} /> {/* Nueva ruta */}
 
 
         {/* Aquí puedes añadir más rutas protegidas/con sidebar */}

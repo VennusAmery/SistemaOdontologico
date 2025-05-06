@@ -1,64 +1,111 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './infoMaterial.css';
+import { motion } from 'framer-motion';
 
-const mockInfo = [
-  { id: 1, nombre: 'Guantes', descripcion: 'Guantes de látex desechar al finalizar cita', ubicacion: 'Estante A3' },
-  { id: 2, nombre: 'Mascarilla', descripcion: 'Mascarilla quirúrgica N95', ubicacion: 'Estante B1' },
-  { id: 3, nombre: 'Gasas', descripcion: 'Gasas estériles 10x10 cm', ubicacion: 'Estante C2' },
+const tabConfig = [
+  { id: 'inventario', label: 'Listado de Material', path: '/inventario' },
+  { id: 'ingresoMaterial', label: 'Ingreso Material', path: '/ingresoMaterial' },
+  { id: 'infoMaterial', label: 'Información de material utilizado', path: '/infoMaterial' },
+  { id: 'citaMaterial', label: 'Material usado en cita', path: '/citaMaterial' },
 ];
 
-const InfoMaterial = () => {
-  const navigate = useNavigate();
-  const [info, setInfo] = useState([]);
-  const [searchTerm, setSearchTerm] = useState('');
-
-  useEffect(() => {
-    // En un caso real, aquí harías fetch a tu API
-    setInfo(mockInfo);
-  }, []);
-
-  // Filtrar por nombre o descripción
-  const filtered = info.filter(item =>
-    item.nombre.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    item.descripcion.toLowerCase().includes(searchTerm.toLowerCase())
-  );
-
-  return (
-    <div className="info-container">
-      <header className="info-header">
-        <button className="back-btn" onClick={() => navigate(-1)}>Volver</button>
-        <h1>Información de Material</h1>
-      </header>
-
-      <div className="info-search">
-        <input
-          type="text"
-          placeholder="Buscar material por nombre o descripción..."
-          value={searchTerm}
-          onChange={e => setSearchTerm(e.target.value)}
-        />
-      </div>
-
-      <ul className="info-list">
-        {filtered.length ? (
-          filtered.map(item => (
-            <li key={item.id} className="info-item">
-              <h2 className="item-name">{item.nombre}</h2>
-              <p className="item-desc">{item.descripcion}</p>
-              <p className="item-loc">Ubicación: {item.ubicacion}</p>
-            </li>
-          ))
-        ) : (
-          <li className="no-results">No se encontró material</li>
-        )}
-      </ul>
-
-      <footer className="info-footer">
-        <button onClick={() => navigate('/inventario')}>Ir a Inventario</button>
-      </footer>
-    </div>
-  );
+const slideVariants = {
+  initial: { x: '100%', opacity: 0 },
+  animate: { x: 0, opacity: 1 },
+  exit: { x: '-100%', opacity: 0 },
+  transition: { duration: 0.4 }
 };
 
-export default InfoMaterial;
+export default function InfoMaterial() {
+  const navigate = useNavigate();
+  const [tabActiva, setTabActiva] = useState('infoMaterial');
+
+  const [formData, setFormData] = useState({
+    idProducto: '',
+    nombreProducto: '',
+    cantidad: '',
+    fechaUso: '',
+    idCita: '',
+    clinica: '',
+    descripcion: ''
+  });
+
+  const handleTabClick = tab => {
+    setTabActiva(tab.id);
+    navigate(tab.path);
+  };
+
+  const handleChange = e => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+  };
+
+  const handleGuardar = () => {
+    console.log('Guardando datos:', formData);
+    // Aquí va la lógica de guardado
+  };
+
+  const handleRegresar = () => {
+    navigate(-1); // Regresa a la vista anterior
+  };
+
+  return (
+    <div className="inv-container">
+      <h2 className="inv-title">Inventario</h2>
+      <hr />
+
+      <div className="inv-tabs">
+        {tabConfig.map(tab => (
+          <button
+            key={tab.id}
+            className={`inv-tab ${tabActiva === tab.id ? 'active' : ''}`}
+            onClick={() => handleTabClick(tab)}>
+            {tab.label}
+          </button>
+        ))}
+      </div>
+
+      <motion.div
+        className="form-info-material"
+        variants={slideVariants}
+        initial="initial"
+        animate="animate"
+        exit="exit"
+        transition={slideVariants.transition}
+      >
+        <div className="form-grid">
+          <div className="form-col">
+            <label>ID Producto:</label>
+            <input name="idProducto" value={formData.idProducto} onChange={handleChange} />
+
+            <label>Cantidad:</label>
+            <input name="cantidad" value={formData.cantidad} onChange={handleChange} />
+
+            <label>Fecha de Uso:</label>
+            <input name="fechaUso" value={formData.fechaUso} onChange={handleChange} />
+
+            <label>ID Cita:</label>
+            <input name="idCita" value={formData.idCita} onChange={handleChange} />
+
+            <label>Clínica:</label>
+            <input name="clinica" value={formData.clinica} onChange={handleChange} />
+          </div>
+
+          <div className="form-col">
+            <label>Nombre Producto:</label>
+            <input name="nombreProducto" value={formData.nombreProducto} onChange={handleChange} />
+
+            <label>Descripción:</label>
+            <textarea name="descripcion" value={formData.descripcion} onChange={handleChange} />
+          </div>
+        </div>
+
+        <div className="form-buttons">
+          <button className="btn guardar" onClick={handleGuardar}>GUARDAR</button>
+          <button className="btn regresar" onClick={handleRegresar}>REGRESAR</button>
+        </div>
+      </motion.div>
+    </div>
+  );
+}

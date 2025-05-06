@@ -1,0 +1,124 @@
+.inv-container {
+    padding: 20px;
+  }
+  
+  .inv-title {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #ff8a65; /* Naranja suave */
+    margin-bottom: 0.5rem;
+    text-align: left;     /* asegura alineación a la izquierda */
+  }
+  
+  h2 {
+    color: #F98972;
+    align-items: flex-start !important;
+  }
+  
+  .inv-title + hr {
+    border: none;
+    height: 1px;
+    background-color: #74c0c5; /* Verde-azulado */
+    margin-bottom: 1.5rem;
+  }
+  
+  
+  .inv-tabs {
+    display: flex;
+    gap: 3rem; /*ESPACIO ENTRE LOS BOTONES DE NAGEVACION*/
+    border-bottom: 2px solid #ddd;
+    margin-bottom: 1.5rem;
+  }
+  
+  .inv-tab {
+    background: none;
+    border: none;
+    padding: 0.5rem 0;
+    font-size: 1rem;
+    color: #ff8a65;
+    cursor: pointer;
+    position: relative;
+    transition: color 0.2s;
+  }
+  
+  .inv-tab:hover {
+    color: #74c0c5;
+  }
+  
+  .inv-tab.active {
+    color: #497a7d; /*color del seleccionado*/
+  }
+  
+  .inv-tab.active::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: #ff8a65; /* linea debajo del boton de navegacion */
+  }
+
+
+
+  .form-info-material {
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+  }
+  
+  .form-grid {
+    display: flex;
+    gap: 40px;
+    margin-bottom: 20px;
+  }
+  
+  .form-col {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+  
+  .form-col label {
+    margin-bottom: 5px;
+    color: #333;
+  }
+  
+  .form-col input,
+  .form-col textarea {
+    margin-bottom: 15px;
+    padding: 8px;
+    border: none;
+    background: #c9eff0;
+    border-radius: 5px;
+    resize: none;
+  }
+  
+  textarea {
+    height: 120px;
+  }
+  
+  .form-buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: flex-end;
+  }
+  
+  .btn {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  
+  .btn.guardar {
+    background-color: coral;
+    color: white;
+  }
+  
+  .btn.regresar {
+    background-color: coral;
+    color: white;
+  }
+  

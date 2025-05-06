@@ -30,12 +30,7 @@ function Contactos() {
           </div>
         </div>
 
-        <button
-          className="btn-regresar"
-          onClick={() => navigate('/home')}
-        >
-          REGRESAR
-        </button>
+        <button className="btn-regresar"onClick={() => navigate('/home')}>REGRESAR</button>
       </main>
     </div>
   );

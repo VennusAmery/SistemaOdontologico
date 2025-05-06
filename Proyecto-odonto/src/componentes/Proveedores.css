@@ -9,6 +9,7 @@ html, body {
   overflow-y: auto;
   background-color: white;
 }
+
 .proveedores-container {
   padding: 20px;
   max-width: 100%;
@@ -130,8 +131,8 @@ hr {
   width: 48%;
   display: flex;
   flex-direction: column;
+  margin-top: 25PX;
 }
-
 
 .column h1{
   color: #000;
@@ -143,6 +144,7 @@ hr {
   color: #000;
   margin-bottom: 5px;
   font-size: clamp(0.75rem, 1vw, 1.125rem);
+  margin-top: 5px;
 }
 
 .column input[type="text"],
@@ -154,7 +156,7 @@ hr {
   background-color: #d3f1f1 /*COLOR DE DONDE PONEN LOS DATOS*/;
   width: 100%;
   box-sizing: border-box;
-}
+  margin-top: 2px;}
 
 /* CHECKBOX */
 .radio-group {
@@ -220,7 +222,7 @@ hr {
 .contact-info-section .contact-form {
   display: flex;
   flex-direction: column;
-  margin-top: -45px;
+  margin-top: -95px;
 }
 
 .contact-info-section .row {
@@ -232,7 +234,7 @@ hr {
   display: flex;
   justify-content: center;
   gap: 20px;
-  margin-top: -15px;
+  margin-top: -30px;
 }
 
 .action-buttons-section button {

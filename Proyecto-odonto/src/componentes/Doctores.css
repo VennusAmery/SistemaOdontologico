@@ -1,0 +1,347 @@
+/* Importa la fuente 'Poppins' desde Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;600;800&display=swap');
+
+/* Reset + BoxSizing */
+*, *::before, *::after {
+    box-sizing: border-box;
+  }
+
+ html, body {
+    height: 100%;
+    overflow-y: auto;   /* permite scroll vertical */}
+
+ .doctores-header {
+    margin-bottom: 20px;
+  }
+  
+ .doctores-title {
+    display: flex;
+    align-items: flex-end;
+    gap: 10px;
+    padding-left: 10px;
+  }
+  
+.DOCTORES .icon-circle {
+    width: 100px;
+    height: 100px;
+    border: 2px solid #b2e4e5;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 3px;
+    transform: translateY(5px) translateX(5px);
+  }
+  
+  .DOCTORES.circle-image {
+    width: 60%;
+    height: 60%;
+    margin-left: 1px;
+  }
+  
+
+/* Contenido principal */
+.doctores-container {
+    padding: 20px;
+    font-family: 'Segoe UI', sans-serif;
+    color: #555;
+  }
+  
+
+/* Botones destacados (Información, Contacto) */
+.info-button-section {
+    margin: 0;
+    margin-bottom: -70px;
+}
+
+
+h3 {
+    color: #F98972;
+    margin-bottom: 10px;
+  }
+  
+ hr {
+    border: none;
+    border-top: 2px solid #56B0B3;
+    margin: 10px 0 20px;
+  }
+  
+.doctor-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+
+  .doctor-icon {
+    width: 80px;
+    height: 80px;
+    border: 2px solid #b2e4e5;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 3px;
+    transform: translateY(5px) translateX(5px);
+  }
+  
+.section-title {
+    color: #F98972;
+    font-weight: bold;
+    font-size: clamp(1rem, 3vw, 1.3rem); /* Escala el texto según el tamaño de pantalla */
+    background-color: white !important;
+    display: flex;
+    gap: 10px;
+    padding-left: 10px;
+    margin-bottom: -22px;
+  }
+
+
+  /*FORMULARIO*/
+.doctor-form {
+    margin-bottom: 20px;
+  }
+  
+  /* Secciones del formulario */
+  .form-row{
+    display: flex;
+    gap: 40px;
+    margin-top: 45px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+  }
+
+  .form-row2 {
+    margin-top: 35px !important;
+    margin-bottom: 20px !important;
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  
+  .form-field2 {
+    display: flex;
+    flex-direction: column; /* Label encima del input */
+    flex: 1;
+    min-width: 200px;
+    align-items: center;
+  }
+
+  .form-field2 label {
+    text-align: center;
+  }
+  
+
+  /* Grupo de campos */
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  /* Campo de formulario con etiqueta */
+  .form-field {
+    display: flex;
+    flex: auto;
+    align-items: center;
+    gap: 10px;
+  }
+
+  /* Etiquetas */
+  label {
+    width: 120px;
+    font-weight: 500;
+    text-align: right;
+    font-size: clamp(0.75rem, 1vw, 1.125rem) !important;
+  }
+  
+  /* Entradas */
+  input {
+    background-color: #d5f1f2;
+    border: 1px solid #bcdcdc;
+    border-radius: 5px;
+    padding: 8px;
+    width: 250px;
+    outline: none;
+    font-size: 12px;
+  }
+
+.doctor-form .form-row input[type="text"],
+.doctor-form .form-row input[type="number"],
+.doctor-form .form-row input[type="time"] {
+  font-size: 14px;
+  padding: 5px 10px;
+  width: 350px;
+}
+
+input[type="time"] {
+    background-color: #d4f3f3;
+    color: #333;       
+    padding: 5px 10px;
+    border-radius: 4px;
+  }
+  
+  input:focus {
+    background-color: #eaffff;
+    border-color: #F98972;
+  }
+
+/* Oculta el ícono del input tipo time en navegadores WebKit (Chrome, Safari, Edge Chromium) */
+input[type="time"]::-webkit-calendar-picker-indicator {
+    opacity: 0;
+    cursor: pointer;
+    z-index: 1;
+    position: relative;
+  }
+  
+  /* Estilo del wrapper con ícono personalizado */
+  .input-time-wrapper {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .input-time-wrapper input[type="time"] {
+    padding-right: 2.5rem; /* espacio para el ícono */
+  }
+  
+  .input-time-wrapper .custom-icon {
+    position: absolute;
+    right: 0.75rem;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    font-size: 1.2rem;
+    color: white; /* o el color que desees */
+  }
+  
+  .input-time-wrapper input {
+    padding-right: 30px; /* deja espacio para el ícono */
+  }
+  
+  .custom-icon {
+    position: absolute;
+    right: 10px;
+    width: 20px;
+    height: 20px;
+    pointer-events: none;
+  }
+  
+
+/* Botones de acción al final */
+ .action-buttons {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    gap: 20px; /* ajusta el espacio entre botones */
+    margin-top: 20px; /* opcional, para separación vertical */
+    flex-wrap: wrap; /* por si el espacio horizontal es limitado */
+  }
+  
+  .btn {
+    background-color: #F98972;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    padding: 10px px; /*TAMAÑO DEL BOTON*/
+  }
+  
+.btn:hover {
+    background-color: #f56b4d;
+  }
+  
+
+
+  /* Responsive: Tablet */
+@media (max-width: 992px) {
+    .form-row,
+    .form-row2 {
+      flex-direction: column;
+    }
+    .form-group {
+      width: 100%;
+    }
+    .doctores-title {
+      justify-content: center;
+      text-align: center;
+    }
+      /* Ajustar íconos para pantallas pequeñas */
+  .icon-circle {
+    width: 60px;
+    height: 60px;
+  }
+
+  .circle-image {
+    width: 60%;
+    height: 60%;
+  }
+
+  .info-button::after,
+  .contact-button::after {
+    display: none; /* Ocultar la línea en dispositivos pequeños */
+  }
+
+  .info-button,
+  .contact-button {
+    font-size: 1rem;
+    margin-top: -5px;
+    bottom: 0;
+  }
+
+  /* Estilo para las filas */
+  .row {
+    flex-direction: column; /* Cambiar a columna en pantallas pequeñas */
+    margin-bottom: 15px;
+    margin-top: 15px;
+  }
+  }
+  
+  /* Responsive: Mobile */
+  @media (max-width: 576px) {
+    html, body {
+      overflow: auto;
+    }
+    .doctores-container {
+      padding: 10px;
+    }
+    h3 {
+      font-size: 1.2rem;
+    }
+    .info-button {
+      width: 100%;
+    }
+    label {
+      width: auto;
+      text-align: left;
+    }
+    input,
+    .input-time-wrapper input[type="time"] {
+      font-size: 0.9rem;
+      padding: 6px;
+    }
+    .custom-icon {
+      width: 18px;
+      height: 18px;
+    }
+    .btn {
+      flex: 1 1 100%;
+      padding: 12px;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    /* … */
+    .form-row,
+    .form-row2 {
+      flex-direction: column;  /* empila todos los campos uno debajo de otro */
+    }
+    .action-buttons {
+      flex-direction: column;  /* botones en columna */
+    }
+    /* También puedes forzar que el contenedor principal use columnas */
+    .doctor-form {
+      flex-direction: column;
+    }
+  }

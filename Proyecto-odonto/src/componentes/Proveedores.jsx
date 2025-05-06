@@ -44,8 +44,6 @@ const Proveedores = () => {
   };
 
 
-  
-
   return (
     <>
       {/* ENCABEZADO */}

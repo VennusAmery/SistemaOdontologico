@@ -22,6 +22,7 @@ import CitaMaterial from "./componentes/citaMaterial";
 import Clinica from "./componentes/clinica";
 import ClinicaJalapa from './componentes/ClinicaJalapa';
 import AgregarEmpleado from "./componentes/agregarempleado";
+import Listadoproveedores from "./componentes/listadoproveedores";
 
 import "./App.css";
 function App() {
@@ -53,6 +54,7 @@ function App() {
           <Route path="/Clinica" element={<Clinica />} />
           <Route path="/clinicaJalapa" element={<ClinicaJalapa />} />
           <Route path="/agregarempleado" element={<AgregarEmpleado />} /> {/* Nueva ruta para agregar empleado */}
+          <Route path="/listadoproveedores" element={<Listadoproveedores />} />
         </Route>
       </Routes>
     </AnimatePresence>

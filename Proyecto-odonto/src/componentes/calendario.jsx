@@ -19,7 +19,17 @@ export default function CalendarComponent() {
     reminder: false,
   });
 
+  // Configuración de pestañas
+  const tabConfig = [
+    { id: 'calendario', label: 'Calendario', path: '/calendario' },
+  ];
+  const [tabActiva, setTabActiva] = useState(tabConfig[0].id);
   const navigate = useNavigate();
+
+  const handleTabClick = (tab) => {
+    setTabActiva(tab.id);
+    navigate(tab.path);
+  };
 
   const openModal = (date) => {
     setSelectedDate(date);
@@ -29,7 +39,7 @@ export default function CalendarComponent() {
 
   const handleSaveEvent = () => {
     if (!newEvent.title) return;
-    setEvents([ ...events, { id: Date.now(), date: selectedDate.toDateString(), ...newEvent } ]);
+    setEvents([...events, { id: Date.now(), date: selectedDate.toDateString(), ...newEvent }]);
     setShowModal(false);
   };
 
@@ -45,19 +55,22 @@ export default function CalendarComponent() {
     handleSaveEvent();
   };
 
-  const renderDot = (date) => {
-    return events.some(e => e.date === date.toDateString()) ? (
-      <div className="event-dot-wrapper"><div className="event-dot"/></div>
+  const renderDot = (date) =>
+    events.some(e => e.date === date.toDateString()) ? (
+      <div className="event-dot-wrapper">
+        <div className="event-dot" />
+      </div>
     ) : null;
-  };
 
   const todayEvents = events.filter(e => e.date === value.toDateString());
 
   return (
     <main className="calendar-content">
       <h1>Calendario</h1>
-      <hr></hr>
-      <hr></hr>
+      <hr className="spaced-hr" />
+      <hr className="spaced-hr" />
+
+
       <div className="calendar-wrapper">
         <div className="calendar-layout">
           {/* Calendario */}
@@ -70,7 +83,7 @@ export default function CalendarComponent() {
             />
           </div>
 
-          {/* Lista de eventos del día */}
+          {/* Lista eventos del día */}
           <div className="day-events">
             <h3>
               Eventos del {value.toLocaleDateString("es-ES", { weekday: "long", year: "numeric", month: "long", day: "numeric" })}:
@@ -126,7 +139,8 @@ export default function CalendarComponent() {
                     <option value="anual">Anual</option>
                   </select>
                 </label>
-                <label>
+                {/* Solo checkbox y etiqueta Recordatorio */}
+                <label className="checkbox-label">
                   <input
                     type="checkbox"
                     checked={newEvent.reminder}
@@ -144,22 +158,7 @@ export default function CalendarComponent() {
         )}
 
         {/* Toast de eliminación */}
-        {deleteMessage && (
-          <div style={{
-            position: "fixed",
-            bottom: "80px",
-            left: "50%",
-            transform: "translateX(-50%)",
-            background: "#D3D3D3",
-            color: "black",
-            padding: "0.5rem 1rem",
-            borderRadius: "4px",
-            boxShadow: "0 2px 6px rgba(0,0,0,0.2)",
-            zIndex: 1000,
-          }}>
-            {deleteMessage}
-          </div>
-        )}
+        {deleteMessage && <div className="toast-delete">{deleteMessage}</div>}
 
         {/* Modal detalle evento */}
         {showEventDetail && selectedEvent && (
@@ -167,7 +166,6 @@ export default function CalendarComponent() {
             <div className="modal">
               <h2>Detalles del evento</h2>
               <p><strong>Nombre:</strong> {selectedEvent.title}</p>
-              <p><strong>Tramiento:</strong></p>
               <p><strong>Hora:</strong> {selectedEvent.time || "No definida"}</p>
               <p><strong>Repetición:</strong> {selectedEvent.repetition}</p>
               <p><strong>Recordatorio:</strong> {selectedEvent.reminder ? "Sí" : "No"}</p>

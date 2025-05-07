@@ -1,6 +1,4 @@
-/* Base import de etiquetas generales */
-
-
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;600;800&display=swap');
 
 /*NAVEGADOR*/
 .inv-title {
@@ -60,6 +58,7 @@
     background-color: #ff8a65; /* linea debajo del boton de navegacion */
   }
   
+
   /*BODY*/
 .ingreso-body {
   padding: 1rem 0;
@@ -76,7 +75,6 @@
     grid-template-columns: 1fr 1fr;  /* dos columnas iguales */
     gap: 1.5rem;                     /* espacio entre columnas y filas */
   }
-
 
   /* las secciones de éxito y demás también queden centradas */
 .ingreso-body .submit-success {
@@ -107,9 +105,9 @@
   margin-bottom: 0.25rem;
   font-weight: 600;
   color: #555;
-  font-size: 12px;
+  font-size: 14px;
   flex: 0 0 6rem;
-  font-size: 12px !important;
+  text-align: left;
 }
 
 .form-group input,
@@ -121,39 +119,50 @@
   border-radius: 4px;
 }
 
+/*CHECKBOX*/
 .estado-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 15px;
+  margin-bottom: 20PX;
   border: none;
-  margin: 1rem 0;
-  padding: 0;
+}
+
+.estado-group legend {
+  margin-bottom: 5px;
+  text-align: left;
+  font-weight: 600;
 }
 
 .checkbox-label {
-  display: block;
-  margin-bottom: 0.5rem;
-  font-weight: 500;
-  color: #555;
+  display: flex;
+  align-items: center;
+  gap: 8px; /* Espacio entre checkbox y texto */
+  font-size: 14px;
+  color: #333;
+  cursor: pointer;
 }
 
+.checkbox-label input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: #00b4c6;
+  vertical-align: middle;
+  cursor: pointer;
+}
+
+/*INPUT DE DESCRIPCION*/
 .checkbox-label input {
   margin-right: 0.5rem;
 }
 
 .descripcion-group textarea {
-  height: 100px;
+  height: 105px;
 }
-
-.form-buttons {
-    grid-column: 1 / -1;  /* ocupa desde la columna 1 hasta la última */
-    display: flex;
-    justify-content: center; /* o space-between, según el diseño */
-    gap: 20px; /* Ajusta el valor según lo que necesites */
-    padding: 1rem;
-    color: white;
-}
-
 
 /*BOTONES*/
-.inv-form-buttons{
+.ingM-form-buttons{
   display: flex;
   flex-wrap: nowrap !important;        /* impide que los botones pasen a la siguiente línea */
   justify-content: center;  /* o flex-start si los quieres a la izquierda */
@@ -164,29 +173,24 @@
 }
 
 
-.inv-form-buttons1 .inv-btn-delete,
-.inv-form-buttons1 .inv-btn-edit,
-.inv-form-buttons1 .inv-btn-back,
-.inv-form-buttons1 .inv-btn-add {
+.ingM-form-buttons .ingM-btn-delete,
+.ingM-form-buttons .ingM-btn-edit,
+.ingM-form-buttons .ingM-btn-back,
+.ingM-form-buttons .ingM-btn-add {
   font-size: 1rem;            
   border: none;
   border-radius: 0.375rem;
   cursor: pointer;
   min-width: 100px;
   height: 40px;
+  font-weight: bold;
   transition: background-color 0.2s ease;
-}
+  background-color: #F98972; color: white; }
 
-/* Colores específicos */
-.inv-btn-delete { background-color: #F98972; color: white; }
-.inv-btn-edit   { background-color: #F98972; color: white; }
-.inv-btn-back   { background-color: #F98972; color: white; }
-.inv-btn-add    { background-color: #F98972; color: white; }
-
-.inv-btn-delete:hover,
-.inv-btn-edit:hover,
-.inv-btn-back:hover ,
-.inv-btn-add:hover {
+.ingM-btn-delete:hover,
+.ingM-btn-edit:hover,
+.ingM-btn-back:hover ,
+.ingM-btn-add:hover {
   opacity: 0.9;
 }
 

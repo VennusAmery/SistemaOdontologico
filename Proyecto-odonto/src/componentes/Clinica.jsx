@@ -87,7 +87,7 @@ const Clinica = () => {
 
         {/* ——— Botones de acción ——— */}
         <div className="clinic-form-buttons">
-          <button onClick={handleNavigation} className="clinic-btn-back">REGRESAR</button>
+          <button type="button" className="clinic-btn-back"onClick={() => navigate(-1)}>REGRESAR </button>
           <button onClick={handleEliminar} className="clinic-btn-delete">ELIMINAR</button>
           <button onClick={handleEditar} className="clinic-btn-edit">EDITAR</button>
           <button onClick={handleGuardar} className="clinic-btn-add">GUARDAR</button>

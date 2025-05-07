@@ -31,6 +31,21 @@ export default function InfoMaterial() {
     descripcion: ''
   });
 
+  const [searchTerm, setSearchTerm] = useState('');
+  const [displayTerm, setDisplayTerm] = useState('');
+
+  // Simulación de datos
+  const datos = ['Algodón', 'Gasas', 'Guantes', 'Jeringa', 'Alcohol'];
+  const filtered = datos.filter(d =>
+    d.toLowerCase().includes(displayTerm.toLowerCase())
+  );
+  const agrupados = filtered.reduce((acc, item) => {
+    const letra = item[0].toUpperCase();
+    if (!acc[letra]) acc[letra] = [];
+    acc[letra].push(item);
+    return acc;
+  }, {});
+
   const handleTabClick = tab => {
     setTabActiva(tab.id);
     navigate(tab.path);
@@ -43,11 +58,6 @@ export default function InfoMaterial() {
 
   const handleGuardar = () => {
     console.log('Guardando datos:', formData);
-    // Aquí va la lógica de guardado
-  };
-
-  const handleRegresar = () => {
-    navigate(-1); // Regresa a la vista anterior
   };
 
   return (
@@ -60,7 +70,8 @@ export default function InfoMaterial() {
           <button
             key={tab.id}
             className={`inv-tab ${tabActiva === tab.id ? 'active' : ''}`}
-            onClick={() => handleTabClick(tab)}>
+            onClick={() => handleTabClick(tab)}
+          >
             {tab.label}
           </button>
         ))}
@@ -74,39 +85,53 @@ export default function InfoMaterial() {
         exit="exit"
         transition={slideVariants.transition}
       >
+        <form
+          className="inv-search-form"
+          onSubmit={e => {
+            e.preventDefault();
+            setDisplayTerm(searchTerm);
+          }}
+        >
+          <div className="inv-search-container">
+            <input
+              type="text"
+              className="inv-search-input"
+              placeholder="Buscar material..."
+              value={searchTerm}
+              onChange={e => setSearchTerm(e.target.value)}
+            />
+            <button type="submit" className="inv-search-icon" aria-label="Buscar">
+              🔍
+            </button>
+          </div>
+        </form>
+
         <div className="form-grid">
           <div className="form-col">
             <label>ID Producto:</label>
             <input name="idProducto" value={formData.idProducto} onChange={handleChange} />
-
             <label>Cantidad:</label>
             <input name="cantidad" value={formData.cantidad} onChange={handleChange} />
-
             <label>Fecha de Uso:</label>
             <input name="fechaUso" value={formData.fechaUso} onChange={handleChange} />
-
             <label>ID Cita:</label>
             <input name="idCita" value={formData.idCita} onChange={handleChange} />
-
             <label>Clínica:</label>
             <input name="clinica" value={formData.clinica} onChange={handleChange} />
           </div>
-
           <div className="form-col">
             <label>Nombre Producto:</label>
             <input name="nombreProducto" value={formData.nombreProducto} onChange={handleChange} />
-
             <label>Descripción:</label>
             <textarea name="descripcion" value={formData.descripcion} onChange={handleChange} />
           </div>
         </div>
 
-        {/* ——— Botones de acción ——— */}
-        <div className="info-form-buttons">
-          <button type="button" className="inv-btn-delete">Eliminar</button>
-          <button type="button" className="inv-btn-edit">Modificar</button>
-          <button type="button" className="inv-btn-add">Agregar</button>
-          <button type="button" className="inv-btn-back"onClick={() => navigate(-1)}>Regresar </button>
+        <div className="infm-form-buttons">
+          <button type="button" className="infm-btn-delete">Eliminar</button>
+          <button type="button" className="infm-btn-edit">Modificar</button>
+          <button type="button" className="infm-btn-add" onClick={handleGuardar}>Agregar</button>
+          <button type="button" className="infm-btn-back" onClick={() => navigate(-1)}>Regresar</button>
         </div>
       </motion.div>
     </div>

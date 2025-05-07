@@ -1,160 +1,176 @@
 import React, { useState } from 'react';
 import './Proveedores.css';
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 
-const Proveedores = () => {
+export default function Proveedores() {
   const navigate = useNavigate();
+
+  const tabsProveedores = [
+    { id: 'info', label: 'Información', path: '/' },
+  ];
+
+  const tabsProveedores2 = [
+    { id: 'info', label: 'Contacto', path: '/' },
+  ];
+
+
+  const [activeTab, setActiveTab] = useState(tabsProveedores[0].id);
   const [supplier, setSupplier] = useState({
     nombre: '',
     ubicacion: '',
     nit: '',
     tipoProveedor: '',
     telefono: '',
-    correoElectronico: ''
+    correoElectronico: '',
   });
+  const [message, setMessage] = useState('');
+
+  const handleTabClick = (tab) => {
+    setActiveTab(tab.id);
+    navigate(tab.path);
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setSupplier({
-      ...supplier,
-      [name]: value
-    });
+    setSupplier(prev => ({ ...prev, [name]: value }));
   };
 
-  // Manejar el guardar
-  const handleSave = () => {
-    setMessage("Guardado Correctamente");
-    // Aquí puedes realizar la lógica de guardar si es necesario
+  const flashMessage = (text) => {
+    setMessage(text);
+    setTimeout(() => setMessage(''), 2000);
   };
 
+  const handleSave = () => flashMessage('Guardado Correctamente');
   const handleEdit = () => {
     console.log('Proveedor editado:', supplier);
+    flashMessage('Editado Correctamente');
   };
-
-  // Manejar el eliminar
-  const handleDeleteEvent = (eventToDelete) => {
-    setEvents(events.filter(evt => evt.id !== eventToDelete.id));
-    setShowEventDetail(false);
-    setDeleteMessage("Eliminado correctamente");
-    setTimeout(() => setDeleteMessage(""), 1000);
+  const handleDelete = () => {
+    setSupplier({ nombre: '', ubicacion: '', nit: '', tipoProveedor: '', telefono: '', correoElectronico: '' });
+    flashMessage('Eliminado Correctamente');
   };
-
-  const handleBack = () => {
-    navigate('/contactos');
-  };
-
 
   return (
-    <>
-      {/* ENCABEZADO */}
-      <h3>Contactos</h3>
+    <div className="prov-container">
+      <h2>Contactos</h2>
       <hr />
-      <hr />
-      <div className="proveedores-header">
-        <div className="proveedores-title">
-          <div className="icon-circle">
-            <img src="/imagenes/proveedores.png" alt="Proveedor" className="circle-image" />
-          </div>
-          <h3 className="titulo-proveedores">Proveedores</h3>
+      <div className="prov-container2">
+        <div className="prov-circle">
+          <img src="/imagenes/proveedores.png" alt="Proveedor" className="prov-image" />
+        </div>
+        <div className="prov-text">
+          <h2 className="prov-title">Proveedores</h2>
         </div>
       </div>
+      <hr className="prov-separator" />
 
-      {/* BOTON INFORMACIÓN */}
-      <div className="section info-button-section">
-        <button className="info-button">Información</button>
-        <hr />
-      </div>
 
-      {/* SECCIÓN DE DATOS DEL PROVEEDOR */}
-      <div className="section supplier-info-section">
-        <form className="proveedores-form">
-          <div className="row">
-            <div className="column">
-              <label>Nombre:</label>
-              <input type="text" name="nombre" value={supplier.nombre} onChange={handleChange} />
+      {/* Tabs */}
+      <nav className="provf-tabs" aria-label="Secciones de Inventario">
+        {tabsProveedores.map(tab => (
+          <button
+            key={tab.id}
+            type="button"
+            className={`provf-tab ${activeTab === tab.id ? 'active' : ''}`}
+            onClick={() => handleTabClick(tab)} >
+            {tab.label}
+          </button>
+        ))}
+      </nav>
 
-              <label>Ubicación:</label>
-              <input type="text" name="ubicacion" value={supplier.ubicacion} onChange={handleChange} />
-
-              <label>NIT:</label>
-              <input type="text" name="nit" value={supplier.nit} onChange={handleChange} />
+      {/* Flash message */}
+              {message && (
+          <div className="custom-toast">
+            <div className="custom-toast-content">
+              {message}
             </div>
+          </div>
+        )}
 
-            <div className="column">
-              <h1>Tipo de proveedor:</h1>
-              <div className="radio-group">
-                <label className="custom-radio">
-                  <input
-                    type="radio"
-                    name="tipoProveedor"
-                    value="Material y Equipo"
-                    checked={supplier.tipoProveedor === 'Material y Equipo'}
-                    onChange={handleChange}
-                  />
-                  <span className="radio-mark"></span>
-                  Material y Equipo
-                </label>
+      {/* Información proveedor */}
+      {activeTab === 'info' && (
+        <>
+          <div className="section supplier-info-section">
+            <form className="proveedores-form">
+              <div className="row">
+                <div className="column">
+                  <label>Nombre:</label>
+                  <input type="text" name="nombre" value={supplier.nombre} onChange={handleChange} />
 
-                <label className="custom-radio">
-                  <input
-                    type="radio"
-                    name="tipoProveedor"
-                    value="Agua"
-                    checked={supplier.tipoProveedor === 'Agua'}
-                    onChange={handleChange}
-                  />
-                  <span className="radio-mark"></span>
-                  Agua
-                </label>
+                  <label>Ubicación:</label>
+                  <input type="text" name="ubicacion" value={supplier.ubicacion} onChange={handleChange} />
 
-                <label className="custom-radio">
-                  <input
-                    type="radio"
-                    name="tipoProveedor"
-                    value="Servicio Técnico"
-                    checked={supplier.tipoProveedor === 'Servicio Técnico'}
-                    onChange={handleChange}
-                  />
-                  <span className="radio-mark"></span>
-                  Servicio Técnico
-                </label>
+                  <label>NIT:</label>
+                  <input type="text" name="nit" value={supplier.nit} onChange={handleChange} />
+                </div>
+                <div className="column">
+                  <label>Tipo de proveedor:</label>
+                  <div className="radio-group">
+                    {['Material y Equipo', 'Agua', 'Servicio Técnico'].map(type => (
+                      <label key={type} className="custom-radio">
+                        <input
+                          type="radio"
+                          name="tipoProveedor"
+                          value={type}
+                          checked={supplier.tipoProveedor === type}
+                          onChange={handleChange}/>
+                        <span className="radio-mark" /> {type}
+                      </label>
+                    ))}
+                  </div>
+                </div>
               </div>
-            </div>
+            </form>
           </div>
-        </form>
-      </div>
 
-      {/* BOTÓN CONTACTO */}
-      <div className="section contact-button-section">
-        <button className="contact-button" onClick={handleBack}>Contacto</button>
-        <hr />
-      </div>
-
-      {/* SECCIÓN DE INFORMACIÓN DE CONTACTO */}
-      <div className="section contact-info-section">
-        <form className="contact-form">
-          <div className="row">
-            <div className="column">
-              <label>Teléfono:</label>
-              <input type="text" name="telefono" value={supplier.telefono} onChange={handleChange} />
+          {/* Información contacto */}
+          <div className="section contact-info-section">
+            <nav className="provf-tabs" aria-label="Secciones de Inventario">
+              {tabsProveedores2.map(tab => (
+                <button
+                  key={tab.id}
+                  type="button"
+                  className={`provf-tab ${activeTab === tab.id ? 'active' : ''}`}
+                  onClick={() => handleTabClick(tab)} >
+                  {tab.label}
+                </button>
+              ))}
+            </nav>
             </div>
-            <div className="column">
-              <label>Correo Electrónico:</label>
-              <input type="email" name="correoElectronico" value={supplier.correoElectronico} onChange={handleChange} />
-            </div>
-          </div>
-        </form>
-      </div>
 
-      {/* BOTONES DE ACCIÓN */}
-      <div className="section action-buttons-section">
-        <button type="button" onClick={handleSave}>GUARDAR</button>
-        <button type="button" onClick={handleEdit}>EDITAR</button>
-        <button onClick={() => handleDeleteEvent(selectedEvent)}>Eliminar</button>
-        <button className="button" onClick={() => navigate("/contactos")}>Regresar</button>
-      </div>
-    </>
+            <form className="contact-form">
+              <div className="row">
+                <div className="column">
+                  <label>Teléfono:</label>
+                  <input
+                    type="text"
+                    name="telefono"
+                    value={supplier.telefono}
+                    onChange={handleChange}
+                  />
+                </div>
+                <div className="column">
+                  <label>Correo Electrónico:</label>
+                  <input
+                    type="email"
+                    name="correoElectronico"
+                    value={supplier.correoElectronico}
+                    onChange={handleChange}
+                  />
+                </div>
+              </div>
+            </form>
+
+            {/* Botones de acción */}
+            <div className="action-buttons-section">
+              <button type="button" onClick={handleSave}>GUARDAR</button>
+              <button type="button" onClick={handleEdit}>EDITAR</button>
+              <button type="button" onClick={handleDelete}>ELIMINAR</button>
+              <button type="button" className="prov-btn-back" onClick={() => navigate('/listadoProveedores')}>REGRESAR</button>
+              </div>
+ 
+        </>
+      )}
+    </div>
   );
-};
-
-export default Proveedores;
+}

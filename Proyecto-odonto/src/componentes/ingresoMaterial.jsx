@@ -155,24 +155,19 @@ export default function IngresoMaterial() {
               </div>
             </div>
 
-            
         {/* ——— Botones de acción ——— */}
-        <div className="inv-form-buttons">
-          <button type="button" className="inv-btn-delete">Eliminar</button>
-          <button type="button" className="inv-btn-edit">Modificar</button>
-          <button type="button" className="inv-btn-add">Agregar</button>
-          <button type="button" className="inv-btn-back"onClick={() => navigate(-1)}>Regresar </button>
+        <div className="ingM-form-buttons">
+          <button type="button" className="ingM-btn-delete">Eliminar</button>
+          <button type="button" className="ingM-btn-edit">Modificar</button>
+          <button type="button" className="ingM-btn-add">Agregar</button>
+          <button type="button" className="ingM-btn-back"onClick={() => navigate(-1)}>Regresar </button>
         </div>
           </form>
         ) : (
           <div className="submit-success">
             <h2>Material ingresado correctamente</h2>
-            <button className="btn back" onClick={() => navigate('/inventario')}>
-              Ir a Inventario
-            </button>
-            <button className="btn save" onClick={() => setSubmitted(false)}>
-              Ingresar otro
-            </button>
+            <button className="btn back" onClick={() => navigate('/inventario')}>Ir a Inventario</button>
+            <button className="btn save" onClick={() => setSubmitted(false)}>Ingresar otro</button>
           </div>
         )}
       </motion.div>

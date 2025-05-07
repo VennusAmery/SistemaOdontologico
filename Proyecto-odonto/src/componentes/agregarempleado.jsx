@@ -119,8 +119,47 @@ function AgregarEmpleado() {
           )}
           {activeTab === 'contacto' && (
             <div>
-              <h3>Contacto</h3>
-              <p>info de contacto de empleado</p>
+              <div className="agregar-empleado-form">
+                <div className="agregar-empleado-columns">
+
+                  {/* Primera columna */}
+                  <div className="agregar-empleado-column">
+                    <div className="agregar-empleado-row">
+                      <label htmlFor="agregar-empleado-telmovil1">Telefono Movil 1:</label>
+                      <input type="text" id="agregar-empleado-telmovil1" className="agregar-empleado-input" />
+                    </div>
+                    <div className="agregar-empleado-row">
+                      <label htmlFor="agregar-empleado-telcasa">Telefono de casa:</label>
+                      <input type="text" id="agregar-empleado-telcasa" className="agregar-empleado-input" />
+                    </div>
+                    <div className="agregar-empleado-row">
+                      <label htmlFor="agregar-empleado-turnos">Turnos:</label>
+                      <input type="text" id="agregar-empleado-turnos" className="agregar-empleado-input" />
+                    </div>
+                  </div>
+
+                  {/* Segunda columna */}
+                  <div className="agregar-empleado-column">
+                    <div className="agregar-empleado-row">
+                      <label htmlFor="agregar-empleado-telmovil2">Telefono Movil 2:</label>
+                      <input type="text" id="agregar-empleado-telmovil2" className="agregar-empleado-input" />
+                    </div>
+                    <div className="agregar-empleado-row">
+                      <label htmlFor="agregar-empleado-correo">Correo Electronico:</label>
+                      <input type="text" id="agregar-empleado-correo" className="agregar-empleado-input" />
+                    </div>
+                  </div>
+
+                </div>
+
+                {/* Botones */}
+                <div className="agregar-empleado-buttons">
+                  <button className="agregar-empleado-btn guardar">GUARDAR</button>
+                  <button className="agregar-empleado-btn editar">EDITAR</button>
+                  <button className="agregar-empleado-btn eliminar">ELIMINAR</button>
+                  <button className="agregar-empleado-btn regresar">REGRESAR</button>
+                </div>
+              </div>
             </div>
           )}
         </div>

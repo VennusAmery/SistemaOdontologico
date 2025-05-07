@@ -90,9 +90,7 @@ export default function CitaMaterial() {
             value={busqueda}
             onChange={e => setBusqueda(e.target.value)}
           />
-          <button className="inv-btn inv-btn--buscar" onClick={handleBuscar}>
-            BUSCAR
-          </button>
+          <button className="inv-btn inv-btn--buscar" onClick={handleBuscar}>BUSCAR</button>
         </div>
 
         <div className="cita-id-section">
@@ -116,9 +114,12 @@ export default function CitaMaterial() {
           </div>
         </div>
 
-        <div className="inv-actions">
-          <button className="inv-btn inv-btn--save" onClick={onSave}>GUARDAR</button>
-          <button className="inv-btn inv-btn--back" onClick={onBack}>REGRESAR</button>
+        {/* ——— Botones de acción ——— */}
+        <div className="citaM-form-buttons">
+          <button type="button" className="inv-btn-delete">Eliminar</button>
+          <button type="button" className="inv-btn-edit">Modificar</button>
+          <button type="button" className="inv-btn-add">Agregar</button>
+          <button type="button" className="inv-btn-back"onClick={() => navigate(-1)}>Regresar </button>
         </div>
       </motion.div>
     </div>

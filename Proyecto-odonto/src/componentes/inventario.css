@@ -65,173 +65,138 @@ h2 {
   background-color: #ff8a65; /* linea debajo del boton de navegacion */
 }
 
-/*BUSQUEDA*/
+
+
+/*Seccion de busqueda*/
 .inv-search-section {
   display: flex;
-  align-items: center;
-  margin-bottom: 2rem;
+  flex-direction: column;
+  gap: 1rem;
+  width: 100%;
 }
 
-.inv-search-label {
-  font-weight: 600;
-  color: #555;
-  padding-right: 20px;
-  padding-left: 20px;
-  align-items: center;
+.inv-search-form {
+  width: 100%;
+  max-width: 800px; /* o lo que necesites */
+  margin: 1rem auto;
+}
+
+.inv-search-container {
+  position: relative;
+  width: 100%;
 }
 
 .inv-search-input {
-  padding: 6px 10px;
-  align-items: center;
-  font-size: 14px;
-  border: 1px solid #90caf9;
-  border-radius: 4px;
-  width: 85%;
-  background-color: #f0faff;
-  transition: border 0.3s;
-}
-
-.inv-search-input:focus {
-  outline: none;
-  border-color: #74c0c5;
-}
-
-.inv-content .inv-section {
-  padding: 1rem;
-  background-color: #fafafa;
-  border-radius: 8px;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.05);
-}
-
-/* Ejemplo de lista agrupada */
-.inv-list-section .inv-letter-section {
-  margin-bottom: 1.5rem;
-}
-
-.inv-letter {
-  font-size: 1.25rem;
-  font-weight: 600;
-  color: #555;
-  margin-bottom: 0.25rem;
-}
-
-.inv-name-list {
-  list-style: none;
-  padding-left: 0;
-  color: #666;
-}
-
-.inv-name-list li {
-  padding: 0.25rem 0;
-  border-bottom: 1px solid #eee;
-}
-
-.inv-name-list li:last-child {
-  border-bottom: none;
-}
-
-
-
-/* Contenedor de resultados debajo del input */
-.inv-search-results {
-  max-height: 150px;           /* altura fija */
-  overflow-y: auto;            /* scroll vertical */
-  margin-top: 10px;
-  border: 1px solid #90caf9;   /* borde celeste */
-  border-radius: 4px;
-  background: #f0faff;         /* celeste clarito */
-  padding: 5px 0;
-}
-
-/* Cada ítem del listado */
-.inv-search-item {
-  padding: 6px 12px;
-  font-size: 14px;
-  color: #0c4a6e;
-  cursor: pointer;
-  transition: background 0.2s;
-}
-
-/* Hover en ítems */
-.inv-search-item:hover {
-  background: #d1eefa;
-}
-
-
-/* Sección de búsqueda animada */
-.inv-search-section {
-  max-width: 600px;
-  margin: 0 auto;
-}
-
-/* Wrapper del input con icono */
-.inv-search-wrapper {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
+  width: 100%; /* Se ajusta al tamaño del formulario */
+  padding: 0.75rem 2.5rem 0.75rem 1rem;
+  font-size: 1.1rem;
+  border: 1px solid #ccc;
+  border-radius: 0.5rem;
+  box-sizing: border-box;
 }
 
 .inv-search-icon {
   position: absolute;
-  left: 10px;
-  width: 18px;
-  height: 18px;
-  fill: #74c0c5;
+  right: 0.005rem;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  color: #74c0c5;
 }
 
-.inv-search-input {
-  padding: 0.5rem;
-  border-radius: 6px;
-  border: 1px solid #ccc;
-  font-size: 1rem;
-  width: 100%;
-}
 
-.inv-search-input:focus {
-  outline: none;
-  border-color: #42a5f5;
-}
-
-/* Resultados con scroll y estilo */
+/*DONDE ESTAN LOS REGISTROS*/
 .inv-search-results {
-  border: 1px solid #d6eaff;
-  border-radius: 6px;
-  background-color: #f5fbff;
-  padding: 0.5rem;
-  max-height: 300px;
-  overflow-y: auto;
+    text-align: left;  
+    margin-bottom: -12px;
+    padding: 1rem;
+    max-height: 300px;    /* tú ajustas según diseño */
+    overflow-y: auto;
+    overflow-x: hidden;   /* opcional: oculta scroll horizontal */
+    background: #fff;
+    border-radius: 0.5rem;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);}
+
+.inv-letter-separator {
+  font-weight: bold;
+  font-size: 1.2rem;
+  margin-top: 1rem;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 0.25rem;
+  color: #F98972;
 }
 
-/* Scrollbar personalizado (WebKit) */
-.inv-search-results::-webkit-scrollbar {
-  width: 6px;
-}
-.inv-search-results::-webkit-scrollbar-track {
-  background: transparent;
-}
-.inv-search-results::-webkit-scrollbar-thumb {
-  background-color: #74c0c5;
-  border-radius: 3px;
-}
-
-/* Ítems */
 .inv-search-item {
-  padding: 0.3rem 0.5rem;
-  border-bottom: 1px solid #e1ecf4;
+  padding: 0.5rem 0;
+  padding-left: 1rem;
 }
 
-.inv-search-item:hover {
-  background: #d1eefa;
-}
-
-/* Mensaje de no resultados */
 .inv-search-noresults {
-  padding: 8px 12px;
-  font-size: 14px;
-  color: #777;
+  padding: 0.5rem;
+  color: #888;
   text-align: center;
 }
 
-.inv-search-item:last-child {
-  border-bottom: none;
+/*scrollbar*/
+.inv-search-results::-webkit-scrollbar {
+  width: 8px;               /* grosor */
 }
+
+.inv-search-results::-webkit-scrollbar-track {
+  background: #f0f0f0;      /* pista */
+  border-radius: 4px;
+}
+
+.inv-search-results::-webkit-scrollbar-thumb {
+  background: #74c0c5;         /* color del pulgar (la barra) */
+  border-radius: 4px;
+}
+
+.inv-search-results::-webkit-scrollbar-thumb:hover {
+  background: #39959b;         /* al pasar el mouse */
+}
+
+
+/*BOTONES*/
+.inve-form-buttons {
+  display: flex;
+  justify-content: center; /* Centra los botones horizontalmente */
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: 1.5rem;
+}
+
+.inve-form-buttons .inv-btn-delete,
+.inve-form-buttons .inv-btn-edit,
+.inve-form-buttons .inv-btn-back,
+.inve-form-buttons .inv-btn-add {
+  padding: 0.5rem 1rem;        
+  font-size: 1rem;            
+  border: none;
+  border-radius: 0.375rem;
+  cursor: pointer;
+  min-width: 100px;
+  height: 40px;
+  transition: background-color 0.2s ease;
+}
+
+/* Colores específicos */
+.inve-btn-delete { background-color: #F98972; color: white; }
+.inve-btn-edit   { background-color: #F98972; color: white; }
+.inve-btn-back   { background-color: #F98972; color: white; }
+.inve-btn-add    { background-color: #F98972; color: white; }
+
+.inve-btn-delete:hover,
+.inve-btn-edit:hover,
+.inve-btn-back:hover ,
+.inve-btn-add:hover {
+  opacity: 0.9;
+}
+
+
+
+
+

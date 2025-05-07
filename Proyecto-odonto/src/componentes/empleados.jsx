@@ -11,7 +11,7 @@ const navigate = useNavigate();
         <h1 className="titulo-empleados">Empleados</h1>
           <div className="subtitulo-empleados">
         <h2>Registro de Empleados</h2>
-</div>
+    </div>
                 <div className="empleados-busqueda">
           <label htmlFor="buscar">Buscar:</label>
           <input type="text" id="buscar" placeholder="Buscar empleado..." />

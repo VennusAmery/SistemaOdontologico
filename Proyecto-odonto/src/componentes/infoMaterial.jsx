@@ -101,9 +101,12 @@ export default function InfoMaterial() {
           </div>
         </div>
 
-        <div className="form-buttons">
-          <button className="btn guardar" onClick={handleGuardar}>GUARDAR</button>
-          <button className="btn regresar" onClick={handleRegresar}>REGRESAR</button>
+        {/* ——— Botones de acción ——— */}
+        <div className="info-form-buttons">
+          <button type="button" className="inv-btn-delete">Eliminar</button>
+          <button type="button" className="inv-btn-edit">Modificar</button>
+          <button type="button" className="inv-btn-add">Agregar</button>
+          <button type="button" className="inv-btn-back"onClick={() => navigate(-1)}>Regresar </button>
         </div>
       </motion.div>
     </div>

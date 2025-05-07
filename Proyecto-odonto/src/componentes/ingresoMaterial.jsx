@@ -155,18 +155,14 @@ export default function IngresoMaterial() {
               </div>
             </div>
 
-            <div className="form-buttons">
-              <button type="button" className="btn delete" onClick={() => {/* lógica eliminar */}}>
-                Eliminar
-              </button>
-              <button type="submit" className="btn save">Guardar</button>
-              <button type="button" className="btn edit" onClick={() => {/* lógica modificar */}}>
-                Modificar
-              </button>
-              <button type="button" className="btn back" onClick={() => navigate(-1)}>
-                Regresar
-              </button>
-            </div>
+            
+        {/* ——— Botones de acción ——— */}
+        <div className="inv-form-buttons">
+          <button type="button" className="inv-btn-delete">Eliminar</button>
+          <button type="button" className="inv-btn-edit">Modificar</button>
+          <button type="button" className="inv-btn-add">Agregar</button>
+          <button type="button" className="inv-btn-back"onClick={() => navigate(-1)}>Regresar </button>
+        </div>
           </form>
         ) : (
           <div className="submit-success">

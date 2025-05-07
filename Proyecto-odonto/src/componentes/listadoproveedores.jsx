@@ -59,28 +59,15 @@ export default function ListadoProveedores() {
           <hr className="provlis-separator" />
           <hr className="prov-separator" />
 
-              <div className="prov-container2">
-          <div className="prov-circle">
+      <div className="prov-container2">
+        <div className="prov-circle">
             <img src="/imagenes/proveedores.png" alt="Proveedor" className="prov-image"/>
-          </div>
+        </div>
           <div className="prov-text">
             <h2 className="prov-title">Proveedores</h2>
-            </div>
-            <hr />
-            </div>
-
-      <nav className="prov-tabs" aria-label="Secciones de Proveedores">
-        {tabsProveedores.map(tab => (
-          <button
-            key={tab.id}
-            type="button"
-            className={`prov-tab ${tabActiva === tab.id ? 'active' : ''}`}
-            onClick={() => handleTabClick(tab)}
-          >
-            {tab.label}
-          </button>
-        ))}
-      </nav>
+          </div>
+      </div>
+            
 
       <motion.section
         className="prov-search-section"
@@ -97,6 +84,7 @@ export default function ListadoProveedores() {
             setTerminoFiltrado(terminoBusqueda);
           }}
         >
+
           <div className="prov-search-container">
             <input
               type="text"
@@ -110,6 +98,7 @@ export default function ListadoProveedores() {
             </button>
           </div>
         </form>
+
 
         <div className="prov-search-results">
           {proveedoresFiltrados.length > 0 ? (

@@ -11,12 +11,12 @@ const navigate = useNavigate();
         <h1 className="titulo-empleados">Empleados</h1>
           <div className="subtitulo-empleados">
         <h2>Registro de Empleados</h2>
-    </div>
+</div>
                 <div className="empleados-busqueda">
           <label htmlFor="buscar">Buscar:</label>
           <input type="text" id="buscar" placeholder="Buscar empleado..." />
-          <button className="btn-agregar">AGREGAR NUEVO EMPLEADO</button>
-          <button className="btn-filtro">FILTRO</button>
+          <button className="btn-agregar-empleado"onClick={() => navigate('/agregarempleado')}>AGREGAR NUEVO EMPLEADO</button>
+          <button className="btn-filtro-empleado">FILTRO</button>
         </div>
         <div className="empleados-lista-scroll">
           {Array.from({ length: 26 }, (_, i) => String.fromCharCode(65 + i)).map((letter) => (

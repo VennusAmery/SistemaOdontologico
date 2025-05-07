@@ -1,53 +1,50 @@
 /* Importa la fuente 'Poppins' desde Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;600;800&display=swap');
 
-.titulo-citas-content {
-    padding: 2rem;
-    background-color: #fefefe;
-  }
+
   
-  .titulo-citas {
-    color: #FF987B; /* Color del texto */
-    font-size: 40px; /* Tamaño de fuente */
+.programarcita-titulo {
+    color: #FF987B;
+    font-size: 40px;
     margin-top: 25px;
-    margin-bottom: 25px; /* Espaciado inferior */
-    text-align: left; /* Alinea el texto a la izquierda */
-    padding-left: 25px; /* Espaciado izquierdo */
-  }
+    margin-bottom: 25px;
+    text-align: left;
+    padding-left: 25px;
+}
   
-  .formulario-cita {
+.programarcita-formulario {
     margin: 2.5rem auto;
     padding: 2rem;
-    max-width: 800px; /* Aumenta el ancho del formulario */
+    max-width: 800px;
     background-color: #fefefe;
     border: 1px solid #ccc;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
+}
   
-  .formulario-cita div {
-    margin-bottom: 0; /* Asegura que no haya márgenes adicionales */
-  }
+.programarcita-formulario div {
+    margin-bottom: 0;
+}
   
-  .formulario-cita label {
+.programarcita-formulario label {
     display: block;
     font-size: 1rem;
     color: #666;
     margin-bottom: 0.5rem;
-  }
+}
   
-  .formulario-cita input {
-    width: 100%; /* Asegura que los inputs ocupen todo el ancho de su contenedor */
+.programarcita-formulario input {
+    width: 100%;
     padding: 0.5rem;
     border: 1px solid #ccc;
     border-radius: 4px;
     background-color: #E0F7F8;
     font-size: 1rem;
-    box-sizing: border-box; /* Incluye el padding y el borde en el ancho total */
+    box-sizing: border-box;
     color: #757575;
-  }
+}
   
-  .btn-guardar, .btn-regresar {
+.programarcita-btn-guardar, .programarcita-btn-regresar {
     background-color: #FF7F50;
     color: white;
     border: none;
@@ -56,51 +53,51 @@
     cursor: pointer;
     font-weight: bold;
     margin-right: 1rem;
-    display: inline-block; /* Asegura que los botones sean visibles */
-    margin: 0; /* Elimina márgenes adicionales */
-  }
+    display: inline-block;
+    margin: 0;
+}
   
-  .btn-guardar:hover, .btn-regresar:hover {
+.programarcita-btn-guardar:hover, .programarcita-btn-regresar:hover {
     background-color: #FF987B;
-  }
+}
 
-  .form-grid {
+.programarcita-form-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr; /* Dos columnas iguales */
-    gap: 2rem; /* Espaciado uniforme entre filas y columnas */
-  }
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+}
 
-  .mayoria-edad {
+.programarcita-mayoria-edad {
     display: flex;
     align-items: center;
-    gap: 1rem; /* Espaciado entre los elementos */
-    margin-top: 1rem; /* Espaciado superior */
-  }
+    gap: 1rem;
+    margin-top: 1rem;
+}
   
-  .mayoria-edad span {
+.programarcita-mayoria-edad span {
     font-size: 1rem;
     color: #666;
     font-weight: normal;
-  }
+}
   
-  .mayoria-edad label {
+.programarcita-mayoria-edad label {
     display: flex;
     align-items: center;
-    gap: 0.5rem; /* Espaciado entre el botón y el texto */
-  }
+    gap: 0.5rem;
+}
   
-  .mayoria-edad input[type="radio"] {
-    accent-color: #FF7F50; /* Cambia el color del botón de radio */
-  }
+.programarcita-mayoria-edad input[type="radio"] {
+    accent-color: #FF7F50;
+}
 
-  .botones-acciones {
+.programarcita-botones {
     display: flex;
-    justify-content: center; /* Centra los botones horizontalmente */
-    gap: 1rem; /* Espaciado uniforme entre los botones */
-    margin-top: 2rem; /* Espaciado superior */
-  }
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 2rem;
+}
   
-  .botones-acciones button {
+.programarcita-botones button {
     background-color: #FF7F50;
     color: white;
     border: none;
@@ -109,38 +106,37 @@
     cursor: pointer;
     font-weight: bold;
     font-size: 1rem;
-  }
+}
   
-  .botones-acciones button:hover {
-    background-color: #FF987B; /* Color más claro al pasar el mouse */
-  }
+.programarcita-botones button:hover {
+    background-color: #FF987B;
+}
 
-
-  .subtitulo-citas h2{
+.programarcita-subtitulo h2 {
     font-size: 1.3rem;
-    color: #757575; /* Azul */
-    font-weight: normal; /* Normal */
+    color: #757575;
+    font-weight: normal;
     margin-bottom: 2rem;
-    text-align: left; /* Alinear a la izquierda */
-    padding-left: 25px; /* Espaciado desde el sidebar */
-    position: relative; /* Para las líneas superior e inferior */
-  }
+    text-align: left;
+    padding-left: 25px;
+    position: relative;
+}
 
-  .subtitulo-citas h2::before,
-.subtitulo-citas h2::after {
-    content: ""; /* Línea decorativa */
+.programarcita-subtitulo h2::before,
+.programarcita-subtitulo h2::after {
+    content: "";
     display: block;
-    height: 2px; /* Grosor de la línea */
-    background-color: #6bbbc1; /* Color del sidebar */
+    height: 2px;
+    background-color: #6bbbc1;
     width: 100%;
     position: absolute;
     left: 0px;
 }
 
-.subtitulo-citas h2::before {
-    top: -10px; /* Línea superior */
+.programarcita-subtitulo h2::before {
+    top: -10px;
 }
 
-.subtitulo-citas h2::after {
-    bottom: -10px; /* Línea inferior */
+.programarcita-subtitulo h2::after {
+    bottom: -10px;
 }

@@ -1,0 +1,177 @@
+
+.inv-container {
+    max-width: 1200px;
+    margin: 2px auto;
+    padding: 0 1rem;
+    overflow-x: hidden; 
+  }
+  
+  /*Titulo*/
+  .inv-title {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #ff8a65; /* Naranja suave */
+    margin-bottom: 0.5rem;
+    text-align: left;     /* asegura alineación a la izquierda */
+  }
+  
+  h2 {
+    color: #F98972;
+    align-items: flex-start !important;
+  }
+  
+  .inv-title + hr {
+    border: none;
+    height: 1px;
+    background-color: #74c0c5; /* Verde-azulado */
+    margin-bottom: 1.5rem;
+  }
+  
+  
+  .inv-tabs {
+    display: flex;
+    gap: 3rem; /*ESPACIO ENTRE LOS BOTONES DE NAGEVACION*/
+    border-bottom: 2px solid #ddd;
+    margin-bottom: 1.5rem;
+  }
+  
+  .inv-tab {
+    background: none;
+    border: none;
+    padding: 0.5rem 0;
+    font-size: 1rem;
+    color: #ff8a65;
+    cursor: pointer;
+    position: relative;
+    transition: color 0.2s;
+  }
+  
+  .inv-tab:hover {
+    color: #74c0c5;
+  }
+  
+  .inv-tab.active {
+    color: #497a7d; /*color del seleccionado*/
+  }
+  
+  .inv-tab.active::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: #ff8a65; /* linea debajo del boton de navegacion */
+  }
+
+
+
+
+
+.clinica-contenedor {
+    padding: 2rem;
+    color: #444;
+    overflow-x: hidden;
+  }
+
+  .clinica-encabezado {
+    color: #f88b7c;
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    text-align: left; 
+    margin-top: -20px o !important;
+  }
+  
+  .clinica-encabezado h1{
+    color: #f88b7c;
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .clinica-titulo {
+    color: #f88b7c;
+    margin-top: 1.5rem;
+    font-size: 1.3rem;
+    font-weight: bold;
+  }
+  
+
+
+  .clinica-bloque .clinica-titulo{
+    align-items: flex-start !important;
+    font-size: 20px;
+    left: -25px;
+    margin-bottom: 5px;
+  }
+
+
+  .clinica-fila {
+    display: flex;
+    justify-content: center;
+    gap: 60px;
+    margin-bottom: 16px;
+    margin-top: 15px;
+  }
+  
+  .clinica-columna-izquierda,
+  .clinica-columna-derecha {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .clinica-columna-izquierda label,
+  .clinica-columna-derecha label {
+    font-weight: 500;
+    text-align: left;
+  }
+  
+  .clinica-input {
+    width: 200px;
+    padding: 6px 8px;
+    font-size: 14px;
+    box-sizing: border-box;
+  }
+  
+  .horario-input {
+    width: 120px;
+  }
+  
+
+
+
+
+
+/*BOTONES*/
+
+.clinicJ-form-buttons {
+    display: flex;
+    justify-content: center; /* Centra los botones horizontalmente */
+    align-items: center; /* Centra los botones verticalmente */
+    margin-top: 60px;
+    gap: 3px; /* Acercar más los botones */
+    flex-wrap: wrap; /* Permite que los botones se acomoden en varias filas si es necesario */
+  }
+  
+  .clinicJ-btn-back, 
+  .clinicJ-btn-delete, 
+  .clinicJ-btn-edit, 
+  .clinicJ-btn-add {
+    padding: 12px 25px; /* He aumentado el padding para que sean más visibles */
+    padding: 12px 25px; /* He aumentado el padding para que sean más visibles */
+    margin: 1px;
+    cursor: pointer;
+    background-color: #F98972; /* Agregué un color de fondo para hacerlos más visibles */
+    color: white; /* Color del texto blanco */
+    border: none; /* Sin bordes */
+    border-radius: 5px; /* Esquinas redondeadas para un mejor estilo */
+    font-size: 14px; /* Ajusté el tamaño de la fuente */
+  }
+  
+  .clinicJ-btn-back:hover, 
+  .clinicJ-btn-delete:hover, 
+  .clinicJ-btn-edit:hover, 
+  .clinicJ-btn-add:hover {
+    background-color: #f6a69b;
+}
+  

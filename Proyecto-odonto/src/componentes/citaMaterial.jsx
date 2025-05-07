@@ -95,7 +95,9 @@ export default function CitaMaterial() {
 
         <div className="cita-id-section">
           <label>ID Cita:</label>
-          <input type="text" value={citaID} readOnly />
+          <input 
+          type="text" 
+          onChange={e => setBusqueda(e.target.value)}/>
         </div>
 
         <div className="tabla-material">

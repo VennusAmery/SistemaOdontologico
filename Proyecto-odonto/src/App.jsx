@@ -19,9 +19,10 @@ import Inventario from "./componentes/Inventario";
 import IngresoMaterial from "./componentes/ingresoMaterial";
 import InfoMaterial from "./componentes/infoMaterial";
 import CitaMaterial from "./componentes/citaMaterial";
+import Clinica from "./componentes/clinica";
+import ClinicaJalapa from './componentes/ClinicaJalapa';
 
 import "./App.css";
-
 function App() {
   const location = useLocation();
 
@@ -48,6 +49,8 @@ function App() {
           <Route path="/IngresoMaterial" element={<IngresoMaterial />} />
           <Route path="/InfoMaterial" element={<InfoMaterial />} />
           <Route path="/CitaMaterial" element={<CitaMaterial />} />
+          <Route path="/Clinica" element={<Clinica />} />
+          <Route path="/clinicaJalapa" element={<ClinicaJalapa />} />
         </Route>
       </Routes>
     </AnimatePresence>

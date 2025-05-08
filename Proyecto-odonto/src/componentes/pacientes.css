@@ -3,49 +3,19 @@
 
 /* Contenido principal */
 
-/* Contenedor del contenido principal */
-.pacientes-content {
-    flex: 1; /* Ocupa el espacio restante */
-    background-color: #fefefe; /* Fondo blanco */
-    padding: 0px; /* Sin espaciado interno */
+/* Contenedor principal de la página */
+.main-container {
+    display: flex; /* Usa un layout flexbox */
+    height: 100vh; /* Altura del contenedor igual a la altura de la ventana */
+    width: 100%; /* Ancho completo */
+    font-family: 'Poppins', sans-serif; /* Aplica la fuente importada */
+    padding-top: 40px; /* Espaciado superior igual a la altura de la franja superior */
 }
 
-/* Título principal */
-.pacientes-content h1 {
-    color: #FF987B; /* Color del texto */
-    font-size: 40px; /* Tamaño de fuente */
-    margin-top: 25px; /* Espaciado superior */
-    margin-bottom: 25px; /* Espaciado inferior */
-    text-align: left; /* Alinea el texto a la izquierda */
-    padding-left: 25px; /* Espaciado izquierdo */
-}
-
-/* Título principal */
-.titulo-pacientes {
-    font-size: 2.5rem;
-    color: #FF7F50; /* Naranja */
-    margin-bottom: 1rem;
-    text-align: left; /* Alinear a la izquierda */
-    padding-left: 250px; /* Espaciado desde el sidebar */
-}
-
-/* Contenedor de la cabecera de pacientes */
-.pacientes-header h2 {
-    font-size: 1.3rem;
-    color: #757575; /* Azul */
-    font-weight: normal; /* Normal */
-    margin-bottom: 2rem;
-    text-align: left; /* Alinear a la izquierda */
-    padding-left: 25px; /* Espaciado desde el sidebar */
-    position: relative; /* Para las líneas superior e inferior */
-}
-
-.pacientes-header h2::before,
-.pacientes-header h2::after {
-    content: ""; /* Línea decorativa */
-    display: block;
-    height: 2px; /* Grosor de la línea */
-    background-color: #6bbbc1; /* Color del sidebar */
+/* Barra superior fija */
+.rectangulo-superior {
+    background-color: #B4DDDE; /* Color de fondo */
+    height: 50px; /* Altura de la barra */
     width: 100%; /* Ancho completo */
     position: absolute;
     left: 0;

@@ -158,7 +158,28 @@ export default function CalendarComponent() {
         )}
 
         {/* Toast de eliminación */}
-        {deleteMessage && <div className="toast-delete">{deleteMessage}</div>}
+        {deleteMessage && (
+          <div style={{
+            position: "fixed",
+            bottom: "80px",
+            left: "50%",
+            transform: "translateX(-50%)",
+            background: "#D3D3D3",
+            color: "black",
+            padding: "0.5rem 1rem",
+            borderRadius: "4px",
+            boxShadow: "0 2px 6px rgba(0,0,0,0.2)",
+            zIndex: 1000,
+          }}>
+            {deleteMessage}
+          </div>
+        )}
+
+
+        {/* Botón regresar fijo (opaco si hay modal o detalles) */}
+        <div className="back-button-container fixed-back-button" style={{ opacity: showModal || showEventDetail ? 0.3 : 1 }}>
+          <button className="btn-regresar" onClick={() => navigate("/home")} disabled={showModal || showEventDetail}>Regresar</button>
+        </div>
 
         {/* Modal detalle evento */}
         {showEventDetail && selectedEvent && (

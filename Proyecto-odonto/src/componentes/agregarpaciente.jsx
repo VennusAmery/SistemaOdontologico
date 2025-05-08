@@ -31,7 +31,7 @@ function AgregarPaciente() {
 
   return (
     <main className="formulario-content">
-      <h1 className="titulos-pacientes">Pacientes</h1>
+      <h1 className="titulos-pacientes">Pacientess</h1>
       <div className="formulario-header">
         <div className="circulo-">
           <img src="/imagenes/iconoUsuario.png" alt="icono usuario" className="icono-usuario" />

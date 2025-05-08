@@ -262,7 +262,7 @@
     display: flex;
     justify-content: flex-end; /* Alinea los botones a la derecha */
     gap: 10px; /* Espaciado uniforme entre los botones */
-    margin-top: 40 px;
+    margin-top: 40px;
 }
 
 .acciones-formulario2 button {

@@ -176,11 +176,6 @@ export default function CalendarComponent() {
         )}
 
 
-        {/* Botón regresar fijo (opaco si hay modal o detalles) */}
-        <div className="back-button-container fixed-back-button" style={{ opacity: showModal || showEventDetail ? 0.3 : 1 }}>
-          <button className="btn-regresar" onClick={() => navigate("/home")} disabled={showModal || showEventDetail}>Regresar</button>
-        </div>
-
         {/* Modal detalle evento */}
         {showEventDetail && selectedEvent && (
           <div className="modal-overlay">

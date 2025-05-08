@@ -21,6 +21,26 @@
   filter: drop-shadow(0 0 2em #61dafbaa);
 }
 
+/*scrollbar*/
+::-webkit-scrollbar {
+  width: 12px;               /* grosor */
+}
+
+::-webkit-scrollbar-track {
+  background: #f0f0f0;      /* pista */
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #74c0c5;         /* color del pulgar (la barra) */
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #39959b;         /* al pasar el mouse */
+}
+
+
 @keyframes logo-spin {
   from {
     transform: rotate(0deg);

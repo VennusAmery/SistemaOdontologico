@@ -1,6 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;600;800&display=swap');
 
 /* Estructura general */
+
+.main-content{
+  overflow-y: auto;
+}
 .main-container {
     display: flex; /* Usa un layout flexbox */
     height: calc(100vh - 40px);

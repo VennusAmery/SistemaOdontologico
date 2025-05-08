@@ -1,0 +1,285 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;600;800&display=swap');
+
+/* Contenedor principal */
+.formulario-content2 {
+    flex: 1;
+    background-color: #fefefe;
+    padding: 0px;
+}
+
+/* Título principal */
+.titulos-pacientes2 {
+    color: #FF987B;
+    font-size: 30px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    text-align: left;
+    padding-left: 20px;
+}
+
+/* Encabezado del formulario */
+.formulario-header2 {
+    display: flex; /* Usa flexbox para alinear los elementos */
+    align-items: center; /* Alinea verticalmente el círculo y el texto */
+    gap: 15px; /* Espaciado entre el círculo y el texto */
+    margin-bottom: 2rem;
+    position: relative; /* Para las líneas decorativas */
+    padding-left: 20px; /* Espaciado desde el sidebar */
+    padding-block: 7px;
+    border-top: 2px solid #6bbbc1; /* Línea decorativa superior */
+    border-bottom: 2px solid #6bbbc1; /* Línea decorativa inferior */
+    
+    
+}
+
+.formulario-header2 h2 {
+    font-size: 1.2rem;
+    color: #757575; /* Azul */
+    font-weight: normal; /* Normal */
+    text-align: center; /* Alinear a la izquierda */
+    margin: 0; /* Elimina márgenes adicionales */
+}
+
+.titulo-historial {
+    font-size: 18px; /* Tamaño de fuente */
+    font-weight: bold; /* Negrita */
+    color: #56B0B3; /* Color del texto */
+    text-align: center; /* Centrar el texto */
+    margin-top: 10px; /* Espaciado superior */
+    position: relative;
+  }
+
+
+.titulo-historial::before,
+.titulo-historial::after {
+    content: ""; /* Crea un elemento vacío */
+    position: absolute;
+    top: 50%; /* Centra verticalmente las líneas con respecto al texto */
+    width: 45%; /* Longitud de las líneas */
+    height: 2px; /* Grosor de las líneas */
+    background-color: #56B0B3; /* Color de las líneas */
+}
+
+.titulo-historial::before {
+    left: 0; /* Línea a la izquierda */
+}
+
+.titulo-historial::after {
+    right: 0; /* Línea a la derecha */
+}
+
+.circulo2- {
+    width: 32px;
+    height: 32px;
+    border: 5px solid #B4DDDE;
+    background-color: #fefefe;
+    border-radius: 50%;
+    display: flex; /* Usa flexbox para centrar el contenido */
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center; /* Centra verticalmente */
+    overflow: hidden; /* Asegura que el contenido no se salga del círculo */
+}
+
+.circulo2- img {
+    width: 22px;
+    height: auto;
+}
+/* Navegación de pestañas */
+.tabs3 {
+    margin-top: -20px;
+    display: flex;
+    justify-content: center; /* Centra horizontalmente */
+    gap: 40px;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #6bbbc1; /* Línea decorativa debajo de las pestañas */
+    padding-bottom: 5px; /* Espaciado entre los botones y la línea */
+}
+
+.tabs3 button {
+    background: none; /* Elimina el fondo del botón */
+    border: none; /* Elimina el borde del botón */
+    color: #757575; /* Color gris para el texto */
+    font-size: 16px;
+    cursor: pointer;
+    transition: color 0.3s ease; /* Transición suave para el color */
+    padding: 0; /* Elimina el padding extra */
+    position: relative;
+}
+
+.tabs3 button.active {
+    color: #FF987B; /* Texto negro cuando está activo */
+}
+
+.tabs3 button:hover {
+    color: #FF987B; /* Texto naranja al pasar el cursor */
+}
+
+.tabs3 button.active::after {
+    content: '';
+    position: absolute;
+    bottom: -7px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: #ff8a65;
+    border-radius: 5px;
+  }
+
+/* Contenedor principal del formulario (centrado con márgenes) */
+.form-grid2 {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    gap: 10px;
+    margin-left: 30px;
+}
+
+.campos2 {
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    align-items: center;
+    & label {
+        text-align: center;
+        width: 100%;
+    }
+    & input {
+        width: 40%;
+        box-sizing: border-box;
+        text-align: center;
+    }
+}
+
+.doble2 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: auto;
+    gap: 20px;
+    margin-left: 0 10px;
+}
+
+.triple1 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: auto;
+    gap: 30px;
+    margin-left: 80px;
+}
+
+/* Etiquetas (alineadas a la derecha y con margen derecho) */
+
+.form-grid2 label {
+    font-size: 16px;
+    color: #757575;
+    white-space: nowrap; 
+}
+
+/* Inputs (ocupan el resto del espacio) */
+.form-grid2 input {
+    padding: 8px;
+    border: 1px solid #B4DDDE;
+    background-color: #B4DDDE;
+    border-radius: 5px;
+    font-size: 16px;
+    color: black;
+}
+  
+  .form-grid2 input:focus {
+    border-color: #B4DDDE;
+    outline: none;
+  }
+
+   /* Radio buttons */
+   .cuatro2 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2 columnas */
+    row-gap: 5px; /* Espaciado vertical (alto) */
+    column-gap: 30px; /* Espaciado horizontal (ancho) */
+    /* gap: 20px; este gap es en general*/
+    padding-top: 0px;
+    margin-left: 80px;
+  }
+  
+  .cuatro2 label {
+    font-size: 16px;
+    color: #757575;
+    margin-left: 20px;
+  }
+  
+  
+  /* Estilo para cada grupo de radio buttons */
+  .camposs1 {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: 10px;
+  }
+
+  .camposs1 > div {
+    display: flex;
+    gap: 15px; /* Espacio entre Sí y No */
+    justify-content: left; /* Centra los radios horizontalmente */
+}
+
+/* Ajusta el estilo de las etiquetas de los radios */
+.camposs1 label {
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    color: #757575;
+    white-space: nowrap; /* Evita que el texto se divida en varias líneas */
+}
+  
+  /* Estilos para los radio buttons (conservando tus estilos personalizados) */
+  .camposs1 input[type="radio"] {
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #757575;
+    border-radius: 50%;
+    background-color: #fefefe;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-left: 10px;
+  }
+  
+  .camposs1 input[type="radio"]:checked {
+    background-color: #FF7F50;
+    border-color: #FF7F50;
+  }
+  
+  /* Alineación vertical de las etiquetas */
+  .camposs1 label {
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    color: #757575;
+  }
+
+  
+/* Botones de acción */
+.acciones-formulario2 {
+    display: flex;
+    justify-content: flex-end; /* Alinea los botones a la derecha */
+    gap: 10px; /* Espaciado uniforme entre los botones */
+    margin-top: 40px;
+}
+
+.acciones-formulario2 button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    background-color: #FF7F50; /* Color base para todos los botones */
+    color: white;
+    transition: all 0.3s ease; /* Transición suave para el hover */
+    margin: 0; /* Elimina márgenes adicionales */
+}
+
+.acciones-formulario2 button:hover {
+    /* letter-spacing: 3px;
+    font-weight: 600; */
+    background-color: #FF987B; /* Cambia el color al pasar el cursor */
+}

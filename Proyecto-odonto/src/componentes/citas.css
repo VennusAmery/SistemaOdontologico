@@ -60,7 +60,7 @@
 }
 
 /* Estilo para la barra de búsqueda */
-.busqueda {
+.busquedaa {
     display: flex;
     justify-content: center; /* Centrar horizontalmente */
     align-items: center;
@@ -68,12 +68,12 @@
     margin-top: 3rem; /* Agrega un margen superior para separar el contenido */
 }
 
-.busqueda label {
+.busquedaa label {
     font-size: 1rem;
     color: #666;
 }
 
-.busqueda input {
+.busquedaa input {
     padding: 0.5rem;
     border: 1px solid #ccc;
     border-radius: 4px;
@@ -82,7 +82,7 @@
     color: #757575;
 }
 
-.busqueda button {
+.busquedaa button {
     background-color: #FF7F50; /* Naranja */
     color: white;
     border: none;
@@ -93,7 +93,7 @@
     transition: background-color 0.3s ease;
 }
 
-.busqueda button:hover {
+.busquedaa button:hover {
     background-color: #FF987B; /* Naranja más claro */
 }
 
@@ -128,7 +128,7 @@
 .citas-grid {
     display: flex;
     justify-content: center; /* Centrar las tarjetas */
-    gap: 1.5rem; /* Reducir el espacio entre las tarjetas */
+    gap: 2.5rem; /* Reducir el espacio entre las tarjetas */
     margin-bottom: 2rem; /* Reducir el espacio inferior para subir el botón */
 }
 
@@ -138,11 +138,11 @@
     flex-direction: column;
     justify-content: center; /* Centrar verticalmente */
     align-items: center; /* Centrar horizontalmente */
-    border: 4px solid #56B0B3; /* Borde del mismo color que la imagen */
+    border: 8px solid #56B0B3; /* Borde del mismo color que la imagen */
     border-radius: 8px;
     padding: 1.5rem; /* Reducir el padding interno */
     width: 180px; /* Mantener el ancho */
-    height: 240px; /* Aumentar ligeramente la altura */
+    height: 190px; /* Aumentar ligeramente la altura */
     background-color: #fefefe; /* Fondo blanco */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra ligera */
     transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transición suave */
@@ -167,7 +167,7 @@
     text-align: center; /* Asegurar que el texto esté centrado */
     margin: 0; /* Eliminar márgenes adicionales */
 }
-
+ 
 /* Botón de regresar */
 .btn-regresar {
     display: block;
@@ -185,4 +185,176 @@
 .btn-regresar:hover {
     background-color: #FF987B; /* Naranja más claro */
     transform: scale(1.05); /* Efecto de zoom */
-}
+} 
+
+/* ========== MEDIA QUERIES PARA CITAS RESPONSIVE ========== */
+/* (Agregar al final de tu archivo CSS) */
+
+/* Tablets (1024px o menos) */
+@media (max-width: 1024px) {
+    .titulo-citas {
+      padding-left: 180px;
+      font-size: 2.2rem;
+    }
+    
+    .citas-header h2,
+    .citas-recientes {
+      padding-left: 20px;
+    }
+    
+    .busquedaa input {
+      width: 250px;
+    }
+    
+    .citas-grid {
+      gap: 2rem;
+    }
+    
+    .cita-card {
+      width: 160px;
+      height: 180px;
+    }
+    
+    .cita-card img {
+      width: 80px;
+      height: 80px;
+    }
+  }
+  
+  /* Tablets medianas (768px o menos) */
+  @media (max-width: 768px) {
+    .titulo-citas {
+      padding-left: 30px;
+      font-size: 2rem;
+      text-align: center;
+    }
+    
+    .citas-header h2,
+    .citas-recientes {
+      padding-left: 15px;
+    }
+    
+    .busquedaa {
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 0 15px;
+      margin-top: 1.5rem;
+    }
+    
+    .busquedaa input {
+      width: 100%;
+    }
+    
+    .citas-grid {
+      flex-wrap: wrap;
+      justify-content: flex-start;
+      padding: 0 15px;
+      gap: 1.5rem;
+    }
+    
+    .cita-card {
+      width: calc(50% - 1rem);
+      max-width: 180px;
+      height: 170px;
+    }
+    
+    .citas-recientes h3::after {
+      width: 70%;
+      left: 15%;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .busquedaa {
+      flex-direction: row !important; /* Mantiene elementos en línea */
+      flex-wrap: wrap; /* Permite envolver si no hay espacio */
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0 15px;
+      margin-top: 1.5rem;
+    }
+    
+    .busquedaa input {
+      width: 60% !important; /* Ocupa el 60% del espacio */
+      min-width: 180px; /* Ancho mínimo para usabilidad */
+      flex-grow: 1; /* Crece si hay espacio disponible */
+    }
+    
+    .busquedaa button {
+      padding: 0.5rem 0.8rem; /* Ajuste de tamaño */
+      flex-grow: 0; /* No crece, mantiene su tamaño */
+    }
+
+    .citas-grid {
+        display: grid !important;
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+        grid-auto-flow: dense;
+        gap: 0.8rem;
+        padding: 0 15px;
+        justify-items: center;
+      }
+      
+      .cita-card {
+        width: 100% !important;
+        max-width: 140px;
+        height: 150px;
+        padding: 1rem;
+        margin: 0 !important;
+      }
+      
+      .cita-card img {
+        width: 60px;
+        height: 60px;
+        margin-bottom: 0.5rem;
+      }
+      
+      .cita-card p {
+        font-size: 0.9rem;
+      }
+  }
+  
+  /* Ajuste para pantallas muy pequeñas */
+  @media (max-width: 400px) {
+
+    .busquedaa input {
+      width: 55% !important;
+      min-width: 150px;
+    }
+    
+    .busquedaa button {
+      font-size: 0.9rem;
+      padding: 0.4rem 0.7rem;
+    }
+
+    .titulo-citas {
+        font-size: 1.5rem;
+      }
+      
+      .citas-header h2 {
+        font-size: 1rem;
+      }
+      
+      .citas-recientes h3 {
+        font-size: 1rem;
+      }
+      
+      .citas-grid {
+        gap: 0.8rem;
+      }
+      
+      .cita-card {
+        width: 130px;
+        height: 140px;
+        padding: 0.8rem;
+      }
+      
+      .cita-card img {
+        width: 60px;
+        height: 60px;
+      }
+      
+      .cita-card p {
+        font-size: 0.8rem;
+      }
+
+  }

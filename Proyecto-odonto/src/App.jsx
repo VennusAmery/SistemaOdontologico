@@ -6,6 +6,10 @@ import Login from "./componentes/Login";
 import OlvideContraseña from "./componentes/olvidecontraseña";
 import Home from "./componentes/home";
 import Pacientes from "./componentes/pacientes";
+import Agregarpaciente from "./componentes/agregarpaciente"; 
+import Habitos from "./componentes/habitos";
+import Historialodontologico from "./componentes/historialodontologico";
+import Historialmedico from "./componentes/historialmedico";
 import CalendarComponent from "./componentes/calendario";
 import Layout from "./componentes/layout";
 import CitasComponent from "./componentes/citas";
@@ -38,6 +42,10 @@ function App() {
         <Route element={<Layout />}>
           <Route path="/home" element={<Home />} />
           <Route path="/pacientes" element={<Pacientes />} />
+          <Route path="/agregarpaciente" element={<Agregarpaciente />} />
+          <Route path="/habitos" element={<Habitos />} />
+          <Route path="/historialodontologico" element={<Historialodontologico />} />
+          <Route path="/historialmedico" element={<Historialmedico />} />
           <Route path="/calendario" element={<CalendarComponent />} />
           <Route path="/citas" element={<CitasComponent />} />
           <Route path="/Contactos" element={<ContactosComponent />} />

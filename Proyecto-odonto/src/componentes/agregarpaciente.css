@@ -1,0 +1,287 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;600;800&display=swap');
+
+/* Contenedor principal */
+.formulario-content {
+    flex: 1;
+    background-color: #fefefe;
+    padding: 0px;
+}
+
+/* Título principal */
+.titulos-pacientes {
+    color: #FF987B;
+    font-size: 30px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    text-align: left;
+    padding-left: 20px;
+}
+
+/* Encabezado del formulario */
+.formulario-header {
+    display: flex; /* Usa flexbox para alinear los elementos */
+    align-items: center; /* Alinea verticalmente el círculo y el texto */
+    gap: 15px; /* Espaciado entre el círculo y el texto */
+    margin-bottom: 2rem;
+    position: relative; /* Para las líneas decorativas */
+    padding-left: 20px; /* Espaciado desde el sidebar */
+    padding-block: 7px;
+    border-top: 2px solid #6bbbc1; /* Línea decorativa superior */
+    border-bottom: 2px solid #6bbbc1; /* Línea decorativa inferior */
+    
+    
+}
+
+
+.formulario-header h2 {
+    font-size: 1.2rem;
+    color: #757575; /* Azul */
+    font-weight: normal; /* Normal */
+    text-align: center; /* Alinear a la izquierda */
+    margin: 0; /* Elimina márgenes adicionales */
+}
+
+
+.circulo- {
+    width: 32px;
+    height: 32px;
+    border: 5px solid #B4DDDE;
+    background-color: #fefefe;
+    border-radius: 50%;
+    display: flex; /* Usa flexbox para centrar el contenido */
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center; /* Centra verticalmente */
+    overflow: hidden; /* Asegura que el contenido no se salga del círculo */
+}
+
+.circulo- img {
+    width: 22px;
+    height: auto;
+}
+/* Navegación de pestañas */
+.tabs1 {
+    margin-top: -20px;
+    display: flex;
+    justify-content: center; /* Centra horizontalmente */
+    gap: 40px;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #6bbbc1; /* Línea decorativa debajo de las pestañas */
+    padding-bottom: 5px; /* Espaciado entre los botones y la línea */
+}
+
+.tabs1 button {
+    background: none; /* Elimina el fondo del botón */
+    border: none; /* Elimina el borde del botón */
+    color: #757575; /* Color gris para el texto */
+    font-size: 16px;
+    cursor: pointer;
+    transition: color 0.3s ease; /* Transición suave para el color */
+    padding: 0; /* Elimina el padding extra */
+    position: relative;
+}
+
+.tabs1 button.active {
+    color: #FF987B; /* Texto negro cuando está activo */
+}
+
+.tabs1 button:hover {
+    color: #FF987B; /* Texto naranja al pasar el cursor */
+}
+
+.tabs1 button.active::after {
+    content: '';
+    position: absolute;
+    bottom: -7px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: #ff8a65;
+    border-radius: 5px;
+  }
+
+/* Contenedor principal del formulario (centrado con márgenes) */
+.form-grid {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    gap: 10px;
+    margin-left: 30px;
+
+}
+
+.campos {
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    & label {
+        text-align: center;
+        width: 100%;
+    }
+    & input {
+        width: 100%;
+        box-sizing: border-box;
+        text-align: center;
+    }
+}
+
+.triple {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: auto;
+    gap: 20px;
+    margin: 0 10px;
+}
+
+.cuatro {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: auto;
+    gap: 20px;
+    margin: 0 10px;
+}
+
+.doble {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: auto;
+    gap: 20px;
+    margin: 0 10px;
+}
+
+.triple2 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: auto;
+    gap: 20px;
+    margin: 0 10px;
+}
+
+.doble2 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: auto;
+    gap: 20px;
+    margin: 0 10px;
+}
+
+.wide {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-auto-rows: auto;
+    gap: 20px;
+    margin: 0 10px;
+}
+
+/* Etiquetas (alineadas a la derecha y con margen derecho) */
+
+.form-grid label {
+    font-size: 16px;
+    color: #757575;
+    white-space: nowrap; 
+}
+
+/* Inputs (ocupan el resto del espacio) */
+.form-grid input {
+    padding: 8px;
+    border: 1px solid #B4DDDE;
+    background-color: #B4DDDE;
+    border-radius: 5px;
+    font-size: 16px;
+    color: black;
+}
+  
+  .form-grid input:focus {
+    border-color: #B4DDDE;
+    outline: none;
+  }
+
+  .correo{
+    width: 50px ;
+  }
+
+  input[type="number"]::-webkit-outer-spin-button,
+  input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;  /* Remove default styling */
+    background: transparent;   /* Make the background transparent */
+    border: none;              /* Remove border if you like */
+  }
+
+  
+/* By default, hide the date text */
+.input-fecha::-webkit-datetime-edit {
+    color: transparent;
+  }
+  
+  /* Show the date when focused */
+  .input-fecha:focus::-webkit-datetime-edit {
+    color: black;
+  }
+  
+  /* Show the date when a value is selected */
+  .input-fecha.has-value::-webkit-datetime-edit {
+    color: black;
+  }
+  
+  
+  /* Radio buttons */
+  .mayoria-edad {
+    grid-column: span 2;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding-top: 15px;
+  }
+  
+  .mayoria-edad label {
+    font-size: 16px;
+    color: #757575;
+    margin-left: 10px;
+  }
+  
+  .mayoria-edad input[type="radio"] {
+    appearance: none; /* Elimina el estilo predeterminado del navegador */
+    width: 20px; /* Ancho del círculo */
+    height: 20px; /* Alto del círculo */
+    border: 2px solid #757575; /* Borde gris */
+    border-radius: 50%; /* Hace que sea un círculo */
+    background-color: white; /* Fondo blanco por defecto */
+    cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
+    transition: background-color 0.3s ease, border-color 0.3s ease; /* Transición suave */
+    margin-left: 10px; /* Espaciado a la izquierda */
+}
+
+.mayoria-edad input[type="radio"]:checked {
+    background-color: #FF7F50; /* Fondo naranja cuando está seleccionado */
+    border-color: #FF7F50; /* Cambia el borde a naranja */
+}
+  
+
+/* Botones de acción */
+.acciones-formulario {
+    display: flex;
+    justify-content: flex-end; /* Alinea los botones a la derecha */
+    gap: 10px; /* Espaciado uniforme entre los botones */
+    margin-top: 5px;
+}
+
+.acciones-formulario button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    background-color: #FF7F50; /* Color base para todos los botones */
+    color: white;
+    transition: all 0.3s ease; /* Transición suave para el hover */
+    margin: 0; /* Elimina márgenes adicionales */
+}
+
+.acciones-formulario button:hover {
+    /* letter-spacing: 3px;
+    font-weight: 600; */
+    background-color: #FF987B; /* Cambia el color al pasar el cursor */
+}
+
+
+  

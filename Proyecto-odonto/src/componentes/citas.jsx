@@ -6,14 +6,11 @@ function Citas() {
   const navigate = useNavigate();
 
   return (
-    
-<div>
-    <div>
         <main className="citas-content">
           <h1 className="titulo-citas">Citas</h1>
           <div className="citas-header">
             <h2>Citas Pacientes</h2>
-            <div className="busqueda">
+            <div className="busquedaa">
               <label htmlFor="buscar">Buscar:</label>
               <input type="text" id="buscar" placeholder="Buscar..." />
               <button className="btn-programar" onClick={() => navigate('/programarcita')}>PROGRAMAR CITA</button>
@@ -40,10 +37,8 @@ function Citas() {
             </div>
           </div>
 
-          <button className="btn-regresar" onClick={() => navigate('/home')}>REGRESAR</button>
+          {/* <button className="btn-regresar" onClick={() => navigate('/home')}>REGRESAR</button> */}
         </main>
-      </div>
-    </div>
   );
 }
 

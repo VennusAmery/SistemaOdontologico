@@ -15,7 +15,8 @@ html, body {
 hr {
   border: none;
   border-top: 2px solid #56B0B3;
-  margin: 10px 0PX 20PX !important;
+  margin: 10px 0 20px !important;
+  width: 200%; /* Doble del ancho del contenedor */
 }
 
 .calendar-content {
@@ -502,9 +503,6 @@ abbr {
 .day-events::-webkit-scrollbar-thumb:hover { /*este es la animacion del scrollbar*/
   background: #217578;
 }
-
-
-
 
 /*MENSAJE DE ELIMINADO*/
 .toast {

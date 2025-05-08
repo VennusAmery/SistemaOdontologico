@@ -57,3 +57,100 @@
   .grid-botones button:hover {
     transform: scale(1.05);
   }
+
+  /* ========== MEDIA QUERIES PARA GRID DE BOTONES ========== */
+
+/* Pantallas medianas (1024px o menos) */
+@media (max-width: 1024px) {
+  .grid-botones {
+    grid-template-columns: repeat(2, 400px);
+  }
+  
+  .grid-botones button:nth-child(7) {
+    width: 400px;
+  }
+}
+
+/* Pantallas grandes móviles o tablets (820px o menos) */
+@media (max-width: 820px) {
+  .grid-botones {
+    grid-template-columns: repeat(2, 1fr); /* Dos columnas flexibles */
+    grid-gap: 20px; /* Espaciado entre botones */
+    padding: 0 20px; /* Espaciado interno */
+  }
+
+  .grid-botones button {
+    height: 90px; /* Ajusta la altura de los botones */
+    font-size: 22px; /* Ajusta el tamaño del texto */
+  }
+
+  .grid-botones button:nth-child(7) {
+    grid-column: span 2; /* Ocupa dos columnas */
+    width: 50%; /* Ocupa todo el ancho disponible */
+  }
+
+  .home-content h1 {
+    font-size: 30px; /* Ajusta el tamaño del título */
+    margin-top: 25px; /* Ajusta el margen superior */
+  }
+}
+
+/* Tablets (768px o menos) */
+@media (max-width: 768px) {
+  .grid-botones {
+    grid-template-columns: repeat(2, 1fr); /* Columnas flexibles */
+    grid-gap: 15px;
+    padding: 0 15px;
+  }
+  
+  .grid-botones button {
+    height: 100px;
+    font-size: 24px;
+  }
+  
+  .grid-botones button:nth-child(7) {
+    width: 100%;
+    grid-column: span 2;
+  }
+  
+  .home-content h1 {
+    font-size: 32px;
+    margin-top: 20px;
+  }
+}
+
+/* Móviles grandes (480px o menos) */
+@media (max-width: 480px) {
+  .grid-botones {
+    grid-template-columns: 1fr; /* Una sola columna */
+    padding: 0 10px;
+  }
+  
+  .grid-botones button {
+    height: 80px;
+    font-size: 20px;
+    text-align: center;
+  }
+  
+  .grid-botones button:nth-child(7) {
+    grid-column: span 1;
+    width: 100%;
+  }
+  
+  .home-content h1 {
+    font-size: 26px;
+    margin: 15px 0;
+  }
+}
+
+/* Móviles muy pequeños (320px o menos) */
+@media (max-width: 320px) {
+  .grid-botones button {
+    height: 70px;
+    font-size: 18px;
+  }
+  
+  .home-content h1 {
+    font-size: 22px;
+  }
+}

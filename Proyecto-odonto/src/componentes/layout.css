@@ -47,13 +47,14 @@
 /* Rectángulo decorativo dentro del sidebar */
 .rectangulo {
     background-color: #56B0B3; /* Color de fondo */
-    height: 80px; /* Altura del rectángulo */
+    height: 85px; /* Altura del rectángulo */
     width: 200px; /* Ancho del rectángulo */
     display: flex; /* Usa flexbox */
     justify-content: center; /* Centra el contenido horizontalmente */
     align-items: center; /* Centra el contenido verticalmente */
     border: 5px solid white; /* Borde blanco */
     margin-top: 40px; /* Espaciado superior */
+    margin-bottom: 15px;
 }
 
 /* Variación del rectángulo con elementos en columna */
@@ -219,6 +220,10 @@
     .sidebar {
         width: 100%; /* El sidebar ocupará el 100% de la pantalla */
     }
+
+    .user-info {
+      margin-top: 30px; /* Espaciado superior */
+  }
 
     /* Hace que el contenido principal tenga margen cuando el sidebar está abierto */
     .main-container {

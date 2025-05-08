@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;600;800&display=swap');
+
 .inv-container {
     padding: 20px;
   }
@@ -59,7 +61,46 @@
     background-color: #ff8a65; /* linea debajo del boton de navegacion */
   }
 
+/*cosita de busqueda*/
+.inv-search-section {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 100%;
+}
 
+.inv-search-form {
+  width: 100%;
+  max-width: 800px; /* o lo que necesites */
+  margin: 1rem auto;
+  margin-top: -40px;
+}
+
+.inv-search-container {
+  position: relative;
+  width: 100%;
+}
+
+.inv-search-input {
+  width: 100%; /* Se ajusta al tamaño del formulario */
+  padding: 0.75rem 2.5rem 0.75rem 1rem;
+  font-size: 1.1rem;
+  border: 1px solid #ccc;
+  border-radius: 0.5rem;
+  box-sizing: border-box;
+}
+
+.inv-search-icon {
+  position: absolute;
+  right: 0.005rem;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  color: #74c0c5;
+}
 
   .form-info-material {
     background: #fff;
@@ -69,19 +110,26 @@
   
   .form-grid {
     display: flex;
-    gap: 40px;
-    margin-bottom: 20px;
+    gap: 60px;
+    margin-bottom: 30px;
+    margin-top: 5px;
   }
   
   .form-col {
     display: flex;
     flex-direction: column;
-    flex: 1;
+    gap: 5px; /* Espacio entre filas */
   }
   
   .form-col label {
-    margin-bottom: 5px;
-    color: #333;
+    text-align: left;
+    margin-bottom: -4px;
+  }
+  
+  .form-col input {
+    padding: 6px 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
   }
   
   .form-col input,
@@ -99,18 +147,18 @@
   }
   
  /*BOTONES*/
-.info-form-buttons {
+.infm-form-buttons {
   display: flex;
   justify-content: center; /* Centra los botones horizontalmente */
   gap: 1rem;
   flex-wrap: wrap;
-  margin-top: 1.5rem;
+  margin-top: -15px;
 }
 
-.info-form-buttons .inv-btn-delete,
-.info-form-buttons .inv-btn-edit,
-.info-form-buttons .inv-btn-back,
-.info-form-buttons .inv-btn-add {
+.infm-form-buttons .infm-btn-delete,
+.infm-form-buttons .infm-btn-edit,
+.infm-form-buttons .infm-btn-back,
+.infm-form-buttons .infm-btn-add {
   padding: 0.5rem 1rem;        
   font-size: 1rem;            
   border: none;
@@ -118,19 +166,20 @@
   cursor: pointer;
   min-width: 100px;
   height: 40px;
+  font-weight: bold;
   transition: background-color 0.2s ease;
 }
 
 /* Colores específicos */
-.info-btn-delete { background-color: #F98972; color: white; }
-.info-btn-edit   { background-color: #F98972; color: white; }
-.info-btn-back   { background-color: #F98972; color: white; }
-.info-btn-add    { background-color: #F98972; color: white; }
+.infm-btn-delete { background-color: #F98972; color: white; }
+.infm-btn-edit   { background-color: #F98972; color: white; }
+.infm-btn-back   { background-color: #F98972; color: white; }
+.infm-btn-add    { background-color: #F98972; color: white; }
 
-.info-btn-delete:hover,
-.info-btn-edit:hover,
-.info-btn-back:hover ,
-.info-btn-add:hover {
+.infm-btn-delete:hover,
+.infm-btn-edit:hover,
+.infm-btn-back:hover ,
+.infm-btn-add:hover {
   opacity: 0.9;
 }
 

@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;600;800&display=swap');
 
 .inv-container {
     max-width: 1200px;
@@ -110,7 +111,11 @@
     justify-content: center;
     gap: 60px;
     margin-bottom: 16px;
+    margin-left: 10%;
     margin-top: 15px;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
   }
   
   .clinica-columna-izquierda,
@@ -157,6 +162,7 @@
   .clinicJ-btn-delete, 
   .clinicJ-btn-edit, 
   .clinicJ-btn-add {
+    font-weight: bold;
     padding: 12px 25px; /* He aumentado el padding para que sean más visibles */
     padding: 12px 25px; /* He aumentado el padding para que sean más visibles */
     margin: 1px;

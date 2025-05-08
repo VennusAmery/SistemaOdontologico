@@ -118,10 +118,10 @@ export default function CitaMaterial() {
 
         {/* ——— Botones de acción ——— */}
         <div className="citaM-form-buttons">
-          <button type="button" className="inv-btn-delete">Eliminar</button>
-          <button type="button" className="inv-btn-edit">Modificar</button>
-          <button type="button" className="inv-btn-add">Agregar</button>
-          <button type="button" className="inv-btn-back"onClick={() => navigate(-1)}>Regresar </button>
+          <button type="button" className="citaM-btn-delete">Eliminar</button>
+          <button type="button" className="citaM-btn-edit">Modificar</button>
+          <button type="button" className="citaM-btn-add">Agregar</button>
+          <button type="button" className="citaM-btn-back"onClick={() => navigate(-1)}>Regresar </button>
         </div>
       </motion.div>
     </div>

@@ -1,10 +1,4 @@
-html, body {
-  margin: 0;
-  padding: 0;
-  overflow-y: auto;      /* activa scroll vertical si hace falta */
-}
-
-  h1 {
+h1 {
     font-size: 35px !important;      /* Ajusta el tamaño a tu gusto */
     margin-top: 0px;      /* Elimina el espacio superior */
     margin-bottom: 0px;   /* Reduce el espacio inferior */
@@ -14,17 +8,21 @@ html, body {
 /*DOBLES LINEAS DE ARRIBA*/
 hr {
   border: none;
+<<<<<<< HEAD
   border-top: 2px solid #56B0B3;
   margin: 10px 0 20px !important;
   width: 200%; /* Doble del ancho del contenedor */
+=======
+  border-top: 5px solid #56B0B3;
+  margin: 20px 0; /* 20px arriba y abajo, 0 a los lados */
+>>>>>>> 5b506e25dfd4baf41e6f8defbc44b9760152c435
 }
 
 .calendar-content {
   flex: 1; /* Ocupa todo el espacio restante */
   background-color: #fefefe; /* Fondo blanco */
-  padding: 20px; /* Espaciado interno */
+  margin: 10px;
   overflow-y: auto;      /* activa scroll interno si es necesario */
-
 }
   
   /* Ajusta el título */
@@ -35,6 +33,13 @@ hr {
     margin-left: 0%;
   }
 
+  .spaced-hr {
+    border: none;
+    padding-bottom: 15px;
+    border-top: 2px solid #2ca2a6; /* O el estilo que estés usando */
+  }
+
+
 /*son los nmbres de los dias*/
 abbr {
     text-decoration: none;
@@ -44,18 +49,16 @@ abbr {
   .calendar-wrapper {
     display: flex;
     justify-content: center;
-    padding: 10rem;
-    overflow: visible; /* permite que crezca naturalmente */
-    margin: auto;  /* Asegura que el contenedor se centre */
-    margin-top: -170px;  /* sube el calendario */
+    padding: 1rem;
+    margin: 0;  /* Asegura que el contenedor se centre */
+    margin-top: -100px;  /* sube el calendario */
   }
-  
+
   .calendar-layout {
     display: flex;
     gap: 2rem;
     align-items: flex-start;
-    margin-left: -8rem; 
-    margin-top: 30px;
+    margin-top: 140px;
     align-items: flex-start; /* Esto es lo importante */
 }
 
@@ -306,31 +309,40 @@ abbr {
   }
   
   
-  /* Oculta el checkbox por defecto */
-  .custom-checkbox input[type="checkbox"] {
-    width: 100%;
-    appearance: none;
-    -webkit-appearance: none;
-    width: 25px;
-    height: 18px;
-    border: 2px solid white;
-    border-radius: 4px;
-    background-color: white;
-    cursor: pointer;
-    position: relative;
-  }
-  
-  /* Estilo cuando está marcado */
-  .custom-checkbox input[type="checkbox"]:checked::after {
-    content: '✓';
-    position: absolute;
-    top: 0px;
-    left: 3px;
-    color: #56B0B3;
-    font-size: 14px;
-    font-weight: bold;
-  }
-  
+/*CHECKBOX*/
+.estado-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 15px;
+  margin-bottom: 20PX;
+  border: none;
+}
+
+.estado-group legend {
+  margin-bottom: 5px;
+  text-align: left;
+  font-weight: 1500;
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 8px; /* Espacio entre checkbox y texto */
+  font-size: 14px;
+  color: #333;
+  cursor: pointer;
+}
+
+.checkbox-label input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: #00b4c6;
+  vertical-align: middle;
+  cursor: pointer;
+}
+
+  /*modal*/
   .modal-buttons {
     display: flex;
     justify-content: center;
@@ -346,14 +358,16 @@ abbr {
     border-radius: 6px;
     cursor: pointer;
   }
+
+  .modal h2{
+    color: white;
+  }
   
   .react-calendar__tile--neighboringMonth:hover {
     background: #FF987B !important; /* Cambiar color de hover para días del mes siguiente */
     color: white !important; /* Color que tendrá la letra al ponerse encima del número */
     cursor: pointer;
   }
-  
-
 
   /*LA VISTA DE LOS MESES*/
   .react-calendar__year-view__months {
@@ -366,7 +380,6 @@ abbr {
     color: #333;
     box-sizing: border-box;
   }
-  
   
   .react-calendar__tile.react-calendar__year-view__months__month {
     background-color: #56B0B3; /* Fondo de los botones */
@@ -464,7 +477,6 @@ abbr {
   background-color: #449ba0; /* Fondo más oscuro al pasar el mouse */
 }
 
-
 /*BOTONES DE LOS EVENTOS*/
   .event-button {
     background-color:#FF987B;
@@ -486,7 +498,6 @@ abbr {
   .event-button:hover {
     background-color: #fab39f;
   }
-
 
   /* Estilo de scrollbar */
 .day-events::-webkit-scrollbar {
@@ -527,13 +538,11 @@ abbr {
   visibility: visible;
 }
 
-
 /* Estilo para mostrar el Toast */
 .toast.show {
   opacity: 1;
   visibility: visible;
 }
-
 
 /* Ajustes para cada vista que usa grid */
 .react-calendar__year-view__months,
@@ -543,116 +552,4 @@ abbr {
   width: 350PX;
 }
 
-
 /*RESPONSIVE*/
-@media (max-width: 768px) {
-  .calendar-wrapper {
-    padding: 0.125rem;
-    margin-top: 0;  /* Ajustar para evitar que el calendario se suba demasiado */
-  }
-
-  .calendar-layout {
-    display: block; /* Hacer que se apilen los elementos */
-    margin-left: 0;
-  }
-
-  .react-calendar {
-    width: 100%;
-    max-width: 100%;
-    padding: 1.5rem;  /* Reducir el padding */
-  }
-
-  .calendar-content h1 {
-    font-size: 30px;  /* Reducir el tamaño del título */
-    margin-left: 0;
-  }
-
-  /* Ajuste del tamaño de los eventos */
-  .day-events {
-    max-height: 300px;  /* Limitar la altura de los eventos */
-  }
-
-  .react-calendar__navigation button {
-    font-size: 0.9rem;  /* Reducir el tamaño de los botones */
-    padding: 4px;  /* Ajustar el padding */
-  }
-
-  .react-calendar__tile--now, .react-calendar__tile--active {
-    font-size: 0.8rem;  /* Reducir el tamaño del texto de los días */
-  }
-
-  .event-button {
-    width: 100%; /* Hacer que los botones de los eventos se ajusten al ancho */
-    font-size: 16px;  /* Reducir el tamaño de fuente */
-  }
-  
-  .modal {
-    width: 90%;  /* Reducir el ancho del modal en dispositivos pequeños */
-    padding: 1.5rem;  /* Ajustar el padding */
-  }
-  
-  .modal-buttons button {
-    padding: 0.3rem 0.8rem;
-  }
-}
-
-/* Responsivo para dispositivos aún más pequeños (móviles) */
-@media (max-width: 480px) {
-  .react-calendar__navigation {
-    flex-direction: column;  /* Colocar los botones de navegación en columna */
-  }
-
-  .calendar-wrapper {
-    padding: 1rem;
-    margin-top: 0;
-  }
-
-  .react-calendar {
-    width: 100%;
-    padding: 1rem;
-  }
-
-  .calendar-content h1 {
-    font-size: 25px;  /* Reducir aún más el tamaño del título */
-  }
-
-  .event-button {
-    font-size: 14px;  /* Reducir el tamaño del texto */
-  }
-
-  .day-events {
-    max-height: 200px;  /* Reducir la altura de los eventos */
-  }
-
-  .modal {
-    width: 100%;
-    padding: 1rem;
-  }
-
-  .react-calendar__tile {
-    font-size: 0.75rem; /* Reducir aún más el tamaño de los días */
-  }
-
-  .react-calendar__tile--now, .react-calendar__tile--active {
-    font-size: 0.7rem;
-  }
-}
-
-/* Para el scrollbar */
-.day-events::-webkit-scrollbar {
-  width: 6px;  /* Reducir el tamaño del scrollbar */
-}
-
-.day-events::-webkit-scrollbar-track {
-  background: #f1f1f1;
-  border-radius: 10px;
-}
-
-.day-events::-webkit-scrollbar-thumb {
-  background: #56B0B3;
-  border-radius: 10px;
-}
-
-.day-events::-webkit-scrollbar-thumb:hover {
-  background: #217578;
-}

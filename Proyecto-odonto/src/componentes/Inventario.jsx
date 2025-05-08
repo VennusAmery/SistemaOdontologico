@@ -71,8 +71,7 @@ export default function Inventario() {
             key={tab.id}
             type="button"
             className={`inv-tab ${tabActiva === tab.id ? 'active' : ''}`}
-            onClick={() => handleTabClick(tab)}
-          >
+            onClick={() => handleTabClick(tab)}>
             {tab.label}
           </button>
         ))}
@@ -115,10 +114,18 @@ export default function Inventario() {
               <div key={letra}>
                 <div className="inv-letter-separator">{letra}</div>
                 {agrupados[letra].map(item => (
-                  <div key={item} className="inv-search-item">
-                    {item}
-                  </div>
-                ))}
+                    <div
+                      key={item}
+                      className="inv-search-item"
+                      role="button"
+                      tabIndex={0}
+                      onClick={() => navigate(`/infoMaterial/${encodeURIComponent(item)}`)}
+                      onKeyDown={(e) => {
+                        if (e.key === 'Enter') navigate(`/infoMaterial/${encodeURIComponent(item)}`);
+                      }}>
+                      {item}
+                    </div>
+                  ))}
               </div>
             ))
           ) : (
@@ -128,10 +135,10 @@ export default function Inventario() {
 
         {/* ——— Botones de acción ——— */}
         <div className="inve-form-buttons">
-          <button type="button" className="inv-btn-delete">Eliminar</button>
-          <button type="button" className="inv-btn-edit">Modificar</button>
-          <button type="button" className="inv-btn-add">Agregar</button>
-          <button type="button" className="inv-btn-back"onClick={() => navigate(-1)}>Regresar </button>
+          <button type="button" className="inve-btn-delete">ELIMINAR</button>
+          <button type="button" className="inve-btn-edit"onClick={() => navigate('/ingresoMaterial' )}>MODIFICAR </button>
+          <button type="button" className="inve-btn-add"onClick={() => navigate('/ingresoMaterial' )}>AGREGAR </button>
+          <button type="button" className="inve-btn-back"onClick={() => navigate(-1)}>REGRESAR </button>
         </div>
       </motion.section>
     </div>

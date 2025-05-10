@@ -1,43 +1,53 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './infoMaterial.css';
 import { motion } from 'framer-motion';
+import './infoMaterial.css';
 
-const tabConfig = [
-  { id: 'inventario', label: 'Listado de Material', path: '/inventario' },
-  { id: 'ingresoMaterial', label: 'Ingreso Material', path: '/ingresoMaterial' },
-  { id: 'infoMaterial', label: 'Información de material utilizado', path: '/infoMaterial' },
-  { id: 'citaMaterial', label: 'Material usado en cita', path: '/citaMaterial' },
+const listmateTabs = [
+  { id: 'inventario',     label: 'Listado de Material',                 path: '/inventario'     },
+  { id: 'ingresoMaterial', label: 'Ingreso Material',                    path: '/ingresoMaterial' },
+  { id: 'infoMaterial',    label: 'Información de material utilizado',   path: '/infoMaterial'   },
+  { id: 'citaMaterial',    label: 'Material usado en cita',              path: '/citaMaterial'   },
 ];
 
 const slideVariants = {
-  initial: { x: '100%', opacity: 0 },
-  animate: { x: 0, opacity: 1 },
-  exit: { x: '-100%', opacity: 0 },
+  initial:    { x: '100%',  opacity: 0 },
+  animate:    { x:    0,    opacity: 1 },
+  exit:       { x: '-100%', opacity: 0 },
   transition: { duration: 0.4 }
 };
 
 export default function InfoMaterial() {
   const navigate = useNavigate();
-  const [tabActiva, setTabActiva] = useState('infoMaterial');
 
-  const [formData, setFormData] = useState({
-    idProducto: '',
+  // pestaña activa
+  const [listmateTabActiva, setListmateTabActiva] = useState('infoMaterial');
+  const handleTabClick = tab => {
+    setListmateTabActiva(tab.id);
+    navigate(tab.path);
+  };
+
+  // datos del formulario
+  const [listmateData, setListmateData] = useState({
+    idProducto:     '',
     nombreProducto: '',
-    cantidad: '',
-    fechaUso: '',
-    idCita: '',
-    clinica: '',
-    descripcion: ''
+    cantidad:       '',
+    fechaUso:       '',
+    idCita:         '',
+    clinica:        '',
+    descripcion:    ''
   });
+  const handleListmateChange = e => {
+    const { name, value } = e.target;
+    setListmateData(prev => ({ ...prev, [name]: value }));
+  };
 
-  const [searchTerm, setSearchTerm] = useState('');
-  const [displayTerm, setDisplayTerm] = useState('');
-
-  // Simulación de datos
+  // buscador (sin debounce para simplificar)
+  const [listmateSearchTerm, setListmateSearchTerm]   = useState('');
+  const [listmateDisplay,    setListmateDisplay]      = useState('');
   const datos = ['Algodón', 'Gasas', 'Guantes', 'Jeringa', 'Alcohol'];
   const filtered = datos.filter(d =>
-    d.toLowerCase().includes(displayTerm.toLowerCase())
+    d.toLowerCase().includes(listmateDisplay.toLowerCase())
   );
   const agrupados = filtered.reduce((acc, item) => {
     const letra = item[0].toUpperCase();
@@ -46,39 +56,41 @@ export default function InfoMaterial() {
     return acc;
   }, {});
 
-  const handleTabClick = tab => {
-    setTabActiva(tab.id);
-    navigate(tab.path);
+  // flash messages
+  const [listmateMessage, setListmateMessage] = useState('');
+  const listmateFlash = text => {
+    setListmateMessage(text);
+    setTimeout(() => setListmateMessage(''), 2000);
   };
-
-  const handleChange = e => {
-    const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
-  };
-
-  const handleGuardar = () => {
-    console.log('Guardando datos:', formData);
-  };
+  const handleListmateSave   = () => listmateFlash('Guardado correctamente');
+  const handleListmateEdit   = () => listmateFlash('Editado correctamente');
+  const handleListmateDelete = () => listmateFlash('Eliminado correctamente');
 
   return (
-    <div className="inv-container">
-      <h2 className="inv-title">Inventario</h2>
+    <div className="listmate-container">
+      <h2 className="listmate-title">Inventario</h2>
       <hr />
 
-      <div className="inv-tabs">
-        {tabConfig.map(tab => (
+      <nav className="listmate-tabs">
+        {listmateTabs.map(tab => (
           <button
             key={tab.id}
-            className={`inv-tab ${tabActiva === tab.id ? 'active' : ''}`}
+            className={`listmate-tab ${listmateTabActiva === tab.id ? 'active' : ''}`}
             onClick={() => handleTabClick(tab)}
           >
             {tab.label}
           </button>
         ))}
-      </div>
+      </nav>
+
+      {listmateMessage && (
+        <div className="listmate-flash-message">
+          {listmateMessage}
+        </div>
+      )}
 
       <motion.div
-        className="form-info-material"
+        className="listmate-body"
         variants={slideVariants}
         initial="initial"
         animate="animate"
@@ -86,52 +98,104 @@ export default function InfoMaterial() {
         transition={slideVariants.transition}
       >
         <form
-          className="inv-search-form"
+          className="listmate-search-form"
           onSubmit={e => {
             e.preventDefault();
-            setDisplayTerm(searchTerm);
+            setListmateDisplay(listmateSearchTerm);
           }}
         >
-          <div className="inv-search-container">
+          <div className="listmate-search-container">
             <input
               type="text"
-              className="inv-search-input"
+              className="listmate-search-input"
               placeholder="Buscar material..."
-              value={searchTerm}
-              onChange={e => setSearchTerm(e.target.value)}
+              value={listmateSearchTerm}
+              onChange={e => setListmateSearchTerm(e.target.value)}
             />
-            <button type="submit" className="inv-search-icon" aria-label="Buscar">
+            <button type="submit" className="listmate-search-icon" aria-label="Buscar">
               🔍
             </button>
           </div>
         </form>
 
-        <div className="form-grid">
-          <div className="form-col">
+        <div className="listmate-form-grid">
+          <div className="listmate-form-col">
             <label>ID Producto:</label>
-            <input name="idProducto" value={formData.idProducto} onChange={handleChange} />
+            <input
+              name="idProducto"
+              value={listmateData.idProducto}
+              onChange={handleListmateChange}
+            />
             <label>Cantidad:</label>
-            <input name="cantidad" value={formData.cantidad} onChange={handleChange} />
+            <input
+              name="cantidad"
+              value={listmateData.cantidad}
+              onChange={handleListmateChange}
+            />
             <label>Fecha de Uso:</label>
-            <input name="fechaUso" value={formData.fechaUso} onChange={handleChange} />
+            <input
+              name="fechaUso"
+              value={listmateData.fechaUso}
+              onChange={handleListmateChange}
+            />
             <label>ID Cita:</label>
-            <input name="idCita" value={formData.idCita} onChange={handleChange} />
+            <input
+              name="idCita"
+              value={listmateData.idCita}
+              onChange={handleListmateChange}
+            />
             <label>Clínica:</label>
-            <input name="clinica" value={formData.clinica} onChange={handleChange} />
+            <input
+              name="clinica"
+              value={listmateData.clinica}
+              onChange={handleListmateChange}
+            />
           </div>
-          <div className="form-col">
+          <div className="listmate-form-col">
             <label>Nombre Producto:</label>
-            <input name="nombreProducto" value={formData.nombreProducto} onChange={handleChange} />
+            <input
+              name="nombreProducto"
+              value={listmateData.nombreProducto}
+              onChange={handleListmateChange}
+            />
             <label>Descripción:</label>
-            <textarea name="descripcion" value={formData.descripcion} onChange={handleChange} />
+            <textarea
+              name="descripcion"
+              value={listmateData.descripcion}
+              onChange={handleListmateChange}
+            />
           </div>
         </div>
 
-        <div className="infm-form-buttons">
-          <button type="button" className="infm-btn-delete">Eliminar</button>
-          <button type="button" className="infm-btn-edit">Modificar</button>
-          <button type="button" className="infm-btn-add" onClick={handleGuardar}>Agregar</button>
-          <button type="button" className="infm-btn-back" onClick={() => navigate(-1)}>Regresar</button>
+        <div className="listmate-form-buttons">
+          <button
+            type="button"
+            className="listmate-btn-delete"
+            onClick={handleListmateDelete}
+          >
+            Eliminar
+          </button>
+          <button
+            type="button"
+            className="listmate-btn-edit"
+            onClick={handleListmateEdit}
+          >
+            Modificar
+          </button>
+          <button
+            type="button"
+            className="listmate-btn-add"
+            onClick={handleListmateSave}
+          >
+            Agregar
+          </button>
+          <button
+            type="button"
+            className="listmate-btn-back"
+            onClick={() => navigate(-1)}
+          >
+            Regresar
+          </button>
         </div>
       </motion.div>
     </div>

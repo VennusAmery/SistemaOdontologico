@@ -66,9 +66,6 @@
   }
 
 
-
-
-
 .clinica-contenedor {
     padding: 2rem;
     color: #444;
@@ -96,15 +93,12 @@
     font-weight: bold;
   }
   
-
-
   .clinica-bloque .clinica-titulo{
     align-items: flex-start !important;
     font-size: 20px;
     left: -25px;
     margin-bottom: 5px;
   }
-
 
   .clinica-fila {
     display: flex;
@@ -136,9 +130,12 @@
     padding: 6px 8px;
     font-size: 14px;
     box-sizing: border-box;
+    background-color: #C7ECED;
+    color: #383838;
+    border: none;
   }
   
-  .horario-input {
+  .clinica-columna-derecha .horario-input {
     width: 120px;
   }
   

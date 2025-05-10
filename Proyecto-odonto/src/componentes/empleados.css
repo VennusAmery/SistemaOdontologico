@@ -4,7 +4,7 @@
   max-width: 1200px;
   margin: 2px auto;
   padding: 0 1rem;
-  overflow-x: hidden;  /* ✅ oculta solo lo horizontal */
+  overflow: hidden;  /* ✅ oculta solo lo horizontal */
 }
 
 /*Titulo*/
@@ -41,7 +41,7 @@ h2 {
   border: none;
   padding: 0.5rem 0;
   font-size: 1rem;
-  color: #ff8a65;
+  color: #497a7d;
   cursor: pointer;
   position: relative;
   transition: color 0.2s;
@@ -52,7 +52,7 @@ h2 {
 }
 
 .emplelist-tab.active {
-  color: #497a7d; /*color del seleccionado*/
+  color: #ff8a65;
 }
 
 .emplelist-tab.active::after {
@@ -92,6 +92,8 @@ h2 {
   font-size: 1.1rem;
   border: 1px solid #ccc;
   border-radius: 0.5rem;
+  background-color: #C7ECED;
+  color: #343434;
   box-sizing: border-box;
 }
 
@@ -203,7 +205,9 @@ h2 {
 .emplelist-btn-edit:hover,
 .emplelist-btn-back:hover ,
 .emplelist-btn-add:hover {
-  opacity: 0.9;
+  opacity: 1;
+  transform: scale(1.02);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 

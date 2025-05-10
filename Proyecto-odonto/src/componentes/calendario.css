@@ -5,20 +5,12 @@ h1 {
     font-weight: bold;
   }
   
-/*DOBLES LINEAS DE ARRIBA*/
-hr {
-  border: none;
-  border-top: 2px solid #56B0B3;
-  margin: 10px 0PX 20PX !important;
-}
-
-
-
 .calendar-content {
   flex: 1; /* Ocupa todo el espacio restante */
   background-color: #fefefe; /* Fondo blanco */
   margin: 10px;
   overflow-y: auto;      /* activa scroll interno si es necesario */
+
 }
   
   /* Ajusta el título */
@@ -26,15 +18,9 @@ hr {
     color: #FF987B;
     font-size: 60px;
     text-align: left;
-    margin-left: 0%;
+    margin-left: 2%;
+    margin-top: 1%;
   }
-
-  .spaced-hr {
-    border: none;
-    padding-bottom: 15px;
-    border-top: 2px solid #2ca2a6; /* O el estilo que estés usando */
-  }
-
 
 /*son los nmbres de los dias*/
 abbr {
@@ -47,7 +33,7 @@ abbr {
     justify-content: center;
     padding: 1rem;
     margin: 0;  /* Asegura que el contenedor se centre */
-    margin-top: -100px;  /* sube el calendario */
+    margin-top: -60px;  /* sube el calendario */
   }
 
   .calendar-layout {

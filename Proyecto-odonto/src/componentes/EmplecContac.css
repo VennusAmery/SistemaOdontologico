@@ -1,0 +1,169 @@
+.empleadocontacto-container {
+    margin-top: -10px;
+    margin-left: 5px;
+    padding: 1% 1% 1% 1%;
+    overflow-x: hidden;  /* ✅ oculta solo lo horizontal */
+  }
+
+  /*TITULO DE HASTA ARRIBA*/
+.empleadocontacto-title {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #ff8a65; /* Naranja suave */
+    margin-bottom: 0.5rem;
+    text-align: left; /* asegura alineación a la izquierda */
+  }
+
+/*IMAGEN Y TITULO*/
+.ContacEmple-container2 {
+    display: flex;               
+    align-items: center;        
+    gap: 1rem;
+    padding-top: 1px;
+    padding-bottom: -15px;
+  }
+  
+  .ContacEmple-circle {
+    width: 50px;                /* diámetro del círculo */  
+    height: 50px;
+    border-radius: 50%;         /* hace el contenedor perfectamente redondo */  
+    overflow: hidden;           /* recorta la imagen al contorno */  
+    flex-shrink: 0;             /* evita que el círculo se encoja */  
+    display: flex;              /* para centrar la img dentro */  
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #74c0c5;     /* borde gris alrededor del círculo */
+    margin-bottom: 0.5rem;      /* separa el círculo del texto de abajo */
+  }
+  
+  .ContacEmple-image {
+    width: 90%; /* ocupa todo el círculo */  
+    height: auto;  /* mantiene proporción */  
+  }
+  
+  .ContacEmple-text {
+    flex: 1; /* el texto ocupa el resto del espacio */  
+  }
+
+  /* Línea divisoria justo debajo del título */
+  hr {
+    border: none;
+    height: 1px;
+    background-color: #74c0c5; /* Verde-azulado */
+    margin-bottom: 1.5rem;
+  }
+
+  /* Tabs internas */
+  .empleadocontacto-tabs {
+    display: flex;
+    gap: 3rem; /*ESPACIO ENTRE LOS BOTONES DE NAGEVACION*/
+    border-bottom: 2px solid #ddd;
+    margin-bottom: 1.5rem;
+  }
+  
+  .empleadocontacto-tab {
+    background: none;
+    border: none;
+    padding: 0.5rem 0;
+    font-size: 1rem;
+    color: #497a7d;
+    cursor: pointer;
+    position: relative;
+    transition: color 0.2s;
+  }
+  
+  .empleadocontacto-tab:hover {
+    color: #74c0c5;
+  }
+
+  .empleadocontacto-tab.active {
+    color: #ff8a65;  }
+  
+  .empleadocontacto-tab.active::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: #ff8a65; /* linea debajo del boton de navegacion */
+  }
+
+  /* Contenido animado */
+  .empleadocontacto-content {
+    overflow: hidden;
+  }
+  
+  /* Formulario de contacto en dos columnas */
+  .empleadocontacto-form {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    margin-top: 25px;
+  }
+  
+  .empleadocontacto-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 40px;
+    row-gap: 16px;
+  }
+  
+  /* Cada columna interna */
+  .empleadocontacto-col {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  
+  /* Cada campo (label + input/textarea) */
+  .empleadocontacto-field {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  
+  .empleadocontacto-field label {
+    min-width: 120px;
+    font-weight: 600;
+    color: #757575;
+    text-align: left;
+  }
+  
+  /* Inputs y textarea */
+  .empleadocontacto-field input,
+  .empleadocontacto-field textarea {
+    flex: 1;
+    padding: 8px;
+    border: 1px solid #b2e4e5;
+    border-radius: 4px;
+    background-color: hsl(180, 62%, 95%);
+    font-size: 0.95rem;
+  }
+  
+  /* Textarea de “Turnos” un poco más alto */
+  .empleadocontacto-field textarea {
+    height: 80px;
+    resize: vertical;
+  }
+  
+  /* Botones de acción al pie */
+.empleadocontacto-btn {
+    background-color: #FF987B;
+    color: white;
+    padding: 0.6rem 1.2rem;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin: 0.3rem;
+    opacity: 0.9;
+  }
+  
+  .empleadocontacto-btn:hover {
+    opacity: 1;
+    transform: scale(1.02);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  

@@ -1,9 +1,34 @@
 import React, { useState } from 'react';
 import './Doctores.css';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
+import { motion } from 'framer-motion';
+
+const tabsDoctores = [
+  { id: 'listdoctores', label: 'Listado de Doctores', path: '/listdoctores' },
+  { id: 'registroDoctor', label: 'Información Doctor', path: '/doctores' },
+];
+
+const slideVariants = {
+  initial: { x: '100%', opacity: 0 },
+  animate: { x: 0, opacity: 1 },
+  exit: { x: '-100%', opacity: 0 },
+  transition: { duration: 0.4 },
+};
 
 const Doctores = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+
+  // Para pestañas
+  const [tabActiva, setTabActiva] = useState(() =>
+    tabsDoctores.find(tab => tab.path === location.pathname)?.id || 'registroDoctor'
+  );
+  const handleTabClick = (tab) => {
+    setTabActiva(tab.id);
+    navigate(tab.path);
+  };
+
+  // Datos del doctor
   const [doctor, setDoctor] = useState({
     nombre: '',
     apellido: '',
@@ -17,138 +42,194 @@ const Doctores = () => {
     movil: '',
     correoElectronico: ''
   });
-
-  const handleChange = (e) => {container
+  const handleChange = (e) => {
     const { name, value } = e.target;
-    setDoctor({ ...doctor, [name]: value });
+    setDoctor(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleSave = () => {
-    console.log("Guardado:", doctor);
-    alert("Guardado correctamente");
+  // Estado y función para el flash message
+  const [message, setMessage] = useState('');
+  const flashMessage = (text) => {
+    setMessage(text);
+    setTimeout(() => setMessage(''), 2000);
   };
 
-  const handleEdit = () => {
-    console.log("Editado:", doctor);
-  };
+  const handleSave = () => flashMessage('Guardado correctamente');
+  const handleEdit = () => flashMessage('Editado correctamente');
+  const handleDelete = () => flashMessage('Eliminado correctamente');
 
-  const handleDelete = () => {
-    console.log("Eliminado:", doctor);
-    alert("Doctor eliminado");
-  };
-
-  const handleBack = () => {
-    navigate('/contactos');
-  };
+  const handleBack = () => navigate('/contactos');
 
   return (
     <>
-      <h2>Contactos</h2>
-      <hr />
-      <hr />
-
-      <div className="doc-header">
-        <div className="doc-title-">
-          <div className="doc-icon-circle">
-            <img src="/imagenes/iconoUsuario.png" alt="Doctores" className="doc-icon-img" />
-          </div>
-          <h3 className="doc-title">Doctores</h3>
-        </div>
+      <div className="doc-container">
+        <h2 className="Listdoc-title">Contactos</h2>
+        <hr />
+        <nav className="doc-tabs" aria-label="Doctores">
+          {tabsDoctores.map(tab => (
+            <button
+              key={tab.id}
+              type="button"
+              className={`doc-tab ${tabActiva === tab.id ? 'active' : ''}`}
+              onClick={() => handleTabClick(tab)}
+            >
+              {tab.label}
+            </button>
+          ))}
+        </nav>
       </div>
 
-      <nav className="tabs">
-        <button className="active">Información</button>
-      </nav>
+      {/* Flash message */}
+      {message && (
+        <div className="flash-message">
+          {message}
+        </div>
+      )}
 
-      <form className="doc-form">
-        <div className="doc-form-row">
+      <motion.section
+        className="doc-motion-section"
+        variants={slideVariants}
+        initial="initial"
+        animate="animate"
+        exit="exit"
+        transition={slideVariants.transition}  >
+        <form className="doc-form">
+          <div className="formulario-header">
+            <div className="doc-circle">
+              <img
+                src="/imagenes/iconoUsuario.png"
+                alt="icono usuario"
+                className="doc-icon-img" />
+            </div>
+            <h2 className="doc-title">{doctor.nombre || 'Doctor'}</h2>
+          </div>
+
           <div className="doc-form-group">
             <div className="doc-field">
-              <label>Nombre:</label>
-              <input type="text" name="nombre" value={doctor.nombre} onChange={handleChange} />
+              <label htmlFor="nombre" className="doc-label">Nombre:</label>
+              <input
+                id="nombre"
+                type="text"
+                name="nombre"
+                value={doctor.nombre}
+                onChange={handleChange}
+                className="input-doc" />
             </div>
 
             <div className="doc-field">
-              <label>Apellido:</label>
-              <input type="text" name="apellido" value={doctor.apellido} onChange={handleChange} />
+              <label htmlFor="apellido" className="doc-label">Apellido:</label>
+              <input
+                id="apellido"
+                type="text"
+                name="apellido"
+                value={doctor.apellido}
+                onChange={handleChange}
+                className="input-doc" />
             </div>
 
             <div className="doc-field">
-              <label>DPI:</label>
-              <input type="text" name="dpi" value={doctor.dpi} onChange={handleChange} />
+              <label htmlFor="dpi" className="doc-label">DPI:</label>
+              <input
+                id="dpi"
+                type="text"
+                name="dpi"
+                value={doctor.dpi}
+                onChange={handleChange}
+                className="input-doc" />
             </div>
 
             <div className="doc-field">
-              <label>Hora de Entrada:</label>
-              <div className="doc-time-wrapper">
+              <label htmlFor="especialidad" className="doc-label">Especialidad:</label>
+              <input
+                id="especialidad"
+                type="text"
+                name="especialidad"
+                value={doctor.especialidad}
+                onChange={handleChange}
+                className="input-doc" />
+            </div>
+
+            <div className="doc-field">
+              <label htmlFor="honorarios" className="doc-label">Honorarios:</label>
+              <input
+                id="honorarios"
+                type="number"
+                name="honorarios"
+                value={doctor.honorarios}
+                onChange={handleChange}
+                className="input-doc" />
+            </div>
+
+            <div className="doc-field">
+              <label htmlFor="clinica" className="doc-label">Clínica:</label>
+              <input
+                id="clinica"
+                type="text"
+                name="clinica"
+                value={doctor.clinica}
+                onChange={handleChange}
+                className="input-doc"/>
+            </div>
+
+            <div className="doc-field doc-time-wrapper">
+              <label htmlFor="horaEntrada" className="doc-label">Hora Entrada:</label>
+              <div className="wrapper-tiempo-doc">
                 <input
+                  id="horaEntrada"
                   type="time"
                   name="horaEntrada"
                   value={doctor.horaEntrada}
-                  onChange={handleChange} />
-                <img src="/imagenes/reloj.png" alt="Reloj" className="doc-time-icon" />
+                  onChange={handleChange}
+                  className="input-doc"/>
               </div>
             </div>
-          </div>
 
-          <div className="doc-form-group">
-            <div className="doc-field">
-              <label>Especialidad:</label>
-              <input type="text" name="especialidad" value={doctor.especialidad} onChange={handleChange} />
-            </div>
-
-            <div className="doc-field">
-              <label>Honorarios:</label>
-              <input type="text" name="honorarios" value={doctor.honorarios} onChange={handleChange} />
-            </div>
-
-            <div className="doc-field">
-              <label>Clínica:</label>
-              <input type="text" name="clinica" value={doctor.clinica} onChange={handleChange} />
-            </div>
-
-            <div className="doc-field">
-              <label>Hora de Salida:</label>
-              <div className="doc-time-wrapper">
+            <div className="doc-field doc-time-wrapper">
+              <label htmlFor="horaSalida" className="doc-label">Hora Salida:</label>
+              <div className="wrapper-tiempo-doc">
                 <input
+                  id="horaSalida"
                   type="time"
                   name="horaSalida"
                   value={doctor.horaSalida}
-                  onChange={handleChange}/>
-                <img src="/imagenes/reloj.png" alt="Reloj" className="doc-time-icon" />
+                  onChange={handleChange}
+                  className="input-doc"/>
               </div>
             </div>
+
+            <div className="doc-field">
+              <label htmlFor="correoElectronico" className="doc-label">Correo:</label>
+              <input
+                id="correoElectronico"
+                type="email"
+                name="correoElectronico"
+                value={doctor.correoElectronico}
+                onChange={handleChange}
+                className="input-doc"
+              />
+            </div>
+
+            <div className="doc-field">
+              <label htmlFor="telefono" className="doc-label">Teléfono:</label>
+              <input
+                id="telefono"
+                type="tel"
+                name="telefono"
+                value={doctor.telefono}
+                onChange={handleChange}
+                className="input-doc"
+              />
+            </div>
           </div>
-        </div>
 
-        <nav className="tabs">
-        <button className="active">Contacto</button>
-      </nav>
-
-        <div className="doc-form-row2">
-          <div className="doc-field2">
-            <label>Teléfono:</label>
-            <input type="text" name="telefono" value={doctor.telefono} onChange={handleChange} />
+          <div className="doc-btn-actions">
+            <button className="doc-btn" type="button" onClick={handleBack}>REGRESAR</button>
+            <button className="doc-btn" type="button" onClick={handleSave}>GUARDAR</button>
+            <button className="doc-btn" type="button" onClick={handleEdit}>EDITAR</button>
+            <button className="doc-btn" type="button" onClick={handleDelete}>ELIMINAR</button>
           </div>
-
-          <div className="doc-field2">
-            <label>Móvil:</label>
-            <input type="text" name="movil" value={doctor.movil} onChange={handleChange} />
-          </div>
-
-          <div className="doc-field2">
-            <label>Correo:</label>
-            <input type="email" name="correoElectronico" value={doctor.correoElectronico} onChange={handleChange} />
-          </div>
-        </div>
-
-        <div className="doc-btn-actions">
-          <button className="doc-btn" type="button" onClick={handleBack}>REGRESAR</button>
-          <button className="doc-btn" type="button" onClick={handleSave}>GUARDAR</button>
-          <button className="doc-btn" type="button" onClick={handleEdit}>EDITAR</button>
-          <button className="doc-btn" type="button" onClick={handleDelete}>ELIMINAR</button>
-        </div>
-      </form>
+        </form>
+      </motion.section>
     </>
   );
 };

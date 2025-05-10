@@ -4,8 +4,10 @@ import { motion } from 'framer-motion';
 import './empleados.css';
 
 const tabConfig = [
-  { id: 'listadoMaterial', label: 'Listado de Empleados', path: '/listadoMaterial' },
+  { id: 'listadoMaterial', label: 'Listado de Empleados', path: '/empleados' },
   { id: 'ingresoMaterial', label: 'Agregar Nuevo Empleado', path: '/agregarempleado' },
+  { id: 'empleadocontacto', label: 'Contacto Nuevo Empleado', path: '/EmplecContac' },
+
 ];
 
 const slideVariants = {

@@ -1,12 +1,12 @@
 /* Importa la fuente 'Poppins' desde Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;600;800&display=swap');
 
-.cont-separator{
-  border: none;
-  padding-bottom: 15px;
-  border-top: 2px solid #2ca2a6; 
+hr {
+    border: none;
+    background-color: #74c0c5; /* Verde-azulado */
+    margin-bottom: 1.5rem;
+    padding-top: 1px;
 }
-
 
 /* Contenedor principal */
 .cont-container {

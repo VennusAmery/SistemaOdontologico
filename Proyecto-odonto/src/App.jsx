@@ -2,6 +2,7 @@ import React from "react";
 import { AnimatePresence } from 'framer-motion';
 import { useLocation } from "react-router-dom";
 import { Routes, Route } from "react-router-dom";
+
 import Login from "./componentes/Login";
 import OlvideContraseña from "./componentes/olvidecontraseña";
 import Home from "./componentes/home";
@@ -14,8 +15,8 @@ import Layout from "./componentes/layout";
 import CitasComponent from "./componentes/citas";
 import ContactosComponent from "./componentes/Contactos";
 import ProveedoresComponent from "./componentes/Proveedores"; 
-import ProgramarCita from "./componentes/programarcita"; // Importa el componente ProgramarCita
-import HistorialCita from "./componentes/historialcita"; // Importa el componente ProgramarCita
+import ProgramarCita from "./componentes/programarcita";
+import HistorialCita from "./componentes/historialcita"; 
 import Doctores from "./componentes/Doctores";
 import Empleados from "./componentes/empleados";
 import Inventario from "./componentes/Inventario";
@@ -26,15 +27,19 @@ import Clinica from "./componentes/clinica";
 import ClinicaJalapa from './componentes/ClinicaJalapa';
 import AgregarEmpleado from "./componentes/agregarempleado";
 import Listadoproveedores from "./componentes/listadoproveedores";
-
-import "./App.css";
 import AgregarPaciente from "./componentes/agregarpaciente";
+import EmplecContac from "./componentes/EmplecContac";
+import "./App.css";
+import Listdoctores from "./componentes/Listdoctores";
+
+
 function App() {
   const location = useLocation();
 
   return (
       <AnimatePresence mode="wait">
       <Routes location={location} key={location.pathname}>
+
       {/* Rutas sin Layout (sin sidebar) */}
       <Route path="/" element={<Login />} />
       <Route path="/olvidecontraseña" element={<OlvideContraseña />} />
@@ -61,8 +66,12 @@ function App() {
           <Route path="/CitaMaterial" element={<CitaMaterial />} />
           <Route path="/Clinica" element={<Clinica />} />
           <Route path="/clinicaJalapa" element={<ClinicaJalapa />} />
-          <Route path="/agregarempleado" element={<AgregarEmpleado />} /> {/* Nueva ruta para agregar empleado */}
+          <Route path="/agregarempleado" element={<AgregarEmpleado />} /> 
           <Route path="/listadoproveedores" element={<Listadoproveedores />} />
+          <Route path="/EmplecContac" element={<EmplecContac />} />
+          <Route path="/Listdoctores" element={<Listdoctores />} />
+
+
         </Route>
       </Routes>
     </AnimatePresence>
@@ -70,5 +79,3 @@ function App() {
 }
 
 export default App;
-
-

@@ -83,7 +83,7 @@ h2 {
 .inv-search-container {
   position: relative;
   width: 100%;
-  margin-top: 25PX;
+  margin-top: 1PX;
 }
 
 .inv-search-input {
@@ -93,6 +93,8 @@ h2 {
   border: 1px solid #ccc;
   border-radius: 0.5rem;
   box-sizing: border-box;
+  background-color: #C7ECED;
+  color: #404040;
 }
 
 .inv-search-icon {

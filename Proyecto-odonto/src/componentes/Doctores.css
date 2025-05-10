@@ -1,18 +1,3 @@
-
-/*CIRCULO CON EL LOGUITO DE DOCTORES*/
-/*EL MARGEN AL REDEDOR DE LA FOTO*/
-.doc-icon-circle {
-  width: 60px;
-  height: 60px;
-  border: 2px solid #b2e4e5;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 3px;
-  transform: translateY(5px) translateX(5px);
-}
-
 /*LA FOTO*/
 .doc-icon-img {
   width: 60%;  /* Tamaño relativo al círculo */
@@ -22,11 +7,14 @@
 }
 
 /*LA PALABRA DOCTORES A LA PAR DE LA IMAGEN*/
-.doc-title- {
+.titulos-doc {
   display: flex;
   align-items: flex-end !important;
   gap: 10px;
+   color: #F98972;
   padding-left: 10px;
+  padding-bottom: 10px;
+  font-size: 25px !important;
 }
 
 h2 {
@@ -49,153 +37,138 @@ hr {
   margin-bottom: 10px !important;
 }
 
-/* Navegación de pestañas/ boton de informacion y contacto */
-.tabs {
-  margin-top: -8px;
+
+.doc-circle {
+  width: 50px;                /* diámetro del círculo */  
+  height: 50px;
+  border-radius: 50%;         /* hace el contenedor perfectamente redondo */  
+  overflow: hidden;           /* recorta la imagen al contorno */  
+  flex-shrink: 0;             /* evita que el círculo se encoja */  
+  display: flex;              /* para centrar la img dentro */  
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #74c0c5;     /* borde gris alrededor del círculo */
+  margin-bottom: 0.5rem;      /* separa el círculo del texto de abajo */
+}
+
+
+
+/*NAVEGACION PROVEEDORES*/
+.doc-container {
+  max-width: 1200px;
+  margin: 2px auto;
+  padding: 0 1rem;
+  overflow-x: hidden;
+  border: none !important;
+}
+
+/*NAV DE CONTATO PROVEEDORES*/
+.doc-tabs{
   display: flex;
-  justify-content: left; /* Centra horizontalmente */
-  padding-left: 25px;
-  gap: 40px;
-  margin-bottom: 20px;
-  border-bottom: 2px solid #6bbbc1; /* Línea decorativa debajo de las pestañas */
-  padding-bottom: 5px; /* Espaciado entre los botones y la línea */
-  padding-top: 20px;
-  font-weight: bold ;
+  gap: 3rem; /*ESPACIO ENTRE LOS BOTONES DE NAGEVACION*/
+  border-bottom: 2px solid #ddd;
+  margin-bottom: 1.5rem;
 }
 
-.tabs button {
-  background: none; /* Elimina el fondo del botón */
-  border: none; /* Elimina el borde del botón */
-  color: #757575; /* Color gris para el texto */
-  font-size: 16px;
+.doc-tab {
+  background: none;
+  border: none;
+  padding: 0.5rem 0;
+  font-size: 1rem;
+  color: #497a7d;
   cursor: pointer;
-  transition: color 0.3s ease; /* Transición suave para el color */
-  padding: 0; /* Elimina el padding extra */
+  position: relative;
+  transition: color 0.2s;
 }
 
-.tabs button.active {
-  color: #FF987B; /* Texto negro cuando está activo */
+.doc-tab:hover {
+  color: #74c0c5;
 }
 
-.tabs button:hover {
-  color: #fb643b; /* Texto naranja al pasar el cursor */
+.doc-tab.active {
+  color: #ff8a65;  }
+
+.doc-tab.active::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background-color: #ff8a65; /* linea debajo del boton de navegacion */
 }
 
 
 /*FORMULARIO*/
+.formulario-header {
+  border: none !important;
+  margin-top: -20px;
+}
+
+/* Contenedor general: añade un poco de «respiración» respecto a los bordes */
+.form-container {
+padding-right: 15px !important;
+  box-sizing: border-box;
+}
+
+/* Grid de dos columnas */
 .doc-form-group {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;          /* un poco más de separación */
+  padding-left: 45px;
+  padding-right: 45px;
 }
 
-  /* Campo de formulario con etiqueta */
-  .doc-label {
-    width: 120px;
-    font-weight: 500;
-    text-align: right;
-    font-size: clamp(0.75rem, 1vw, 1.125rem);
-  }
-
-.doc-form-row {
-  display: flex;
-  gap: 40px;
-  margin-top: 10px;
-  margin-bottom: 20px;
-  padding-left: 100px;
-  flex-wrap: wrap;
-}
-
+/* Cada fila (label + input) como flex centrado */
 .doc-field {
   display: flex;
-  flex-direction: column; /* Label encima del input */
-  flex: 1;
-  min-width: 200px;
   align-items: center;
-
 }
 
+/* Label a la derecha */
+.doc-label {
+  width: 140px;
+  text-align: right;
+  margin-right: 10px;
+  font-weight: 600;
+  font-size: clamp(0.75rem, 1vw, 1.125rem);
+}
+
+/* Inputs textuales y de hora iguales */
 .input-doc,
-.input-doc[type="time"] {
+input[type="time"] {
+  flex: 1;
+  padding: 8px;
+  font-size: 14px;
   background-color: #d5f1f2;
   border: 1px solid #bcdcdc;
   border-radius: 5px;
-  padding: 8px;
-  width: 250px;
-  font-size: 12px;
-  color: black;
   outline: none;
+  color: #666;             /* texto gris */
 }
 
-  /* Entradas de informacion */
-  input {
-    background-color: #d5f1f2;
-    border: 1px solid #bcdcdc;
-    border-radius: 5px;
-    padding: 8px; /*ancho del input*/
-    width: 400px;
-    outline: none;
-    font-size: 12px;
-    color: black;
-  }
-
-
-.input-doc:focus {
-  background-color: #eaffff;
-  border-color: #F98972;
-}
-
-
-/*CONTATO*/
-.doc-form-row2 {
-  display: flex;
-  gap: 10px;
-  margin-top: 10px;
-  margin-bottom: 20px;
-  padding-left: 10px;
-  margin-right: 0%;
-}
-
-.doc-field2 {
-  display: flex;
-  flex: auto;
-  align-items: center;
-  gap: 5px; /*Espacio entre label e input*/
-}
-
-.doc-field2 input {
-  width: 280px;   /* Cambia el ancho */
-  height: 10px;   /* Cambia la altura */
-  font-size: 14px; /* Cambia el tamaño del texto */
-}
-
-/*HORA SELECCIONADOR*/
-input[type="time"]::-webkit-calendar-picker-indicator {
-  opacity: 0;
-  cursor: pointer;
-  z-index: 1;
+/* Wrapper específico para time con icono */
+.doc-time-wrapper {
   position: relative;
-  width: 350px; /*Tamaño del imput de hora*/
+  display: flex;
+  flex: 1;
 }
 
-.doc-time-wrapper{
-  position: relative;
-  display: inline-block;
+/* Si usas clases específicas, puedes hacer: */
+.input-doc,
+input[type="time"] {
+  max-width: 350px;
+  width: 100%;
+  padding: 4px 6px;
+  font-size: 12px;
 }
 
+
+/* Asegura que el time ocupe todo el ancho disponible */
 .wrapper-tiempo-doc input {
-  padding-right: 30px;
-}
-
-/*La imagen del reloj*/
-.doc-time-icon {
-  position: absolute;
-  right: 10px; 
-  width: 20px; /*Tamaño del reloj*/
-  height: 20px; /*Tamaño del reloj*/
-  top: 50%;
-  transform: translateY(-50%);
-  pointer-events: none;
+  width: 350px;
+  padding-right: 30px;     /* espacio para el reloj */
 }
 
 /*BOTONES AL FINAL DE LA PAGINA*/
@@ -221,8 +194,6 @@ input[type="time"]::-webkit-calendar-picker-indicator {
 .doc-btn:hover {
   background-color: #f56b4d;
 }
-
-
 
 
 
@@ -286,4 +257,29 @@ input[type="time"]::-webkit-calendar-picker-indicator {
   .botones-accion-doctor {
     flex-direction: column;
   }
+}
+
+
+
+  /*MODAL DE ELIMINADO*/
+.flash-message {
+  position: fixed;
+  top: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #F98972;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  z-index: 1000;
+  font-weight: bold;
+  animation: fadeInOut 2s ease-in-out;
+}
+
+@keyframes fadeInOut {
+  0%   { opacity: 0; transform: translateX(-50%) translateY(-10px); }
+  10%  { opacity: 1; transform: translateX(-50%) translateY(0); }
+  90%  { opacity: 1; }
+  100% { opacity: 0; transform: translateX(-50%) translateY(-10px); }
 }

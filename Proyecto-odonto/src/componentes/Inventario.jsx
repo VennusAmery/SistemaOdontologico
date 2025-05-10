@@ -83,27 +83,23 @@ export default function Inventario() {
         initial="initial"
         animate="animate"
         exit="exit"
-        transition={slideVariants.transition}
-      >
+        transition={slideVariants.transition} >
+          
         {/* ——— Buscador ——— */}
         <form
           className="inv-search-form"
           onSubmit={e => {
             e.preventDefault();
             setDisplayTerm(searchTerm);
-          }}
-        >
+          }} >
           <div className="inv-search-container">
             <input
               type="text"
               className="inv-search-input"
               placeholder="Buscar material..."
               value={searchTerm}
-              onChange={e => setSearchTerm(e.target.value)}
-            />
-            <button type="submit" className="inv-search-icon" aria-label="Buscar">
-              🔍
-            </button>
+              onChange={e => setSearchTerm(e.target.value)} />
+            <button type="submit" className="inv-search-icon" aria-label="Buscar">🔍</button>
           </div>
         </form>
 
@@ -135,9 +131,6 @@ export default function Inventario() {
 
         {/* ——— Botones de acción ——— */}
         <div className="inve-form-buttons">
-          <button type="button" className="inve-btn-delete">ELIMINAR</button>
-          <button type="button" className="inve-btn-edit"onClick={() => navigate('/ingresoMaterial' )}>MODIFICAR </button>
-          <button type="button" className="inve-btn-add"onClick={() => navigate('/ingresoMaterial' )}>AGREGAR </button>
           <button type="button" className="inve-btn-back"onClick={() => navigate(-1)}>REGRESAR </button>
         </div>
       </motion.section>

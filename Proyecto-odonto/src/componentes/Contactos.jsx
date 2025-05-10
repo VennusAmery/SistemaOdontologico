@@ -24,8 +24,6 @@ function Contactos() {
       <hr className="cont-separator" />
       <hr className="cont-separator" />
 
-
-
       <main className="contactos-content">
         <div className="contactos-grid">
           <div className="contactos-card" onClick={() => navigate('/listadoproveedores')}>
@@ -33,7 +31,7 @@ function Contactos() {
             <p>PROVEEDORES</p>
           </div>
 
-          <div className="contactos-card" onClick={() => navigate('/Doctores')}>
+          <div className="contactos-card" onClick={() => navigate('/Listdoctores')}>
             <img src="/imagenes/iconoUsuario.png" alt="Doctores" />
             <p>DOCTORES</p>
           </div>

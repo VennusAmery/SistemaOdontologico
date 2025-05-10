@@ -1,212 +1,184 @@
-/* Título principal */
-.titulo-empleados {
-  color: #FF987B; /* Color del texto */
-  font-size: 40px; /* Tamaño de fuente */
-  margin-top: 25px;
-  margin-bottom: 25px; /* Espaciado inferior */
-  text-align: left; /* Alinea el texto a la izquierda */
-  padding-left: 25px; /* Espaciado izquierdo */
+/*Tabs*/
+.empleinfo-container {
+  margin-top: -10px;
+  margin-left: 5px;
+  padding: 1% 1% 1% 1%;
+  overflow-x: hidden;  /* ✅ oculta solo lo horizontal */
 }
 
-/* Contenedor del subtítulo */
-.encabezado-agregar-empleado {
-  position: relative; /* Necesario para las líneas decorativas */
-  margin-bottom: 20px;
-  padding-left: 0px; /* Espaciado desde el sidebar */
+/*TITULO DE HASTA ARRIBA*/
+.empleinfo-title {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #ff8a65; /* Naranja suave */
+  margin-bottom: 0.5rem;
+  text-align: left; /* asegura alineación a la izquierda */
 }
 
-.encabezado-agregar-empleado h2 {
-  font-size: 1.3rem;
-  color: #757575; /* Azul */
-  font-weight: normal; /* Normal */
-  margin-bottom: 2rem;
-  text-align: left; /* Alinear a la izquierda */
-  position: relative; /* Para las líneas decorativas */
-  padding-left: 25px;
+/*titulo De informacion*/ 
+.TituloAgregarEmple {
+  color: #F98972;
+  align-items: center !important;
+  padding-bottom: 15px;
 }
 
-.encabezado-agregar-empleado h2::before,
-.encabezado-agregar-empleado h2::after {
-  content: ""; /* Línea decorativa */
-  display: block;
-  height: 2px; /* Grosor de la línea */
-  background-color: #6bbbc1; /* Color de las líneas */
-  width: 100%; /* Ancho completo */
-  position: absolute;
-  left: 0;
+/*IMAGEN Y TITULO*/
+.AgregarEmple-container2 {
+  display: flex;               
+  align-items: center;        
+  gap: 1rem;
+  padding-top: 1px;
+  padding-bottom: -15px;
 }
 
-.encabezado-agregar-empleado h2::before {
-  top: -10px; /* Línea superior */
+.AgregarEmple-circle {
+  width: 50px;                /* diámetro del círculo */  
+  height: 50px;
+  border-radius: 50%;         /* hace el contenedor perfectamente redondo */  
+  overflow: hidden;           /* recorta la imagen al contorno */  
+  flex-shrink: 0;             /* evita que el círculo se encoja */  
+  display: flex;              /* para centrar la img dentro */  
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #74c0c5;     /* borde gris alrededor del círculo */
+  margin-bottom: 0.5rem;      /* separa el círculo del texto de abajo */
 }
 
-.encabezado-agregar-empleado h2::after {
-  bottom: -10px; /* Línea inferior */
+.AgregarEmple-image {
+  width: 90%; /* ocupa todo el círculo */  
+  height: auto;  /* mantiene proporción */  
 }
 
-/* Contenedor del encabezado del empleado */
-.agregarempleado-header {
-  margin-bottom: 20px;
+.AgregarEmple-text {
+  flex: 1; /* el texto ocupa el resto del espacio */  
 }
 
-.agregarempleado-title {
-    display: flex;
-    align-items: flex-end;
-    gap: 10px;
-    padding-left: 10px; /* Alineación con el resto del contenido */
+/*barrita de arriba de los navs*/
+.empleinfo-title + hr {
+  border: none;
+  height: 1px;
+  background-color: #74c0c5; /* Verde-azulado */
+  margin-bottom: 1.5rem;
 }
 
-.icon-circle-empleado {
-    width: 90px;
-    height: 90px;
-    border: 2px solid #b2e4e5;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 15px;
-    transform: translateY(5px) translateX(5px);
+/*la linea debajo del titulo de informacion empleado*/
+.hringreso{
+  border: none;
+  height: 1px;
+  background-color: #74c0c5; /* Verde-azulado */
+  margin-bottom: 1.5rem;
 }
 
-.circle-image-empleado {
-    width: 70%;
-    height: 70%;
-    margin-left: 1px;
-}
-
-.titulo-empleado {
-    font-weight: bold;
-    color: #7E7E7E;
-    font-size: 22px;
-    margin: 5px 0 0 5px;
-    transform: translateY(-30px);
-    font-size: clamp(2rem, 5vw, 2rem);
-}
-
-/* Contenedor de las pestañas */
-.empleado-tabs {
-    display: flex;
-    gap: 20px;
-    padding-left: 25px;
-    margin-top: 20px;
-    border-bottom: 2px solid #6bbbc1; /* Línea decorativa celeste */
-  }
-  
-  /* Estilo de las pestañas */
-  .tab {
-    background: none;
-    border: none;
-    font-size: 1rem;
-    font-weight: bold;
-    color: #6bbbc1;
-    cursor: pointer;
-    padding-bottom: 5px;
-    position: relative;
-  }
-  
-  /* Pestaña activa */
-  .tab.active {
-    color: #FF987B;
-    border-bottom: 2px solid #FF987B; /* Línea activa */
-  }
-
-.agregar-empleado-form {
-  margin-top: 20px;
-  padding: 10px;
-}
-
-.agregar-empleado-columns {
+/*TABS de navegacion*/
+.empleinfo-tabs {
   display: flex;
-  gap: 20px; /* Espaciado entre columnas */
-  margin-bottom: 20px; /* Espaciado inferior */
+  gap: 3rem; /*ESPACIO ENTRE LOS BOTONES DE NAGEVACION*/
+  border-bottom: 2px solid #ddd;
+  margin-bottom: 1.5rem;
 }
 
-.agregar-empleado-column {
-  flex: 1; /* Cada columna ocupa el mismo espacio */
+.empleinfo-tab {
+  background: none;
+  border: none;
+  padding: 0.5rem 0;
+  font-size: 1rem;
+  color: #497a7d;
+  cursor: pointer;
+  position: relative;
+  transition: color 0.2s;
+}
+
+.empleinfo-tab:hover {
+  color: #74c0c5;
+}
+
+.empleinfo-tab.active {
+  color: #ff8a65;
+}
+
+.empleinfo-tab.active::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background-color: #ff8a65; /* linea debajo del boton de navegacion */
+}
+
+
+
+/*Contenido del forms de informacion del empleado*/
+.agregar-empleado-form.grid-2cols {
+  padding-right: 3% !important;
+  padding-left: 2%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 40px;
+  padding-top: 15px;
+  /*alinea cada celda de grid al centro */
+  justify-items: center; /* centra columnas dentro de la grid */
+  align-items: center; /* centra filas dentro de la grid */
+}
+
+.agregar-empleado-form .col {
   display: flex;
   flex-direction: column;
-  gap: 15px; /* Espaciado entre las filas */
+  row-gap: 20px;
+  /* opcional: alinear todas las filas al inicio de la columna */
+  justify-content: start;    
+  width: 100%;               /* para que cada columna ocupe todo su 1fr */
 }
 
-.agregar-empleado-row {
+/* Cada fila l
+abel+input */
+.agregar-empleado-form .field {
   display: flex;
-  align-items: center; /* Alinea verticalmente las etiquetas y los cuadros de texto */
-  gap: 10px; /* Espaciado entre la etiqueta y el cuadro de texto */
+  align-items: center;
+  gap: 12px;
 }
 
-.agregar-empleado-row label {
-  flex: 0 0 150px; /* Ancho fijo para las etiquetas */
-  font-weight: bold;
+/* Inputs de tiempo un poco más estrechos */
+.agregar-empleado-form .time-field input {
+  width: 100px;
+  height: 20px;
+}
+
+/* Estilo base de los inputs */
+.agregar-empleado-input {
+  flex: 1;
+  padding: 6px 8px;
+  border: 1px solid #b2e4e5;
+  border-radius: 4px;
+  background-color: hsl(180, 62%, 95%);
+  color: #757575;
+  font-weight: 400;
+}
+
+/* mínimo para los labels */
+.agregar-empleado-form label {
+  width: 100px;
+  font-weight: 600;
   color: #757575;
   text-align: left;
-  margin-left: 25px;
 }
 
-/* Ajuste específico para la etiqueta de Hora Salida */
-.agregar-empleado-row label[for="agregar-empleado-hora-salida"] {
-    margin-left: 60px; /* Ajusta este valor según sea necesario */
-  }
-
-
-
-
-.agregar-empleado-input {
-
-  padding: 5px;
-  border: 1px solid #b2e4e5;
-  border-radius: 5px;
-  background-color: #eafafa;
-}
-
-#agregar-empleado-hora-entrada{
-/* El cuadro de texto ocupa el resto del espacio */
-padding: 5px;
-  border: 1px solid #b2e4e5;
-  border-radius: 5px;
-  background-color: #eafafa;
-  width: 400px; 
-}
-
-#agregar-empleado-hora-salida{
-    padding: 5px;
-  border: 1px solid #b2e4e5;
-  border-radius: 5px;
-  background-color: #eafafa;
-  width: 400px; /* Ajusta el ancho si es necesario */
-  margin-left: 3px;
-    }
-
-.agregar-empleado-buttons {
-    display: flex;
-    justify-content: center; /* Centra los botones */
-    gap: 10px; /* Reduce el espacio entre los botones */
-    margin-top: 20px;
-}
-
-.agregar-empleado-btn {
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-.agregar-empleado-btn.regresar {
+/*Botones*/
+.ingreEMPLEADO-form-buttons.ingreEMPLEADO-btn-delete, 
+.ingreEMPLEADO-form-buttons.ingreEMPLEADO-btn-edit,
+.ingreEMPLEADO-form-buttons.ingreEMPLEADO-btn-add,
+.ingreEMPLEADO-form-buttons.ingreEMPLEADO-btn-back {
   background-color: #FF987B;
   color: white;
 }
 
-.agregar-empleado-btn.eliminar {
-  background-color: #FF987B;
-  color: white;
-}
+.ingreEMPLEADO.regresar, 
+.ingreEMPLEADO-form-buttons.ingreEMPLEADO-btn-delete,
+.ingreEMPLEADO-form-buttons.ingreEMPLEADO-btn-edit,
+.ingreEMPLEADO-form-buttons.ingreEMPLEADO-btn-add,
+.ingreEMPLEADO-form-buttons.ingreEMPLEADO-btn-back{
+  opacity: 1;
+  transform: scale(1.02);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);}
 
-.agregar-empleado-btn.editar {
-  background-color: #FF987B;
-  color: white;
-}
 
-.agregar-empleado-btn.guardar {
-  background-color: #FF987B;
-  color: white;
-}

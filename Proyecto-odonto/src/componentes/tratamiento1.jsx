@@ -10,7 +10,6 @@ function Tratamiento() {
       <h1>Porfavor, seleccionar una opción de las siguientes:</h1>
       <div className="grid-botones">
       <button onClick={() => navigate('/tratamiento')}>TRATAMIENTO</button>
-        <button onClick={() => navigate('/piezas')}>PIEZAS</button>
         <button onClick={() => navigate('/registros')}>REGISTRO</button>
       </div>
 

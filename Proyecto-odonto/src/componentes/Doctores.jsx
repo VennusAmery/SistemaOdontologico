@@ -102,6 +102,7 @@ const Doctores = () => {
             </div>
             <h2 className="doc-title">{doctor.nombre || 'Doctor'}</h2>
           </div>
+          <hr className='hrdedoctor'/>
 
           <div className="doc-form-group">
             <div className="doc-field">

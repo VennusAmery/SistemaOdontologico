@@ -31,7 +31,7 @@ h2{
   border: none;
   padding: 0.5rem 0;
   font-size: 1rem;
-  color: #ff8a65;
+  color:  #497a7d;;
   cursor: pointer;
   position: relative;
   transition: color 0.2s;
@@ -42,7 +42,7 @@ h2{
 }
 
 .listprov-tab.active {
-  color: #497a7d;
+  color: #ff8a65;
 }
 
 .listprov-tab.active::after {

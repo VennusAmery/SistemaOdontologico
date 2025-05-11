@@ -103,6 +103,7 @@ hr {
 .formulario-header {
   border: none !important;
   margin-top: -20px;
+  margin-bottom: -15px !important;
 }
 
 /* Contenedor general: añade un poco de «respiración» respecto a los bordes */
@@ -118,6 +119,7 @@ padding-right: 15px !important;
   gap: 10px;          /* un poco más de separación */
   padding-left: 45px;
   padding-right: 45px;
+  padding-top: 25px;
 }
 
 /* Cada fila (label + input) como flex centrado */

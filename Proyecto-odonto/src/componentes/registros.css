@@ -1,0 +1,204 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;600;800&display=swap');
+
+/* Contenedor principal */
+.formulario-content5 {
+    flex: 1;
+    background-color: #fefefe;
+    padding: 0px;
+}
+
+/* Título principal */
+.titulos-pacientes5 {
+    color: #FF987B;
+    font-size: 30px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    text-align: left;
+    padding-left: 20px;
+}
+
+/* Encabezado del formulario */
+.formulario-header5 {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 2rem;
+    position: relative;
+    padding-left: 20px;
+    padding-block: 7px;
+    border-top: 2px solid #6bbbc1;
+    border-bottom: 2px solid #6bbbc1;
+}
+
+.formulario-header5 h2 {
+    font-size: 1.2rem;
+    color: #757575;
+    font-weight: normal;
+    text-align: center;
+    margin: 0;
+}
+
+.circulo5- {
+    width: 32px;
+    height: 32px;
+    border: 5px solid #B4DDDE;
+    background-color: #fefefe;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.circulo5- img {
+    width: 22px;
+    height: auto;
+}
+
+/* Navegación de pestañas */
+.tabs6 {
+    margin-top: -20px;
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #6bbbc1;
+    padding-bottom: 5px;
+}
+
+.tabs6 button {
+    background: none;
+    border: none;
+    color: #757575;
+    font-size: 16px;
+    cursor: pointer;
+    transition: color 0.3s ease;
+    padding: 0;
+    position: relative;
+}
+
+.tabs6 button.active {
+    color: #FF987B; 
+}
+
+.tabs6 button:hover {
+    color: #FF987B;
+}
+
+.tabs6 button.active::after {
+    content: '';
+    position: absolute;
+    bottom: -7px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: #ff8a65;
+    border-radius: 5px;
+}
+
+/* Contenedor principal del formulario */
+.form-grid5 {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    gap: 10px;
+    margin-left: 30px;
+}
+
+/* Sección de tres columnas */
+.seccion-doble4 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.triple5, .uno5, .dos5 {
+    display: flex;
+    flex-direction: row; /* Mantiene los elementos en fila */
+    gap: 10px; /* Espaciado entre los elementos */
+    padding: 10px;
+    flex-wrap: wrap; /* Permite que los elementos se ajusten si no hay espacio suficiente */
+}
+
+.titulo-triple5, .titulo-uno5, .titulo-dos5 {
+    font-size: 18px; /* Tamaño del texto del título */
+    font-weight: bold;
+    text-align: center; /* Alinea el título a la izquierda */
+    margin-bottom: 10px; /* Espaciado entre el título y el contenido */
+    width: 80%; /* Asegura que el título ocupe toda la fila */
+}
+
+.triple5 label, .uno5 label, .dos5 label {
+    font-size: 16px;
+    color: #757575;
+    margin-bottom: 5px;
+}
+
+/* Estilo para los grupos de radio buttons en fila */
+.camposs4 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    width: auto;
+    padding-left: 30px; /* Ajusta este valor para mover más a la derecha */
+}
+
+.camposs4 label {
+    font-size: 14px; /* Reduce el tamaño del texto del label */
+    text-align: center; /* Centra el texto del label */
+    margin-bottom: 5px; /* Espaciado entre el label y el input */
+}
+
+.camposs4 input {
+    width: 80px; /* Define un ancho más pequeño para el input */
+    padding: 5px; /* Reduce el padding interno */
+    font-size: 14px; /* Ajusta el tamaño del texto */
+    border: 1px solid #B4DDDE; /* Borde del input */
+    border-radius: 5px; /* Bordes redondeados */
+    text-align: right; /* Centra el texto dentro del input */
+}
+
+/* Estilos para inputs */
+.form-grid4 input {
+    padding: 8px;
+    border: 1px solid #B4DDDE;
+    background-color: #B4DDDE;
+    border-radius: 5px;
+    font-size: 16px;
+    color: black;
+    width: 80%;
+    box-sizing: border-box;
+    text-align: center;
+}
+  
+.form-grid4 input:focus {
+    border-color: #B4DDDE;
+    outline: none;
+}
+
+/* Botones de acción */
+.acciones-formulario4 {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.acciones-formulario4 button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    background-color: #FF7F50;
+    color: white;
+    transition: all 0.3s ease;
+}
+
+.acciones-formulario4 button:hover {
+    background-color: #FF987B;
+}

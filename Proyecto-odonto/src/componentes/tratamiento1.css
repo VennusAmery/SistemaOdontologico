@@ -1,0 +1,77 @@
+/* Importa la fuente 'Poppins' desde Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;600;800&display=swap');
+
+
+  /* Contenido principal */
+  .tratamiento-content {
+    flex: 1; /* Ocupa el espacio restante */
+    background-color: #fefefe; /* Fondo blanco */
+    padding: 0px; /* Sin espaciado interno */
+  }
+  
+  /* Ajusta el título */
+  .tratamiento-content h1 {
+    color: #FF987B;
+    font-size: 40px;
+    margin-top: 50px;
+    margin-bottom: 180px;
+    text-align: left;
+    padding-left: 20px;
+  }
+  
+  /* Grid de botones */
+  .grid-botones {
+    display: grid;
+    grid-template-columns: repeat(3, 400px);
+    grid-gap: 20px;
+    justify-content: center;
+  }
+  
+  /* Botones principales */
+  .grid-botones button {
+    margin-bottom: 150px;
+    height: 120px;
+    border: none;
+    color: white;
+    font-size: 30px;
+    font-weight: bold;
+    cursor: pointer;
+    text-align: center;
+    border-radius: 10px;
+    transition: transform 0.2s ease;
+  }
+
+  
+  /* Colores personalizados */
+  .grid-botones button:nth-child(1) { background-color: #6EB8DB; } /* Pacientes */
+  .grid-botones button:nth-child(2) { background-color: #6EDBDB; } /* Citas */
+  .grid-botones button:nth-child(3) { background-color: #6CDBB6; } /* Calendario */
+  .grid-botones button:hover {
+    transform: scale(1.05);
+  }
+
+      .acciones-formulario5 {
+        display: flex;
+        justify-content: center; /* Alinea los botones a la derecha */
+        gap: 10px; /* Espaciado uniforme entre los botones */
+        margin-top: 5px;
+    }
+      
+    .acciones-formulario5 button {
+        padding: 20px 30px;
+        border: none;
+        border-radius: 5px;
+        font-size: 18px;
+        font-weight: 600;
+        cursor: pointer;
+        background-color: #FF7F50; /* Color base para todos los botones */
+        color: white;
+        transition: all 0.3s ease; /* Transición suave para el hover */
+        margin: 0; /* Elimina márgenes adicionales */
+    }
+    
+    .acciones-formulario5 button:hover {
+        /* letter-spacing: 3px;
+        font-weight: 600; */
+        background-color: #FF987B; /* Cambia el color al pasar el cursor */
+    }

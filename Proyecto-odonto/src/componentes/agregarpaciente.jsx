@@ -14,7 +14,7 @@ function AgregarPaciente() {
      { id: "historialodontologico", label: "Historial Odontológico", path: "/historialodontologico" },
      { id: "historialmedico", label: "Historial Médico", path: "/historialmedico" },
      { id: "fotografias", label: "Fotografías", path: "/fotografias" },      
-     { id: "tratamiento", label: "Tratamiento", path: "/tratamiento" },
+     { id: "tratamiento", label: "Tratamiento", path: "/tratamiento1" },
     ];
 
  const tabVariants = {
@@ -31,7 +31,7 @@ function AgregarPaciente() {
 
   return (
     <main className="formulario-content">
-      <h1 className="titulos-pacientes">Pacientess</h1>
+      <h1 className="titulos-pacientes">Pacientes</h1>
       <div className="formulario-header">
         <div className="circulo-">
           <img src="/imagenes/iconoUsuario.png" alt="icono usuario" className="icono-usuario" />

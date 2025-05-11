@@ -35,7 +35,7 @@ function Historialmedico() {
      { id: "historialodontologico", label: "Historial Odontológico", path: "/historialodontologico" },
      { id: "historialmedico", label: "Historial Médico", path: "/historialmedico" },
      { id: "fotografias", label: "Fotografías", path: "/fotografias" },      
-     { id: "tratamiento", label: "Tratamiento", path: "/tratamiento" },
+     { id: "tratamiento", label: "Tratamiento", path: "/tratamiento1" },
     ];
 
  const tabVariants = {
@@ -104,58 +104,71 @@ function Historialmedico() {
       <div className="triple3">
         <div className="camposs2">
         <label>¿Padece alguna enfermedad?:</label>
+        <div>
           <label><input type="radio" name="mayoria" value="si" /> Sí</label>
           <label><input type="radio" name="mayoria" value="no" /> No</label>
+        </div>
+        </div>
+        <div className="camposs2">
+          <label>¿Cuál?:</label>
+          <input type="text" />
         </div>
         <div className="camposs2">
         <label>¿Usa medicamentos?:</label>
+        <div>
           <label><input type="radio" name="mayoria" value="si" /> Sí</label>
           <label><input type="radio" name="mayoria" value="no" /> No</label>
+        </div>
         </div>
         <div className="camposs2">
-        <label>¿Alergia a medicamentos?:</label>
-          <label><input type="radio" name="mayoria" value="si" /> Sí</label>
-          <label><input type="radio" name="mayoria" value="no" /> No</label>
+          <label>¿Cuál?:</label>
+          <input type="text" />
         </div>
         <div className="camposs2">
-        <label>¿Ha sido hospitalizado en los ultimos 2 años?:</label>
+        <label>¿Alergia a medicamentos? :</label>
+        <div>
           <label><input type="radio" name="mayoria" value="si" /> Sí</label>
           <label><input type="radio" name="mayoria" value="no" /> No</label>
+        </div>
         </div>
         <div className="camposs2">
-        <label>¿Está embarazada o cree estarlo? :</label>
-          <label><input type="radio" name="mayoria" value="si" /> Sí</label>
-          <label><input type="radio" name="mayoria" value="no" /> No</label>
-        </div>
-        <div className="camposs2">
-        <label>¿Está dando de lactar?</label>
-          <label><input type="radio" name="mayoria" value="si" /> Sí</label>
-          <label><input type="radio" name="mayoria" value="no" /> No</label>
+          <label>¿Cuál?:</label>
+          <input type="text" />
         </div>
         </div>
+
         <div className='cuatro3'>
         <div className="camposs2">
-            <label>¿Cuál?:</label>
-            <input type="text" />
+        <label>¿Ha sido hospitalizado en los ultimos 2 años?:</label>
+        <div>
+          <label><input type="radio" name="mayoria" value="si" /> Sí</label>
+          <label><input type="radio" name="mayoria" value="no" /> No</label>
         </div>
-        <div className="camposs2">
-            <label>¿Cuál?:</label>
-            <input type="text" />
-        </div>
-        <div className="camposs2">
-            <label>¿Cuál?:</label>
-            <input type="text" />
         </div>
         <div className="camposs2">
             <label>¿Por qué?:</label>
             <input type="text" />
         </div>
         <div className="camposs2">
+        <label>¿Está embarazada o cree estarlo?:</label>
+        <div>
+          <label><input type="radio" name="mayoria" value="si" /> Sí</label>
+          <label><input type="radio" name="mayoria" value="no" /> No</label>
+        </div>
+        </div>
+        <div className="camposs2">
             <label>¿Cuántos meses?:</label>
             <input type="text" />
         </div>
         <div className="camposs2">
-            <label>¿Está dando de lactar?:</label>
+            <label>¿Está dando de lactar?</label>
+         <div>   
+          <label><input type="radio" name="mayoria" value="si" /> Sí</label>
+          <label><input type="radio" name="mayoria" value="no" /> No</label>
+        </div>
+        </div>
+        <div className="camposs2">
+            <label>¿Edad de desarrollo?:</label>
             <input type="text" />
         </div>
       </div>

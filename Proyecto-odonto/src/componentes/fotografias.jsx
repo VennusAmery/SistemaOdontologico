@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react'; 
-import './historialodontologico.css';
+import './fotografias.css';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 
-function Historialodontologico() {
+function Fotografias() {
     const navigate = useNavigate();
     const [dpiPaciente, setDpiPaciente] = useState("");
     const [fecharegistro, setFechaRegistro] = useState("");
@@ -51,16 +51,16 @@ function Historialodontologico() {
   }
 
   return (
-    <main className="formulario-content2">
-      <h1 className="titulos-pacientes2">Pacientes</h1>
-      <div className="formulario-header2">
-        <div className="circulo2-">
+    <main className="formulario-content4">
+      <h1 className="titulos-pacientes4">Pacientes</h1>
+      <div className="formulario-header4">
+        <div className="circulo4-">
           <img src="/imagenes/iconoUsuario.png" alt="icono usuario" className="icono-usuario1" />
         </div>
         <h2>[nombre]</h2>
       </div>
 
-      <nav className="tabs3">
+      <nav className="tabs5">
       {tabConfig.map((tab) => (
       <button
       key={tab.id}
@@ -72,7 +72,7 @@ function Historialodontologico() {
         ))}
       </nav>
       <motion.section  
-        className="form-grid2"
+        className="form-grid4"
         variants={tabVariants}
         initial="initial"
         animate="animate"
@@ -80,8 +80,8 @@ function Historialodontologico() {
         transition={tabVariants.transition}
       >
         <form onSubmit={handleSubmit}>
-       <div className="doble2"> 
-        <div className="campos2">
+       <div className="doble4"> 
+        <div className="campos4">
           <label>DPI Paciente:</label>
           <input
                 type="text"
@@ -89,7 +89,7 @@ function Historialodontologico() {
                 readOnly // Hace que el campo sea de solo lectura
               />
         </div>
-        <div className="campos2">
+        <div className="campos4">
           <label>Fecha de Registro:</label>
           <input
                 type="text"
@@ -98,49 +98,54 @@ function Historialodontologico() {
               />
         </div>
         </div>
-        <h3 className="titulo-historial">Historia</h3>
+        <h3 className="titulo-fotografias">Fotografías</h3>
 
-      <div className="triple1">
-        <div className="camposs1">
-            <label>¿Cuando fue su ultima visita al odontologo?:</label>
-            <input type="text" />
+    <div className="seccion-doble3"> 
+        <div className="triple4">
+        <div className="camposs3">
+        <label>Radiografias Dentales:</label>
+           <button className="btn-programar">SUBIR</button>
+          <button className="btn-historial">VISUALIZAR</button>
+          <button className="btn-historial">ELIMINAR</button>
+          <button className="btn-historial">EDITAR/REMPLAZAR</button>
         </div>
-        <div className="camposs1"> 
-        <label>¿Cual fue el motivo?:</label>
-            <input type="text" />
+        <div className="camposs3">
+        <label>Fotografias Intraorales:</label>
+            <button 
+            className="btn-programar">SUBIR</button>
+          <button className="btn-historial">VISUALIZAR</button>
+          <button className="btn-historial">ELIMINAR</button>
+          <button className="btn-historial">EDITAR/REMPLAZAR</button>
+        </div>
+        <div className="camposs3">
+        <label>Fotografias Extraorales:</label>
+            <button 
+            className="btn-programar">SUBIR</button>
+          <button className="btn-historial">VISUALIZAR</button>
+          <button className="btn-historial">ELIMINAR</button>
+          <button className="btn-historial">EDITAR/REMPLAZAR</button>
+        </div>
+        <div className="camposs3">
+        <label>Fotografias Antes del Tratamiento:</label>
+            <button 
+            className="btn-programar">SUBIR</button>
+          <button className="btn-historial">VISUALIZAR</button>
+          <button className="btn-historial">ELIMINAR</button>
+          <button className="btn-historial">EDITAR/REMPLAZAR</button>
+        </div>
+        <div className="camposs3">
+        <label>Fotografias Despues del Tratamiento:</label>
+           <button 
+            className="btn-programar">SUBIR</button>
+          <button className="btn-historial">VISUALIZAR</button>
+          <button className="btn-historial">ELIMINAR</button>
+          <button className="btn-historial">EDITAR/REMPLAZAR</button>
         </div>
         </div>
-       <div className='cuatro2'>
-        <div className="camposs1">
-        <label>¿Tiene dolor en algun diente o muela?:</label>
-        <div>
-          <label><input type="radio" name="mayoria" value="si" /> Sí</label>
-          <label><input type="radio" name="mayoria" value="no" /> No</label>
         </div>
-        </div>
-        <div className="camposs1">
-        <label>¿Cual es?:</label>
-        <input type="text" />
-        </div>
-        <div className="camposs1">
-        <label>¿Sangran las encillas al cepillado? :</label>
-        <div>
-          <label><input type="radio" name="mayoria" value="si" /> Sí</label>
-          <label><input type="radio" name="mayoria" value="no" /> No</label>
-        </div>
-        </div>
-        <div className="camposs1">
-        <label>¿Algún miembro de su familia tiene el mismo problema de</label>
-             <label>malposición de los dientes y forma que encaja la mordida? :</label>
-        <div>     
-          <label><input type="radio" name="mayoria" value="si" /> Sí</label>
-          <label><input type="radio" name="mayoria" value="no" /> No</label>
-        </div>
-        </div>
-      </div>
 
-      <div className="acciones-formulario2">
-          <button type="button" onClick={() => navigate('/habitos')} className="btn-regresar">REGRESAR</button>
+      <div className="acciones-formulario4">
+          <button type="button" onClick={() => navigate('/historialmedico')} className="btn-regresar">REGRESAR</button>
           <button type="button" className="btn-editar">EDITAR</button>
           <button type="submit" className="btn-guardar">GUARDAR</button>
       </div>
@@ -151,4 +156,4 @@ function Historialodontologico() {
   );
 }
 
-export default Historialodontologico;
+export default Fotografias;

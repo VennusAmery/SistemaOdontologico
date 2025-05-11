@@ -35,7 +35,7 @@ function Habitos() {
      { id: "historialodontologico", label: "Historial Odontológico", path: "/historialodontologico" },
      { id: "historialmedico", label: "Historial Médico", path: "/historialmedico" },
      { id: "fotografias", label: "Fotografías", path: "/fotografias" },      
-     { id: "tratamiento", label: "Tratamiento", path: "/tratamiento" },
+     { id: "tratamiento", label: "Tratamiento", path: "/tratamiento1" },
     ];
 
  const tabVariants = {

@@ -10,6 +10,9 @@ import Pacientes from "./componentes/pacientes";
 import Habitos from "./componentes/habitos";
 import HistorialOdontologico from "./componentes/historialodontologico";
 import HistorialMedico from "./componentes/historialmedico";
+import Fotografias from "./componentes/fotografias";
+import Tratamiento1 from "./componentes/tratamiento1";
+import Registros from "./componentes/registros";
 import CalendarComponent from "./componentes/calendario";
 import Layout from "./componentes/layout";
 import CitasComponent from "./componentes/citas";
@@ -52,6 +55,9 @@ function App() {
           <Route path="/habitos" element={<Habitos />} />
           <Route path="/historialodontologico" element={<HistorialOdontologico />} />
           <Route path="/historialmedico" element={<HistorialMedico />} />
+          <Route path="/fotografias" element={<Fotografias />} />
+          <Route path="/tratamiento1" element={<Tratamiento1 />} />
+          <Route path="/registros" element={<Registros />} />
           <Route path="/calendario" element={<CalendarComponent />} />
           <Route path="/citas" element={<CitasComponent />} />
           <Route path="/Contactos" element={<ContactosComponent />} />

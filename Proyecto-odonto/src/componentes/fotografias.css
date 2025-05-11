@@ -1,14 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;600;800&display=swap');
 
 /* Contenedor principal */
-.formulario-content3 {
+.formulario-content4 {
     flex: 1;
     background-color: #fefefe;
     padding: 0px;
 }
 
 /* Título principal */
-.titulos-pacientes3 {
+.titulos-pacientes4 {
     color: #FF987B;
     font-size: 30px;
     margin-top: 10px;
@@ -18,7 +18,7 @@
 }
 
 /* Encabezado del formulario */
-.formulario-header3 {
+.formulario-header4 {
     display: flex; /* Usa flexbox para alinear los elementos */
     align-items: center; /* Alinea verticalmente el círculo y el texto */
     gap: 15px; /* Espaciado entre el círculo y el texto */
@@ -32,7 +32,7 @@
     
 }
 
-.formulario-header3 h2 {
+.formulario-header4 h2 {
     font-size: 1.2rem;
     color: #757575; /* Azul */
     font-weight: normal; /* Normal */
@@ -40,7 +40,7 @@
     margin: 0; /* Elimina márgenes adicionales */
 }
 
-.titulo-historials {
+.titulo-fotografias {
     font-size: 18px; /* Tamaño de fuente */
     font-weight: bold; /* Negrita */
     color: #56B0B3; /* Color del texto */
@@ -50,8 +50,8 @@
   }
 
 
-.titulo-historials::before,
-.titulo-historials::after {
+.titulo-fotografias::before,
+.titulo-fotografias::after {
     content: ""; /* Crea un elemento vacío */
     position: absolute;
     top: 50%; /* Centra verticalmente las líneas con respecto al texto */
@@ -60,15 +60,15 @@
     background-color: #56B0B3; /* Color de las líneas */
 }
 
-.titulo-historials::before {
+.titulo-fotografias::before {
     left: 0; /* Línea a la izquierda */
 }
 
-.titulo-historials::after {
+.titulo-fotografias::after {
     right: 0; /* Línea a la derecha */
 }
 
-.circulo3- {
+.circulo4- {
     width: 32px;
     height: 32px;
     border: 5px solid #B4DDDE;
@@ -80,12 +80,12 @@
     overflow: hidden; /* Asegura que el contenido no se salga del círculo */
 }
 
-.circulo3- img {
+.circulo4- img {
     width: 22px;
     height: auto;
 }
 /* Navegación de pestañas */
-.tabs4 {
+.tabs5 {
     margin-top: -20px;
     display: flex;
     justify-content: center; /* Centra horizontalmente */
@@ -95,7 +95,7 @@
     padding-bottom: 5px; /* Espaciado entre los botones y la línea */
 }
 
-.tabs4 button {
+.tabs5 button {
     background: none; /* Elimina el fondo del botón */
     border: none; /* Elimina el borde del botón */
     color: #757575; /* Color gris para el texto */
@@ -106,15 +106,15 @@
     position: relative;
 }
 
-.tabs4 button.active {
-    color: #FF987B; /* Texto negro cuando está activo */
+.tabs5 button.active {
+    color: #FF987B; 
 }
 
-.tabs4 button:hover {
+.tabs5 button:hover {
     color: #FF987B; /* Texto naranja al pasar el cursor */
 }
 
-.tabs4 button.active::after {
+.tabs5 button.active::after {
     content: '';
     position: absolute;
     bottom: -7px;
@@ -126,7 +126,7 @@
   }
 
   /* Contenedor principal del formulario (centrado con márgenes) */
-.form-grid3 {
+.form-grid4 {
     display: flex;
     flex-direction: column;
     width: 90%;
@@ -136,7 +136,7 @@
 
 
 
-.campos3 {
+.campos4 {
     display: flex;
     flex-direction: column;
     box-sizing: border-box;
@@ -152,7 +152,7 @@
     }
 }
 
-.doble3 {
+.doble4 {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-auto-rows: auto;
@@ -162,14 +162,14 @@
 
 /* Etiquetas (alineadas a la derecha y con margen derecho) */
 
-.form-grid3 label {
+.form-grid4 label {
     font-size: 16px;
     color: #757575;
     white-space: nowrap; 
 }
 
 /* Inputs (ocupan el resto del espacio) */
-.form-grid3 input {
+.form-grid4 input {
     padding: 8px;
     border: 1px solid #B4DDDE;
     background-color: #B4DDDE;
@@ -178,78 +178,58 @@
     color: black;
 }
   
-  .form-grid3 input:focus {
+  .form-grid4 input:focus {
     border-color: #B4DDDE;
     outline: none;
   }
 
-  .triple3 {
-    grid-column: span 2;
-    /* display: grid; */
-    grid-template-columns: repeat(1, 1fr); /* 2 columnas */
-    grid-template-rows: repeat(6, 1fr);   /* 3 filas */
-    gap: 10px;
-    padding-top: 2px;
-    /* margin-left: 60px; */
-  }
-  
-  .triple3 label {
-    font-size: 16px;
-    color: #757575;
-    margin-left: 20px;
-  }
-
-  .cuatro3 {
+    .triple4 {
     grid-column: span 2;
     /* display: grid; */
     grid-template-columns: repeat(2, 1fr); /* 2 columnas */
-    grid-template-rows: repeat(3, 1fr);   /* 3 filas */
+    grid-template-rows: repeat(5, 1fr);   /* 3 filas */
     gap: 10px;
     padding-top: 2px;
     /* margin-left: 60px; */
   }
   
-  .cuatro3 label {
+  .triple4 label {
     font-size: 16px;
     color: #757575;
     margin-left: 20px;
   }
 
-    /* Estilo para cada grupo de radio buttons */
-    .camposs2 {
-      grid-column: span 2;
-        display: flex;
-        /* flex-direction: column; */
-        gap: 5px;
-        padding: 10px;
-      }
 
-      .camposs2 > div {
+
+    /* Estilo para cada grupo de radio buttons */
+    .camposs3 {
         display: flex;
-        gap: 15px; /* Espacio entre Sí y No */
-        justify-content: left; /* Centra los radios horizontalmente */
-    } 
+        flex-direction: row;
+        gap: 20px;
+        padding: 15px;
+        align-items: center; 
+      }
       
       /* Estilos para los radio buttons (conservando tus estilos personalizados) */
-      .camposs2 input[type="radio"] {
-        appearance: none;
-        width: 20px;
-        height: 20px;
-        border: 2px solid #757575;
-        border-radius: 50%;
-        background-color: #fefefe;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        margin-left: 10px;
-      }
-      
-      .camposs2 input[type="radio"]:checked {
-        background-color: #FF7F50;
-        border-color: #FF7F50;
-      }
+        .camposs3 button {
+            background-color: #56B0B3; /* Naranja */
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+
+        .camposs3 button:hover {
+            background-color: #B4DDDE;
+        }
+
       
       /* Alineación vertical de las etiquetas */
-      .camposs2 label {
+      .camposs3 label {
+        margin-right: 200px; /* Espacio entre la etiqueta y el botón */
         display: flex;
         align-items: center;
         font-size: 16px;
@@ -258,53 +238,22 @@
       
     
     /* Botones de acción */
-    .acciones-formulario3 {
+    .acciones-formulario4 {
         display: flex;
         justify-content: flex-end; /* Alinea los botones a la derecha */
         gap: 10px; /* Espaciado uniforme entre los botones */
-        margin-top: 10px;
+        margin-top: 5px;
     }
 
-    .seccion-doble {
+    .seccion-doble3 {
         display: flex;
-        gap: 3rem;
+        gap: 1rem;
         flex-wrap: wrap;
-      }
-
-      .seccion-doble input {
-        width: 100%;
-          padding: 8px;
-          border: 1px solid #B4DDDE;
-          background-color: #B4DDDE;
-          border-radius: 5px;
-          font-size: 16px;
-          color: black;
-      }
-      
-      
-      .cuatro3 {
-        flex: 1;
-        min-width: 300px;
-        display: flex; /* O grid, si así los necesitas */
-        flex-direction: column;
-        gap: .5rem;
-        padding-top: 2px;
-        margin: 0; /* Eliminar margin-left excesivo */
-      }
-
-      .triple3{
-        flex: 1;
-        min-width: 300px;
-        display: flex; /* O grid, si así los necesitas */
-        flex-direction: column;
-        gap: .5rem;
-        padding-top: 2px;
-        margin: 0; /* Eliminar margin-left excesivo */
       }
       
       
     
-    .acciones-formulario3 button {
+    .acciones-formulario4 button {
         padding: 10px 20px;
         border: none;
         border-radius: 5px;
@@ -315,10 +264,9 @@
         color: white;
         transition: all 0.3s ease; /* Transición suave para el hover */
         margin: 0; /* Elimina márgenes adicionales */
-        margin-bottom: 10px; /* Espacio inferior para el botón */
     }
     
-    .acciones-formulario3 button:hover {
+    .acciones-formulario4 button:hover {
         /* letter-spacing: 3px;
         font-weight: 600; */
         background-color: #FF987B; /* Cambia el color al pasar el cursor */

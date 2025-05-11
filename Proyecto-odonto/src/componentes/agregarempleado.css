@@ -163,22 +163,46 @@ abel+input */
   text-align: left;
 }
 
-/*Botones*/
-.ingreEMPLEADO-form-buttons.ingreEMPLEADO-btn-delete, 
-.ingreEMPLEADO-form-buttons.ingreEMPLEADO-btn-edit,
-.ingreEMPLEADO-form-buttons.ingreEMPLEADO-btn-add,
-.ingreEMPLEADO-form-buttons.ingreEMPLEADO-btn-back {
-  background-color: #FF987B;
-  color: white;
+
+
+
+/* SELECT */
+.agregar-empleado-form select {
+  width: 100%;
+  color: #37474f;
+  padding: 0.5rem;
+  border: 1px solid #c1ecec;
+  border-radius: 4px;
+  background: #d3f1f1;
+  font-size: 12px;
+  margin-bottom: 1rem;
+  overflow-y: auto;
+  height: 30px;
 }
 
-.ingreEMPLEADO.regresar, 
-.ingreEMPLEADO-form-buttons.ingreEMPLEADO-btn-delete,
-.ingreEMPLEADO-form-buttons.ingreEMPLEADO-btn-edit,
-.ingreEMPLEADO-form-buttons.ingreEMPLEADO-btn-add,
-.ingreEMPLEADO-form-buttons.ingreEMPLEADO-btn-back{
+
+
+.ingreEMPLEADO-form-buttons {
+  margin-top: 1rem; /* Ajusta el valor según lo que necesites */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+}
+
+.ingreEMPLEADO-form-buttons button {
+  background-color: #FF987B;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.ingreEMPLEADO-form-buttons button:hover {
   opacity: 1;
   transform: scale(1.02);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);}
-
-
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}

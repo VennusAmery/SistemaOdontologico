@@ -19,10 +19,31 @@ const ClinicaJalapa = () => {
   const navigate = useNavigate();
   const [tabActiva, setTabActiva] = useState(tabConfig[1].id); // Empezamos con la pestaña 'Clinica Jalapa'
 
-  const handleNavigation = () => navigate(-1);
-  const handleEliminar = () => alert('Eliminar clínica');
-  const handleEditar = () => alert('Editar clínica');
-  const handleGuardar = () => alert('Guardar clínica');
+ /*FLASH DE LOS BOTONES DE ABAJO*/ 
+  const [flashMessage, setFlashMessage] = useState('');
+  const showFlash = (text) => {
+    setFlashMessage(text);
+    setTimeout(() => setFlashMessage(''), 3000);  // 3000 ms = 3 segundos
+  };
+  
+  const handleDelete = (e) => {
+    e.preventDefault();
+    // aquí tu lógica de eliminar...
+    showFlash('🗑️ Eliminado correctamente');
+  };
+  
+  const handleEdit = (e) => {
+    e.preventDefault();
+    // aquí tu lógica de edición...
+    showFlash('🖋️ Editado correctamente');
+  };
+  
+  const handleSave = (e) => {
+    e.preventDefault();
+    // aquí tu lógica de guardado...
+    showFlash('💾 Guardado correctamente');
+  };
+
 
   const handleTabClick = (tab) => {
     setTabActiva(tab.id);
@@ -55,6 +76,8 @@ const ClinicaJalapa = () => {
   );
 
   return (
+
+    
     <div className="clinica-contenedor">
       <h2 className="clinica-encabezado">Clínicas</h2>
       <hr />
@@ -85,12 +108,16 @@ const ClinicaJalapa = () => {
         {tabActiva === 'clinicaJalapa' && renderFormularioClinica('Clínica Jalapa')}
 
         {/* ——— Botones de acción ——— */}
-        <div className="clinicJ-form-buttons">
-          <button onClick={handleNavigation} className="clinicJ-btn-back">REGRESAR</button>
-          <button onClick={handleEliminar} className="clinicJ-btn-delete">ELIMINAR</button>
-          <button onClick={handleEditar} className="clinicJ-btn-edit">EDITAR</button>
-          <button onClick={handleGuardar} className="clinicJ-btn-add">GUARDAR</button>
-        </div>
+              <div className="clinic-form-buttons">
+                {flashMessage && (
+                <div className="flash-message">{flashMessage}</div>)}
+
+                <button type="button" className="clinic-btn-back" onClick={() => navigate(-1)}>REGRESAR</button>
+                <button onClick={handleDelete} className="clinic-btn-delete">ELIMINAR</button>
+                <button onClick={handleEdit} className="clinic-btn-edit">EDITAR</button>
+                <button onClick={handleSave} className="clinic-btn-add">GUARDAR</button>
+              </div>
+
       </motion.section>
     </div>
   );

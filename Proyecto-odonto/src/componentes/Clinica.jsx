@@ -20,13 +20,38 @@ const Clinica = () => {
   const [tabActiva, setTabActiva] = useState(tabConfig[0].id);
 
   const handleNavigation = () => navigate(-1);
-  const handleEliminar = () => alert('Eliminar clínica');
-  const handleEditar = () => alert('Editar clínica');
-  const handleGuardar = () => alert('Guardar clínica');
 
   const handleTabClick = (tab) => {
     setTabActiva(tab.id);
     navigate(tab.path);
+  };
+
+
+
+  
+  /*FLASH DE LOS BOTONES DE ABAJO*/ 
+  const [flashMessage, setFlashMessage] = useState('');
+  const showFlash = (text) => {
+    setFlashMessage(text);
+    setTimeout(() => setFlashMessage(''), 3000);  // 3000 ms = 3 segundos
+  };
+  
+  const handleDelete = (e) => {
+    e.preventDefault();
+    // aquí tu lógica de eliminar...
+    showFlash('🗑️ Eliminado correctamente');
+  };
+  
+  const handleEdit = (e) => {
+    e.preventDefault();
+    // aquí tu lógica de edición...
+    showFlash('🖋️ Editado correctamente');
+  };
+  
+  const handleSave = (e) => {
+    e.preventDefault();
+    // aquí tu lógica de guardado...
+    showFlash('💾 Guardado correctamente');
   };
 
   const renderFormularioClinica = (titulo) => (
@@ -44,12 +69,28 @@ const Clinica = () => {
           <input type="tel" className="clinica-input" />
         </div>
 
-        <div className="clinica-columna-derecha">
-          <label>Hora Apertura:</label>
-          <input type="time" className="clinica-input horario-input" />
-          <label>Hora Cierre:</label>
-          <input type="time" className="clinica-input horario-input" />
-        </div>
+<div className="clinica-columna-derecha">
+  <label htmlFor="horario-apertura" className="clinica-label apertura-label">
+    Hora Apertura:
+  </label>
+  <input
+    type="time"
+    id="horario-apertura"
+    name="horarioApertura"
+    className="clinica-input horario-input apertura-input"
+  />
+
+  <label htmlFor="horario-cierre" className="clinica-label cierre-label">
+    Hora Cierre:
+  </label>
+  <input
+    type="time"
+    id="horario-cierre"
+    name="horarioCierre"
+    className="clinica-input horario-input cierre-input"
+  />
+</div>
+
       </div>
     </div>
   );
@@ -86,12 +127,15 @@ const Clinica = () => {
         {tabActiva === 'clinicaJalapa' && renderFormularioClinica('Clínica Jalapa')}
 
         {/* ——— Botones de acción ——— */}
-        <div className="clinic-form-buttons">
-          <button type="button" className="clinic-btn-back"onClick={() => navigate(-1)}>REGRESAR </button>
-          <button onClick={handleEliminar} className="clinic-btn-delete">ELIMINAR</button>
-          <button onClick={handleEditar} className="clinic-btn-edit">EDITAR</button>
-          <button onClick={handleGuardar} className="clinic-btn-add">GUARDAR</button>
-        </div>
+            <div className="clinic-form-buttons">
+                {flashMessage && (
+                <div className="flash-message">{flashMessage}</div>)}
+              <button type="button" className="clinic-btn-back" onClick={() => navigate(-1)}>REGRESAR</button>
+              <button onClick={handleDelete} className="clinic-btn-delete">ELIMINAR</button>
+              <button onClick={handleEdit} className="clinic-btn-edit">EDITAR</button>
+              <button onClick={handleSave} className="clinic-btn-add">GUARDAR</button>
+            </div>
+
 
       </motion.section>
     </div>

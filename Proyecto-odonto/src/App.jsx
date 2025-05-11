@@ -28,9 +28,9 @@ import ClinicaJalapa from './componentes/ClinicaJalapa';
 import AgregarEmpleado from "./componentes/agregarempleado";
 import Listadoproveedores from "./componentes/listadoproveedores";
 import AgregarPaciente from "./componentes/agregarpaciente";
-import EmplecContac from "./componentes/EmplecContac";
 import "./App.css";
 import Listdoctores from "./componentes/Listdoctores";
+import Tratamiento from "./componentes/tratamiento";
 
 
 function App() {
@@ -68,8 +68,8 @@ function App() {
           <Route path="/clinicaJalapa" element={<ClinicaJalapa />} />
           <Route path="/agregarempleado" element={<AgregarEmpleado />} /> 
           <Route path="/listadoproveedores" element={<Listadoproveedores />} />
-          <Route path="/EmplecContac" element={<EmplecContac />} />
           <Route path="/Listdoctores" element={<Listdoctores />} />
+          <Route path="/tratamiento" element={<Tratamiento />} />
 
 
         </Route>

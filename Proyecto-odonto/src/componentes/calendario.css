@@ -5,6 +5,18 @@ h1 {
     font-weight: bold;
   }
   
+
+ .NombreComponente{
+  text-align: left;
+  padding-left: 25px;
+  color: #5e5d5d;
+  font-weight: 400;
+ } 
+
+.LineaCalendario{
+  height: 1px;
+}
+
 .calendar-content {
   flex: 1; /* Ocupa todo el espacio restante */
   background-color: #fefefe; /* Fondo blanco */
@@ -33,7 +45,7 @@ abbr {
     justify-content: center;
     padding: 1rem;
     margin: 0;  /* Asegura que el contenedor se centre */
-    margin-top: -60px;  /* sube el calendario */
+    margin-top: -100px;  /* sube el calendario */
   }
 
   .calendar-layout {
@@ -497,9 +509,6 @@ abbr {
   background: #217578;
 }
 
-
-
-
 /* Contenedor del botón fijo */
 .fixed-back-button {
   position: fixed;
@@ -527,10 +536,6 @@ abbr {
   background-color: #FF987B;
   transform: scale(1.05);
 }
-
-
-
-
 
 /*MENSAJE DE ELIMINADO*/
 .toast {

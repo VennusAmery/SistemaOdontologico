@@ -1,0 +1,520 @@
+/* tratamiento.css */
+
+.TratamientoPaciente-container {
+  flex: 1 1 auto;        /* ocupa el resto del espacio */
+  overflow-y: auto;      /* scroll interno vertical */
+  /* opcionales para padding o ancho: */
+  padding: 1rem;
+}
+
+.TratamientoPaciente-page {
+  display: flex;
+  flex-direction: column;
+  height: 90vh;          /* ocupa toda la altura de la ventana */
+  overflow: hidden;       /* evita scroll en el body */
+}
+
+.TratamientoPaciente-page {
+  display: flex;
+  flex-direction: column;
+  height: 90vh;          /* ocupa toda la altura de la ventana */
+  overflow: hidden;       /* evita scroll en el body */
+}
+
+.TratamientoPaciente-title{
+  font-size: 15px;
+  padding-top: 10px;
+  padding-left: 15px;
+  margin-bottom: 1px;
+  color: #FF8F6B;
+  text-align: left;
+}
+
+.TratamientoPaciente-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+  margin-left: 10px;
+}
+
+.TratamientoPaciente-avatar {
+  width: 30px; /* Ajusta el tamaño del círculo */
+  height: 30px; /* Asegúrate de que sea igual a width para que sea un círculo */
+  border-radius: 50%; /* Esto hace que el contenedor sea redondo */
+  overflow: hidden; /* Asegura que la imagen se recorte dentro del círculo */
+  border: 3px solid #6bbbc1; /* Agrega el borde alrededor del círculo (puedes cambiar el color y grosor) */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.TratamientoPaciente-avatar img {
+  width: 20px;
+  height: 20px;
+}
+
+.TratamientoPaciente-header h2 {
+  font-size: 18px;
+  margin: 0;
+  font-weight: 400;
+  color: #575757;
+}
+
+.TratamientoPaciente-tabs {
+    margin-top: -20px;
+    display: flex;
+    justify-content: center; /* Centra horizontalmente */
+    gap: 40px;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #6bbbc1; /* Línea decorativa debajo de las pestañas */
+    padding-bottom: 5px; /* Espaciado entre los botones y la línea */
+}
+
+.TratamientoPaciente-tabs button {
+    background: none; /* Elimina el fondo del botón */
+    border: none; /* Elimina el borde del botón */
+    color: #757575; /* Color gris para el texto */
+    font-size: 16px;
+    cursor: pointer;
+    transition: color 0.3s ease; /* Transición suave para el color */
+    padding: 0; /* Elimina el padding extra */
+    position: relative;
+    padding-top: 15px;
+}
+
+.TratamientoPaciente-tabs button.active {
+    color: #FF987B; /* Texto negro cuando está activo */
+}
+
+.TratamientoPaciente-container{
+    margin-left: 2%;
+    margin-right: 2%;
+}
+
+/* Formulario: dos columnas */
+.TratamientoPaciente-form {
+  display: grid;
+  grid-template-columns: 450px 1fr;
+  gap: 40px;
+}
+
+/* Secciones izquierda */
+.TratamientoPaciente-section {
+  display: grid;
+  flex-direction: column;
+  margin-bottom: 12px;
+}
+
+.TratamientoPaciente-section label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #555;
+  margin-bottom: 4px;
+}
+
+.TratamientoPaciente-input,
+.TratamientoPaciente-textarea {
+  background-color: #B4DDDE;
+  border: none;
+  border-radius: 4px;
+  padding: 6px 15px;
+  font-size: 14px;
+  width: 100%;
+  box-sizing: border-box;
+  color: #757575;
+}
+
+.TratamientoPaciente-textarea {
+  min-height: 40px !important; /* tamaño inputs 1ra fila */
+}
+
+.marca-container .TratamientoPaciente-textarea {
+  min-height: 40px !important; /* antes 60px */
+  width: 300px; /*tamaño del iput de marca*/
+}
+
+
+/* Columna derecha */
+.TratamientoPaciente-side {
+  display: grid;
+  flex-direction: column;
+}
+
+.TratamientoPaciente-side label{
+  font-size: 14px;
+  font-weight: 600;
+  color: #555;
+  margin-bottom: 4px;
+}
+
+/* Altura Brackets */
+.altura-container {
+  margin-top: 16px;
+  padding-right: 0%;
+  padding-left: 0%;
+}
+
+/*altura de los brackets*/
+.altura-label {
+  font-size: 14px;
+  color: #555;
+  font-weight: bold;
+padding-bottom: 15px;
+}
+
+/* Grupo de checkboxes MARCA */
+.TratamientoPaciente-side .checkbox-group.marca {
+  display: grid;
+  font-size: 12px;
+  padding-top: 15px;
+  grid-template-columns: repeat(8, auto);
+  gap: 5px;
+}
+
+/* Grupo de checkboxes "Altura de brackets" */
+.TratamientoPaciente-side .checkbox-group.altura{
+  display: grid;
+  font-size: 12px;
+  padding-top: 15px;
+  grid-template-columns: repeat(7, auto);
+  gap: 5px;
+}
+
+/* Selector para ese textarea en concreto */
+.TratamientoPaciente-textarea.marca {
+  width: 550px;       /* Ancho */
+  height: 60px;       /* Alto */
+  font-size: 14px;    /* Tamaño del texto */
+  padding: 8px 12px;  /* Espaciado interno */
+  resize: vertical;   /* permite redimensionar solo en vertical */
+  box-sizing: border-box; /* incluye padding en el ancho/alto */
+}
+
+/* Estilo de cada checkbox + label */
+.TratamientoPaciente-side .checkbox-group label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  white-space: normal;
+  flex-wrap: wrap;
+}
+
+.marca-container {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.TratamientoPaciente-textarea {
+  width: 100%;
+  min-height: 60px;
+  padding: 0.5rem;
+  resize: vertical;
+  font-family: inherit;
+  font-size: 1rem;
+  border-radius: 6px;
+  border: nonde;
+  color: #757575;
+  background-color: #B4DDDE;
+}
+
+/* Retención */
+.TratamientoPaciente-side .TratamientoPaciente-section-inline.retencion {
+  display: flex;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.TratamientoPaciente-side .TratamientoPaciente-section-inline.retencion .TratamientoPaciente-input {
+  flex: 1;
+  width: 100px;
+  height: 20px !important;
+}
+
+
+/*SECCION DE ABAJO*/
+/* layout odontograma */
+.odontograma-layout {
+  display: flex;
+  gap: 80px;
+  width: 100%;
+  margin-top: 0.5rem;
+}
+
+.odontograma-form {
+  flex: 1; /* La primera columna ocupa el mismo espacio */
+  background-color: #ffffff;
+  padding-left: 70px;
+  padding-right: 70px;  border-radius: 10px;
+  height: 580px;
+  margin-left: 3%;
+  width: 50%;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.odontograma-campos select {
+  background-color: #B4DDDE;  /* Color de fondo del select */
+  color: #464646;   /* Color del texto */
+  border: none; /* Borde del select */
+  padding: 8px 12px;   /* Espaciado dentro del select */
+  font-size: 12px; /* Tamaño de la fuente */
+  font-weight: 600;
+  border-radius: 2px;   /* Bordes redondeados, opcional */
+  cursor: pointer;
+}
+
+.odontograma-campos option {
+  background-color: #B4DDDE;  /* Fondo de las opciones */
+  color: #333333;               /* Color del texto de las opciones */
+}
+
+.checkbox-row {
+  display: flex;
+  flex-wrap: wrap;          /* Permite que los elementos bajen a la siguiente fila */
+  gap: 12px 24px;           /* Espaciado entre los elementos */
+  margin-top: 10px;         /* Espaciado superior */
+}
+
+.checbokfomrpac, .checkbox-item {
+  display: flex;
+  align-items: center;      /* Alinea el checkbox y el texto verticalmente */
+  gap: 6px;                 /* Espacio entre el checkbox y el texto */
+  min-width: 120px;         /* Asegura que el checkbox y texto tengan un tamaño adecuado */
+}
+
+.checkbox-item input[type="checkbox"] {
+  width: 18px;              /* Tamaño del checkbox */
+  height: 18px;
+}
+
+.checkbox-formpac {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 120px;
+}
+
+.checkbox-formpac input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: #007bff; /* cambia color si quieres */
+}
+
+.odontograma-campos textarea {
+  background-color: #B4DDDE;     /* Color de fondo del textarea */
+  color: #333333;                 /* Color del texto */
+  border: 1px solid #ccc;         /* Borde del textarea */
+  padding: 5px;   /* Espaciado dentro del textarea */
+  font-size: 1rem;                /* Tamaño de la fuente */
+  border-radius: 4px;             /* Bordes redondeados */
+  width: 100%;                    /* Para que ocupe todo el ancho disponible */
+  resize: vertical;               /* Permite cambiar el tamaño solo verticalmente */
+}
+
+.odontograma-campos textarea:focus {
+  outline: none;                  /* Elimina el borde azul al hacer foco */
+  border: 1px solid #007bff;      /* Cambia el borde a azul al enfocar */
+}
+
+.odontograma-campos label {
+  font-size: 12px; 
+  font-weight: 600;              /* Tamaño de la fuente de las etiquetas */
+  color: #333333;                  /* Color de la fuente de las etiquetas */
+  margin-bottom: 1px;              /* Espaciado debajo de la etiqueta */
+  display: block;                  /* Hace que las etiquetas estén en su propia línea */
+}
+
+
+
+/*lista de guardado*/
+.odontograma-lista {
+  flex: 4; /* Más grande que las otras columnas (si usas flexbox) */
+  padding: 10px;
+  padding-left: 90px;
+  padding-right: 90px;
+  font-size: 1rem; /* Texto más grande */
+  background-color: #fff;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.odontograma-campos {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 5px;
+}
+
+.checkbox-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 4px 0;
+}
+
+.odontograma-lista ul {
+  list-style: none;
+  padding: 0;
+}
+
+.odontograma-lista li {
+  padding: 6px;
+  border-bottom: 1px solid #ddd;
+}
+
+.odontograma-imagen {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centra horizontalmente todo */
+  text-align: center;  /* Centra el texto del h3 */
+  padding-left: 80px;
+  padding-right: 80px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+
+.odontograma-imagen img {
+  width: 200%;
+  border-radius: 8px;
+}
+
+.odontograma-form input[type="text"] {
+  background-color: #B4DDDE;
+  color: #4b4b4b;
+  border: NONE;
+}
+
+.btn-guardar-pieza{
+    background-color: #FF8F6B;
+    font-weight: bold;
+}
+
+
+.odontograma-imagen h3 {
+  margin-bottom: 10px; /* Espacio entre título e imagen */
+}
+
+.odontograma-imagen img {
+  width: 200%;
+  border-radius: 8px;
+}
+
+.odontograma-form input[type="text"] {
+  background-color: #B4DDDE;
+  color: #4b4b4b;
+  border: NONE;
+}
+
+
+.btn-guardar-pieza{
+    background-color: #FF8F6B;
+    font-weight: bold;
+}
+
+
+/* mini-ventana flotante flash */
+.flash-modal {
+  position: fixed;
+  top: 60px;             /* ajusta según tu header */
+  left: 50%;
+  transform: translateX(-50%);
+  background: #FF8F6B;
+  color: #ffffff;
+  padding: 8px 16px;
+  border: 1px solid #ffeeba;
+  border-radius: 4px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  z-index: 1000;
+  animation: fadein 0.2s ease-out;
+}
+
+@keyframes fadein {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/*modal de las piezas*/
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+}
+
+.modal-content {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 8px;
+  max-width: 400px;
+  width: 90%;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+.modal-buttons  {
+  display: flex;
+align-items: center;  
+gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.modal-buttons button {
+  padding: 0.5rem 1rem;
+}
+
+/* Botones */
+.TratamientoPaciente-buttons {
+  grid-column: 1 / span 2;
+  display: flex;
+  gap: 10px;
+  margin-top: -20px;
+    justify-content: center; /* Esto centra horizontalmente los botones */
+
+}
+
+.TratamientoPaciente-buttons button {
+  background-color: #FF8F6B;
+  border: none;
+  padding: 10px 20px;
+  color: white;
+  font-size: 14px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  align-items: center;
+  font-weight: bold;
+}
+
+.TratamientoPaciente-buttons button:hover {
+  background-color: #e67a53;
+}
+
+
+/*FLASHMESSAGES DE BOTONES FINALES*/
+.flash-modal {
+  position: fixed;
+  top: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #F98972;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  z-index: 1000;
+  font-weight: bold;
+  animation: fadeInOut 2s ease-in-out;
+}
+
+@keyframes fadeInOut {
+  0%   { opacity: 0; transform: translateX(-50%) translateY(-10px); }
+  10%  { opacity: 1; transform: translateX(-50%) translateY(0); }
+  90%  { opacity: 1; }
+  100% { opacity: 0; transform: translateX(-50%) translateY(-10px); }
+}

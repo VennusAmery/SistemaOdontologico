@@ -6,8 +6,6 @@ import './empleados.css';
 const tabConfig = [
   { id: 'listadoMaterial', label: 'Listado de Empleados', path: '/empleados' },
   { id: 'ingresoMaterial', label: 'Agregar Nuevo Empleado', path: '/agregarempleado' },
-  { id: 'empleadocontacto', label: 'Contacto Nuevo Empleado', path: '/EmplecContac' },
-
 ];
 
 const slideVariants = {
@@ -134,9 +132,6 @@ export default function empleados() {
 
         {/* ——— Botones de acción ——— */}
         <div className="emplelist-form-buttons">
-          <button type="button" className="emplelist-btn-delete">ELIMINAR</button>
-          <button type="button" className="emplelist-btn-edit"onClick={() => navigate('/ingresoMaterial' )}>MODIFICAR </button>
-          <button type="button" className="emplelist-btn-add"onClick={() => navigate('/ingresoMaterial' )}>AGREGAR </button>
           <button type="button" className="emplelist-btn-back"onClick={() => navigate(-1)}>REGRESAR </button>
         </div>
       </motion.section>

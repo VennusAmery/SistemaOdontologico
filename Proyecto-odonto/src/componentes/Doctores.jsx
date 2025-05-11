@@ -54,10 +54,9 @@ const Doctores = () => {
     setTimeout(() => setMessage(''), 2000);
   };
 
-  const handleSave = () => flashMessage('Guardado correctamente');
-  const handleEdit = () => flashMessage('Editado correctamente');
-  const handleDelete = () => flashMessage('Eliminado correctamente');
-
+  const handleSave = () => flashMessage('💾 Guardado correctamente');
+  const handleEdit = () => flashMessage('🖋️ Editado correctamente');
+  const handleDelete = () => flashMessage('🗑️ Eliminado correctamente');
   const handleBack = () => navigate('/contactos');
 
   return (

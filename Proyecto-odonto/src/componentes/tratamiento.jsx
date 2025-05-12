@@ -304,8 +304,6 @@ const handleDeleteStrip = (index) => {
         transition={tabVariants.transition}
       >
 
-
-
         <div className="TratamientoPaciente-container2">
           <div className="TratamientoPaciente-circle">
             <img src="/imagenes/paciente.png" alt="Proveedor" className="TratamientoPaciente-image" />
@@ -316,12 +314,8 @@ const handleDeleteStrip = (index) => {
         </div>
         <hr className="TratamientoPaciente-separator" />
 
-
-
-
         <form className="TratamientoPaciente-form" onSubmit={handleSubmit}>
   <div className="form-inner">
-
 
                   {flashMessage && (
                 <div className="flash-message">{flashMessage}</div>)}
@@ -506,9 +500,7 @@ const handleDeleteStrip = (index) => {
                   value={datosActivos.motivo}
                   onChange={e => handleCambioDato('motivo', e.target.value)}
                 />
-                <button type="button" className="btn-guardar-pieza" onClick={onGuardarPieza}>
-                  GUARDAR 
-                </button>
+                <button type="button" className="btn-guardar-pieza" onClick={onGuardarPieza}>GUARDAR </button>
               </div>
             </div>
 

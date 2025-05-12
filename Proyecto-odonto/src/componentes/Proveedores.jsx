@@ -175,30 +175,13 @@ const [emailList] = useState([
                 <label>NIT:</label>
                 <input name="nit" value={supplier.nit} onChange={handleChange} />
              
-                    <label>Teléfono:</label>
-                    <select
-                      name="telefono"
-                      value={supplier.telefono}
-                      onChange={handleChange}
-                    >
-                      <option value="">— Seleccione —</option>
-                      {phoneList.map(num => (
-                        <option key={num} value={num}>{num}</option>
-                      ))}
-                    </select>
+                <label>Teléfono:</label>
+                <input name="telefono" value={supplier.telefono} onChange={handleChange} />
 
-                    <label>Correo:</label>
-                    <select
-                      name="correoElectronico"
-                      value={supplier.correoElectronico}
-                      onChange={handleChange}
-                    >
-                      <option value="">— Seleccione —</option>
-                      {emailList.map(email => (
-                        <option key={email} value={email}>{email}</option>
-                      ))}
-                    </select>
-                  </div>
+                <label>Correo:</label>
+                <input name="correo" value={supplier.correoElectronico} onChange={handleChange} />
+        </div>
+
 
               <fieldset className="CHECKBOXPROV-group">
                 <legend>Tipo de proveedor:</legend>

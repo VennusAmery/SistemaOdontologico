@@ -3,7 +3,7 @@ import { AnimatePresence } from 'framer-motion';
 import { useLocation } from "react-router-dom";
 import { Routes, Route } from "react-router-dom";
 
-import Login from "./componentes/Login";
+import Login from "./componentes/login";
 import OlvideContraseña from "./componentes/olvidecontraseña";
 import Home from "./componentes/home";
 import Pacientes from "./componentes/pacientes";

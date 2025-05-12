@@ -29,14 +29,15 @@ function Historialmedico() {
       fetchFechaRegistro();
     }, []); // Se ejecuta solo una vez al montar el componente
 
-  const tabConfig = [
-     { id: "agregarpaciente", label: "Información de paciente", path: "/agregarpaciente" },
-     { id: "pacientes", label: "Hábitos", path: "/habitos" },
-     { id: "historialodontologico", label: "Historial Odontológico", path: "/historialodontologico" },
-     { id: "historialmedico", label: "Historial Médico", path: "/historialmedico" },
-     { id: "fotografias", label: "Fotografías", path: "/fotografias" },      
-     { id: "tratamiento", label: "Tratamiento", path: "/tratamiento1" },
-    ];
+const tabConfig = [
+  { id: 'listadoPaciente', label: 'Listado', path: '/pacientes' },
+  { id: 'infoPaciente', label: 'Información de paciente', path: '/agregarpaciente' },
+  { id: 'habitos', label: 'Hábitos', path: '/habitos' },
+  { id: 'historialOdont', label: 'Historial Odontológico', path: '/historialodontologico' },
+  { id: 'historialMed', label: 'Historial Médico', path: '/historialmedico' },
+  { id: 'fotografias', label: 'Fotografías', path: '/fotografias' },
+  { id: 'tratamiento', label: 'Tratamiento', path: '/tratamiento' },
+];
 
  const tabVariants = {
     initial: { x: '100%', opacity: 0 },
@@ -45,40 +46,80 @@ function Historialmedico() {
     transition: { duration: 0.4 }
   };
 
-  const handleSubmit = (e) => {
+  // Usa la ruta actual para establecer el tab activo
+  const [activeEncabezado, setActiveEncabezado] = useState(location.pathname);
+
+  // Actualiza el estado del tab activo cuando la ruta cambia
+  useEffect(() => {
+    setActiveEncabezado(location.pathname);
+  }, [location]);
+
+  const [flashMessage, setFlashMessage] = useState('');
+  const showFlash = text => {
+    setFlashMessage(text);
+    setTimeout(() => setFlashMessage(''), 3000);
+  };
+
+  const handleDelete = e => {
     e.preventDefault();
-    navigate('/pacientes');
-  }
+    showFlash('🗑️ Eliminado correctamente');
+  };
+
+  const handleEdit = e => {
+    e.preventDefault();
+    showFlash('🖋️ Editado correctamente');
+  };
+
+  const handleSave = e => {
+    e.preventDefault();
+    showFlash('💾 Guardado correctamente');
+  };
+
+  const handleSubmit = e => {
+    e.preventDefault();
+    showFlash('💾 Guardado correctamente');
+  };
 
   return (
     <main className="formulario-content3">
-      <h1 className="titulos-pacientes3">Pacientes</h1>
-      <div className="formulario-header3">
-        <div className="circulo3-">
-          <img src="/imagenes/iconoUsuario.png" alt="icono usuario" className="icono-usuario1" />
-        </div>
-        <h2>[nombre]</h2>
-      </div>
 
-      <nav className="tabs4">
-      {tabConfig.map((tab) => (
-      <button
-      key={tab.id}
-      onClick={() => navigate(tab.path)}
-      className={location.pathname === tab.path ? "active" : ""} // Resaltado dinámico
-      >
-      {tab.label}
-      </button>
+      <h2 className="HistorialMedico-title">Pacientes</h2>
+      <hr className="HistorialMedico-hr" />
+      <nav className="HistorialMedico-tabs">
+        {tabConfig.map(tab => (
+          <button
+            key={tab.id}
+            className={`HistorialMedico-tab ${activeEncabezado === tab.path ? 'active' : ''}`}
+            onClick={() => {
+              setActiveEncabezado(tab.path); // Establecer la ruta activa
+              navigate(tab.path); // Navegar a la ruta
+            }}
+          >
+            {tab.label}
+          </button>
         ))}
       </nav>
+
       <motion.section  
         className="form-grid3"
         variants={tabVariants}
         initial="initial"
         animate="animate"
         exit="exit"
-        transition={tabVariants.transition}
-      >
+        transition={tabVariants.transition}>
+
+
+        <div className="HistorialMedico-container2">
+          <div className="HistorialMedico-circle">
+            <img src="/imagenes/paciente.png" alt="Proveedor" className="HistorialMedico-image" />
+          </div>
+          <div className="HistorialMedico-text">
+            <h2 className="HistorialMedico-header-title">Historial Medico</h2>
+          </div>
+        </div>
+        <hr className="HistorialMedico-separator" />
+
+
         <form onSubmit={handleSubmit}>
        <div className="doble3"> 
         <div className="campos3">
@@ -98,7 +139,6 @@ function Historialmedico() {
               />
         </div>
         </div>
-        <h3 className="titulo-historials">Historia</h3>
 
     <div className="seccion-doble">   
       <div className="triple3">
@@ -174,10 +214,17 @@ function Historialmedico() {
       </div>
     </div>
 
-      <div className="acciones-formulario3">
-          <button type="button" onClick={() => navigate('/historialodontologico')} className="btn-regresar">REGRESAR</button>
-          <button type="button" className="btn-editar">EDITAR</button>
-          <button type="submit" className="btn-guardar">GUARDAR</button>
+
+      <div className="HistorialMedico-botones">
+
+              {flashMessage && (
+                <div className="flash-message">{flashMessage}</div>)}
+
+          <button type="button" onClick={() => navigate('/agregarpaciente')} className="HistorialMedico-btn-regresar">REGRESAR</button>
+          <button type="button" className="HistorialMedico-btn-editar" onClick={handleEdit}>EDITAR</button>
+          <button type="button" className="HistorialMedico-btn-guardar" onClick={handleEdit}>ELIMINAR</button>
+          <button type="button" className="HistorialMedico-btn-guardar" onClick={handleSave}>GUARDAR</button>
+
       </div>
 
         </form>

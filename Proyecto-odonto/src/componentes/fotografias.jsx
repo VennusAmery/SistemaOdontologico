@@ -29,14 +29,15 @@ function Fotografias() {
       fetchFechaRegistro();
     }, []); // Se ejecuta solo una vez al montar el componente
 
-  const tabConfig = [
-     { id: "agregarpaciente", label: "Información de paciente", path: "/agregarpaciente" },
-     { id: "pacientes", label: "Hábitos", path: "/habitos" },
-     { id: "historialodontologico", label: "Historial Odontológico", path: "/historialodontologico" },
-     { id: "historialmedico", label: "Historial Médico", path: "/historialmedico" },
-     { id: "fotografias", label: "Fotografías", path: "/fotografias" },      
-     { id: "tratamiento", label: "Tratamiento", path: "/tratamiento1" },
-    ];
+const tabConfig = [
+  { id: 'listadoPaciente', label: 'Listado', path: '/pacientes' },
+  { id: 'infoPaciente', label: 'Información de paciente', path: '/agregarpaciente' },
+  { id: 'habitos', label: 'Hábitos', path: '/habitos' },
+  { id: 'historialOdont', label: 'Historial Odontológico', path: '/historialodontologico' },
+  { id: 'historialMed', label: 'Historial Médico', path: '/historialmedico' },
+  { id: 'fotografias', label: 'Fotografías', path: '/fotografias' },
+  { id: 'tratamiento', label: 'Tratamiento', path: '/tratamiento' },
+];
 
  const tabVariants = {
     initial: { x: '100%', opacity: 0 },
@@ -45,32 +46,60 @@ function Fotografias() {
     transition: { duration: 0.4 }
   };
 
-  const handleSubmit = (e) => {
+  // Usa la ruta actual para establecer el tab activo
+  const [activeEncabezado, setActiveEncabezado] = useState(location.pathname);
+
+  // Actualiza el estado del tab activo cuando la ruta cambia
+  useEffect(() => {
+    setActiveEncabezado(location.pathname);
+  }, [location]);
+
+  const [flashMessage, setFlashMessage] = useState('');
+  const showFlash = text => {
+    setFlashMessage(text);
+    setTimeout(() => setFlashMessage(''), 3000);
+  };
+
+  const handleDelete = e => {
     e.preventDefault();
-    navigate('/pacientes');
-  }
+    showFlash('🗑️ Eliminado correctamente');
+  };
+
+  const handleEdit = e => {
+    e.preventDefault();
+    showFlash('🖋️ Editado correctamente');
+  };
+
+  const handleSave = e => {
+    e.preventDefault();
+    showFlash('💾 Guardado correctamente');
+  };
+
+  const handleSubmit = e => {
+    e.preventDefault();
+    showFlash('💾 Guardado correctamente');
+  };
 
   return (
     <main className="formulario-content4">
-      <h1 className="titulos-pacientes4">Pacientes</h1>
-      <div className="formulario-header4">
-        <div className="circulo4-">
-          <img src="/imagenes/iconoUsuario.png" alt="icono usuario" className="icono-usuario1" />
-        </div>
-        <h2>[nombre]</h2>
-      </div>
 
-      <nav className="tabs5">
-      {tabConfig.map((tab) => (
-      <button
-      key={tab.id}
-      onClick={() => navigate(tab.path)}
-      className={location.pathname === tab.path ? "active" : ""} // Resaltado dinámico
-      >
-      {tab.label}
-      </button>
+      <h2 className="fotografiaspac-title">Pacientes</h2>
+      <hr className="fotografiaspac-hr" />
+      <nav className="fotografiaspac-tabs">
+        {tabConfig.map(tab => (
+          <button
+            key={tab.id}
+            className={`fotografiaspac-tab ${activeEncabezado === tab.path ? 'active' : ''}`}
+            onClick={() => {
+              setActiveEncabezado(tab.path); // Establecer la ruta activa
+              navigate(tab.path); // Navegar a la ruta
+            }}
+          >
+            {tab.label}
+          </button>
         ))}
       </nav>
+
       <motion.section  
         className="form-grid4"
         variants={tabVariants}
@@ -79,6 +108,18 @@ function Fotografias() {
         exit="exit"
         transition={tabVariants.transition}
       >
+
+        <div className="fotografiaspac-container2">
+          <div className="fotografiaspac-circle">
+            <img src="/imagenes/paciente.png" alt="Proveedor" className="fotografiaspac-image" />
+          </div>
+          <div className="fotografiaspac-text">
+            <h2 className="fotografiaspac-header-title">Fotografías</h2>
+          </div>
+        </div>
+        <hr className="fotografiaspac-separator" />
+
+
         <form onSubmit={handleSubmit}>
        <div className="doble4"> 
         <div className="campos4">
@@ -98,7 +139,6 @@ function Fotografias() {
               />
         </div>
         </div>
-        <h3 className="titulo-fotografias">Fotografías</h3>
 
     <div className="seccion-doble3"> 
         <div className="triple4">
@@ -126,7 +166,7 @@ function Fotografias() {
           <button className="btn-historial">EDITAR/REMPLAZAR</button>
         </div>
         <div className="camposs3">
-        <label>Fotografias Antes del Tratamiento:</label>
+        <label>Antes del Tratamiento:</label>
             <button 
             className="btn-programar">SUBIR</button>
           <button className="btn-historial">VISUALIZAR</button>
@@ -134,7 +174,7 @@ function Fotografias() {
           <button className="btn-historial">EDITAR/REMPLAZAR</button>
         </div>
         <div className="camposs3">
-        <label>Fotografias Despues del Tratamiento:</label>
+        <label>Despues del Tratamiento:</label>
            <button 
             className="btn-programar">SUBIR</button>
           <button className="btn-historial">VISUALIZAR</button>
@@ -144,10 +184,15 @@ function Fotografias() {
         </div>
         </div>
 
-      <div className="acciones-formulario4">
-          <button type="button" onClick={() => navigate('/historialmedico')} className="btn-regresar">REGRESAR</button>
-          <button type="button" className="btn-editar">EDITAR</button>
-          <button type="submit" className="btn-guardar">GUARDAR</button>
+      <div className="fotospac-btn">
+
+              {flashMessage && (
+                <div className="flash-message">{flashMessage}</div>)}
+
+          <button type="button" onClick={() => navigate('/agregarpaciente')} className="fotospac-btn-regresar">REGRESAR</button>
+          <button type="button" className="fotospac-btn-guardar" onClick={handleEdit}>ELIMINAR</button>
+          <button type="button" className="fotospac-btn-guardar" onClick={handleSave}>GUARDAR</button>
+
       </div>
 
         </form>

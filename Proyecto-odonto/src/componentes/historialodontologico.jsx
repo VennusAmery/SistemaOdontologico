@@ -1,84 +1,120 @@
-import React, { useState, useEffect } from 'react'; 
+import React, { useState, useEffect } from 'react';
 import './historialodontologico.css';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
 
 function Historialodontologico() {
-    const navigate = useNavigate();
-    const [dpiPaciente, setDpiPaciente] = useState("");
-    const [fecharegistro, setFechaRegistro] = useState("");
+  const navigate = useNavigate();
+  const location = useLocation(); // Para obtener la ruta actual
+  const [dpiPaciente, setDpiPaciente] = useState("");
+  const [fecharegistro, setFechaRegistro] = useState("");
 
-/*esto es solo ejemplo, se debe eliminar y usar el valor real de la API*/
-    useEffect(() => {
-      // Simulación de llamada a una API para obtener el DPI
-      const fetchDpi = async () => {
-        const fetchedDpi = "1234567890101"; // Valor obtenido de la API
-        setDpiPaciente(fetchedDpi); // Actualiza el estado con el valor obtenido
-      };
-  
-      fetchDpi();
-    }, []); // Se ejecuta solo una vez al montar el componente   
+  useEffect(() => {
+    const fetchDpi = async () => {
+      const fetchedDpi = "1234567890101"; // Valor obtenido de la API
+      setDpiPaciente(fetchedDpi); // Actualiza el estado con el valor obtenido
+    };
+    fetchDpi();
+  }, []);
 
-    useEffect(() => {
-      // Simulación de llamada a una API para obtener la Fecha de Registro
-      const fetchFechaRegistro = async () => {
-        const fetchedFechaRegistro = "2023-05-07"; // Valor obtenido de la API
-        setFechaRegistro(fetchedFechaRegistro); // Actualiza el estado con el valor obtenido
-      };
-    
-      fetchFechaRegistro();
-    }, []); // Se ejecuta solo una vez al montar el componente
+  useEffect(() => {
+    const fetchFechaRegistro = async () => {
+      const fetchedFechaRegistro = "2023-05-07"; // Valor obtenido de la API
+      setFechaRegistro(fetchedFechaRegistro); // Actualiza el estado con el valor obtenido
+    };
+    fetchFechaRegistro();
+  }, []);
 
   const tabConfig = [
-     { id: "agregarpaciente", label: "Información de paciente", path: "/agregarpaciente" },
-     { id: "pacientes", label: "Hábitos", path: "/habitos" },
-     { id: "historialodontologico", label: "Historial Odontológico", path: "/historialodontologico" },
-     { id: "historialmedico", label: "Historial Médico", path: "/historialmedico" },
-     { id: "fotografias", label: "Fotografías", path: "/fotografias" },      
-     { id: "tratamiento", label: "Tratamiento", path: "/tratamiento1" },
-    ];
+    { id: 'listadoPaciente', label: 'Listado', path: '/pacientes' },
+    { id: 'infoPaciente', label: 'Información de paciente', path: '/agregarpaciente' },
+    { id: 'habitos', label: 'Hábitos', path: '/habitos' },
+    { id: 'historialOdont', label: 'Historial Odontológico', path: '/historialodontologico' },
+    { id: 'historialMed', label: 'Historial Médico', path: '/historialmedico' },
+    { id: 'fotografias', label: 'Fotografías', path: '/fotografias' },
+    { id: 'tratamiento', label: 'Tratamiento', path: '/tratamiento' },
+  ];
 
- const tabVariants = {
+  const tabVariants = {
     initial: { x: '100%', opacity: 0 },
     animate: { x: 0, opacity: 1 },
-    exit:    { x: '-100%', opacity: 0 },
-    transition: { duration: 0.4 }
+    exit: { x: '-100%', opacity: 0 },
+    transition: { duration: 0.4 },
   };
 
-  const handleSubmit = (e) => {
+  // Usa la ruta actual para establecer el tab activo
+  const [activeEncabezado, setActiveEncabezado] = useState(location.pathname);
+
+  // Actualiza el estado del tab activo cuando la ruta cambia
+  useEffect(() => {
+    setActiveEncabezado(location.pathname);
+  }, [location]);
+
+  const [flashMessage, setFlashMessage] = useState('');
+  const showFlash = text => {
+    setFlashMessage(text);
+    setTimeout(() => setFlashMessage(''), 3000);
+  };
+
+  const handleDelete = e => {
     e.preventDefault();
-    navigate('/pacientes');
-  }
+    showFlash('🗑️ Eliminado correctamente');
+  };
+
+  const handleEdit = e => {
+    e.preventDefault();
+    showFlash('🖋️ Editado correctamente');
+  };
+
+  const handleSave = e => {
+    e.preventDefault();
+    showFlash('💾 Guardado correctamente');
+  };
+
+  const handleSubmit = e => {
+    e.preventDefault();
+    showFlash('💾 Guardado correctamente');
+  };
+
 
   return (
     <main className="formulario-content2">
-      <h1 className="titulos-pacientes2">Pacientes</h1>
-      <div className="formulario-header2">
-        <div className="circulo2-">
-          <img src="/imagenes/iconoUsuario.png" alt="icono usuario" className="icono-usuario1" />
-        </div>
-        <h2>[nombre]</h2>
-      </div>
 
-      <nav className="tabs3">
-      {tabConfig.map((tab) => (
-      <button
-      key={tab.id}
-      onClick={() => navigate(tab.path)}
-      className={location.pathname === tab.path ? "active" : ""} // Resaltado dinámico
-      >
-      {tab.label}
-      </button>
+      <h2 className="HistorialOdonto-title">Pacientes</h2>
+      <hr className="HistorialOdonto-hr" />
+      <nav className="HistorialOdonto-tabs">
+        {tabConfig.map(tab => (
+          <button
+            key={tab.id}
+            className={`HistorialOdonto-tab ${activeEncabezado === tab.path ? 'active' : ''}`}
+            onClick={() => {
+              setActiveEncabezado(tab.path); // Establecer la ruta activa
+              navigate(tab.path); // Navegar a la ruta
+            }}
+          >
+            {tab.label}
+          </button>
         ))}
       </nav>
+
       <motion.section  
         className="form-grid2"
         variants={tabVariants}
         initial="initial"
         animate="animate"
         exit="exit"
-        transition={tabVariants.transition}
-      >
+        transition={tabVariants.transition}>
+
+        <div className="HistorialOdonto-container2">
+          <div className="HistorialOdonto-circle">
+            <img src="/imagenes/paciente.png" alt="Proveedor" className="HistorialOdonto-image" />
+          </div>
+          <div className="HistorialOdonto-text">
+            <h2 className="HistorialOdonto-header-title">Historial Odontologico</h2>
+          </div>
+        </div>
+        <hr className="HistorialOdonto-separator" />
+
         <form onSubmit={handleSubmit}>
        <div className="doble2"> 
         <div className="campos2">
@@ -98,7 +134,6 @@ function Historialodontologico() {
               />
         </div>
         </div>
-        <h3 className="titulo-historial">Historia</h3>
 
       <div className="triple1">
         <div className="camposs1">
@@ -139,10 +174,17 @@ function Historialodontologico() {
         </div>
       </div>
 
-      <div className="acciones-formulario2">
-          <button type="button" onClick={() => navigate('/habitos')} className="btn-regresar">REGRESAR</button>
-          <button type="button" className="btn-editar">EDITAR</button>
-          <button type="submit" className="btn-guardar">GUARDAR</button>
+
+      <div className="HistorialOdontologico-botones">
+
+              {flashMessage && (
+                <div className="flash-message">{flashMessage}</div>)}
+
+          <button type="button" onClick={() => navigate('/agregarpaciente')} className="HistorialOdontologico-btn-regresar">REGRESAR</button>
+          <button type="button" className="HistorialOdontologico-btn-editar" onClick={handleEdit}>EDITAR</button>
+          <button type="button" className="HistorialOdontologico-btn-guardar" onClick={handleEdit}>ELIMINAR</button>
+          <button type="button" className="HistorialOdontologico-btn-guardar" onClick={handleSave}>GUARDAR</button>
+
       </div>
 
         </form>

@@ -1,17 +1,71 @@
-/* Importa la fuente 'Poppins' desde Google Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;600;800&display=swap');
+
+.programarcita-content{
+    padding: 1% 1% 1% 1%;
+}
+
+h2 {
+  color: #F98972;
+  align-items: flex-start !important;
+}
+
+.programarcita-title + hr {
+  border: none;
+  height: 1px;
+  background-color: #74c0c5; /* Verde-azulado */
+  margin-bottom: 1.5rem;
+}
+
+.programarcita-tabs {
+  display: flex;
+  gap: 3rem; /*ESPACIO ENTRE LOS BOTONES DE NAGEVACION*/
+  border-bottom: 2px solid #ddd;
+  margin-left: 5px;
+
+}
+
+.programarcita-tab {
+  background: none;
+  border: none;
+  padding: 0.5rem 0;
+  font-size: 1rem;
+  color: #497a7d;
+  cursor: pointer;
+  position: relative;
+  transition: color 0.2s;
+}
+
+.programarcita-tab:hover {
+  color: #74c0c5;
+}
+
+.programarcita-tab.active {
+  color: #ff8a65; /*color del seleccionado*/
+}
+
+.programarcita-tab.active::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background-color: #ff8a65; /* linea debajo del boton de navegacion */
+}
 
 
-  
 .programarcita-titulo {
     color: #FF987B;
-    font-size: 40px;
-    margin-top: 25px;
-    margin-bottom: 25px;
+    font-size: 32px !important;
     text-align: left;
-    padding-left: 25px;
+    padding-left: 5px;
+    padding-top: 2px;
+    padding-bottom: 5px;
 }
   
+.programarcita-section{
+    padding-top: -15px !important;
+}
+
 .programarcita-formulario {
     margin: 2.5rem auto;
     padding: 2rem;
@@ -21,10 +75,13 @@
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
-  
-.programarcita-formulario div {
-    margin-bottom: 0;
+
+.programarcita-form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem; /* espacio horizontal y vertical */
 }
+
   
 .programarcita-formulario label {
     display: block;
@@ -71,7 +128,6 @@
     display: flex;
     align-items: center;
     gap: 1rem;
-    margin-top: 1rem;
 }
   
 .programarcita-mayoria-edad span {

@@ -222,37 +222,14 @@ function AgregarEmpleado() {
         </div>
 
         <div className="ingreEMPLEADO-form-buttons">
+
           {flashMessage && (
-            <div className="flash-message">{flashMessage}</div>
-          )}
-          <button
-            type="button"
-            className="ingreEMPLEADO-btn-delete"
-            onClick={handleDelete}
-          >
-            ELIMINAR
-          </button>
-          <button
-            type="button"
-            className="ingreEMPLEADO-btn-edit"
-            onClick={handleEdit}
-          >
-            EDITAR
-          </button>
-          <button
-            type="button"
-            className="ingreEMPLEADO-btn-add"
-            onClick={handleSave}
-          >
-            AGREGAR
-          </button>
-          <button
-            type="button"
-            className="ingreEMPLEADO-btn-back"
-            onClick={() => navigate(-1)}
-          >
-            REGRESAR
-          </button>
+            <div className="flash-message">{flashMessage}</div>)}
+
+          <button type="button" className="ingreEMPLEADO-btn-delete" onClick={handleDelete} > ELIMINAR</button>
+          <button type="button" className="ingreEMPLEADO-btn-edit" onClick={handleEdit}> EDITAR</button>
+          <button type="button" className="ingreEMPLEADO-btn-add" onClick={handleSave}> AGREGAR</button>
+          <button type="button" className="ingreEMPLEADO-btn-back" onClick={() => navigate(-1)}> REGRESAR</button>
         </div>
       </motion.section>
     </div>

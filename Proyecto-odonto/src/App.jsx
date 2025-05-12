@@ -11,15 +11,12 @@ import Habitos from "./componentes/habitos";
 import HistorialOdontologico from "./componentes/historialodontologico";
 import HistorialMedico from "./componentes/historialmedico";
 import Fotografias from "./componentes/fotografias";
-import Tratamiento1 from "./componentes/tratamiento1";
-import Registros from "./componentes/registros";
 import CalendarComponent from "./componentes/calendario";
 import Layout from "./componentes/layout";
 import CitasComponent from "./componentes/citas";
 import ContactosComponent from "./componentes/Contactos";
 import ProveedoresComponent from "./componentes/Proveedores"; 
 import ProgramarCita from "./componentes/programarcita";
-import HistorialCita from "./componentes/historialcita"; 
 import Doctores from "./componentes/Doctores";
 import Empleados from "./componentes/empleados";
 import Inventario from "./componentes/Inventario";
@@ -56,14 +53,11 @@ function App() {
           <Route path="/historialodontologico" element={<HistorialOdontologico />} />
           <Route path="/historialmedico" element={<HistorialMedico />} />
           <Route path="/fotografias" element={<Fotografias />} />
-          <Route path="/tratamiento1" element={<Tratamiento1 />} />
-          <Route path="/registros" element={<Registros />} />
           <Route path="/calendario" element={<CalendarComponent />} />
           <Route path="/citas" element={<CitasComponent />} />
           <Route path="/Contactos" element={<ContactosComponent />} />
           <Route path="/Proveedores" element={<ProveedoresComponent />} />
           <Route path="/programarcita" element={<ProgramarCita />} />
-          <Route path="/historialcita" element={<HistorialCita />} />
           <Route path="/Doctores" element={<Doctores />} />
           <Route path="/empleados" element={<Empleados />} />
           <Route path="/Inventario" element={<Inventario />} />

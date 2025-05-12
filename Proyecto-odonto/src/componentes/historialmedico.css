@@ -7,6 +7,103 @@
     padding: 0px;
 }
 
+
+/*IMAGEN Y TITULO*/
+.HistorialMedico-container2 {
+  display: flex;               
+  align-items: center;        
+  gap: 1rem;
+}
+
+.HistorialMedico-hr{
+  height: 1.3px;
+}
+
+.HistorialMedico-circle {
+  width: 50px;                /* diámetro del círculo */  
+  height: 50px;
+  border-radius: 50%;         /* hace el contenedor perfectamente redondo */  
+  overflow: hidden;           /* recorta la imagen al contorno */  
+  flex-shrink: 0;             /* evita que el círculo se encoja */  
+  display: flex;              /* para centrar la img dentro */  
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #74c0c5;     /* borde gris alrededor del círculo */
+  margin-bottom: 0.5rem;      /* separa el círculo del texto de abajo */
+}
+
+.HistorialMedico-image {
+  width: 70%; /* ocupa todo el círculo */  
+  height: auto;  /* mantiene proporción */  
+}
+
+.HistorialMedico-text {
+  flex: 1; /* el texto ocupa el resto del espacio */  
+}
+
+.HistorialMedico-hr{
+    height: 0;
+    margin-left: 15px !important;
+}
+
+
+.HistorialMedico-separator {
+  border: none;
+  border-top: 1px solid #ccc;
+  background-color: #74c0c5;
+  height: 0.00005cqmax;
+  margin-top: -5px !important;
+}
+
+
+/*NAV DE CONTATO PROVEEDORES*/
+.HistorialMedico-tabs {
+  display: flex;
+  padding-left: 15px;
+  gap: 3rem; /*ESPACIO ENTRE LOS BOTONES DE NAGEVACION*/
+  border-bottom: 2px solid #ddd;
+  margin-bottom: 0.5rem;
+}
+
+.HistorialMedico-tab {
+  background: none;
+  border: none;
+  padding: 0.5rem 0;
+  font-size: 1rem;
+  color: #497a7d;
+  cursor: pointer;
+  position: relative;
+  transition: color 0.2s;
+}
+
+.HistorialMedico-tab:hover {
+  color: #74c0c5;
+}
+
+.HistorialMedico-tab.active {
+  color: #ff8a65;  }
+
+.HistorialMedico-tab.active::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background-color: #ff8a65; /* linea debajo del boton de navegacion */
+}
+
+/* Título principal */
+.HistorialMedico-title {
+    color: #FF987B;
+    font-size: 32px;
+    padding-top: 2px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    text-align: left;
+    padding-left: 15px;
+  }
+
 /* Título principal */
 .titulos-pacientes3 {
     color: #FF987B;
@@ -304,22 +401,36 @@
       
       
     
-    .acciones-formulario3 button {
-        padding: 10px 20px;
-        border: none;
-        border-radius: 5px;
-        font-size: 14px;
-        font-weight: 600;
-        cursor: pointer;
-        background-color: #FF7F50; /* Color base para todos los botones */
-        color: white;
-        transition: all 0.3s ease; /* Transición suave para el hover */
-        margin: 0; /* Elimina márgenes adicionales */
-        margin-bottom: 10px; /* Espacio inferior para el botón */
-    }
-    
-    .acciones-formulario3 button:hover {
-        /* letter-spacing: 3px;
-        font-weight: 600; */
-        background-color: #FF987B; /* Cambia el color al pasar el cursor */
-    }
+  /* Estilos comunes para todos los botones */
+.HistorialMedico-btn-regresar, 
+.HistorialMedico-btn-editar, 
+.HistorialMedico-btn-eliminar, 
+.HistorialMedico-btn-guardar {
+  background-color: #FF7F50; /* Color de fondo por defecto (naranjita) */
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 20px;
+  margin-top: 20px;
+  margin: 5px;
+  cursor: pointer;
+  transition: transform 0.2s ease, background-color 0.3s;
+}
+
+/* Efecto al pasar el mouse (hover) */
+.HistorialMedico-btn-regresar:hover, 
+.HistorialMedico-btn-editar:hover, 
+.HistorialMedico-btn-eliminar:hover, 
+.HistorialMedico-btn-guardar:hover {
+  transform: scale(1.05); /* Aumenta el tamaño */
+  background-color: #f96b37; /* Tono más fuerte de naranja */
+}
+
+/* Efecto al presionar el botón (active) */
+.HistorialMedico-btn-regresar:active, 
+.HistorialMedico-btn-editar:active, 
+.HistorialMedico-btn-eliminar:active, 
+.HistorialMedico-btn-guardar:active {
+  transform: scale(0.95); /* Reduce el tamaño ligeramente */
+}

@@ -7,6 +7,8 @@ import './tratamiento.css';
 export default function TratamientoPaciente() {
   const navigate = useNavigate();
   const location = useLocation();
+  const [strippingForm, setStrippingForm] = useState({ pieza: '', fecha: '' });
+
 
   // — Datos generales del tratamiento —
   const [inicioTratamiento, setInicioTratamiento] = useState('');
@@ -29,7 +31,7 @@ export default function TratamientoPaciente() {
     // fetch paciente data...
   }, []);
 
-  // — Odontograma interactivo —
+  // — Odontograma —
   const [piezaInput, setPiezaInput] = useState('');
   const [piezasSeleccionadas, setPiezasSeleccionadas] = useState([]);
   const [odontogramaData, setOdontogramaData] = useState({});
@@ -44,6 +46,7 @@ export default function TratamientoPaciente() {
     detalles: '',
     motivo: ''
   });
+
   const [piezaActiva, setPiezaActiva] = useState(null);
   const [flash, setFlash] = useState('');
 
@@ -53,12 +56,7 @@ export default function TratamientoPaciente() {
     return !isNaN(n) && n >= 18 && n <= 48;
   };
 
-  // Muestra flash 2s
-  const mostrarFlash = msg => {
-    setFlash(msg);
-    setTimeout(() => setFlash(''), 2000);
-  };
-
+  //flashmesage de las piezas que se guardan
   const onGuardarPieza = () => {
     if (!valido(piezaInput)) {
       mostrarFlash('🦷 Pieza no existe (18–48)');
@@ -94,8 +92,6 @@ export default function TratamientoPaciente() {
     }
   };
 
-
-
 const [modalPieza, setModalPieza] = useState(null);
 // 2) Handlers para el modal
 const handleDeletePieza = pieza => {
@@ -116,14 +112,15 @@ const handleSavePieza = pieza => {
   };
 
   // — Tabs y navegación —
-  const tabConfig = [
-    { id: 'infoPaciente', label: 'Información de paciente', path: '/agregarpaciente' },
-    { id: 'habitos', label: 'Hábitos', path: '/habitos' },
-    { id: 'historialOdont', label: 'Historial Odontológico', path: '/historialodontologico' },
-    { id: 'historialMed', label: 'Historial Médico', path: '/historialmedico' },
-    { id: 'fotografias', label: 'Fotografías', path: '/fotografias' },
-    { id: 'tratamiento', label: 'Tratamiento', path: '/tratamiento' }
-  ];
+const tabConfig = [
+  { id: 'listadoPaciente', label: 'Listado', path: '/pacientes' },
+  { id: 'infoPaciente', label: 'Información de paciente', path: '/agregarpaciente' },
+  { id: 'habitos', label: 'Hábitos', path: '/habitos' },
+  { id: 'historialOdont', label: 'Historial Odontológico', path: '/historialodontologico' },
+  { id: 'historialMed', label: 'Historial Médico', path: '/historialmedico' },
+  { id: 'fotografias', label: 'Fotografías', path: '/fotografias' },
+  { id: 'tratamiento', label: 'Tratamiento', path: '/tratamiento' },
+];
 
   const tabVariants = {
     initial: { x: '100%', opacity: 0 },
@@ -132,37 +129,143 @@ const handleSavePieza = pieza => {
     transition: { duration: 0.4 }
   };
 
-  const handleSubmit = e => {
+  // Usa la ruta actual para establecer el tab activo
+  const [activeEncabezado, setActiveEncabezado] = useState(location.pathname);
+
+  // Actualiza el estado del tab activo cuando la ruta cambia
+  useEffect(() => {
+    setActiveEncabezado(location.pathname);
+  }, [location]);
+
+const [flashMessage, setFlashMessage] = useState('');
+const showFlash = (msg) => {
+  if (!flashMessage) { // Solo muestra si no hay mensaje activo
+    setFlashMessage(msg); // Muestra el nuevo mensaje
+    setTimeout(() => setFlashMessage(''), 3000); // Borra el mensaje después de 3 segundos
+  }
+};
+
+useEffect(() => {
+  if (flashMessage) {
+    const timer = setTimeout(() => setFlashMessage(''), 3000); // Oculta tras 3 segundos
+    return () => clearTimeout(timer);
+  }
+}, [flashMessage]);
+
+  const handleDelete = e => {
     e.preventDefault();
-    // enviar todo a backend...
-    navigate('/pacientes');
+    showFlash('🗑️ Eliminado correctamente');
   };
 
+  const handleEdit = e => {
+    e.preventDefault();
+    showFlash('🖋️ Editado correctamente');
+  };
 
+  const handleSave = e => {
+    e.preventDefault();
+    showFlash('💾 Guardado correctamente');
+  };
 
-/*FLASH DE LOS BOTONES DE ABAJO*/ 
-const [flashMessage, setFlashMessage] = useState('');
-const showFlash = (text) => {
-  setFlashMessage(text);
-  setTimeout(() => setFlashMessage(''), 3000);  // 3000 ms = 3 segundos
+  const handleSubmit = e => {
+    e.preventDefault();
+    showFlash('');
+  };
+
+{/*REGSTROS*/}
+  // — Registros dinámicos —
+const [arsPieces, setArsPieces] = useState([{ pieza: '', fecha: '' }]);
+const [strippingPieces, setStrippingPieces] = useState([{ pieza: '', fecha: '' }]);
+const [readhesionPieces, setReadhesionPieces] = useState([]);
+const [newReadhesion, setNewReadhesion] = useState({ pieza: '', fecha: '' });
+
+const handleDeleteRead = (index) => {
+  const updated = readhesionPieces.filter((_, i) => i !== index);
+  setReadhesionPieces(updated);
+  setModalRead(null);
 };
 
-const handleDelete = (e) => {
+   // Modal índices
+
+
+
+
+const [modalArs, setModalArs] = useState(null);
+const [modalStrip, setModalStrip] = useState(null);
+const [modalRead, setModalRead] = useState(null);
+const [arsForm, setArsForm] = useState({ fecha: '', pieza: '' });
+
+  const [arsList, setArsList] = useState([]);
+  const [newArs, setNewArs] = useState('');
+  const [strings, setStrings] = useState([]);
+  const [newString, setNewString] = useState('');
+  
+const handleAgregarReadhesion = (e) => {
   e.preventDefault();
-  // aquí tu lógica de eliminar...
-  showFlash('🗑️ Eliminado correctamente');
+  const pieza = newReadhesion.pieza.trim();
+  const fecha = newReadhesion.fecha;
+  if (!pieza || !fecha) {
+    showFlash('⚠️ Debes ingresar una pieza y una fecha');
+    return;
+  }
+  const yaExiste = readhesionPieces.some(
+    entrada => entrada.pieza === pieza && entrada.fecha === fecha
+  );
+  if (yaExiste) {
+    showFlash('⚠️ Esta pieza con esa fecha ya fue registrada');
+    return;
+  }
+  const nuevaEntrada = { pieza, fecha };
+  setReadhesionPieces(prev => [...prev, nuevaEntrada]);
+  setNewReadhesion({ pieza: '', fecha: '' });
+  showFlash('✅ Re-adhesión agregada correctamente');
 };
 
-const handleEdit = (e) => {
-  e.preventDefault();
-  // aquí tu lógica de edición...
-  showFlash('✏️ Editado correctamente');
+const handleAgregarARS = () => {
+  const { fecha, pieza } = arsForm;
+  
+  // Verifica si ambos campos tienen valor
+  if (fecha && pieza) {
+    setArsPieces(prev => [...prev, { fecha, pieza }]);
+    setArsForm({ fecha: '', pieza: '' }); // Limpiar formulario después de agregar
+  } else {
+    showFlash('⚠️ Debes ingresar una fecha y una pieza');
+  }
 };
 
-const handleSave = (e) => {
-  e.preventDefault();
-  // aquí tu lógica de guardado...
-  showFlash('💾 Guardado correctamente');
+
+
+const handleAgregarString = () => {
+  if (strippingForm.pieza.trim() && strippingForm.fecha) {
+    // Lógica para agregar Stripping
+    setStrippingPieces(prev => [...prev, strippingForm]);
+    setStrippingForm({ pieza: '', fecha: '' }); // Limpiar formulario
+  } else {
+    showFlash('⚠️ Debes ingresar una pieza y una fecha'); // Mostrar mensaje de advertencia si faltan datos
+  }
+};
+
+
+
+const handleVerArs = (i) => {
+  setModalArs(i);  // Solo abre el modal, no muestra el mensaje de guardado.
+  setFlashMessage('');  // Borra cualquier mensaje previo
+};
+
+
+// Función para eliminar un ARS
+const handleDeleteArs = (index) => {
+  const newArsPieces = arsPieces.filter((_, i) => i !== index);
+  setArsPieces(newArsPieces);
+  setModalArs(null); // Cierra el modal después de eliminar
+};
+
+
+const handleDeleteStrip = (index) => {
+  const newList = [...strippingPieces];  // Crear una copia de la lista
+  newList.splice(index, 1);  // Eliminar el elemento en el índice
+  setStrippingPieces(newList);  // Actualizar el estado con la nueva lista
+  setModalStrip(null);  // Cerrar el modal después de eliminar
 };
 
 
@@ -171,31 +274,20 @@ const handleSave = (e) => {
       {/* Mini-ventana flash */}
       {flash && <div className="flash-modal">{flash}</div>}
 
-      {/*flash MESEGA PARA BOTONES DE ABAJOOO*/}
-            {flashMessage && (
-            <div className="flash-modal">
-                {flashMessage}
-            </div>
-            )}
-
       {/* === Sección superior intacta === */}
       <div className="TratamientoPaciente-page">
-      <h1 className="TratamientoPaciente-title">Pacientes</h1>
-      <hr />
-      <div className="TratamientoPaciente-header">
-        <div className="TratamientoPaciente-avatar">
-          <img src="/imagenes/iconoUsuario.png" alt="usuario" />
-        </div>
-        <h2>[Nombre Paciente]</h2>
-      </div>
-      <hr />
 
+      <h2 className="TratamientoPaciente-title">Pacientes</h2>
+      <hr className="TratamientoPaciente-hr" />
       <nav className="TratamientoPaciente-tabs">
         {tabConfig.map(tab => (
           <button
             key={tab.id}
-            onClick={() => navigate(tab.path)}
-            className={location.pathname === tab.path ? 'active' : ''}
+            className={`TratamientoPaciente-tab ${activeEncabezado === tab.path ? 'active' : ''}`}
+            onClick={() => {
+              setActiveEncabezado(tab.path); // Establecer la ruta activa
+              navigate(tab.path); // Navegar a la ruta
+            }}
           >
             {tab.label}
           </button>
@@ -211,10 +303,33 @@ const handleSave = (e) => {
         exit="exit"
         transition={tabVariants.transition}
       >
+
+
+
+        <div className="TratamientoPaciente-container2">
+          <div className="TratamientoPaciente-circle">
+            <img src="/imagenes/paciente.png" alt="Proveedor" className="TratamientoPaciente-image" />
+          </div>
+          <div className="TratamientoPaciente-text">
+            <h2 className="TratamientoPaciente-header-title">Tratamiento</h2>
+          </div>
+        </div>
+        <hr className="TratamientoPaciente-separator" />
+
+
+
+
         <form className="TratamientoPaciente-form" onSubmit={handleSubmit}>
+  <div className="form-inner">
+
+
+                  {flashMessage && (
+                <div className="flash-message">{flashMessage}</div>)}
 
           {/* Columna Izquierda: Datos generales */}
-          <div>
+          <div className="TratamientoPaciente-dos-columnas">
+              <div className="columna">
+
             <div className="TratamientoPaciente-section">
               <label>Inicio de tratamiento:</label>
               <input
@@ -260,6 +375,7 @@ const handleSave = (e) => {
 
           {/* Columna Derecha: Marca, altura y retención */}
           <div className="TratamientoPaciente-side">
+            <div className='columna'>
             <div className="marca-container">
               <label>Marca:</label>
               <textarea
@@ -319,8 +435,12 @@ const handleSave = (e) => {
               </div>
             </div>
           </div>
+          </div>
+          </div>
 
           {/* Odontograma: tres columnas */}
+<div className="flex flex-col gap-2">
+
           <div className="odontograma-layout">
             {/* 1) Formulario Pieza */}
             <div className="odontograma-form">
@@ -345,14 +465,14 @@ const handleSave = (e) => {
                   <option>Obturación</option>
                 </select>
 
-<div className="checkbox-row">
-  <label>
-    <input
-      type="checkbox"
-      checked={datosActivos.tratar}
-      onChange={e => handleCambioDato('tratar', e.target.checked)}
-    /> Tratar
-  </label>
+                <div className="checkbox-row">
+                  <label>
+                    <input
+                      type="checkbox"
+                      checked={datosActivos.tratar}
+                      onChange={e => handleCambioDato('tratar', e.target.checked)}
+                    /> Tratar
+                  </label>
 
             <div className="checbokfomrpac">
                 <input
@@ -421,7 +541,7 @@ const handleSave = (e) => {
 
                         <div className="modal-buttons">
                         <button onClick={() => handleSavePieza(modalPieza)}>Modificar</button>
-                        <button onClick={() => handleDeletePieza(modalPieza)}>Eliminar</button>
+                        <button onClick={() => handleDeleteRead(modalPieza)}>Eliminar</button>
                         <button onClick={() => setModalPieza(null)}>Cerrar</button>
                         </div>
                     </div>
@@ -434,20 +554,213 @@ const handleSave = (e) => {
               <h3 className='h3Odontograma'>Odontograma Visual</h3>
               <img src="/imagenes/dientes.png" alt="Odontograma" />
             </div>
-          </div>
-
-          {/* Botones finales */}
-          
-<div className="TratamientoPaciente-buttons">
-  <button type="button" onClick={() => navigate(-1)}>REGRESAR</button>
-  <button type="button" onClick={handleDelete}>ELIMINAR</button>
-  <button type="button" onClick={handleEdit}>EDITAR</button>
-  <button type="button" onClick={handleSave}>GUARDAR</button>
 </div>
 
-        </form>
-      </motion.div>
+        {/* Registros */}
+        <div className="seccion-doble4 flex gap-6 mt-8">
+
+            <div className="registro-columna flex-1 bg-white p-4 rounded-xl shadow-md flex gap-4">
+              {/* Formulario ARS estático */}
+              <div className="flex-1">
+                <h3>ARS</h3>
+                <div className="camposs4 flex flex-col gap-2 mb-2">
+                  <label>Fecha:</label>
+                  <input
+                    type="time"
+                    value={arsForm.fecha}
+                    onChange={e => setArsForm(f => ({ ...f, fecha: e.target.value }))}
+                  />
+                  <label>Pieza:</label>
+                  <input
+                    type="text"
+                    value={arsForm.pieza}
+                    onChange={e => setArsForm(f => ({ ...f, pieza: e.target.value }))}
+                  />
+                </div>
+                <button className='butonred'onClick={handleAgregarARS}>AGREGAR</button>
+
+              </div>
+
+              {/* Listado ARS con scroll */}
+              <div className="flex-1">
+                <h4>Listado ARS</h4>
+                <ul className="mini-listado">
+                  {arsPieces.map((p, i) => (
+                    <li key={i} className="flex justify-between">
+                      <span>{p.pieza || '–'}</span>
+                      <button  className="butonverred" onClick={(handleVerArs) => setModalArs(i)}>Ver</button>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+{modalArs !== null && (
+  <div className="modal-overlay">
+    <div className="modal-content">
+      <h4>Detalle ARS #{modalArs + 1}</h4>
+      <p><strong>Pieza:</strong> {arsPieces[modalArs].pieza}</p>
+      <p><strong>Fecha:</strong> {arsPieces[modalArs].fecha}</p>
+      <div className="modal-buttons flex gap-2">
+        <button onClick={() => handleSaveArs(modalArs)}>Guardar</button>
+        <button onClick={() => handleDeleteArs(modalArs)}>Eliminar</button>
+        <button onClick={() => setModalArs(null)}>Cerrar</button>
       </div>
-    </>
-  );
+    </div>
+  </div>
+)}
+
+{modalStrip !== null && (
+  <div className="modal-overlay">
+    <div className="modal-content">
+      <h4>Detalle Stripping #{modalStrip + 1}</h4>
+      <p><strong>Pieza:</strong> {strippingPieces[modalStrip].pieza}</p>
+      <p><strong>Fecha:</strong> {strippingPieces[modalStrip].fecha}</p>
+      <div className="modal-buttons flex gap-2">
+        <button onClick={() => handleSaveStrip(modalStrip)}>Guardar</button>
+        <button onClick={() => handleDeleteRead(modalRead)}>Eliminar</button>
+        <button onClick={() => setModalStrip(null)}>Cerrar</button>
+      </div>
+    </div>
+  </div>
+)}
+
+          </div>
+
+                {/* Stripping */}
+                <div className="registro-columna flex-1 bg-white p-4 rounded-xl shadow-md flex gap-4">
+                  {/* Formulario para agregar piezas de Stripping */}
+{/* Formulario para agregar piezas de Stripping */}
+<div className="flex-1">
+  <h3>Stripping</h3>
+  <div className="camposs4 flex flex-col gap-2 mb-2">
+    <label>Fecha:</label>
+    <input
+      type="time"
+      value={strippingForm.fecha}
+      onChange={e => setStrippingForm(f => ({ ...f, fecha: e.target.value }))}
+    />
+    <label>Pieza:</label>
+    <input
+      type="text"
+      value={strippingForm.pieza}
+      onChange={e => setStrippingForm(f => ({ ...f, pieza: e.target.value }))}
+    />
+  </div>
+  <button className='butonred' onClick={handleAgregarString}>AGREGAR</button>
+</div>
+
+
+                  {/* Listado de Stripping */}
+                  <div className="flex-1">
+                    <h4>Listado Stripping</h4>
+                    <ul className="mini-listado">
+                      {strippingPieces.map((p, i) => (
+                        <li key={i} className="flex justify-between">
+                          <span>{p.pieza || '–'}</span>
+                          <button className="butonverred" onClick={() => setModalStrip(i)}>Ver</button>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+
+              {modalStrip !== null && (
+                <div className="modal-overlay">
+                  <div className="modal-content">
+                    <h4>Detalle Stripping #{modalStrip + 1}</h4>
+                    <p><strong>Pieza:</strong> {strippingPieces[modalStrip].pieza}</p>
+                    <p><strong>Fecha:</strong> {strippingPieces[modalStrip].fecha}</p>
+                    <div className="modal-buttons flex gap-2">
+                      <button onClick={() => handleSaveStrip(modalStrip)}>Guardar</button>
+                      <button onClick={() => handleDeleteStrip(modalStrip)}>Eliminar</button>
+                      <button onClick={() => setModalStrip(null)}>Cerrar</button>
+                    </div>
+                  </div>
+                </div>
+              )}
+          </div>
+
+            {/* Readhesiones */}
+            <div className="registro-columna-read">
+              {/* Formulario para agregar Readhesiones */}
+              <div className="flex-1">
+                <h3>Readhesiones</h3>
+                <div className="camposs4 flex flex-col gap-2 mb-2">
+                  <label>Fecha:</label>
+                  <input
+                    type="time"
+                    value={newReadhesion.fecha}
+                    onChange={e => setNewReadhesion({ ...newReadhesion, fecha: e.target.value })}
+                  />
+                  <label>Pieza:</label>
+                  <input
+                    type="text"
+                    value={newReadhesion.pieza}
+                    onChange={e => setNewReadhesion(prev => ({ ...prev, pieza: e.target.value }))}/>
+                </div>
+
+                <button className='butonred' onClick={handleAgregarReadhesion}>AGREGAR</button>
+                  </div>
+
+  {/* Listado de Readhesiones */}
+  <div className="flex-1">
+    <h4>Listado Readhesiones</h4>
+    <ul className="mini-listado">
+      {readhesionPieces.map((p, i) => (
+        <li key={i} className="flex justify-between">
+          <span>{p.pieza || '–'}</span>
+<button className="butonverred" onClick={() => setModalRead(i)}>
+  Ver
+</button>
+        </li>
+      ))}
+    </ul>
+  </div>
+
+  {/* Modal para detalle de Readhesión */}
+{modalRead !== null && (
+  <div className="modal-overlay">
+    <div className="modal-content">
+      <h4>Detalle Readhesión #{modalRead + 1}</h4>
+      <p><strong>Pieza:</strong> {readhesionPieces[modalRead].pieza}</p>
+      <p><strong>Fecha:</strong> {readhesionPieces[modalRead].fecha}</p>
+      <div className="modal-buttons flex gap-2">
+        <button
+          onClick={() => {
+            const newList = [...readhesionPieces];
+            newList.splice(modalRead, 1);
+            setReadhesionPieces(newList);
+            setModalRead(null);
+          }}
+        >
+          Eliminar
+        </button>
+        <button onClick={() => setModalRead(null)}>Cerrar</button>
+      </div>
+    </div>
+  </div>
+)}
+
+</div>
+
+
+
+
+        </div>
+          </div>
+
+          {/* Botones finales */}          
+  <div className="TrataPac-botones">
+          <button type="button" onClick={() => navigate('/agregarpaciente')} className="TrataPac-btn-regresar">REGRESAR</button>
+          <button type="button" className="TrataPac-btn-editar" onClick={handleEdit}>EDITAR</button>
+          <button type="button" className="TrataPac-btn-guardar" onClick={handleDelete}>ELIMINAR</button>
+          <button type="button" className="TrataPac-btn-guardar" onClick={handleSave}>GUARDAR</button>
+  </div>
+
+
+    </form>
+  </motion.div>
+</div>
+</>
+);
 }

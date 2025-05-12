@@ -29,14 +29,15 @@ function Habitos() {
       fetchFechaRegistro();
     }, []); // Se ejecuta solo una vez al montar el componente
 
-  const tabConfig = [
-     { id: "agregarpaciente", label: "Información de paciente", path: "/agregarpaciente" },
-     { id: "pacientes", label: "Hábitos", path: "/habitos" },
-     { id: "historialodontologico", label: "Historial Odontológico", path: "/historialodontologico" },
-     { id: "historialmedico", label: "Historial Médico", path: "/historialmedico" },
-     { id: "fotografias", label: "Fotografías", path: "/fotografias" },      
-     { id: "tratamiento", label: "Tratamiento", path: "/tratamiento1" },
-    ];
+const tabConfig = [
+  { id: 'listadoPaciente', label: 'Listado', path: '/pacientes' },
+  { id: 'infoPaciente', label: 'Información de paciente', path: '/agregarpaciente' },
+  { id: 'habitos', label: 'Hábitos', path: '/habitos' },
+  { id: 'historialOdont', label: 'Historial Odontológico', path: '/historialodontologico' },
+  { id: 'historialMed', label: 'Historial Médico', path: '/historialmedico' },
+  { id: 'fotografias', label: 'Fotografías', path: '/fotografias' },
+  { id: 'tratamiento', label: 'Tratamiento', path: '/tratamiento' },
+];
 
  const tabVariants = {
     initial: { x: '100%', opacity: 0 },
@@ -45,40 +46,70 @@ function Habitos() {
     transition: { duration: 0.4 }
   };
 
-  const handleSubmit = (e) => {
+  const [activeEncabezado, setActiveEncabezado] = useState('habitos');
+
+  /* FLASH DE LOS BOTONES DE ABAJO */
+  const [flashMessage, setFlashMessage] = useState('');
+  const showFlash = text => {
+    setFlashMessage(text);
+    setTimeout(() => setFlashMessage(''), 3000);
+  };
+
+  const handleDelete = e => {
     e.preventDefault();
-    navigate('/pacientes');
-  }
+    showFlash('🗑️ Eliminado correctamente');
+  };
+  const handleEdit = e => {
+    e.preventDefault();
+    showFlash('🖋️ Editado correctamente');
+  };
+  const handleSave = e => {
+    e.preventDefault();
+    showFlash('💾 Guardado correctamente');
+  };
+    const handleSubmit = e => {
+    e.preventDefault();
+    showFlash('💾 Guardado correctamente');
+  };
 
   return (
     <main className="formulario-content1">
-      <h1 className="titulos-pacientes1">Pacientes</h1>
-      <div className="formulario-header1">
-        <div className="circulo1-">
-          <img src="/imagenes/iconoUsuario.png" alt="icono usuario" className="icono-usuario1" />
-        </div>
-        <h2>[nombre]</h2>
-      </div>
 
-      <nav className="tabs2">
-      {tabConfig.map((tab) => (
-      <button
-      key={tab.id}
-      onClick={() => navigate(tab.path)}
-      className={location.pathname === tab.path ? "active" : ""} // Resaltado dinámico
-      >
-      {tab.label}
-      </button>
+      <h2 className="HabitosPacientes-title">Pacientes</h2>
+      <hr className="HabitosPacientes-hr" />
+
+      <nav className="HabitosPacientes-tabs">
+        {tabConfig.map(tab => (
+          <button
+            key={tab.id}
+            className={`HabitosPacientes-tab ${activeEncabezado === tab.id ? 'active' : ''}`}
+            onClick={() => {
+              setActiveEncabezado(tab.id);
+              navigate(tab.path);
+            }}>
+            {tab.label}
+          </button>
         ))}
       </nav>
+
       <motion.section  
         className="form-grid1"
         variants={tabVariants}
         initial="initial"
         animate="animate"
         exit="exit"
-        transition={tabVariants.transition}
-      >
+        transition={tabVariants.transition}>
+
+        <div className="HabitosPacientes-container2">
+          <div className="HabitosPacientes-circle">
+            <img src="/imagenes/paciente.png" alt="Proveedor" className="HabitosPacientes-image" />
+          </div>
+          <div className="HabitosPacientes-text">
+            <h2 className="HabitosPacientes-header-title">Habitos Pacientes</h2>
+          </div>
+        </div>
+        <hr className="HabitosPacientes-separator" />
+
         <form onSubmit={handleSubmit}>
        <div className="doble1"> 
         <div className="campos1">
@@ -98,7 +129,6 @@ function Habitos() {
               />
         </div>
         </div>
-        <h3 className="titulo-habitos">Hábitos</h3>
 
       <div className="cuatro1">
         <div className="camposs">
@@ -145,10 +175,16 @@ function Habitos() {
         </div>
       </div>
 
-      <div className="acciones-formulario1">
-          <button type="button" onClick={() => navigate('/agregarpaciente')} className="btn-regresar">REGRESAR</button>
-          <button type="button" className="btn-editar">EDITAR</button>
-          <button type="submit" className="btn-guardar">GUARDAR</button>
+      <div className="HabitosPacientes-botones">
+
+              {flashMessage && (
+                <div className="flash-message">{flashMessage}</div>)}
+
+          <button type="button" onClick={() => navigate('/agregarpaciente')} className="HabitosPacientes-btn-regresar">REGRESAR</button>
+          <button type="button" className="HabitosPacientes-btn-editar" onClick={handleEdit}>EDITAR</button>
+          <button type="button" className="HabitosPacientes-btn-guardar" onClick={handleEdit}>ELIMINAR</button>
+          <button type="button" className="HabitosPacientes-btn-guardar" onClick={handleSave}>GUARDAR</button>
+
       </div>
 
         </form>

@@ -7,124 +7,101 @@
     padding: 0px;
 }
 
+/*IMAGEN Y TITULO*/
+.HabitosPacientes-container2 {
+  display: flex;               
+  align-items: center;        
+  gap: 1rem;
+}
+
+.HabitosPacientes-hr{
+  height: 1.3px;
+}
+
+.HabitosPacientes-circle {
+  width: 50px;                /* diámetro del círculo */  
+  height: 50px;
+  border-radius: 50%;         /* hace el contenedor perfectamente redondo */  
+  overflow: hidden;           /* recorta la imagen al contorno */  
+  flex-shrink: 0;             /* evita que el círculo se encoja */  
+  display: flex;              /* para centrar la img dentro */  
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #74c0c5;     /* borde gris alrededor del círculo */
+  margin-bottom: 0.5rem;      /* separa el círculo del texto de abajo */
+}
+
+.HabitosPacientes-image {
+  width: 70%; /* ocupa todo el círculo */  
+  height: auto;  /* mantiene proporción */  
+}
+
+.HabitosPacientes-text {
+  flex: 1; /* el texto ocupa el resto del espacio */  
+}
+
+.HabitosPacientes-hr{
+    height: 0;
+    margin-left: 15px !important;
+}
+
+
+.HabitosPacientes-separator {
+  border: none;
+  border-top: 1px solid #ccc;
+  background-color: #74c0c5;
+  height: 0.00005cqmax;
+  margin-top: -5px !important;
+}
+
+
+/*NAV DE CONTATO PROVEEDORES*/
+.HabitosPacientes-tabs {
+  display: flex;
+  padding-left: 15px;
+  gap: 3rem; /*ESPACIO ENTRE LOS BOTONES DE NAGEVACION*/
+  border-bottom: 2px solid #ddd;
+  margin-bottom: 0.5rem;
+}
+
+.HabitosPacientes-tab {
+  background: none;
+  border: none;
+  padding: 0.5rem 0;
+  font-size: 1rem;
+  color: #497a7d;
+  cursor: pointer;
+  position: relative;
+  transition: color 0.2s;
+}
+
+.HabitosPacientes-tab:hover {
+  color: #74c0c5;
+}
+
+.HabitosPacientes-tab.active {
+  color: #ff8a65;  }
+
+.HabitosPacientes-tab.active::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background-color: #ff8a65; /* linea debajo del boton de navegacion */
+}
+
 /* Título principal */
-.titulos-pacientes1 {
+.HabitosPacientes-title {
     color: #FF987B;
-    font-size: 30px;
+    font-size: 32px;
+    padding-top: 2px;
     margin-top: 10px;
     margin-bottom: 10px;
     text-align: left;
-    padding-left: 20px;
+    padding-left: 15px;
 }
-
-/* Encabezado del formulario */
-.formulario-header1 {
-    display: flex; /* Usa flexbox para alinear los elementos */
-    align-items: center; /* Alinea verticalmente el círculo y el texto */
-    gap: 15px; /* Espaciado entre el círculo y el texto */
-    margin-bottom: 2rem;
-    position: relative; /* Para las líneas decorativas */
-    padding-left: 20px; /* Espaciado desde el sidebar */
-    padding-block: 7px;
-    border-top: 2px solid #6bbbc1; /* Línea decorativa superior */
-    border-bottom: 2px solid #6bbbc1; /* Línea decorativa inferior */
-    
-    
-}
-
-.formulario-header1 h2 {
-    font-size: 1.2rem;
-    color: #757575; /* Azul */
-    font-weight: normal; /* Normal */
-    text-align: center; /* Alinear a la izquierda */
-    margin: 0; /* Elimina márgenes adicionales */
-}
-
-.titulo-habitos {
-    font-size: 18px; /* Tamaño de fuente */
-    font-weight: bold; /* Negrita */
-    color: #56B0B3; /* Color del texto */
-    text-align: center; /* Centrar el texto */
-    margin-top: 10px; /* Espaciado superior */
-    position: relative;
-  }
-
-
-.titulo-habitos::before,
-.titulo-habitos::after {
-    content: ""; /* Crea un elemento vacío */
-    position: absolute;
-    top: 50%; /* Centra verticalmente las líneas con respecto al texto */
-    width: 45%; /* Longitud de las líneas */
-    height: 2px; /* Grosor de las líneas */
-    background-color: #56B0B3; /* Color de las líneas */
-}
-
-.titulo-habitos::before {
-    left: 0; /* Línea a la izquierda */
-}
-
-.titulo-habitos::after {
-    right: 0; /* Línea a la derecha */
-}
-
-.circulo1- {
-    width: 32px;
-    height: 32px;
-    border: 5px solid #B4DDDE;
-    background-color: #fefefe;
-    border-radius: 50%;
-    display: flex; /* Usa flexbox para centrar el contenido */
-    justify-content: center; /* Centra horizontalmente */
-    align-items: center; /* Centra verticalmente */
-    overflow: hidden; /* Asegura que el contenido no se salga del círculo */
-}
-
-.circulo1- img {
-    width: 22px;
-    height: auto;
-}
-/* Navegación de pestañas */
-.tabs2 {
-    margin-top: -20px;
-    display: flex;
-    justify-content: center; /* Centra horizontalmente */
-    gap: 40px;
-    margin-bottom: 20px;
-    border-bottom: 2px solid #6bbbc1; /* Línea decorativa debajo de las pestañas */
-    padding-bottom: 5px; /* Espaciado entre los botones y la línea */
-}
-
-.tabs2 button {
-    background: none; /* Elimina el fondo del botón */
-    border: none; /* Elimina el borde del botón */
-    color: #757575; /* Color gris para el texto */
-    font-size: 16px;
-    cursor: pointer;
-    transition: color 0.3s ease; /* Transición suave para el color */
-    padding: 0; /* Elimina el padding extra */
-    position: relative;
-}
-
-.tabs2 button.active {
-    color: #FF987B; /* Texto negro cuando está activo */
-}
-
-.tabs2 button:hover {
-    color: #FF987B; /* Texto naranja al pasar el cursor */
-}
-
-.tabs2 button.active::after {
-    content: '';
-    position: absolute;
-    bottom: -7px;
-    left: 0;
-    width: 100%;
-    height: 3px;
-    background-color: #ff8a65;
-    border-radius: 5px;
-  }
-
 
 /* Contenedor principal del formulario (centrado con márgenes) */
 .form-grid1 {
@@ -160,7 +137,6 @@
 }
 
 /* Etiquetas (alineadas a la derecha y con margen derecho) */
-
 .form-grid1 label {
     font-size: 16px;
     color: #757575;
@@ -189,7 +165,8 @@
     grid-template-columns: repeat(2, 1fr); /* 2 columnas */
     grid-template-rows: repeat(3, 1fr);   /* 3 filas */
     gap: 20px;
-    padding-top: 2px;
+    padding-top: 20px;
+    padding-bottom: 20px;
     margin-left: 60px;
   }
   
@@ -251,30 +228,35 @@
     color: #757575;
   } */
   
-
-/* Botones de acción */
-.acciones-formulario1 {
-    display: flex;
-    justify-content: flex-end; /* Alinea los botones a la derecha */
-    gap: 10px; /* Espaciado uniforme entre los botones */
-    margin-top: 40px;
+  /* Estilos comunes para todos los botones */
+.HabitosPacientes-btn-regresar, 
+.HabitosPacientes-btn-editar, 
+.HabitosPacientes-btn-eliminar, 
+.HabitosPacientes-btn-guardar {
+  background-color: #FF7F50; /* Color de fondo por defecto (naranjita) */
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 20px;
+  margin: 5px;
+  cursor: pointer;
+  transition: transform 0.2s ease, background-color 0.3s;
 }
 
-.acciones-formulario1 button {
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    font-size: 14px;
-    font-weight: 600;
-    cursor: pointer;
-    background-color: #FF7F50; /* Color base para todos los botones */
-    color: white;
-    transition: all 0.3s ease; /* Transición suave para el hover */
-    margin: 0; /* Elimina márgenes adicionales */
+/* Efecto al pasar el mouse (hover) */
+.HabitosPacientes-btn-regresar:hover, 
+.HabitosPacientes-btn-editar:hover, 
+.HabitosPacientes-btn-eliminar:hover, 
+.HabitosPacientes-btn-guardar:hover {
+  transform: scale(1.05); /* Aumenta el tamaño */
+  background-color: #f96b37; /* Tono más fuerte de naranja */
 }
 
-.acciones-formulario1 button:hover {
-    /* letter-spacing: 3px;
-    font-weight: 600; */
-    background-color: #FF987B; /* Cambia el color al pasar el cursor */
+/* Efecto al presionar el botón (active) */
+.HabitosPacientes-btn-regresar:active, 
+.HabitosPacientes-btn-editar:active, 
+.HabitosPacientes-btn-eliminar:active, 
+.HabitosPacientes-btn-guardar:active {
+  transform: scale(0.95); /* Reduce el tamaño ligeramente */
 }

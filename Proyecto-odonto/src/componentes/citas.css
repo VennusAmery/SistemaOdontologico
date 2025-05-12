@@ -1,190 +1,219 @@
-/* Importa la fuente 'Poppins' desde Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;600;800&display=swap');
 
-/* Contenido principal */
-
-/* Contenedor del contenido principal */
-.citas-content {
-    flex: 1; /* Ocupa el espacio restante */
-    background-color: #fefefe; /* Fondo blanco */
-    padding: 0px; /* Sin espaciado interno */
+.citas-container {
+  max-width: 1200px;
+  margin: 2px auto;
+  padding: 0 1rem;
+  overflow-x: hidden;  /* ✅ oculta solo lo horizontal */
 }
 
-/* Título principal */
-.citas-content h1 {
-    color: #FF987B; /* Color del texto */
-    font-size: 40px; /* Tamaño de fuente */
-    margin-top: 25px;
-    margin-bottom: 25px; /* Espaciado inferior */
-    text-align: left; /* Alinea el texto a la izquierda */
-    padding-left: 25px; /* Espaciado izquierdo */
+/*Titulo*/
+.citas-title {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #ff8a65; /* Naranja suave */
+  margin-bottom: 0.5rem;
+  text-align: left;     /* asegura alineación a la izquierda */
 }
 
-/* Título principal */
-.titulo-citas {
-    font-size: 2.5rem;
-    color: #FF7F50; /* Naranja */
-    margin-bottom: 1rem;
-    text-align: left; /* Alinear a la izquierda */
-    padding-left: 250px; /* Espaciado desde el sidebar */
+h2 {
+  color: #F98972;
+  align-items: flex-start !important;
 }
 
-/* Contenedor de la cabecera de citas */
-.citas-header h2 {
-    font-size: 1.3rem;
-    color: #757575; /* Azul */
-    font-weight: normal; /* Normal */
-    margin-bottom: 2rem;
-    text-align: left; /* Alinear a la izquierda */
-    padding-left: 25px; /* Espaciado desde el sidebar */
-    position: relative; /* Para las líneas superior e inferior */
+.citas-title + hr {
+  border: none;
+  height: 1px;
+  background-color: #74c0c5; /* Verde-azulado */
+  margin-bottom: 1.5rem;
 }
 
-.citas-header h2::before,
-.citas-header h2::after {
-    content: ""; /* Línea decorativa */
-    display: block;
-    height: 2px; /* Grosor de la línea */
-    background-color: #6bbbc1; /* Color del sidebar */
-    width: 100%; /* Ancho completo */
-    position: absolute;
-    left: 0;
+
+.citas-tabs {
+  display: flex;
+  gap: 3rem; /*ESPACIO ENTRE LOS BOTONES DE NAGEVACION*/
+  border-bottom: 2px solid #ddd;
+  margin-bottom: 1.5rem;
 }
 
-.citas-header h2::before {
-    top: -10px; /* Línea superior */
+.citas-tab {
+  background: none;
+  border: none;
+  padding: 0.5rem 0;
+  font-size: 1rem;
+  color: #ff8a65;
+  cursor: pointer;
+  position: relative;
+  transition: color 0.2s;
 }
 
-.citas-header h2::after {
-    bottom: -10px; /* Línea inferior */
+.citas-tab:hover {
+  color: #74c0c5;
 }
 
-/* Estilo para la barra de búsqueda */
-.busquedaa {
-    display: flex;
-    justify-content: center; /* Centrar horizontalmente */
-    align-items: center;
-    gap: 1rem;
-    margin-top: 3rem; /* Agrega un margen superior para separar el contenido */
+.citas-tab.active {
+  color: #497a7d; /*color del seleccionado*/
 }
 
-.busquedaa label {
-    font-size: 1rem;
-    color: #666;
+.citas-tab.active::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background-color: #ff8a65; /* linea debajo del boton de navegacion */
 }
 
-.busquedaa input {
-    padding: 0.5rem;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    width: 300px;
-    background-color: #E0F7F8; /* Azul claro */
+/*Seccion de busqueda*/
+.citas-search-section {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 100%;
+  padding-top: 10px;
 }
 
-.busquedaa button {
-    background-color: #FF7F50; /* Naranja */
-    color: white;
-    border: none;
-    padding: 0.5rem 1rem;
-    border-radius: 4px;
-    cursor: pointer;
-    font-weight: bold;
-    transition: background-color 0.3s ease;
+.citas-search-form {
+  width: 100%;
+  max-width: 800px; /* o lo que necesites */
+  margin: 1rem auto;
 }
 
-.busquedaa button:hover {
-    background-color: #FF987B; /* Naranja más claro */
+.citas-search-container {
+  position: relative;
+  width: 100%;
+  margin-top: 1PX;
 }
 
-/* Contenedor de citas recientes */
-.citas-recientes {
-    text-align: left; /* Alinear a la izquierda */
-    margin-top: 2rem;
-    padding-left: 30px; /* Espaciado desde el sidebar */
+.citas-search-input {
+  width: 100%; /* Se ajusta al tamaño del formulario */
+  padding: 0.75rem 2.5rem 0.75rem 1rem;
+  font-size: 1.1rem;
+  border: 1px solid #ccc;
+  border-radius: 0.5rem;
+  box-sizing: border-box;
+  background-color: #C7ECED;
+  color: #404040;
 }
 
-/* Título "Recientes" con línea al lado derecho */
-.citas-recientes h3 {
-    font-size: 1.3rem;
-    color: #757575; /* Azul */
-    font-weight: normal; /* Normal */
-    margin-bottom: 1rem;
-    position: relative; /* Para posicionar el pseudoelemento */
+.citas-search-icon {
+  position: absolute;
+  right: 0.005rem;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  color: #74c0c5;
 }
 
-.citas-recientes h3::after {
-    content: ""; /* Línea decorativa */
-    display: block;
-    height: 2px; /* Grosor de la línea */
-    background-color: #6bbbc1; /* Color del sidebar */
-    width: 80%; /* Ancho completo */
-    position: absolute;
-    top: 50%; /* Centrar verticalmente */
-    left: 12%; /* Posicionar al lado derecho del texto */
+.citas-search-item {
+  cursor: pointer;
+  transition: background-color 0.2s;
 }
 
-/* Grid para las tarjetas de citas */
-.citas-grid {
-    display: flex;
-    justify-content: center; /* Centrar las tarjetas */
-    gap: 2.5rem; /* Reducir el espacio entre las tarjetas */
-    margin-bottom: 2rem; /* Reducir el espacio inferior para subir el botón */
+.citas-search-item:hover {
+  background-color: #f0f0f0; /* opcional, mejora visual */
 }
 
-/* Tarjetas de citas */
-.cita-card {
-    display: flex;
-    flex-direction: column;
-    justify-content: center; /* Centrar verticalmente */
-    align-items: center; /* Centrar horizontalmente */
-    border: 8px solid #56B0B3; /* Borde del mismo color que la imagen */
-    border-radius: 8px;
-    padding: 1.5rem; /* Reducir el padding interno */
-    width: 180px; /* Mantener el ancho */
-    height: 190px; /* Aumentar ligeramente la altura */
-    background-color: #fefefe; /* Fondo blanco */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra ligera */
-    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transición suave */
-    cursor: pointer; /* Mostrar el cursor de botón */
+
+/*DONDE ESTAN LOS REGISTROS*/
+.citas-search-results {
+    text-align: left;  
+    margin-bottom: -12px;
+    padding: 1rem;
+    max-height: 300px;    /* tú ajustas según diseño */
+    overflow-y: auto;
+    overflow-x: hidden;   /* opcional: oculta scroll horizontal */
+    background: #fff;
+    border-radius: 0.5rem;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);}
+
+.citas-letter-separator {
+  font-weight: bold;
+  font-size: 1.2rem;
+  margin-top: 1rem;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 0.25rem;
+  color: #F98972;
 }
 
-.cita-card:hover {
-    transform: scale(1.05); /* Efecto de zoom */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra más pronunciada */
+.citas-search-item {
+  padding: 0.5rem 0;
+  padding-left: 1rem;
 }
 
-.cita-card img {
-    width: 90px; /* Aumentar el tamaño del ícono */
-    height: 90px; /* Aumentar el tamaño del ícono */
-    margin-bottom: 1rem; /* Espaciado entre la imagen y el texto */
+.citas-search-noresults {
+  padding: 0.5rem;
+  color: #888;
+  text-align: center;
 }
 
-.cita-card p {
-    font-size: 1rem; /* Mantener el tamaño del texto */
-    color: #56B0B3; /* Mismo color que el ícono */
-    font-weight: bold;
-    text-align: center; /* Asegurar que el texto esté centrado */
-    margin: 0; /* Eliminar márgenes adicionales */
-}
- 
-/* Botón de regresar */
-.btn-regresar {
-    display: block;
-    margin: 2rem auto; /* Subir el botón más cerca de las tarjetas */
-    background-color: #FF7F50; /* Naranja */
-    color: white;
-    border: none;
-    padding: 0.7rem 2.5rem; /* Mantener el tamaño del botón */
-    border-radius: 4px;
-    cursor: pointer; /* Mostrar el cursor de botón */
-    font-weight: bold;
-    transition: background-color 0.3s ease, transform 0.3s ease; /* Transición suave */
+/*scrollbar*/
+.citas-search-results::-webkit-scrollbar {
+  width: 8px;               /* grosor */
 }
 
-.btn-regresar:hover {
-    background-color: #FF987B; /* Naranja más claro */
-    transform: scale(1.05); /* Efecto de zoom */
-} 
+.citas-search-results::-webkit-scrollbar-track {
+  background: #f0f0f0;      /* pista */
+  border-radius: 4px;
+}
+
+.citas-search-results::-webkit-scrollbar-thumb {
+  background: #74c0c5;         /* color del pulgar (la barra) */
+  border-radius: 4px;
+}
+
+.citas-search-results::-webkit-scrollbar-thumb:hover {
+  background: #39959b;         /* al pasar el mouse */
+}
+
+
+/*BOTONES*/
+.citas-form-buttons {
+  display: flex;
+  justify-content: center; /* Centra los botones horizontalmente */
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: 1.5rem;
+}
+
+.citasform-buttons .citas-btn-delete,
+.citas-form-buttons .citas-btn-edit,
+.citas-form-buttons .citas-btn-back,
+.citas-form-buttons .citas-btn-add {
+  padding: 0.5rem 1rem;        
+  font-size: 1rem;            
+  border: none;
+  border-radius: 0.375rem;
+  cursor: pointer;
+  min-width: 100px;
+  font-weight: bold;
+  height: 40px;
+  transition: background-color 0.2s ease;
+}
+
+/* Colores específicos */
+.citas-btn-delete { background-color: #F98972; color: white; }
+.citas-btn-edit   { background-color: #F98972; color: white; }
+.citas-btn-back   { background-color: #F98972; color: white; }
+.citas-btn-add    { background-color: #F98972; color: white; }
+
+.citasbtn-delete:hover,
+.citas-btn-edit:hover,
+.citas-btn-back:hover ,
+.citas-btn-add:hover {
+  opacity: 0.9;
+}
+
+
+
+
+
+
+
 
 /* ========== MEDIA QUERIES PARA CITAS RESPONSIVE ========== */
 /* (Agregar al final de tu archivo CSS) */

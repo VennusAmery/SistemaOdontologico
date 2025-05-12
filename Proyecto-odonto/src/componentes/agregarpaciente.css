@@ -8,13 +8,14 @@
 }
 
 /* Título principal */
-.titulos-pacientes {
+.agregarpaciente-title {
     color: #FF987B;
-    font-size: 30px;
+    font-size: 32px;
+    padding-top: 2px;
     margin-top: 10px;
     margin-bottom: 10px;
     text-align: left;
-    padding-left: 20px;
+    padding-left: 15px;
 }
 
 /* Encabezado del formulario */
@@ -27,9 +28,7 @@
     padding-left: 20px; /* Espaciado desde el sidebar */
     padding-block: 7px;
     border-top: 2px solid #6bbbc1; /* Línea decorativa superior */
-    border-bottom: 2px solid #6bbbc1; /* Línea decorativa inferior */
-    
-    
+    border-bottom: 2px solid #6bbbc1; /* Línea decorativa inferior */   
 }
 
 
@@ -42,62 +41,94 @@
 }
 
 
-.circulo- {
-    width: 32px;
-    height: 32px;
-    border: 5px solid #B4DDDE;
-    background-color: #fefefe;
-    border-radius: 50%;
-    display: flex; /* Usa flexbox para centrar el contenido */
-    justify-content: center; /* Centra horizontalmente */
-    align-items: center; /* Centra verticalmente */
-    overflow: hidden; /* Asegura que el contenido no se salga del círculo */
+/*IMAGEN Y TITULO*/
+.agregarpaciente-container2 {
+  display: flex;               
+  align-items: center;        
+  gap: 1rem;
 }
 
-.circulo- img {
-    width: 22px;
-    height: auto;
-}
-/* Navegación de pestañas */
-.tabs1 {
-    margin-top: -20px;
-    display: flex;
-    justify-content: center; /* Centra horizontalmente */
-    gap: 40px;
-    margin-bottom: 20px;
-    border-bottom: 2px solid #6bbbc1; /* Línea decorativa debajo de las pestañas */
-    padding-bottom: 5px; /* Espaciado entre los botones y la línea */
+.agregarpaciente-hr{
+  height: 1.3px;
 }
 
-.tabs1 button {
-    background: none; /* Elimina el fondo del botón */
-    border: none; /* Elimina el borde del botón */
-    color: #757575; /* Color gris para el texto */
-    font-size: 16px;
-    cursor: pointer;
-    transition: color 0.3s ease; /* Transición suave para el color */
-    padding: 0; /* Elimina el padding extra */
-    position: relative;
+.agregarpaciente-circle {
+  width: 50px;                /* diámetro del círculo */  
+  height: 50px;
+  border-radius: 50%;         /* hace el contenedor perfectamente redondo */  
+  overflow: hidden;           /* recorta la imagen al contorno */  
+  flex-shrink: 0;             /* evita que el círculo se encoja */  
+  display: flex;              /* para centrar la img dentro */  
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #74c0c5;     /* borde gris alrededor del círculo */
+  margin-bottom: 0.5rem;      /* separa el círculo del texto de abajo */
 }
 
-.tabs1 button.active {
-    color: #FF987B; /* Texto negro cuando está activo */
+.agregarpaciente-image {
+  width: 70%; /* ocupa todo el círculo */  
+  height: auto;  /* mantiene proporción */  
 }
 
-.tabs1 button:hover {
-    color: #FF987B; /* Texto naranja al pasar el cursor */
+.agregarpaciente-text {
+  flex: 1; /* el texto ocupa el resto del espacio */  
 }
 
-.tabs1 button.active::after {
-    content: '';
-    position: absolute;
-    bottom: -7px;
-    left: 0;
-    width: 100%;
-    height: 3px;
-    background-color: #ff8a65;
-    border-radius: 5px;
-  }
+.agregarpaciente-hr{
+    height: 0;
+    margin-left: 15px !important;
+}
+
+
+.agregarpaciente-separator {
+  border: none;
+  border-top: 1px solid #ccc;
+  background-color: #74c0c5;
+  height: 0.00005cqmax;
+  margin-top: -5px !important;
+}
+
+
+/*NAV DE CONTATO PROVEEDORES*/
+.agregarpaciente-tabs {
+  display: flex;
+  padding-left: 15px;
+  gap: 3rem; /*ESPACIO ENTRE LOS BOTONES DE NAGEVACION*/
+  border-bottom: 2px solid #ddd;
+  margin-bottom: 0.5rem;
+}
+
+.agregarpaciente-tab {
+  background: none;
+  border: none;
+  padding: 0.5rem 0;
+  font-size: 1rem;
+  color: #497a7d;
+  cursor: pointer;
+  position: relative;
+  transition: color 0.2s;
+}
+
+.agregarpaciente-tab:hover {
+  color: #74c0c5;
+}
+
+.agregarpaciente-tab.active {
+  color: #ff8a65;  }
+
+.agregarpaciente-tab.active::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background-color: #ff8a65; /* linea debajo del boton de navegacion */
+}
+
+
+
+
 
 /* Contenedor principal del formulario (centrado con márgenes) */
 .form-grid {
@@ -256,31 +287,27 @@
 }
   
 
-/* Botones de acción */
-.acciones-formulario {
-    display: flex;
-    justify-content: flex-end; /* Alinea los botones a la derecha */
-    gap: 10px; /* Espaciado uniforme entre los botones */
-    margin-top: 5px;
+
+  /* Botones de acción al pie */
+.agregarpaciente-btn {
+  background-color: #FF7F50; /* naranjita */
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 20px;
+  margin: 5px;
+  cursor: pointer;
+  transition: transform 0.2s ease, background-color 0.3s;
 }
 
-.acciones-formulario button {
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    font-size: 14px;
-    font-weight: 600;
-    cursor: pointer;
-    background-color: #FF7F50; /* Color base para todos los botones */
-    color: white;
-    transition: all 0.3s ease; /* Transición suave para el hover */
-    margin: 0; /* Elimina márgenes adicionales */
+.agregarpaciente-btn:hover {
+  transform: scale(1.05); /* se acerca */
+  background-color: #f96b37;  /* tono más fuerte al pasar el mouse */
 }
 
-.acciones-formulario button:hover {
-    /* letter-spacing: 3px;
-    font-weight: 600; */
-    background-color: #FF987B; /* Cambia el color al pasar el cursor */
+.agregarpaciente-btn:active {
+  transform: scale(0.95); /* leve efecto al presionar */
 }
 
 

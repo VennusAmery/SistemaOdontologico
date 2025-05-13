@@ -7,7 +7,6 @@ const listmateTabs = [
   { id: 'inventario',     label: 'Listado de Material',                 path: '/inventario'     },
   { id: 'ingresoMaterial', label: 'Ingreso Material',                    path: '/ingresoMaterial' },
   { id: 'infoMaterial',    label: 'Información de material utilizado',   path: '/infoMaterial'   },
-  { id: 'citaMaterial',    label: 'Material usado en cita',              path: '/citaMaterial'   },
 ];
 
 const slideVariants = {
@@ -120,7 +119,7 @@ export default function InfoMaterial() {
 
         <div className="listmate-form-grid">
           <div className="listmate-form-col">
-            <label>ID Producto:</label>
+            <label>Producto:</label>
             <input
               name="idProducto"
               value={listmateData.idProducto}
@@ -152,12 +151,6 @@ export default function InfoMaterial() {
             />
           </div>
           <div className="listmate-form-col">
-            <label>Nombre Producto:</label>
-            <input
-              name="nombreProducto"
-              value={listmateData.nombreProducto}
-              onChange={handleListmateChange}
-            />
             <label>Descripción:</label>
             <textarea
               name="descripcion"

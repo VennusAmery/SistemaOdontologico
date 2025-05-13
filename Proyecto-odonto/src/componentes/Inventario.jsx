@@ -7,7 +7,6 @@ const tabConfig = [
   { id: 'listadoMaterial', label: 'Listado de Material', path: '/listadoMaterial' },
   { id: 'ingresoMaterial', label: 'Ingreso Material', path: '/ingresoMaterial' },
   { id: 'infoMaterial', label: 'Información de material utilizado', path: '/infoMaterial' },
-  { id: 'citaMaterial', label: 'Material usado en cita', path: '/citaMaterial' },
 ];
 
 const slideVariants = {

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import './clinica.css';
@@ -18,17 +18,40 @@ const slideVariants = {
 const Clinica = () => {
   const navigate = useNavigate();
   const [tabActiva, setTabActiva] = useState(tabConfig[0].id);
+  const [modoEdicion, setModoEdicion] = useState(false); 
+  const [formData, setFormData] = useState({
+    nombre: 'Clínica Zona 14',
+    ubicacion: 'Ciudad de Guatemala',
+    correo: 'zona14@clinica.gt',
+    telefono: '2222-3333',
+    apertura: '08:00',
+    cierre: '17:00',
+  });  
 
-  const handleNavigation = () => navigate(-1);
+useEffect(() => {
+  const fetchClinica = async () => {
+    try {
+      const clinicaId = tabActiva === 'clinica14' ? 2 : 3; // Aquí defines el ID según la pestaña activa
+      const res = await fetch(`/api/clinica/${clinicaId}`);
+      if (!res.ok) throw new Error('Error al cargar datos');
+      const data = await res.json();
+      setFormData(data);
+    } catch (err) {
+      console.error('Error al obtener clínica:', err);
+      setFlashMessage('❌ Error al cargar la clínica');
+    }
+  };
 
+  fetchClinica();
+}, [tabActiva]); // Ahora vuelve a ejecutarse cada vez que cambies de pestaña
+
+  
+  
   const handleTabClick = (tab) => {
     setTabActiva(tab.id);
     navigate(tab.path);
   };
 
-
-
-  
   /*FLASH DE LOS BOTONES DE ABAJO*/ 
   const [flashMessage, setFlashMessage] = useState('');
   const showFlash = (text) => {
@@ -42,17 +65,43 @@ const Clinica = () => {
     showFlash('🗑️ Eliminado correctamente');
   };
   
+
+const handleInputChange = (e) => {
+  const { name, value } = e.target;
+  setFormData(prev => ({ ...prev, [name]: value }));
+};
+
+
   const handleEdit = (e) => {
     e.preventDefault();
-    // aquí tu lógica de edición...
-    showFlash('🖋️ Editado correctamente');
+    setModoEdicion(true);
+    showFlash('🖋️ Modo edición activado');
   };
-  
-  const handleSave = (e) => {
-    e.preventDefault();
-    // aquí tu lógica de guardado...
-    showFlash('💾 Guardado correctamente');
-  };
+
+const handleSave = async (e) => {
+  e.preventDefault();
+  setModoEdicion(false);
+  showFlash('💾 Cambios guardados');
+
+  try {
+    const clinicaId = tabActiva === 'clinica14' ? 2 : 3; // Aquí también definimos el ID según la pestaña activa
+    const res = await fetch(`/api/clinica/${clinicaId}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(formData),
+    });
+
+    if (!res.ok) throw new Error('Error al guardar');
+    showFlash('✅ Cambios guardados correctamente');
+  } catch (error) {
+    console.error(error);
+    showFlash('❌ Error al guardar los cambios');
+  }
+};
+
+
 
   const renderFormularioClinica = (titulo) => (
     <div className="clinica-bloque">
@@ -60,35 +109,69 @@ const Clinica = () => {
       <div className="clinica-fila">
         <div className="clinica-columna-izquierda">
           <label>Nombre:</label>
-          <input type="text" className="clinica-input" />
+          <input
+                type="text"
+  className={`clinica-input ${modoEdicion ? 'editable' : 'readonly'}`}
+                name="nombre"
+                value={formData.nombre}
+                onChange={handleInputChange}
+                disabled={!modoEdicion}
+              />
           <label>Ubicación:</label>
-          <input type="text" className="clinica-input" />
+          <input
+              type="text"
+  className={`clinica-input ${modoEdicion ? 'editable' : 'readonly'}`}
+              name="ubicacion"
+              value={formData.ubicacion}
+              onChange={handleInputChange}
+              disabled={!modoEdicion}
+            />
           <label>Correo:</label>
-          <input type="email" className="clinica-input" />
+          <input
+                  type="email"
+  className={`clinica-input ${modoEdicion ? 'editable' : 'readonly'}`}
+                  name="correo"
+                  value={formData.correo}
+                  onChange={handleInputChange}
+                  disabled={!modoEdicion}
+                />
           <label>Teléfono:</label>
-          <input type="tel" className="clinica-input" />
+          <input
+                type="tel"
+  className={`clinica-input ${modoEdicion ? 'editable' : 'readonly'}`}
+                name="telefono"
+                value={formData.telefono}
+                onChange={handleInputChange}
+                disabled={!modoEdicion}
+              />        
         </div>
 
 <div className="clinica-columna-derecha">
   <label htmlFor="horario-apertura" className="clinica-label apertura-label">
     Hora Apertura:
   </label>
-  <input
-    type="time"
-    id="horario-apertura"
-    name="horarioApertura"
-    className="clinica-input horario-input apertura-input"
-  />
+        <input
+          type="time"
+          id="horario-apertura"
+          name="apertura"
+  className={`clinica-input ${modoEdicion ? 'editable' : 'readonly'}`}
+          value={formData.apertura}
+          onChange={handleInputChange}
+          disabled={!modoEdicion}
+        />
 
   <label htmlFor="horario-cierre" className="clinica-label cierre-label">
     Hora Cierre:
   </label>
-  <input
-    type="time"
-    id="horario-cierre"
-    name="horarioCierre"
-    className="clinica-input horario-input cierre-input"
-  />
+        <input
+          type="time"
+          id="horario-cierre"
+          name="cierre"
+  className={`clinica-input ${modoEdicion ? 'editable' : 'readonly'}`}
+          value={formData.cierre}
+          onChange={handleInputChange}
+          disabled={!modoEdicion}
+        />
 </div>
 
       </div>

@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './ingresoMaterial.css';
+import axios from 'axios';
 import { motion } from 'framer-motion';
 
 const tabConfig = [
-  { id: 'inventario',     label: 'Listado de Material',             path: '/inventario'     },
-  { id: 'ingresoMaterial', label: 'Ingreso Material',                path: '/ingresoMaterial' },
+  { id: 'inventario',     label: 'Listado de Material',              path: '/inventario'     },
+  { id: 'ingresoMaterial', label: 'Ingreso Material',                 path: '/ingresoMaterial' },
   { id: 'infoMaterial',    label: 'Información de material utilizado', path: '/infoMaterial'   },
-  { id: 'citaMaterial',    label: 'Material usado en cita',          path: '/citaMaterial'   },
 ];
 
 const slideVariants = {
@@ -20,18 +20,16 @@ const slideVariants = {
 export default function IngresoMaterial() {
   const navigate = useNavigate();
   const [tabActiva, setTabActiva] = useState('ingresoMaterial');
-  const [message, setMessage]       = useState('');
+  const [message, setMessage]     = useState('');
 
   const [formData, setFormData] = useState({
-    id: '',
     nombre: '',
     cantidad: 1,
-    fechaEntrega: '',
     fechaSalida: '',
-    proveedor: '',
     vencimiento: '',
+    proveedor: '',
     clinica: '',
-    precio: '',
+    monto: '',           // Declarado correctamente
     descripcion: '',
     estado: {
       disponible: false,
@@ -40,6 +38,7 @@ export default function IngresoMaterial() {
       pocasUnidades: false
     }
   });
+
   const [submitted, setSubmitted] = useState(false);
 
   const handleTabClick = tab => {
@@ -49,20 +48,24 @@ export default function IngresoMaterial() {
 
   const handleChange = e => {
     const { name, value, type, checked } = e.target;
+
+    // Si es uno de los checkboxes de estado
     if (name in formData.estado) {
       setFormData(prev => ({
         ...prev,
         estado: { ...prev.estado, [name]: checked }
       }));
-    } else {
-      setFormData(prev => ({
-        ...prev,
-        [name]: type === 'number' ? parseFloat(value) : value
-      }));
+      return;
     }
+
+    // Para inputs normales
+    setFormData(prev => ({
+      ...prev,
+      [name]: type === 'number' ? parseFloat(value) : value
+    }));
   };
 
-  // dispara el flash message y lo limpia a los 2s
+  // Flash message
   const flashMessage = text => {
     setMessage(text);
     setTimeout(() => setMessage(''), 2000);
@@ -72,11 +75,33 @@ export default function IngresoMaterial() {
   const handleEdit   = () => flashMessage('Editado correctamente');
   const handleDelete = () => flashMessage('Eliminado correctamente');
 
-  const handleSubmit = e => {
+  const handleSubmit = async e => {
     e.preventDefault();
-    console.log('Nuevo material ingresado:', formData);
-    setSubmitted(true);
-    flashMessage('Guardado correctamente');
+
+    const payload = {
+      nombre: formData.nombre,
+      cantidad: formData.cantidad,
+      ingreso: formData.fechaSalida || null,
+      vencimiento: formData.vencimiento || null,
+      id_proveedor: parseInt(formData.proveedor, 10) || null,
+      id_clinica: parseInt(formData.clinica, 10) || null,
+      monto: formData.monto !== '' ? parseFloat(formData.monto) : null,
+      descripcion: formData.descripcion,
+      estado_disponible: formData.estado.disponible,
+      estado_agotado: formData.estado.agotado,
+      estado_solicitado: formData.estado.solicitado,
+      estado_pocas_unidades: formData.estado.pocasUnidades
+    };
+
+    try {
+      const response = await axios.post('http://localhost:4000/api/productos', payload);
+      console.log('✅ Material guardado:', response.data);
+      setSubmitted(true);
+      flashMessage('Guardado correctamente');
+    } catch (error) {
+      console.error('❌ Error al guardar:', error.response?.data || error.message);
+      flashMessage('Error al guardar');
+    }
   };
 
   const handleBack = () => navigate(-1);
@@ -100,11 +125,7 @@ export default function IngresoMaterial() {
       </div>
 
       {/* Flash message */}
-      {message && (
-        <div className="flash-message">
-          {message}
-        </div>
-      )}
+      {message && <div className="flash-message">{message}</div>}
 
       {/* Contenido con animación */}
       <motion.div
@@ -118,10 +139,6 @@ export default function IngresoMaterial() {
         <form className="ingreso-form" onSubmit={handleSubmit}>
           <div className="col-left">
             <div className="form-group">
-              <label>ID Producto:</label>
-              <input name="id" value={formData.id} onChange={handleChange} required />
-            </div>
-            <div className="form-group">
               <label>Cantidad:</label>
               <input
                 type="number"
@@ -133,16 +150,16 @@ export default function IngresoMaterial() {
               />
             </div>
             <div className="form-group">
-              <label>Fecha Entrega:</label>
+              <label>Producto:</label>
               <input
-                type="date"
-                name="fechaEntrega"
-                value={formData.fechaEntrega}
+                type="text"
+                name="nombre"
+                value={formData.nombre}
                 onChange={handleChange}
               />
             </div>
             <div className="form-group">
-              <label>Fecha Salida:</label>
+              <label>Ingreso:</label>
               <input
                 type="date"
                 name="fechaSalida"
@@ -152,7 +169,11 @@ export default function IngresoMaterial() {
             </div>
             <div className="form-group">
               <label>Proveedor:</label>
-              <input name="proveedor" value={formData.proveedor} onChange={handleChange} />
+              <input
+                name="proveedor"
+                value={formData.proveedor}
+                onChange={handleChange}
+              />
             </div>
             <div className="form-group">
               <label>Vencimiento:</label>
@@ -165,14 +186,18 @@ export default function IngresoMaterial() {
             </div>
             <div className="form-group">
               <label>Clínica:</label>
-              <input name="clinica" value={formData.clinica} onChange={handleChange} />
+              <input
+                name="clinica"
+                value={formData.clinica}
+                onChange={handleChange}
+              />
             </div>
             <div className="form-group">
-              <label>Precio:</label>
+              <label>Monto:</label>
               <input
                 type="number"
-                name="precio"
-                value={formData.precio}
+                name="monto"
+                value={formData.monto}
                 onChange={handleChange}
                 step="0.01"
               />
@@ -180,11 +205,6 @@ export default function IngresoMaterial() {
           </div>
 
           <div className="col-right">
-            <div className="form-group">
-              <label>Nombre Producto:</label>
-              <input name="nombre" value={formData.nombre} onChange={handleChange} required />
-            </div>
-
             <fieldset className="estado-group">
               <legend>Estado</legend>
               {Object.keys(formData.estado).map(key => (
@@ -212,32 +232,16 @@ export default function IngresoMaterial() {
 
           {/* Botones de acción */}
           <div className="ingM-form-buttons">
-            <button
-              type="button"
-              className="ingM-btn-back"
-              onClick={handleBack}
-            >
+            <button type="button" className="ingM-btn-back" onClick={handleBack}>
               REGRESAR
             </button>
-            <button
-              type="button"
-              className="ingM-btn-delete"
-              onClick={handleDelete}
-            >
+            <button type="button" className="ingM-btn-delete" onClick={handleDelete}>
               ELIMINAR
             </button>
-            <button
-              type="button"
-              className="ingM-btn-edit"
-              onClick={handleEdit}
-            >
+            <button type="button" className="ingM-btn-edit"   onClick={handleEdit}>
               EDITAR
             </button>
-            <button
-              type="submit"
-              className="ingM-btn-add"
-              onClick={handleSave}
-            >
+            <button type="submit"     className="ingM-btn-add"    onClick={handleSave}>
               GUARDAR
             </button>
           </div>

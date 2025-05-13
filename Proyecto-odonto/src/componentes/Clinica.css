@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;600;800&display=swap');
 
-.inv-container {
+.clinica-container {
   max-width: 1200px;
   margin: 2px auto;
   padding: 0 1rem;
@@ -8,7 +8,7 @@
 }
 
 /*Titulo*/
-.inv-title {
+.clinica-titulo {
   font-size: 2rem;
   font-weight: bold;
   color: #ff8a65; /* Naranja suave */
@@ -22,7 +22,7 @@ h2 {
 }
 
 
-.inv-title + hr {
+.clinica-titulo + hr {
   border: none;
   height: 1px;
   background-color: #74c0c5; /* Verde-azulado */
@@ -30,14 +30,14 @@ h2 {
 }
 
 
-.inv-tabs {
+.clinica-tabs {
   display: flex;
   gap: 3rem; /*ESPACIO ENTRE LOS BOTONES DE NAGEVACION*/
   border-bottom: 2px solid #ddd;
   margin-bottom: 1.5rem;
 }
 
-.inv-tab {
+.clinica-tab {
   background: none;
   border: none;
   padding: 0.5rem 0;
@@ -48,15 +48,15 @@ h2 {
   transition: color 0.2s;
 }
 
-.inv-tab:hover {
+.clinica-tab:hover {
   color: #74c0c5;
 }
 
-.inv-tab.active {
+.clinica-tab.active {
   color: #497a7d; /*color del seleccionado*/
 }
 
-.inv-tab.active::after {
+.clinica-tab.active::after {
   content: '';
   position: absolute;
   bottom: -2px;
@@ -128,22 +128,22 @@ h2 {
     text-align: left;
   }
 
-/* Estilos para hacer el input de hora más corto verticalmente */
-.clinica-input.horario-input.apertura-input,
-.clinica-input.horario-input.cierre-input {
-  height: 30px;              /* Establece la altura que desees */
-  padding: 3px 5px;          /* Ajusta el relleno para modificar el tamaño */
-  font-size: 0.9rem;         /* Cambia el tamaño de la fuente */
-  line-height: 20px;         /* Ajusta el espaciado de las líneas dentro del input */
-  box-sizing: border-box;    /* Asegura que el padding y el border no afecten el tamaño */
+
+.clinica-input.readonly {
+  background-color: #d5f1f2;
+  border: 1px solid #c7dadb;
+  color: #2d2d2d;
+  font-size: 15px;
+  height: 25px;
 }
 
-
-
-
+.clinica-input.editable {
+  background-color: #d5f1f2;
+  border: 1px solid #ccc;
+}
 
 /*BOTONES*/
-  .clinic-form-buttons {
+  .clinica-botones {
     display: flex;
     justify-content: center; /* Centra los botones horizontalmente */
     align-items: center; /* Centra los botones verticalmente */

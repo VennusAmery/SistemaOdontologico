@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate, useLocation } from 'react-router-dom';
 import './Proveedores.css';
+import axios from 'axios';
 
 export default function Proveedores() {
   const navigate = useNavigate();
@@ -20,7 +21,7 @@ export default function Proveedores() {
     ubicacion: '',
     nit: '',
     telefono: '',
-    correoElectronico: '',
+    correo: '',
   });
 
   const [formData, setFormData] = useState({
@@ -59,52 +60,6 @@ export default function Proveedores() {
     }
   };
 
-  /*DATOS QUE TLEFONOS Y <CORREOS></CORREOS*/
-  const [phoneList] = useState([
-  '555-1234',
-  '555-5678',
-  '555-8765',
-    '555-1234',
-  '555-5678',
-  '555-8765',
-    '555-1234',
-  '555-5678',
-  '555-8765',
-    '555-1234',
-  '555-5678',
-  '555-8765',
-    '555-1234',
-  '555-5678',
-  '555-8765',
-    '555-1234',
-  '555-5678',
-  '555-8765',
-    '555-1234',
-  '555-5678',
-  '555-8765',
-    '555-1234',
-  '555-5678',
-  '555-8765',
-    '555-1234',
-  '555-5678',
-  '555-8765',
-    '555-1234',
-  '555-5678',
-  '555-8765',
-    '555-1234',
-  '555-5678',
-  '555-8765',
-    '555-1234',
-  '555-5678',
-  '555-8765',
-]);
-
-const [emailList] = useState([
-  'juan@example.com',
-  'maria@example.com',
-  'sofia@example.com',
-]);
-
 
   useEffect(() => {
     const cur = tabsEncabezado.find(tab => tab.path === location.pathname);
@@ -116,8 +71,35 @@ const [emailList] = useState([
     setTimeout(() => setMessage(''), 2000);
   };
 
-  const handleSave = () => flashMessage('💾 Guardado correctamente');
-  const handleEdit = () => flashMessage('🖋️ Editado correctamente');
+const handleSave = async () => {
+  try {
+    const response = await axios.post('http://localhost:4000/api/proveedores', {
+      nombre: supplier.nombre,
+      ubicacion: supplier.ubicacion,
+      nit: supplier.nit,
+      telefono: supplier.telefono,
+      correo: supplier.correo,
+    });
+
+    console.log('✅ Proveedor guardado:', response.data);
+    flashMessage('💾 Guardado correctamente');
+    
+    // Opcional: limpiar campos después de guardar
+    setSupplier({
+      nombre: '',
+      ubicacion: '',
+      nit: '',
+      telefono: '',
+      correo: '',
+    });
+
+  } catch (error) {
+    console.error('❌ Error al guardar proveedor:', error);
+    flashMessage('❌ Error al guardar proveedor');
+  }
+};
+
+const handleEdit = () => flashMessage('🖋️ Editado correctamente');
   const handleDelete = () => { flashMessage('🗑️ Eliminado correctamente');};
 
   const goTo = path => navigate(path);
@@ -179,7 +161,7 @@ const [emailList] = useState([
                 <input name="telefono" value={supplier.telefono} onChange={handleChange} />
 
                 <label>Correo:</label>
-                <input name="correo" value={supplier.correoElectronico} onChange={handleChange} />
+                <input name="correo" value={supplier.correo} onChange={handleChange} />
         </div>
 
 

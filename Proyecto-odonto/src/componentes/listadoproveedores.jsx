@@ -1,11 +1,13 @@
+// src/componentes/listadoproveedores.js
 import React, { useState, useEffect, useMemo } from 'react';
+import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import './ListadoProveedores.css';
 
 const tabsProveedores = [
   { id: 'listadoProveedores', label: 'Listado de Proveedores', path: '/listadoProveedores' },
-  { id: 'ingresoProveedores', label: 'Ingreso de Proveedores', path: '/Proveedores' },
+  { id: 'ingresoProveedores', label: 'Ingreso de Proveedores', path: '/proveedores' },
 ];
 
 const slideVariants = {
@@ -19,50 +21,61 @@ export default function ListadoProveedores() {
   const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState(tabsProveedores[0].id);
 
-  // Proveedores simulados
-  const [proveedores] = useState([
-    'Avenida', 'TomatosFans', 'Medicina', 'Jorge', 'Chuwi',
-    'Chipus', 'Arriba', 'Barniz', 'Terminales', 'Selladores'
-  ]);
-
+  // Datos reales desde API
+  const [proveedores, setProveedores] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [displayTerm, setDisplayTerm] = useState('');
 
-  // Mensaje flash
   const [message, setMessage] = useState('');
   const [messageType, setMessageType] = useState('');
 
+  // Traer proveedores al montar
+useEffect(() => {
+const fetchProveedores = async () => {
+  try {
+    const res = await axios.get('http://localhost:4000/api/proveedores');
+    console.log(res.data);  // Para verificar que los datos están llegando correctamente.
+    setProveedores(res.data);
+  } catch (error) {
+    console.error("Error al obtener la lista de proveedores:", error);
+  }
+};
 
-  // Filtrado
-  const proveedoresFiltrados = useMemo(
-    () =>
-      proveedores.filter(nombre =>
-        nombre.toLowerCase().includes(displayTerm.toLowerCase())
-      ),
-    [proveedores, displayTerm]
-  );
+  fetchProveedores();
+}, []);
 
-  // Agrupamiento alfabético
+  // Filtrado y agrupamiento
+  const proveedoresFiltrados = useMemo(() =>
+    proveedores.filter(p =>
+      p.nombre.toLowerCase().includes(displayTerm.toLowerCase())
+    )
+  , [proveedores, displayTerm]);
+
   const agrupados = useMemo(() => {
     return proveedoresFiltrados
-      .sort((a, b) => a.localeCompare(b))
-      .reduce((acc, item) => {
-        const letra = item[0].toUpperCase();
+      .sort((a, b) => a.nombre.localeCompare(b.nombre))
+      .reduce((acc, prov) => {
+        const letra = prov.nombre[0].toUpperCase();
         if (!acc[letra]) acc[letra] = [];
-        acc[letra].push(item);
+        acc[letra].push(prov);
         return acc;
       }, {});
   }, [proveedoresFiltrados]);
 
+  // Handlers
   const handleTabClick = tab => {
     setActiveTab(tab.id);
     navigate(tab.path);
   };
 
+  const handleSearch = e => {
+    e.preventDefault();
+    setDisplayTerm(searchTerm);
+  };
+
+  // Render
   return (
     <div className="listprov-container">
-
-      {/* Flash message arriba */}
       <AnimatePresence>
         {message && (
           <motion.div
@@ -102,15 +115,8 @@ export default function ListadoProveedores() {
         exit="exit"
         transition={slideVariants.transition}
       >
-
         {/* Buscador */}
-        <form
-          className="LISTPROV-search-form"
-          onSubmit={e => {
-            e.preventDefault();
-            setDisplayTerm(searchTerm);
-          }}
-        >
+        <form className="LISTPROV-search-form" onSubmit={handleSearch}>
           <div className="LISTPROV-search-container">
             <input
               type="text"
@@ -129,18 +135,16 @@ export default function ListadoProveedores() {
             Object.keys(agrupados).sort().map(letra => (
               <div key={letra}>
                 <div className="LISTPROV-letter-separator">{letra}</div>
-                {agrupados[letra].map(item => (
+                {agrupados[letra].map(prov => (
                   <div
-                    key={item}
+                    key={prov.id_proveedor}
                     className="LISTPROV-search-item"
                     role="button"
                     tabIndex={0}
-                    onClick={() => navigate(`/infoMaterial/${encodeURIComponent(item)}`)}
-                    onKeyDown={(e) => {
-                      if (e.key === 'Enter') navigate(`/infoMaterial/${encodeURIComponent(item)}`);
-                    }}
+                    onClick={() => navigate(`/proveedores/${prov.id_proveedor}`)}
+                    onKeyDown={e => e.key === 'Enter' && navigate(`/proveedores/${prov.id_proveedor}`)}
                   >
-                    {item}
+                    {prov.nombre}
                   </div>
                 ))}
               </div>
@@ -150,9 +154,11 @@ export default function ListadoProveedores() {
           )}
         </div>
 
-        {/* Botones de acción */}
+        {/* Botones */}
         <div className="listprov-form-buttons">
-          <button type="button" className="listprov-btn-back" onClick={() => navigate(-1)}> REGRESAR</button>
+          <button type="button" className="listprov-btn-back" onClick={() => navigate(-1)}>
+            REGRESAR
+          </button>
         </div>
       </motion.section>
     </div>

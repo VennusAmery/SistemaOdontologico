@@ -3,6 +3,18 @@ const express = require('express');
 const router = express.Router();
 
 module.exports = function(pool) {
+
+  // LISTADO
+  router.get('/', async (req, res) => {
+    try {
+      const [rows] = await pool.query('SELECT id_proveedor, nombre FROM proveedor');
+      return res.json(rows);
+    } catch (err) {
+      console.error('❌ Error al listar proveedores:', err);
+      return res.status(500).json({ error: 'Error en el servidor' });
+    }
+  });
+
   // Ruta para crear un proveedor + su contacto en una transacción
   router.post('/', async (req, res) => {
     console.log('📥 Petición recibida para crear proveedor:', req.body);

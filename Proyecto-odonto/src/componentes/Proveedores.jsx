@@ -60,7 +60,6 @@ export default function Proveedores() {
     }
   };
 
-
   useEffect(() => {
     const cur = tabsEncabezado.find(tab => tab.path === location.pathname);
     if (cur) setActiveEncabezado(cur.id);

@@ -5,7 +5,6 @@ const loginRoutes = require('./login'); // Importar las rutas del login
 const productosRoutes = require('./productos');  
 const proveedoresRoutes = require('./proveedores');
 
-
 const app = express();
 app.use(cors());
 app.use(express.json());
@@ -33,5 +32,6 @@ async function startServer() {
   // Iniciar el servidor
   app.listen(4000, () => console.log('🟢 Servidor en http://localhost:4000'));
 }
+
 
 startServer();

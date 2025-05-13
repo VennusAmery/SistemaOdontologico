@@ -3,6 +3,7 @@ const express = require('express');
 const router = express.Router();
 
 module.exports = function(pool) {
+  
   // 1️GET /api/proveedores → lista todos los proveedores
   router.get('/', async (req, res) => {
     try {
@@ -14,7 +15,6 @@ module.exports = function(pool) {
     }
   });
 
-  // POST /api/proveedores → ya lo tenías
   router.post('/', /* ... */);
 
   return router;

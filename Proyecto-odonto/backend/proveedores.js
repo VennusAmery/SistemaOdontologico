@@ -4,7 +4,89 @@ const router = express.Router();
 
 module.exports = function(pool) {
 
-  // LISTADO
+  // Obtiene proveedor + contacto + tipo de proveedor
+   router.get('/:id', async (req, res) => {
+    const { id } = req.params;
+    try {
+      const [rows] = await pool.query(`
+        SELECT 
+          p.id_proveedor,
+          p.nombre,
+          p.ubicacion,
+          p.nit,
+          tp.id_tipo_proveedor,
+          tp.tipo           AS tipo_proveedor,
+          cp.telefono,
+          cp.correo
+        FROM proveedor p
+        LEFT JOIN contacto_proveedor cp 
+          ON cp.id_proveedor = p.id_proveedor
+        LEFT JOIN tipo_proveedor tp
+          ON tp.id_tipo_proveedor = p.id_tipo_proveedor
+        WHERE p.id_proveedor = ?
+      `, [id]);
+
+      if (!rows.length) return res.status(404).json({ error: 'Proveedor no encontrado' });
+      res.json(rows[0]);
+    } catch (err) {
+      console.error(err);
+      res.status(500).json({ error: 'Error del servidor' });
+    }
+  });
+
+  // DELETE /api/proveedores/:id
+  router.delete('/:id', async (req, res) => {
+    const { id } = req.params;
+    try {
+      const [result] = await pool.execute(
+        'DELETE FROM proveedor WHERE id_proveedor = ?',
+        [id]
+      );
+      if (result.affectedRows === 0) {
+        return res.status(404).json({ error: 'Proveedor no encontrado' });
+      }
+      res.json({ message: 'Proveedor eliminado correctamente' });
+    } catch (err) {
+      console.error('❌ Error al eliminar proveedor:', err);
+      res.status(500).json({ error: 'Error en el servidor' });
+    }
+  });
+
+
+  // 4️⃣ ACTUALIZAR existente
+  router.put('/:id', async (req, res) => {
+    const { id } = req.params;
+    const { nombre, ubicacion, nit, telefono, correo, id_tipo_proveedor } = req.body;
+    const conn = await pool.getConnection();
+    try {
+      await conn.beginTransaction();
+
+      await conn.execute(
+        'UPDATE proveedor SET id_tipo_proveedor = ?, nombre = ?, ubicacion = ?, nit = ? WHERE id_proveedor = ?',
+        [id_tipo_proveedor, nombre, ubicacion, nit, id]
+      );
+      await conn.execute(
+        'UPDATE contacto_proveedor SET telefono = ?, correo = ? WHERE id_proveedor = ?',
+        [telefono, correo, id]
+      );
+
+      await conn.commit();
+      res.json({ message: 'Proveedor actualizado' });
+    } catch (err) {
+      await conn.rollback();
+      console.error('❌ Error al actualizar proveedor:', err);
+      res.status(500).json({ error: 'Error en el servidor' });
+    } finally {
+      conn.release();
+    }
+  });
+
+
+
+
+
+
+  // Ruta para listar todos los proveedores
   router.get('/', async (req, res) => {
     try {
       const [rows] = await pool.query('SELECT id_proveedor, nombre FROM proveedor');
@@ -25,7 +107,7 @@ module.exports = function(pool) {
     try {
       await conn.beginTransaction();
 
-      // insertar en proveedor
+      // Insertar en proveedor
       const [result] = await conn.execute(
         `INSERT INTO proveedor (id_tipo_proveedor, nombre, ubicacion, nit)
          VALUES (?, ?, ?, ?)`,
@@ -34,7 +116,7 @@ module.exports = function(pool) {
       const nuevoIdProveedor = result.insertId;
       console.log('✅ Proveedor insertado con ID:', nuevoIdProveedor);
 
-      // insertar en contacto_proveedor
+      // Insertar en contacto_proveedor
       await conn.execute(
         `INSERT INTO contacto_proveedor (id_proveedor, telefono, correo)
          VALUES (?, ?, ?)`,

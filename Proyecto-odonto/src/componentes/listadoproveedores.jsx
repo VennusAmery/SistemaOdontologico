@@ -40,7 +40,6 @@ const fetchProveedores = async () => {
     console.error("Error al obtener la lista de proveedores:", error);
   }
 };
-
   fetchProveedores();
 }, []);
 
@@ -83,8 +82,7 @@ const fetchProveedores = async () => {
             initial={{ y: -40, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: -40, opacity: 0 }}
-            transition={{ duration: 0.5 }}
-          >
+            transition={{ duration: 0.5 }}>
             {message}
           </motion.div>
         )}
@@ -135,18 +133,19 @@ const fetchProveedores = async () => {
             Object.keys(agrupados).sort().map(letra => (
               <div key={letra}>
                 <div className="LISTPROV-letter-separator">{letra}</div>
-                {agrupados[letra].map(prov => (
-                  <div
-                    key={prov.id_proveedor}
-                    className="LISTPROV-search-item"
-                    role="button"
-                    tabIndex={0}
-                    onClick={() => navigate(`/proveedores/${prov.id_proveedor}`)}
-                    onKeyDown={e => e.key === 'Enter' && navigate(`/proveedores/${prov.id_proveedor}`)}
-                  >
-                    {prov.nombre}
-                  </div>
-                ))}
+                  {agrupados[letra].map(prov => (
+                    <div
+                      key={prov.id_proveedor}
+                      className="LISTPROV-search-item"
+                      role="button"
+                      tabIndex={0}
+                      onClick={() => navigate(`/proveedores/${prov.id_proveedor}`)}
+                      onKeyDown={e => e.key === 'Enter' && navigate(`/proveedores/${prov.id_proveedor}`)}
+                    >
+                      {prov.nombre}
+                    </div>
+                  ))}
+
               </div>
             ))
           ) : (
@@ -156,9 +155,7 @@ const fetchProveedores = async () => {
 
         {/* Botones */}
         <div className="listprov-form-buttons">
-          <button type="button" className="listprov-btn-back" onClick={() => navigate(-1)}>
-            REGRESAR
-          </button>
+          <button type="button" className="listprov-btn-back" onClick={() => navigate(-1)}>REGRESAR</button>
         </div>
       </motion.section>
     </div>

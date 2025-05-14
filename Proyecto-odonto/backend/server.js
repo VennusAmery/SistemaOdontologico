@@ -8,9 +8,11 @@ const productosRoutes = require('./productos');
 const proveedoresRoutes = require('./proveedores');
 const inventarioRoutes = require('./inventario');
 const infomaterialRoutes = require('./infomaterial');
-const doctoresRoutes = require('./doctores');
-const listadodoctoresRoutes = require('./listadodoctores');
-const ingresoDoctorRoutes    = require('./ingresodoctor');
+const pacientesRoutes = require('./pacientes'); // Nueva ruta
+const habitosRoutes = require('./habitos'); 
+const historialodontoRoutes = require('./historialodonto'); 
+const historialmedicoRoutes = require('./historialmedico'); 
+
 
 const app = express();
 app.use(cors());
@@ -34,14 +36,19 @@ async function startServer() {
   app.use('/api', loginRoutes(pool));  
   app.use('/api', productosRoutes(pool)); 
   app.use('/api/proveedores', proveedoresRoutes(pool));
-  app.use('/api/inventario', inventarioRoutes(pool));
-  app.use('/api/infomaterial', infomaterialRoutes(pool));
-  app.use('/api, doctores', doctoresRoutes(pool));
-  app.use('/api/listadodoctores', listadodoctoresRoutes(pool));
-  app.use('/api/ingresodoctor', ingresoDoctorRoutes(pool));
+
+    app.use('/api/inventario', inventarioRoutes(pool));
+    app.use('/api/infomaterial', infomaterialRoutes(pool));
+
+  app.use('/api', pacientesRoutes(pool)); // Ruta para pacientes
+  app.use('/api/habitos', habitosRoutes(pool)); 
+  app.use('/api/historialodonto', historialodontoRoutes(pool)); 
+  app.use('/api/historialmedico', historialmedicoRoutes(pool)); 
+
 
   // Iniciar el servidor
   app.listen(4000, () => console.log('🟢 Servidor en http://localhost:4000'));
 }
 
 startServer();
+

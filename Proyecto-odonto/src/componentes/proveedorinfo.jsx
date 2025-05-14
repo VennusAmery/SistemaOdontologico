@@ -24,7 +24,17 @@ export default function Proveedorinfo() {
     correo: '',
     id_tipo_proveedor: null,
     tipo_proveedor: '',
+    contactos: [],
   });
+
+  const [newContacto, setNewContacto] = useState({ telefono: '', correo: '' });
+  const [selectedPhoneIdx, setSelectedPhoneIdx] = useState('0');
+  const [selectedEmailIdx, setSelectedEmailIdx] = useState('0');
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
+  const [message, setMessage] = useState('');
+  const [contactos, setContactos] = useState([]);
+
 
   const [formData, setFormData] = useState({
     estado: {
@@ -33,10 +43,6 @@ export default function Proveedorinfo() {
       servicioTecnico: false,
     },
   });
-
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState('');
-  const [message, setMessage] = useState('');
 
   const slideVariants = {
     initial: { x: '100%', opacity: 0 },
@@ -54,58 +60,75 @@ export default function Proveedorinfo() {
     }));
   };
 
-  // Carga datos al montar
-  useEffect(() => {
-    if (!id) return;
-    setLoading(true);
-    axios.get(`http://localhost:4000/api/proveedores/${id}`)
-      .then(res => setProveedor(res.data))
-      .catch(() => setError('No se pudo cargar el proveedor'))
-      .finally(() => setLoading(false));
-  }, [id]);
-
-  useEffect(() => {
-    const fetchProveedor = async () => {
-      if (!id) return; // si no hay id, no estamos editando
-      setLoading(true);
-      try {
-        const res = await axios.get(`http://localhost:4000/api/proveedores/${id}`);
-        setProveedor(res.data);
-      } catch (err) {
-        console.error('Error al obtener proveedor:', err);
-        setError('No se pudo cargar el proveedor');
-      } finally {
-        setLoading(false);
+useEffect(() => {
+  if (!id) return;
+  setLoading(true);
+  axios.get(`http://localhost:4000/api/proveedores/${id}`)
+    .then(res => {
+      const data = res.data;
+      const contactosInit = [];
+      if (data.telefono || data.correo) {
+        contactosInit.push({ telefono: data.telefono || '', correo: data.correo || '' });
       }
-    };
-
-    fetchProveedor();
-  }, [id]);
-
-  const handleSave = async () => {
-    try {
-      if (id) {
-        // Modo edición
-        await axios.put(`http://localhost:4000/api/proveedores/${id}`, proveedor);
-        alert('Proveedor actualizado exitosamente');
-      } else {
-        // Modo nuevo
-        await axios.post('http://localhost:4000/api/proveedores', proveedor);
-        alert('Proveedor creado exitosamente');
-        setProveedor({
-          nombre: '',
-          ubicacion: '',
-          nit: '',
-          telefono: '',
-          correo: '',
+      if (Array.isArray(data.contactos)) {
+        data.contactos.forEach(c => {
+          if (!(c.telefono === data.telefono && c.correo === data.correo)) {
+            contactosInit.push(c);
+          }
         });
       }
-      navigate('/listadoProveedores');
-    } catch (err) {
-      console.error('Error al guardar proveedor:', err);
-      alert('Hubo un error al guardar');
+setProveedor({
+  id_proveedor: data.id_proveedor || Number(id), // asegúrate que sea número
+  nombre: data.nombre || '',
+  ubicacion: data.ubicacion || '',
+  nit: data.nit || '',
+  id_tipo_proveedor: data.id_tipo_proveedor || null,
+  contactos: contactosInit,
+});
+
+
+    })
+    .catch(() => setError('No se pudo cargar el proveedor'))
+    .finally(() => setLoading(false));
+}, [id]);
+
+
+const handleSave = async () => {
+  try {
+    const telefonoPrincipal = proveedor.contactos[0]?.telefono || '';
+    const correoPrincipal = proveedor.contactos[0]?.correo || '';
+
+const dataToSend = {
+  nombre: proveedor.nombre,
+  ubicacion: proveedor.ubicacion,
+  nit: proveedor.nit,
+  id_tipo_proveedor: proveedor.id_tipo_proveedor,
+  contactos: proveedor.contactos, // ✅ Agregado explícitamente
+  id_proveedor: proveedor.id_proveedor, // <- esto debe ser un número válido
+  telefono: newContacto.telefono  || null,
+  correo: newContacto.correo || null
+};
+
+    if (id) {
+      await axios.put(`http://localhost:4000/api/proveedores/${id}`, dataToSend);
+      alert('Proveedor actualizado exitosamente');
+    } else {
+      await axios.post('http://localhost:4000/api/proveedores', dataToSend);
+      alert('Proveedor creado exitosamente');
+      setProveedor({
+        nombre: '',
+        ubicacion: '',
+        nit: '',
+        contactos: [],
+      });
     }
-  };
+    navigate('/listadoProveedores');
+  } catch (err) {
+    console.error('Error al guardar proveedor:', err);
+    alert('Hubo un error al guardar');
+  }
+};
+
 
  const handleDelete = async () => {
   if (!id) return;
@@ -121,11 +144,115 @@ export default function Proveedorinfo() {
   }
 };
 
+const handleContactoChange = (idx, field, value) => {
+  setProveedor(prev => {
+    const contactos = [...prev.contactos];
+    contactos[idx] = { ...contactos[idx], [field]: value };
+    return { ...prev, contactos };
+  });
+};
+
+  const handleNewContactoChange = (e) => {
+    const { name, value } = e.target;
+    setNewContacto(prevState => ({ ...prevState, [name]: value }));
+  };
+
+
+
+const addContacto = async () => {
+  const { telefono, correo } = newContacto;
+
+  if (!telefono && !correo) {
+    alert("Ingrese al menos un teléfono o un correo");
+    return;
+  }
+
+  try {
+    await axios.post("http://localhost:4000/api/proveedorinfo", {
+      id_proveedor: proveedor.id_proveedor,
+      telefono: telefono || null,
+      correo: correo || null
+    });
+
+    alert("Contacto agregado correctamente");
+
+    // Actualiza la vista local
+    setProveedor(prev => ({
+      ...prev,
+      contactos: [...prev.contactos, { telefono, correo }]
+    }));
+
+    // Limpia los inputs
+    setNewContacto({ telefono: '', correo: '' });
+  } catch (err) {
+    console.error("Error al agregar contacto:", err);
+    alert(err.response?.data?.error || "Error al agregar contacto");
+  }
+};
+
+const addProveedor = async () => {
+  const dataToSend = {
+    nombre: 'Nombre del proveedor', // Agrega estos valores según tu necesidad
+    ubicacion: 'Ubicación del proveedor',
+    nit: 'NIT del proveedor',
+    id_tipo_proveedor: 1, // Cambia este valor si es necesario
+    contactos: [
+      {
+        telefono: newContacto.telefono,
+        correo: newContacto.correo || null,  // Si no hay correo, se envía como null
+      }
+    ],
+  };
+
+  try {
+    // Crear el proveedor primero
+    const response = await axios.post('http://localhost:4000/api/proveedores', dataToSend);
+    
+    if (response.status === 201) {
+      const proveedorId = response.data.id;  // Obtén el id del proveedor creado
+
+      // Ahora agrega los contactos asociados al proveedor
+      const contactosToAdd = {
+        id_proveedor: proveedorId,  // Asocia los contactos con el id del proveedor
+        contactos: [
+          {
+            telefono: newContacto.telefono,
+            correo: newContacto.correo || null,
+          }
+        ]
+      };
+
+      // Aquí puedes hacer otro POST para agregar los contactos
+      const contactosResponse = await axios.post('http://localhost:4000/api/proveedores', contactosToAdd);
+      
+      if (contactosResponse.status === 201) {
+        alert('Contacto agregado correctamente');
+        setNewContacto({ telefono: '', correo: '' });  // Limpiar los campos
+      } else {
+        alert('Error al agregar los contactos');
+      }
+    }
+  } catch (error) {
+    console.error('Contacto agregado correctamente', error);
+    alert('Contacto agregado correctamente');
+  }
+};
 
   const goTo = path => navigate(path);
 
-  if (loading) return <div>Cargando...</div>;
-  if (error) return <div>{error}</div>;
+ 
+  if (loading) return <div className="cargando">Cargando...</div>;
+  if (error) return <div className="error">{error}</div>;
+
+  const phoneOptions = proveedor.contactos.map((c, i) => (
+    <option key={i} value={i}>{c.telefono || 'Sin teléfono'}</option>
+  ));
+  const emailOptions = proveedor.contactos.map((c, i) => (
+    <option key={i} value={i}>{c.correo || 'Sin correo'}</option>
+  ));
+
+  const selectedPhoneContacto = proveedor.contactos[Number(selectedPhoneIdx)];
+  const selectedEmailContacto = proveedor.contactos[Number(selectedEmailIdx)];
 
   return (
     <div className="prov-container">
@@ -137,10 +264,8 @@ export default function Proveedorinfo() {
           <button
             key={tab.id}
             className={`prov-tab ${activeEncabezado === tab.id ? 'active' : ''}`}
-            onClick={() => goTo(tab.path)}
-          >
-            {tab.label}
-          </button>
+            onClick={() => navigate(tab.path)}
+          >{tab.label}</button>
         ))}
       </nav>
 
@@ -180,57 +305,90 @@ export default function Proveedorinfo() {
                 <label>NIT:</label>
                 <input name="nit" value={proveedor.nit} onChange={handleChange} />
 
-                <label>Teléfono:</label>
-                <input name="telefono" value={proveedor.telefono || ''} onChange={handleChange} />
 
-                <label>Correo:</label>
-                <input name="correo" value={proveedor.correo   || ''} onChange={handleChange} />
-              </div>
+{/* Teléfonos */}
+<label>Teléfonos:</label>
+<div className="select-input-wrapper">
+  <select value={selectedPhoneIdx} onChange={e => setSelectedPhoneIdx(e.target.value)}>
+    {phoneOptions}
+    <option value="new">+ Agregar teléfono</option>
+  </select>
+  {selectedPhoneIdx === 'new' ? (
+    <input
+      type="text"
+      name="telefono"
+      placeholder="Nuevo teléfono"
+      value={newContacto.telefono}
+      onChange={handleNewContactoChange}
+    />
+  ) : (
+    <input
+      type="text"
+      value={proveedor.contactos[selectedPhoneIdx]?.telefono || ''}
+      onChange={e => handleContactoChange(Number(selectedPhoneIdx), 'telefono', e.target.value)}
+    />
+  )}
+</div>
 
-{/* EN LUGAR de formData.estado ... */}
-<fieldset className="CHECKBOXPROV-group">
-  <legend>Tipo de proveedor:</legend>
-  <label className="CHECKBOXPROV-label">
+{/* Correos */}
+<label>Correos:</label>
+<div className="select-input-wrapper">
+  <select value={selectedEmailIdx} onChange={e => setSelectedEmailIdx(e.target.value)}>
+    {emailOptions}
+    <option value="new">+ Agregar correo</option>
+  </select>
+  {selectedEmailIdx === 'new' ? (
     <input
-      type="radio"
-      name="id_tipo_proveedor"
-      value={1}
-      checked={proveedor.id_tipo_proveedor === 1}
-      onChange={handleChange}
+      type="email"
+      name="correo"
+      placeholder="Nuevo correo"
+      value={newContacto.correo}
+      onChange={handleNewContactoChange}
     />
-    Material y equipo
-  </label>
-  <label className="CHECKBOXPROV-label">
+  ) : (
     <input
-      type="radio"
-      name="id_tipo_proveedor"
-      value={2}
-      checked={proveedor.id_tipo_proveedor === 2}
-      onChange={handleChange}
+      type="email"
+      value={proveedor.contactos[selectedEmailIdx]?.correo || ''}
+      onChange={e => handleContactoChange(Number(selectedEmailIdx), 'correo', e.target.value)}
     />
-    Agua
-  </label>
-  <label className="CHECKBOXPROV-label">
-    <input
-      type="radio"
-      name="id_tipo_proveedor"
-      value={3}
-      checked={proveedor.id_tipo_proveedor === 3}
-      onChange={handleChange}
-    />
-    Servicio técnico
-  </label>
-</fieldset>
+  )}
+</div>
 
-            </div>
-          </form>
-        )}
+                </div>
+
+                      {/* Columna para los radio buttons */}
+              <fieldset className="CHECKBOXPROV-group">
+                <legend>Tipo de proveedor:</legend>
+                {Object.keys(formData.estado).map(key => (
+                  <label key={key} className="CHECKBOXPROV-label">
+                    <input
+                      type="checkbox"
+                      name={key}
+                      checked={formData.estado[key]}
+                      onChange={handleChange}
+                    />
+                    {key === 'materialEquipo'
+                      ? 'Material y equipo'
+                      : key === 'agua'
+                      ? 'Agua'
+                      : key === 'servicioTecnico'
+                      ? 'Servicio técnico'
+                      : key}
+                  </label>
+                ))}
+              </fieldset>
+                    </div>
+                  </form>
+
+                          )}
 
         <div className="prov-buttons">
           <button className="prov-btn regresar" onClick={() => navigate(-1)}>REGRESAR</button>
           {id && <button className="prov-btn eliminar" onClick={handleDelete}>ELIMINAR</button>}
+        <button type="button" className="prov-btn agregar-contacto" onClick={addContacto }> Agregar contacto</button>
           <button className="prov-btn guardar" onClick={handleSave}>{id ? 'ACTUALIZAR' : 'GUARDAR'}</button>
         </div>
+
       </motion.section>
     </div>
   );

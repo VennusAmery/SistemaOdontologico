@@ -1,0 +1,183 @@
+/*IMAGEN Y TITULO*/
+.provinfo-container2 {
+  display: flex;               
+  align-items: center;        
+  gap: 1rem;
+  padding-top: 1px;
+  padding-bottom: -15px;
+}
+
+.provinfo-hr{
+  height: 1.3px;
+}
+
+.provinfo-circle {
+  width: 50px;                /* diámetro del círculo */  
+  height: 50px;
+  border-radius: 50%;         /* hace el contenedor perfectamente redondo */  
+  overflow: hidden;           /* recorta la imagen al contorno */  
+  flex-shrink: 0;             /* evita que el círculo se encoja */  
+  display: flex;              /* para centrar la img dentro */  
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #74c0c5;     /* borde gris alrededor del círculo */
+  margin-bottom: 0.5rem;      /* separa el círculo del texto de abajo */
+}
+
+.provinfo-image {
+  width: 70%; /* ocupa todo el círculo */  
+  height: auto;  /* mantiene proporción */  
+}
+
+.provinfo-text {
+  flex: 1; /* el texto ocupa el resto del espacio */  
+}
+
+.provinfo-separator {
+  border: none;
+  border-top: 1px solid #ccc;
+  background-color: #74c0c5;
+  height: 0.00005cqmax;
+}
+
+/*NAVEGACION PROVEEDORES*/
+.provinfo-container {
+  margin-top: 8px;
+  margin-left: 6px;
+overflow: hidden;
+  padding: 0.9% 1% 1% 1%;
+  overflow-x: hidden;  /* ✅ oculta solo lo horizontal */
+}
+
+/*NAV DE CONTATO PROVEEDORES*/
+.provinfo-tabs {
+  display: flex;
+  gap: 3rem; /*ESPACIO ENTRE LOS BOTONES DE NAGEVACION*/
+  border-bottom: 2px solid #ddd;
+  margin-bottom: 1.5rem;
+}
+
+.provinfo-tab {
+  background: none;
+  border: none;
+  padding: 0.5rem 0;
+  font-size: 1rem;
+  color: #497a7d;
+  cursor: pointer;
+  position: relative;
+  transition: color 0.2s;
+}
+
+.provinfo-tab:hover {
+  color: #74c0c5;
+}
+
+.provinfo-tab.active {
+  color: #ff8a65;  }
+
+.provinfo-tab.active::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background-color: #ff8a65; /* linea debajo del boton de navegacion */
+}
+
+/* listadoproveedores.css */
+.prov-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 2rem;
+  align-items: flex-start;
+}
+
+.prov-info-left {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.prov-info-left label {
+  font-weight: bold;
+  margin-bottom: 0.3rem;
+}
+
+.prov-info-left input,
+.prov-info-left select {
+  width: 100%;
+  padding: 0.4rem 0.6rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.prov-info-left h3 {
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.prov-contactos-box ul {
+  padding-left: 1rem;
+  margin: 0;
+}
+
+.prov-contacto-item {
+  margin-bottom: 0.25rem;
+}
+
+.prov-select-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.prov-info-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding-top: 0.5rem;
+}
+
+.CHECKBOXPROV-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  border: 1px solid #ccc;
+  padding: 1rem;
+  border-radius: 8px;
+}
+
+.CHECKBOXPROV-label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 500;
+}
+
+
+
+
+
+
+.lp-buttons {
+  margin-top: 1.5rem;
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+}
+
+.lp-btn-secondary,
+.lp-btn-danger,
+.lp-btn-primary {
+  background: #ff8a65;
+font-weight: 600;
+
+}
+
+.lp-btn-danger:hover ,
+.lp-btn-secondary:hover, 
+.lp-btn-primary:hover,
+.lp-btn-agregar:hover {
+  background: #ff8a65;
+}
+

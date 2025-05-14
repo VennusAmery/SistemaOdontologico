@@ -191,18 +191,6 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   }
   
-/*SELECT*/
-.prov-column select {
-  width: 100%;
-  color: #37474f;
-  padding: 0.5rem;
-  border: 1px solid #c1ecec;
-  border-radius: 4px;
-  background: #d3f1f1;
-  font-size: 1rem;
-  margin-bottom: 1rem;
-  overflow-y: auto;
-}
 
   /*MODAL DE ELIMINADO*/
 .custom-toast {
@@ -228,4 +216,25 @@
   10% { opacity: 1; transform: translateY(0); }
   90% { opacity: 1; }
   100% { opacity: 0; transform: translateY(-10px); }
+}
+
+
+.select-input-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+select, input {
+  width: 100%; /* Asegura que los campos ocupen todo el espacio disponible */
+}
+
+select {
+  background-color: #d3f1f1;  /* fondo celestito */
+  border: 1px solid #c1ecec;  /* borde suave */
+  border-radius: 4px;         /* esquinas redondeadas */
+  font-size: 13px;            /* texto más grande si quieres */
+  height: 30px;               /* altura fija opcional */
+  color: #393939;             /* texto legible */
+  box-sizing: border-box;
 }

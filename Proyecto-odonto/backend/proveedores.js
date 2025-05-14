@@ -81,11 +81,6 @@ module.exports = function(pool) {
     }
   });
 
-
-
-
-
-
   // Ruta para listar todos los proveedores
   router.get('/', async (req, res) => {
     try {

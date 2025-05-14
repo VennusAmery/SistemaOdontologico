@@ -53,6 +53,7 @@ function App() {
           <Route path="/historialmedico" element={<HistorialMedico />} />
           <Route path="/fotografias" element={<Fotografias />} />
           <Route path="/calendario" element={<CalendarComponent />} />
+          <Route path="/InfoMaterial/:id" element={<InfoMaterial />} />
           <Route path="/citas" element={<CitasComponent />} />
           <Route path="/Contactos" element={<ContactosComponent />} />
           <Route path="/Proveedores" element={<ProveedoresComponent />} />
@@ -61,7 +62,6 @@ function App() {
           <Route path="/empleados" element={<Empleados />} />
           <Route path="/Inventario" element={<Inventario />} />
           <Route path="/IngresoMaterial" element={<IngresoMaterial />} />
-          <Route path="/InfoMaterial" element={<InfoMaterial />} />
           <Route path="/Clinica" element={<Clinica />} />
           <Route path="/clinicaJalapa" element={<ClinicaJalapa />} />
           <Route path="/agregarempleado" element={<AgregarEmpleado />} /> 

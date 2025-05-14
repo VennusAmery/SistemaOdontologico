@@ -50,16 +50,19 @@ const fetchProveedores = async () => {
     )
   , [proveedores, displayTerm]);
 
-  const agrupados = useMemo(() => {
-    return proveedoresFiltrados
-      .sort((a, b) => a.nombre.localeCompare(b.nombre))
-      .reduce((acc, prov) => {
-        const letra = prov.nombre[0].toUpperCase();
-        if (!acc[letra]) acc[letra] = [];
-        acc[letra].push(prov);
-        return acc;
-      }, {});
-  }, [proveedoresFiltrados]);
+const agrupados = useMemo(() => {
+  return proveedoresFiltrados
+    .filter(prov => typeof prov.nombre === 'string' && prov.nombre.length > 0)
+    .sort((a, b) => a.nombre.localeCompare(b.nombre))
+    .reduce((acc, prov) => {
+      const letra = prov.nombre[0].toUpperCase();
+      if (!acc[letra]) acc[letra] = [];
+      acc[letra].push(prov);
+      return acc;
+    }, {});
+}, [proveedoresFiltrados]);
+
+
 
   // Handlers
   const handleTabClick = tab => {

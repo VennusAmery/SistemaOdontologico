@@ -6,7 +6,6 @@ import './Inventario.css';
 const tabConfig = [
   { id: 'listadoMaterial', label: 'Listado de Material', path: '/listadoMaterial' },
   { id: 'ingresoMaterial', label: 'Ingreso Material', path: '/ingresoMaterial' },
-  { id: 'infoMaterial', label: 'Información de material utilizado', path: '/infoMaterial' },
 ];
 
 const slideVariants = {
@@ -17,36 +16,47 @@ const slideVariants = {
 };
 
 export default function Inventario() {
-  const navigate    = useNavigate();
+  const navigate = useNavigate();
   const [tabActiva, setTabActiva] = useState(tabConfig[0].id);
   const [searchTerm, setSearchTerm] = useState('');
   const [displayTerm, setDisplayTerm] = useState('');
-  const [materials] = useState([
-    'Algodón', 'Gasas', 'Jeringas', 'Agujas', 'Guantes',
-    'Mascarillas', 'Esterilizante', 'Barniz', 'Terminales', 'Selladores'
-  ]);
+  const [materials, setMaterials] = useState([]);
 
-  // 1️⃣ Debounce para `displayTerm`
+  useEffect(() => {
+    const fetchMateriales = async () => {
+      try {
+        const res = await fetch('http://localhost:4000/api/infomaterial');
+        const data = await res.json();
+        // Guarda objetos completos, no solo nombres
+        setMaterials(data);
+      } catch (err) {
+        console.error('Error al cargar inventario:', err);
+      }
+    };
+    fetchMateriales();
+  }, []);
+
+  // Debounce para displayTerm
   useEffect(() => {
     const id = setTimeout(() => setDisplayTerm(searchTerm), 300);
     return () => clearTimeout(id);
   }, [searchTerm]);
 
-  // 2️⃣ Filtrar según `displayTerm`
+  // Filtrar según displayTerm (por nombre)
   const filtered = useMemo(
     () =>
-      materials.filter(name =>
-        name.toLowerCase().includes(displayTerm.toLowerCase())
+      materials.filter(m =>
+        m.nombre.toLowerCase().includes(displayTerm.toLowerCase())
       ),
     [materials, displayTerm]
   );
 
-  // 3️⃣ Agrupar alfabéticamente los filtrados
+  // Agrupar alfabéticamente por primera letra del nombre
   const agrupados = useMemo(() => {
     return filtered
-      .sort((a, b) => a.localeCompare(b))
+      .sort((a, b) => a.nombre.localeCompare(b.nombre))
       .reduce((acc, item) => {
-        const letra = item[0].toUpperCase();
+        const letra = item.nombre[0].toUpperCase();
         if (!acc[letra]) acc[letra] = [];
         acc[letra].push(item);
         return acc;
@@ -83,14 +93,10 @@ export default function Inventario() {
         animate="animate"
         exit="exit"
         transition={slideVariants.transition} >
-          
         {/* ——— Buscador ——— */}
         <form
           className="inv-search-form"
-          onSubmit={e => {
-            e.preventDefault();
-            setDisplayTerm(searchTerm);
-          }} >
+          onSubmit={e => { e.preventDefault(); setDisplayTerm(searchTerm); }}>
           <div className="inv-search-container">
             <input
               type="text"
@@ -104,23 +110,21 @@ export default function Inventario() {
 
         {/* ——— Resultados ——— */}
         <div className="inv-search-results">
-          {filtered.length > 0 ? (
+          {Object.keys(agrupados).length > 0 ? (
             Object.keys(agrupados).sort().map(letra => (
               <div key={letra}>
                 <div className="inv-letter-separator">{letra}</div>
-                {agrupados[letra].map(item => (
-                    <div
-                      key={item}
-                      className="inv-search-item"
-                      role="button"
-                      tabIndex={0}
-                      onClick={() => navigate(`/infoMaterial/${encodeURIComponent(item)}`)}
-                      onKeyDown={(e) => {
-                        if (e.key === 'Enter') navigate(`/infoMaterial/${encodeURIComponent(item)}`);
-                      }}>
-                      {item}
-                    </div>
-                  ))}
+                {agrupados[letra].map(mat => (
+                  <div
+                    key={mat.id}
+                    className="inv-search-item"
+                    role="button"
+                    tabIndex={0}
+                    onClick={() => navigate(`/InfoMaterial/${mat.id}`)}
+                    onKeyDown={e => e.key === 'Enter' && navigate(`/InfoMaterial/${mat.id}`)}>
+                    {mat.nombre}
+                  </div>
+                ))}
               </div>
             ))
           ) : (
@@ -128,9 +132,9 @@ export default function Inventario() {
           )}
         </div>
 
-        {/* ——— Botones de acción ——— */}
+        {/* Botones de acción */}
         <div className="inve-form-buttons">
-          <button type="button" className="inve-btn-back"onClick={() => navigate(-1)}>REGRESAR </button>
+          <button type="button" className="inve-btn-back" onClick={() => navigate(-1)}>REGRESAR</button>
         </div>
       </motion.section>
     </div>

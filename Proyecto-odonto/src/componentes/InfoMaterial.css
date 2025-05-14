@@ -1,34 +1,23 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;600;800&display=swap');
 
-/* Contenedor principal */
 .listmate-container {
-  padding: 10px;
-  padding-top: 1px;
-  padding-left: 15px;
+  padding: 15px;
   font-family: 'Poppins', sans-serif;
 }
 
-/* Título */
 .listmate-title {
   font-size: 2rem;
   font-weight: 600;
-  color: #ff8a65; /* Naranja suave */
+  color: #ff8a65;
   margin-bottom: 0.5rem;
-  text-align: left;
 }
 .listmate-title + hr {
   border: none;
   height: 1px;
-  background-color: #74c0c5; /* Verde-azulado */
+  background-color: #74c0c5;
   margin-bottom: 1.5rem;
 }
 
-
-.listmate-title{
-  font-weight: bold;
-}
-
-/* Tabs de navegación */
 .listmate-tabs {
   display: flex;
   gap: 3rem;
@@ -45,12 +34,8 @@
   position: relative;
   transition: color 0.2s;
 }
-.listmate-tab:hover {
-  color: #74c0c5;
-}
-.listmate-tab.active {
-  color: #497a7d;
-}
+.listmate-tab:hover { color: #74c0c5; }
+.listmate-tab.active { color: #497a7d; }
 .listmate-tab.active::after {
   content: '';
   position: absolute;
@@ -61,160 +46,122 @@
   background-color: #ff8a65;
 }
 
-/* Flash message */
 .listmate-flash-message {
   position: fixed;
   top: 80px;
   left: 50%;
   transform: translateX(-50%);
   background-color: #ff8a65;
-  color: #fff;
+  color: white;
   padding: 10px 20px;
   border-radius: 5px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.2);
   z-index: 1000;
   font-weight: 600;
-  animation:
-    fadeIn 0.3s ease-out forwards,
-    fadeOut 0.3s ease-in forwards 1.7s;
+  animation: fadeIn 0.3s ease-out forwards, fadeOut 0.3s ease-in forwards 1.7s;
 }
 
 @keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateX(-50%) translateY(-10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(-50%) translateY(0);
-  }
+  from { opacity: 0; transform: translate(-50%, -10px); }
+  to   { opacity: 1; transform: translate(-50%, 0); }
 }
 @keyframes fadeOut {
-  from {
-    opacity: 1;
-    transform: translateX(-50%) translateY(0);
-  }
-  to {
-    opacity: 0;
-    transform: translateX(-50%) translateY(-10px);
-  }
+  from { opacity: 1; transform: translate(-50%, 0); }
+  to   { opacity: 0; transform: translate(-50%, -10px); }
 }
 
-/* Cuerpo animado */
 .listmate-body {
-  width: 100%;
-  max-width: 800px;
+  max-width: 900px;
   margin: 0 auto;
 }
 
-/* Buscador */
-.listmate-search-form {
-  width: 100%;
-  max-width: 800px;
-  margin: 0.5rem;
-  align-items: center !important;
-}
-.listmate-search-container {
-  position: relative;
-  width: 100%;
-}
-.listmate-search-input {
-  width: 100%;
-  padding: 0.75rem 2.5rem 0.75rem 1rem;
-  font-size: 1.1rem;
-  border: 1px solid #ccc;
-  border-radius: 0.5rem;
-  box-sizing: border-box;
-  background-color: #e3f6f5;
-    color: #353535;
-}
-
-.listmate-search-icon {
-  position: absolute;
-  right: 0.5rem;
-  top: 50%;
-  transform: translateY(-50%);
-  background: none;
-  border: none;
-  font-size: 1.2rem;
-  cursor: pointer;
-  color: #74c0c5;
-}
-
-/* Grid de formulario */
+/* Ajuste a dos columnas */
 .listmate-form-grid {
-  display: flex;
-  gap: 60px;
-  margin: 5px 0 30px;
+  padding-top: 60px;
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* 2 columnas iguales */
+  margin-bottom: 15px;
 }
 
-/* Grid por fila: label + input */
+/* Cada columna mantiene su grid interno */
 .listmate-form-col {
   display: grid;
-  padding-top: 45px;
-  padding-bottom: 45px;
-  grid-template-columns: 140px 1fr; /* 1a columna fija para label, 2a flexible para input */
-  column-gap: 5px;                 /* separación horizontal */
-  row-gap: 10px;                    /* separación vertical entre filas */
+  grid-template-columns: 140px 1fr; /* etiqueta a la izquierda */
+  column-gap: 10px;
+  row-gap: 1px;
 }
 
-/* Label alineado y color de texto */
+/* Alineación de etiquetas */
 .listmate-form-col label {
   text-align: right;
-  align-self: center;               /* centra verticalmente en su celda */
-  color: #333;                      /* gris oscuro */
-  padding: 8px;
-  border-radius: 4px;
+  align-self: center;
+  color: #333;
 }
 
-/* Inputs y textareas con mismo fondo y texto gris */
+/* Inputs y textarea */
 .listmate-form-col input,
 .listmate-form-col textarea {
-  width: 100%;                      /* ocupa toda la segunda columna */
-  padding: 10px;
+  padding: 8px;
   font-size: 1rem;
   background-color: #C7ECED;
   color: #333;
-  border: none;
+  border: 1px solid #ccc;
   border-radius: 4px;
   box-sizing: border-box;
 }
-
-/* Ajuste de altura para textarea */
 .listmate-form-col textarea {
   height: 150px;
-  width: 250px;
   resize: vertical;
 }
 
+/* Estados checkbox en columna */
+.listmate-states {
+  display: grid;
+  grid-template-columns: 1fr;
+  row-gap: 1px;
+  margin-top: 10px;
+}
 
-/* Botones de acción */
+/* Botones abajo a la derecha */
 .listmate-form-buttons {
   display: flex;
   justify-content: center;
-  gap: 1rem;
-  flex-wrap: wrap;
-  margin-top: -15px;
+  gap: 10px;
 }
 .listmate-form-buttons .listmate-btn-delete,
 .listmate-form-buttons .listmate-btn-edit,
 .listmate-form-buttons .listmate-btn-add,
 .listmate-form-buttons .listmate-btn-back {
   padding: 0.5rem 1rem;
-  font-size: 1rem;
-  border: none;
-  border-radius: 0.375rem;
-  cursor: pointer;
-  min-width: 100px;
-  height: 40px;
-  font-weight: 600;
-  transition: background-color 0.2s ease;
   background-color: #F98972;
   color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: opacity 0.2s;
 }
-.listmate-btn-delete:hover,
-.listmate-btn-edit:hover,
-.listmate-btn-add:hover,
-.listmate-btn-back:hover {
+.listmate-form-buttons button:hover {
   opacity: 0.9;
+}
+
+/* Aumentar tamaño y visibilidad del fieldset de estados */
+.listmate-states {
+  display: grid;
+  grid-template-columns: 1fr;  /* una sola columna */
+  row-gap: 8px;
+  margin-top: 20px;
+  margin-left: 190px;
+  
+  /* NUEVAS PROPIEDADES PARA AGRANDAR/ESTILIZAR */
+  width: 100%;                /* ocupa todo el ancho de la columna */
+  padding: 15px;              /* más espacio interior */
+  border: 2px solid #74c0c5;  /* borde más grueso y color a juego */
+  border-radius: 6px;         /* esquinas más redondeadas */
+  background-color: #e3f6f5;  /* fondo suave para destacar */
+}
+
+/* Inputs más bajos (todos los inputs, excepto el textarea de descripción) */
+.listmate-form-col input:not([type="checkbox"]) {
+  height: 2rem;       /* ajusta a la altura que necesites */
+  line-height: 1.5;     /* para centrar texto verticalmente */
 }

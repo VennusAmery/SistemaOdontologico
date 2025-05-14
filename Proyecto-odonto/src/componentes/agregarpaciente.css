@@ -254,37 +254,6 @@
   }
   
   
-  /* Radio buttons */
-  .mayoria-edad {
-    grid-column: span 2;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding-top: 15px;
-  }
-  
-  .mayoria-edad label {
-    font-size: 16px;
-    color: #757575;
-    margin-left: 10px;
-  }
-  
-  .mayoria-edad input[type="radio"] {
-    appearance: none; /* Elimina el estilo predeterminado del navegador */
-    width: 20px; /* Ancho del círculo */
-    height: 20px; /* Alto del círculo */
-    border: 2px solid #757575; /* Borde gris */
-    border-radius: 50%; /* Hace que sea un círculo */
-    background-color: white; /* Fondo blanco por defecto */
-    cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
-    transition: background-color 0.3s ease, border-color 0.3s ease; /* Transición suave */
-    margin-left: 10px; /* Espaciado a la izquierda */
-}
-
-.mayoria-edad input[type="radio"]:checked {
-    background-color: #FF7F50; /* Fondo naranja cuando está seleccionado */
-    border-color: #FF7F50; /* Cambia el borde a naranja */
-}
   
 
 

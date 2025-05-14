@@ -6,6 +6,11 @@ const productosRoutes = require('./productos');
 const proveedoresRoutes = require('./proveedores');
 const inventarioRoutes = require('./inventario');
 const infomaterialRoutes = require('./infomaterial');
+const pacientesRoutes = require('./pacientes'); // Nueva ruta
+const habitosRoutes = require('./habitos'); 
+const historialodontoRoutes = require('./historialodonto'); 
+const historialmedicoRoutes = require('./historialmedico'); 
+
 
 const app = express();
 app.use(cors());
@@ -30,8 +35,14 @@ async function startServer() {
   app.use('/api', loginRoutes(pool));  // Rutas de login
   app.use('/api', productosRoutes(pool));  // Rutas de productos
   app.use('/api/proveedores', proveedoresRoutes(pool));
+
     app.use('/api/inventario', inventarioRoutes(pool));
     app.use('/api/infomaterial', infomaterialRoutes(pool));
+
+  app.use('/api', pacientesRoutes(pool)); // Ruta para pacientes
+  app.use('/api/habitos', habitosRoutes(pool)); 
+  app.use('/api/historialodonto', historialodontoRoutes(pool)); 
+  app.use('/api/historialmedico', historialmedicoRoutes(pool)); 
 
 
   // Iniciar el servidor
@@ -40,3 +51,4 @@ async function startServer() {
 
 
 startServer();
+

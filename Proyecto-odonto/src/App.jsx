@@ -31,6 +31,7 @@ import "./App.css";
 import Listdoctores from "./componentes/Listdoctores";
 import Tratamiento from "./componentes/tratamiento";
 import Proveedorinfo from './componentes/proveedorinfo';
+import IngresoDoctor from './componentes/IngresoDoctor';
 
 function App() {
   const location = useLocation();
@@ -69,8 +70,8 @@ function App() {
           <Route path="/Listdoctores" element={<Listdoctores />} />
           <Route path="/tratamiento" element={<Tratamiento />} />
           <Route path="/proveedores/:id" element={<Proveedorinfo />} />
-        
-        
+          <Route path="/ingresodoctor/:id" element={<IngresoDoctor />} />
+
         </Route>
       </Routes>
     </AnimatePresence>

@@ -4,14 +4,14 @@ import { motion } from 'framer-motion';
 import './Listdoctores.css';
 
 const tabsDoctores = [
-  { id: 'listdoctores', label: 'Listado de Doctores', path: '/listdoctores' },
-  { id: 'registroDoctor', label: 'Informacion Doctor', path: '/Doctores' },
+  { id: 'listadoDoctores', label: 'Listado de Doctores', path: '/listdoctores' },
+  { id: 'registroDoctor', label: 'Información Doctor', path: '/doctores' },
 ];
 
 const slideVariants = {
-  initial:    { x: '100%',  opacity: 0 },
-  animate:    { x: 0,       opacity: 1 },
-  exit:       { x: '-100%', opacity: 0 },
+  initial: { x: '100%', opacity: 0 },
+  animate: { x: 0, opacity: 1 },
+  exit: { x: '-100%', opacity: 0 },
   transition: { duration: 0.4 },
 };
 
@@ -20,11 +20,25 @@ export default function ListDoctores() {
   const [tabActiva, setTabActiva] = useState(tabsDoctores[0].id);
   const [searchTerm, setSearchTerm] = useState('');
   const [displayTerm, setDisplayTerm] = useState('');
+  const [doctores, setDoctores] = useState([]);
 
-  const [doctores] = useState([
-    'Martínez', 'Juárez', 'López', 'Ávila', 'Chávez',
-    'Gómez', 'Ramírez', 'Pineda', 'Torres', 'Luna'
-  ]);
+  // Cargar doctores desde backend
+  useEffect(() => {
+    const fetchDoctores = async () => {
+      try {
+        const res = await fetch('http://localhost:4000/api/listadodoctores');
+        const data = await res.json();
+        if (Array.isArray(data)) {
+          setDoctores(data);
+        } else {
+          console.error('Respuesta inesperada del backend:', data);
+        }
+      } catch (err) {
+        console.error('Error al cargar doctores:', err);
+      }
+    };
+    fetchDoctores();
+  }, []);
 
   // Debounce
   useEffect(() => {
@@ -35,8 +49,8 @@ export default function ListDoctores() {
   // Filtrar doctores
   const filtrados = useMemo(
     () =>
-      doctores.filter(nombre =>
-        nombre.toLowerCase().includes(displayTerm.toLowerCase())
+      doctores.filter(doc =>
+        doc.nombre.toLowerCase().includes(displayTerm.toLowerCase())
       ),
     [doctores, displayTerm]
   );
@@ -44,19 +58,26 @@ export default function ListDoctores() {
   // Agrupar alfabéticamente
   const agrupados = useMemo(() => {
     return filtrados
-      .sort((a, b) => a.localeCompare(b))
+      .sort((a, b) => a.nombre.localeCompare(b.nombre))
       .reduce((acc, item) => {
-        const letra = item[0].toUpperCase();
+        const letra = item.nombre[0].toUpperCase();
         if (!acc[letra]) acc[letra] = [];
         acc[letra].push(item);
         return acc;
       }, {});
   }, [filtrados]);
 
-  const handleTabClick = tab => {
-    setTabActiva(tab.id);
-    navigate(tab.path);
+
+  const handleDoctorClick = (id) => {
+    navigate(`/ingresodoctor/${id}`);
   };
+
+  const handleTabClick = (tab) => {
+  setTabActiva(tab.id);
+  if (tab.path.includes(':id')) return; // Para evitar navegación a ruta inválida
+  navigate(tab.path);
+};
+
 
   return (
     <div className="Listdoc-container">
@@ -110,15 +131,15 @@ export default function ListDoctores() {
                 <div className="Listdoc-letter-separator">{letra}</div>
                 {agrupados[letra].map(item => (
                   <div
-                    key={item}
+                    key={item.id}
                     className="Listdoc-search-item"
                     role="button"
                     tabIndex={0}
-                    onClick={() => navigate(`/infoDoctor/${encodeURIComponent(item)}`)}
-                    onKeyDown={(e) => {
-                      if (e.key === 'Enter') navigate(`/infoDoctor/${encodeURIComponent(item)}`);
+                    onClick={() => handleDoctorClick(item.id)}
+                    onKeyDown={e => {
+                      if (e.key === 'Enter') handleDoctorClick(item.id);
                     }}>
-                    {item}
+                    {item.nombre}
                   </div>
                 ))}
               </div>

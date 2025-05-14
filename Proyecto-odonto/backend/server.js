@@ -1,11 +1,16 @@
 const express = require('express');
 const cors = require('cors');
 const mysql = require('mysql2/promise');
+
+
 const loginRoutes = require('./login'); // Importar las rutas del login
 const productosRoutes = require('./productos');  
 const proveedoresRoutes = require('./proveedores');
 const inventarioRoutes = require('./inventario');
 const infomaterialRoutes = require('./infomaterial');
+const doctoresRoutes = require('./doctores');
+const listadodoctoresRoutes = require('./listadodoctores');
+const ingresoDoctorRoutes    = require('./ingresodoctor');
 
 const app = express();
 app.use(cors());
@@ -25,18 +30,18 @@ async function startServer() {
 
   // Establecer el pool de conexión en app.locals para usarlo en las rutas
   app.locals.pool = pool;
-    
   // Usar las rutas importadas
-  app.use('/api', loginRoutes(pool));  // Rutas de login
-  app.use('/api', productosRoutes(pool));  // Rutas de productos
+  app.use('/api', loginRoutes(pool));  
+  app.use('/api', productosRoutes(pool)); 
   app.use('/api/proveedores', proveedoresRoutes(pool));
-    app.use('/api/inventario', inventarioRoutes(pool));
-    app.use('/api/infomaterial', infomaterialRoutes(pool));
-
+  app.use('/api/inventario', inventarioRoutes(pool));
+  app.use('/api/infomaterial', infomaterialRoutes(pool));
+  app.use('/api, doctores', doctoresRoutes(pool));
+  app.use('/api/listadodoctores', listadodoctoresRoutes(pool));
+  app.use('/api/ingresodoctor', ingresoDoctorRoutes(pool));
 
   // Iniciar el servidor
   app.listen(4000, () => console.log('🟢 Servidor en http://localhost:4000'));
 }
-
 
 startServer();

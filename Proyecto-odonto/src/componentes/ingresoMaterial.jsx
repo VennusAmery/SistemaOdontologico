@@ -7,7 +7,6 @@ import { motion } from 'framer-motion';
 const tabConfig = [
   { id: 'inventario',     label: 'Listado de Material',              path: '/inventario'     },
   { id: 'ingresoMaterial', label: 'Ingreso Material',                 path: '/ingresoMaterial' },
-  { id: 'infoMaterial',    label: 'Información de material utilizado', path: '/infoMaterial'   },
 ];
 
 const slideVariants = {

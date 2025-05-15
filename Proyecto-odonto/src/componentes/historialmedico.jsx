@@ -11,47 +11,22 @@ function Historialmedico() {
   const [formData, setFormData] = useState({
     id_paciente: '', 
     fecha_registro: '', 
-    padecimiento: false,
+    padecimiento: 0,
     tipo_enfermedad: '',
-    hospitalizacion: false,
+    hospitalizacion: 0,
     tipo_hospitalizacion: '',
-    usa_medicamentos: false,
+    usa_medicamentos: 0,
     tipos_medicamentos: '',
-    alergias: false,
+    alergias: 0,
     tipos_alergias: '',
-    embarazo: false,
+    embarazo: 0,
     meses_embarazo: '',
-    lactancia: false,
+    lactancia: 0,
     desarrollo: '',
   });
 
-  const handleChange = (e) => {
-    const { name, value, type, checked } = e.target;
-    const val = type === 'radio' ? (value === 'si') : (type === 'checkbox' ? checked : value);
-    setFormData((prev) => ({
-      ...prev,
-      [name]: val,
-    }));
-  };
-
-  const handleSubmit = async (e) => {
-  e.preventDefault();
-  try {
-    console.log('Enviando:', formData); 
-    await axios.post('http://localhost:4000/api/historial_medico', formData);
-    showFlash('💾 Historial guardado correctamente');
-  } catch (error) {
-    console.error('Error al guardar historial:', error);
-    showFlash('❌ Error al guardar');
-  }
-};
-
-
-  const [flashMessage, setFlashMessage] = useState('');
-  const showFlash = (text) => {
-    setFlashMessage(text);
-    setTimeout(() => setFlashMessage(''), 3000);
-  };
+      const [activeTab, setActiveTab] = useState('historialMed');
+      const [flashMessage, setFlashMessage] = useState('');
 
   const tabConfig = [
     { id: 'listadoPaciente', label: 'Listado', path: '/pacientes' },
@@ -69,8 +44,48 @@ function Historialmedico() {
     exit: { x: '-100%', opacity: 0 },
     transition: { duration: 0.4 },
   };
+    const showFlash = (text) => {
+        setFlashMessage(text);
+        setTimeout(() => setFlashMessage(''), 3000);
+    };
 
-  const [activeEncabezado, setActiveEncabezado] = useState('/historialmedico');
+    const handleInputChange = (e) => {
+        const { name, value, type } = e.target;
+        setFormData(prev => ({
+            ...prev,
+            [name]: type === 'radio' ? parseInt(value) : value
+        }));
+    };
+
+    const handleSave = async (e) => {
+        e.preventDefault();
+
+        if (!formData.id_paciente || !formData.fecha_registro) {
+            showFlash('❌ DPI y Fecha son obligatorios');
+            return;
+        }
+
+        try {
+           const response = await axios.post('http://localhost:4000/api/historialmedico', formData, {
+            headers: { 'Content-Type': 'application/json' }
+          });
+
+            if (response.status === 201) {
+                showFlash('💾 Guardado correctamente');
+                // Opcional: resetear el formulario
+                // setFormData({...formData, fecha_registro: '', rechinar: 0, chupar: 0, etc...});
+            }
+        } catch (error) {
+            console.error('Error al guardar:', error);
+            const errorMsg = error.response?.data?.error || 'Error en el servidor';
+            showFlash(`❌ ${errorMsg}`);
+        }
+    };
+
+
+  const handleAction = (action) => {
+        showFlash(action === 'edit' ? '🖋️ Editado correctamente' : '🗑️ Eliminado correctamente');
+    };
 
   return (
     <main className="formulario-content3">
@@ -80,9 +95,9 @@ function Historialmedico() {
         {tabConfig.map((tab) => (
           <button
             key={tab.id}
-            className={`HistorialMedico-tab ${activeEncabezado === tab.path ? 'active' : ''}`}
+            className={`HistorialMedico-tab ${activeTab === tab.id ? 'active' : ''}`}
             onClick={() => {
-              setActiveEncabezado(tab.path);
+              setActiveTab(tab.path);
               navigate(tab.path);
             }}
           >
@@ -109,16 +124,16 @@ function Historialmedico() {
         </div>
         <hr className="HistorialMedico-separator" />
 
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSave}>
           <div className="doble3">
             <div className="campos3">
               <label>DPI Paciente:</label>
-              <input type="text" name="id_paciente" value={formData.id_paciente} onChange={handleChange}
+              <input type="text" name="id_paciente" value={formData.id_paciente} onChange={handleInputChange}
               />
             </div>
             <div className="campos3">
               <label>Fecha de Registro:</label>
-              <input type="date" name="fecha_registro" value={formData.fecha_registro} onChange={handleChange}
+              <input type="date" name="fecha_registro" value={formData.fecha_registro} onChange={handleInputChange}
               />
             </div>
           </div>
@@ -129,96 +144,99 @@ function Historialmedico() {
                 <label>¿Padece alguna enfermedad?:</label>
                 <div>
                   <label>
-                    <input type="radio" name="padecimiento" value="true" checked={formData.padecimiento === true} onChange={handleChange}
+                    <input type="radio" name="padecimiento" value={1} checked={formData.padecimiento === 1} onChange={handleInputChange}
                     />Sí</label>
                   <label>
-                    <input type="radio" name="padecimiento" value="false" checked={formData.padecimiento === false} onChange={handleChange}
+                    <input type="radio" name="padecimiento" value={0} checked={formData.padecimiento === 0} onChange={handleInputChange}
                     />No</label>
                 </div>
               </div>
               <div className="camposs2">
                 <label>¿Cuál?:</label>
-                <input type="text" name="tipo_enfermedad" value={formData.tipo_enfermedad} onChange={handleChange}
-                />
-              </div>
-              <div className="camposs2">
-                <label>¿Ha sido hospitalizado?:</label>
-                <div>
-                  <label>
-                    <input type="radio" name="hospitalizacion" value="true" checked={formData.hospitalizacion === true} onChange={handleChange}
-                    />Sí</label>
-                  <label>
-                    <input type="radio" name="hospitalizacion" value="false" checked={formData.hospitalizacion === false} onChange={handleChange}
-                    />No</label>
-                </div>
-              </div>
-              <div className="camposs2">
-                <label>¿Por qué motivo?:</label>
-                <input type="text" name="tipo_hospitalizacion" value={formData.tipo_hospitalizacion} onChange={handleChange}
+                <input type="text" name="tipo_enfermedad" value={formData.tipo_enfermedad} onChange={handleInputChange}
                 />
               </div>
               <div className="camposs2">
                 <label>¿Usa medicamentos?:</label>
                 <div>
                   <label>
-                    <input type="radio" name="usa_medicamentos" value="true" checked={formData.usa_medicamentos === true} onChange={handleChange}
+                    <input type="radio" name="usa_medicamentos" value={1} checked={formData.usa_medicamentos === 1} onChange={handleInputChange}
                     />Sí</label>
                   <label>
-                    <input type="radio" name="usa_medicamentos" value="false" checked={formData.usa_medicamentos === false} onChange={handleChange}
+                    <input type="radio" name="usa_medicamentos" value={0} checked={formData.usa_medicamentos === 0} onChange={handleInputChange}
                     />No</label>
                 </div>
               </div>
               <div className="camposs2">
-                <label>¿Qué medicamentos?:</label>
-                <input type="text" name="tipos_medicamentos" value={formData.tipos_medicamentos} onChange={handleChange}
+                <label>¿Cuál?:</label>
+                <input type="text" name="tipos_medicamentos" value={formData.tipos_medicamentos} onChange={handleInputChange}
                 />
               </div>
               <div className="camposs2">
-                <label>¿Tiene alergias?:</label>
+                <label>¿Alergia a medicamentos?:</label>
                 <div>
                   <label>
-                    <input type="radio" name="alergias" value="true" checked={formData.alergias === true} onChange={handleChange}
+                    <input type="radio" name="alergias" value={1} checked={formData.alergias === 1} onChange={handleInputChange}
                     />Sí</label>
                   <label>
-                    <input type="radio" name="alergias" value="false" checked={formData.alergias === false} onChange={handleChange}
+                    <input type="radio" name="alergias" value={0} checked={formData.alergias === 0} onChange={handleInputChange}
                     />No</label>
                 </div>
               </div>
               <div className="camposs2">
-                <label>¿Qué alergias?:</label>
-                <input type="text" name="tipos_alergias" value={formData.tipos_alergias} onChange={handleChange}
+                <label>¿Cuál?:</label>
+                <input type="text" name="tipos_alergias" value={formData.tipos_alergias} onChange={handleInputChange}
+                />
+              </div>
+            </div>
+
+              <div className='cuatro3'>
+              <div className="camposs2">
+                <label>¿Ha sido hospitalizado en los ultimos 2 años?:</label>
+                <div>
+                  <label>
+                    <input type="radio" name="hospitalizacion" value={1} checked={formData.hospitalizacion === 1} onChange={handleInputChange}
+                    />Sí</label>
+                  <label>
+                    <input type="radio" name="hospitalizacion" value={0} checked={formData.hospitalizacion === 0} onChange={handleInputChange}
+                    />No</label>
+                </div>
+              </div>
+              <div className="camposs2">
+                <label>¿Por qué?:</label>
+                <input type="text" name="tipo_hospitalizacion" value={formData.tipo_hospitalizacion} onChange={handleInputChange}
                 />
               </div>
               <div className="camposs2">
-                <label>¿Está embarazada?:</label>
+                <label>¿Está embarazada o cree estarlo?:</label>
                 <div>
                   <label>
-                    <input type="radio" name="embarazo" value="true" checked={formData.embarazo === true} onChange={handleChange}
+                    <input type="radio" name="embarazo" value={1} checked={formData.embarazo === 1} onChange={handleInputChange}
                     />Sí</label>
                   <label>
-                    <input type="radio" name="embarazo" value="false" checked={formData.embarazo === false} onChange={handleChange}
+                    <input type="radio" name="embarazo" value={0} checked={formData.embarazo === 0} onChange={handleInputChange}
                     />No</label>
                 </div>
               </div>
               <div className="camposs2">
                 <label>¿Cuántos meses?:</label>
-                <input type="text" name="meses_embarazo" value={formData.meses_embarazo} onChange={handleChange}
+                <input type="text" name="meses_embarazo" value={formData.meses_embarazo} onChange={handleInputChange}
                 />
               </div>
               <div className="camposs2">
                 <label>¿Está en lactancia?:</label>
                 <div>
                   <label>
-                    <input type="radio" name="lactancia" value="true" checked={formData.lactancia === true} onChange={handleChange}
+                    <input type="radio" name="lactancia" value={1} checked={formData.lactancia === 1} onChange={handleInputChange}
                     />Sí</label>
                   <label>
-                    <input type="radio" name="lactancia" value="false" checked={formData.lactancia === false} onChange={handleChange}
+                    <input type="radio" name="lactancia" value={0} checked={formData.lactancia === 0} onChange={handleInputChange}
                     />No</label>
                 </div>
               </div>
               <div className="camposs2">
                 <label>¿Edad de desarrollo?:</label>
-                <input type="text" name="desarrollo" value={formData.desarrollo} onChange={handleChange}
+                <input type="text" name="desarrollo" value={formData.desarrollo} onChange={handleInputChange}
                 />
               </div>
             </div>
@@ -226,7 +244,7 @@ function Historialmedico() {
 
           <div className="HistorialMedico-botones">
             {flashMessage && <div className="flash-message">{flashMessage}</div>}
-            <button type="button" onClick={() => navigate('/agregarpaciente')} className="HistorialMedico-btn-regresar">REGRESAR</button>
+            <button type="button" onClick={() => navigate('/historialodontologico')} className="HistorialMedico-btn-regresar">REGRESAR</button>
             <button type="submit" className="HistorialMedico-btn-guardar">GUARDAR</button>
           </div>
         </form>

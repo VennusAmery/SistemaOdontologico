@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import './pacientes.css';
-import { motion } from 'framer-motion';
-import { useNavigate, useLocation } from "react-router-dom";
+import { motion, AnimatePresence } from 'framer-motion';
+import { useNavigate, useParams} from "react-router-dom";
+import axios from 'axios';
 
 const tabConfig = [
   { id: 'listadoPaciente', label: 'Listado', path: '/pacientes' },
@@ -21,54 +22,89 @@ const tabVariants = {
 };
 
 export default function Pacientes() {
+  const { id } = useParams(); 
   const navigate = useNavigate();
-  const location = useLocation();
+  const [tabActiva, setActiveTab] = useState(tabConfig[0].id);
 
-  const [tabActiva, setTabActiva] = useState(tabConfig[0].id);
-  const [searchTerm, setSearchTerm] = useState('');
-  const [displayTerm, setDisplayTerm] = useState('');
-  const [materials] = useState([
-    'Alicia', 'Roberto', 'Nelson', 'Lilian', 'Sofia',
-    'Barbara', 'Daniela', 'Diego', 'Alejandra', 'Walter'
-  ]);
+    const [pacientes, setPacientes] = useState([]);
+    const [searchTerm, setSearchTerm] = useState('');
+    const [displayTerm, setDisplayTerm] = useState('');
+  
+    const [message, setMessage] = useState('');
+    const [messageType, setMessageType] = useState('');
 
   // Actualizar tab activa según URL
-  useEffect(() => {
-    const currentTab = tabConfig.find(tab => tab.path === location.pathname);
-    if (currentTab) setTabActiva(currentTab.id);
-  }, [location]);
+useEffect(() => {
+  const fetchPacientes = async () => {
+    try {
+      let res;
+      if (id) {
+        res = await axios.get(`http://localhost:4000/api/listapacientes/${id}`);
+        setPacientes([res.data]); // Si es uno solo, lo pones en un array
+      } else {
+        res = await axios.get('http://localhost:4000/api/listapacientes');
+        setPacientes(res.data);
+      }
+    } catch (err) {
+      console.error("Error al obtener datos del paciente:", err);
+    }
+  };
 
-  // Debounce para displayTerm
-  useEffect(() => {
-    const id = setTimeout(() => setDisplayTerm(searchTerm), 300);
-    return () => clearTimeout(id);
-  }, [searchTerm]);
+  fetchPacientes();
+}, [id]);
 
-  // Filtrar materiales según displayTerm
-  const filtered = useMemo(() =>
-    materials.filter(name =>
-      name.toLowerCase().includes(displayTerm.toLowerCase())
-    ), [materials, displayTerm]);
+  // Filtrado y agrupamiento
+  const pacientesFiltrados = useMemo(() =>
+    pacientes.filter(pa =>
+      pa.nombre.toLowerCase().includes(displayTerm.toLowerCase())
+    )
+  , [pacientes, displayTerm]);
 
-  // Agrupar alfabéticamente
-  const agrupados = useMemo(() => {
-    return filtered
-      .sort((a, b) => a.localeCompare(b))
-      .reduce((acc, item) => {
-        const letra = item[0].toUpperCase();
-        if (!acc[letra]) acc[letra] = [];
-        acc[letra].push(item);
-        return acc;
-      }, {});
-  }, [filtered]);
+const agrupados = useMemo(() => {
+  return pacientesFiltrados
+    .filter(pac => typeof pac.nombre === 'string' && pac.nombre.length > 0)
+    .sort((a, b) => {
+      const nombreComparison = a.nombre.localeCompare(b.nombre);
+      if (nombreComparison !== 0) {
+        return nombreComparison; // Si los nombres son diferentes, usa esta comparación
+      }
+      return a.apellido.localeCompare(b.apellido); // Si los nombres son iguales, compara por apellido
+    })
+    .reduce((acc, pac) => {
+      const letra = pac.nombre[0].toUpperCase();
+      if (!acc[letra]) acc[letra] = [];
+      acc[letra].push(pac);
+      return acc;
+    }, {});
+}, [pacientesFiltrados]);
 
+
+
+  // Handlers
   const handleTabClick = tab => {
-    setTabActiva(tab.id);
+    setActiveTab(tab.id);
     navigate(tab.path);
+  };
+
+  const handleSearch = e => {
+    e.preventDefault();
+    setDisplayTerm(searchTerm);
   };
 
   return (
     <div className="pacienteslist-container">
+          <AnimatePresence>
+            {message && (
+              <motion.div
+                className={`flash-message ${messageType}`}
+                initial={{ y: -40, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                exit={{ y: -40, opacity: 0 }}
+                transition={{ duration: 0.5 }}>
+                {message}
+              </motion.div>
+            )}
+          </AnimatePresence>
       <h2 className="pacienteslist-title">Pacientes</h2>
       <hr />
 
@@ -79,7 +115,8 @@ export default function Pacientes() {
             key={tab.id}
             type="button"
             className={`pacienteslist-tab ${tabActiva === tab.id ? 'active' : ''}`}
-            onClick={() => handleTabClick(tab)}>
+            onClick={() => handleTabClick(tab)}
+          >
             {tab.label}
           </button>
         ))}
@@ -96,10 +133,7 @@ export default function Pacientes() {
         {/* ——— Buscador ——— */}
         <form
           className="pacienteslist-search-form"
-          onSubmit={e => {
-            e.preventDefault();
-            setDisplayTerm(searchTerm);
-          }}>
+          onSubmit={handleSearch}>
           <div className="pacienteslist-search-container">
             <input
               type="text"
@@ -113,27 +147,25 @@ export default function Pacientes() {
 
         {/* ——— Resultados ——— */}
         <div className="pacienteslist-search-results">
-          {filtered.length > 0 ? (
+          {pacientesFiltrados.length > 0 ? (
             Object.keys(agrupados).sort().map(letra => (
               <div key={letra}>
                 <div className="pacienteslist-letter-separator">{letra}</div>
                 {agrupados[letra].map(item => (
                   <div
-                    key={item}
+                    key={item.dpi}
                     className="pacienteslist-search-item"
                     role="button"
-                    tabIndex={0}
-                    onClick={() => navigate(`/infoMaterial/${encodeURIComponent(item)}`)}
-                    onKeyDown={(e) => {
-                      if (e.key === 'Enter') navigate(`/infoMaterial/${encodeURIComponent(item)}`);
-                    }}>
-                    {item}
+                    onClick={() => navigate(`/agregarpaciente/${item.dpi}`)}
+                    onKeyDown={e => e.key === 'Enter' && navigate(`/agregarpaciente/${item.dpi}`)}
+                  >
+                    {item.nombre} {item.apellido} 
                   </div>
                 ))}
               </div>
             ))
           ) : (
-            <div className="pacienteslist-search-noresults">No se encontraron materiales</div>
+            <div className="pacienteslist-search-noresults">No se encontraron personas</div>
           )}
         </div>
 

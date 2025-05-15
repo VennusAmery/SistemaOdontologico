@@ -109,7 +109,7 @@ const handleSave = async (e) => {
     direccion_casa: '',
     direccion_trabajo: ''
   });
-  showFlash('🗑️ Datos borrados');
+  showFlash('💾 Guardado correctamente');
 };
 
 

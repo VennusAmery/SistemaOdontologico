@@ -1,21 +1,25 @@
 import React, { useState, useEffect } from 'react';
 import './historialodontologico.css';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import axios from 'axios';
 
 function Historialodontologico() {
   const navigate = useNavigate();
-  const location = useLocation();
 
-  const [id_paciente, setDpiPaciente] = useState('');
-  const [fecha_registro, setFechaRegistro] = useState('');
-  const [fecha_ultima_consulta, setFechaUltimaConsulta] = useState('');
-  const [motivo_consulta, setMotivoConsulta] = useState('');
-  const [dolor, setTieneDolor] = useState('');
-  const [dientes_dolor, setDientesDolor] = useState('');
-  const [sangrado, setSangrado] = useState('');
-  const [antecedentes_familiares, setAntecedentesFamiliares] = useState('');
+const [formData, setFormData] = useState({
+        id_paciente: '',
+        fecha_registro: '',
+        motivo_consulta: '',
+        fecha_ultima_consulta: '',
+        dolor: 0,
+        dientes_dolor: '',
+        sangrado: 0,
+        antecedentes_familiares: ''
+    });
+
+      const [activeTab, setActiveTab] = useState('historialOdont');
+      const [flashMessage, setFlashMessage] = useState('');
 
   const tabConfig = [
     { id: 'listadoPaciente', label: 'Listado', path: '/pacientes' },
@@ -33,48 +37,48 @@ function Historialodontologico() {
     exit: { x: '-100%', opacity: 0 },
     transition: { duration: 0.4 },
   };
+    const showFlash = (text) => {
+        setFlashMessage(text);
+        setTimeout(() => setFlashMessage(''), 3000);
+    };
 
-  const [activeEncabezado, setActiveEncabezado] = useState(location.pathname);
+    const handleInputChange = (e) => {
+        const { name, value, type } = e.target;
+        setFormData(prev => ({
+            ...prev,
+            [name]: type === 'radio' ? parseInt(value) : value
+        }));
+    };
 
-  useEffect(() => {
-    setActiveEncabezado(location.pathname);
-  }, [location]);
+    const handleSave = async (e) => {
+        e.preventDefault();
 
-  const [flashMessage, setFlashMessage] = useState('');
-  const showFlash = text => {
-    setFlashMessage(text);
-    setTimeout(() => setFlashMessage(''), 3000);
-  };
+        if (!formData.id_paciente || !formData.fecha_registro) {
+            showFlash('❌ DPI y Fecha son obligatorios');
+            return;
+        }
 
-  const handleSubmit = async e => {
-    e.preventDefault();
+        try {
+           const response = await axios.post('http://localhost:4000/api/historialodonto', formData, {
+            headers: { 'Content-Type': 'application/json' }
+          });
 
-    try {
-      const response = await axios.post('http://localhost:4000/api/historialodonto', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        id_paciente,
-        fecha_registro,
-        motivo_consulta,
-        fecha_ultima_consulta,
-        dolor,
-        dientes_dolor,
-        sangrado,
-        antecedentes_familiares,
-      }),
-      });
+            if (response.status === 201) {
+                showFlash('💾 Guardado correctamente');
+                // Opcional: resetear el formulario
+                // setFormData({...formData, fecha_registro: '', rechinar: 0, chupar: 0, etc...});
+            }
+        } catch (error) {
+            console.error('Error al guardar:', error);
+            const errorMsg = error.response?.data?.error || 'Error en el servidor';
+            showFlash(`❌ ${errorMsg}`);
+        }
+    };
 
-      if (response.ok) {
-        showFlash('💾 Guardado correctamente');
-      } else {
-        showFlash('❌ Error al guardar');
-      }
-    } catch (error) {
-      console.error(error);
-      showFlash('❌ Error de conexión con el servidor');
-    }
-  };
+
+  const handleAction = (action) => {
+        showFlash(action === 'edit' ? '🖋️ Editado correctamente' : '🗑️ Eliminado correctamente');
+    };
 
   return (
     <main className="formulario-content2">
@@ -85,12 +89,11 @@ function Historialodontologico() {
         {tabConfig.map(tab => (
           <button
             key={tab.id}
-            className={`HistorialOdonto-tab ${activeEncabezado === tab.path ? 'active' : ''}`}
+            className={`HistorialOdonto-tab ${activeTab === tab.id ? 'active' : ''}`}
             onClick={() => {
-              setActiveEncabezado(tab.path);
+              setActiveTab(tab.path);
               navigate(tab.path);
-            }}
-          >
+            }}>
             {tab.label}
           </button>
         ))}
@@ -115,99 +118,141 @@ function Historialodontologico() {
 
         <hr className="HistorialOdonto-separator" />
 
-        <form onSubmit={handleSubmit}>
-          <div className="doble2">
-            <div className="campos2">
-              <label>DPI Paciente:</label>
-              <input
-                type="text"
-                value={id_paciente}
-                onChange={e => setDpiPaciente(e.target.value)}
-              />
-            </div>
+<form onSubmit={handleSave}>
+  <div className="doble2">
+    <div className="campos2">
+      <label>DPI Paciente:</label>
+      <input
+        type="text"
+        name="id_paciente" 
+        value={formData.id_paciente}
+        onChange={handleInputChange}
+      />
+    </div>
 
-            <div className="campos2">
-              <label>Fecha de Registro:</label>
-              <input
-                type="date"
-                value={fecha_registro}
-                onChange={e => setFechaRegistro(e.target.value)}
-              />
-            </div>
-          </div>
+    <div className="campos2">
+      <label>Fecha de Registro:</label>
+      <input
+        type="date"
+        name="fecha_registro" 
+        value={formData.fecha_registro}
+        onChange={handleInputChange}
+      />
+    </div>
+  </div>
 
-          <div className="triple1">
-            <div className="camposs1">
-              <label>¿Cuándo fue su última visita al odontólogo?</label>
-              <input
-                type="date"
-                value={fecha_ultima_consulta}
-                onChange={e => setFechaUltimaConsulta(e.target.value)}
-              />
-            </div>
+  <div className="triple1">
+    <div className="camposs1">
+      <label>¿Cuándo fue su última visita al odontólogo?</label>
+      <input
+        type="date"
+        name="fecha_ultima_consulta"
+        value={formData.fecha_ultima_consulta}
+        onChange={handleInputChange}
+      />
+    </div>
 
-            <div className="camposs1">
-              <label>¿Cuál fue el motivo?</label>
-              <input
-                type="text"
-                value={motivo_consulta}
-                onChange={e => setMotivoConsulta(e.target.value)}
-              />
-            </div>
-          </div>
+    <div className="camposs1">
+      <label>¿Cuál fue el motivo?</label>
+      <input
+        type="text"
+        name="motivo_consulta"
+        value={formData.motivo_consulta}
+        onChange={handleInputChange}
+      />
+    </div>
+  </div>
 
-          <div className="cuatro2">
-            <div className="camposs1">
-              <label>¿Tiene dolor en algún diente o muela?</label>
-              <div>
-              <label>
-                <input type="radio" name="dolor" value="true" checked={dolor === true} onChange={() => setTieneDolor(true)}
-                />Sí</label>
-                <label>
-                <input type="radio" name="dolor" value="false" checked={dolor === false} onChange={() => setTieneDolor(false)}
-                />No</label>
-              </div>
-            </div>
+  <div className="cuatro2">
+    <div className="camposs1">
+      <label>¿Tiene dolor en algún diente o muela?</label>
+      <div>
+        <label>
+          <input
+            type="radio"
+            name="dolor" 
+            value={1}
+            checked={formData.dolor === 1}
+            onChange={handleInputChange}
+          />
+          Sí
+        </label>
+        <label>
+          <input
+            type="radio"
+            name="dolor" 
+            value={0}
+            checked={formData.dolor === 0}
+            onChange={handleInputChange}
+          />
+          No
+        </label>
+      </div>
+    </div>
 
-            <div className="camposs1">
-              <label>¿Cuál es?</label>
-              <input
-                type="text"
-                value={dientes_dolor}
-                onChange={e => setDientesDolor(e.target.value)}
-              />
-            </div>
+    <div className="camposs1">
+      <label>¿Cuál es?</label>
+      <input
+        type="text"
+        name="dientes_dolor"
+        value={formData.dientes_dolor}
+        onChange={handleInputChange}
+      />
+    </div>
 
-            <div className="camposs1">
-              <label>¿Sangran las encías al cepillado?</label>
-              <div>
-            <label>
-                <input type="radio" name="sangrado" value="true" checked={sangrado === true} onChange={() => setSangrado(true)}
-                />Sí</label>
-                <label>
-                <input type="radio" name="sangrado" value="false" checked={sangrado === false} onChange={() => setSangrado(false)}
-                />No</label>
-              </div>
-            </div>
+    <div className="camposs1">
+      <label>¿Sangran las encías al cepillado?</label>
+      <div>
+        <label>
+          <input
+            type="radio"
+            name="sangrado"
+            value={1}
+            checked={formData.sangrado === 1}
+            onChange={handleInputChange}
+          />
+          Sí
+        </label>
+        <label>
+          <input
+            type="radio"
+            name="sangrado" 
+            value={0}
+            checked={formData.sangrado === 0}
+            onChange={handleInputChange}
+          />
+          No
+        </label>
+      </div>
+    </div>
 
-            <div className="camposs1">
-                <label>¿Algún miembro de su familia tiene el mismo problema de</label>
-             <label>malposición de los dientes y forma que encaja la mordida?</label>
-              <input
-                type="text"
-                value={antecedentes_familiares}
-                onChange={e => setAntecedentesFamiliares(e.target.value)}
-              />
-            </div>
-          </div>
+    <div className="camposs1">
+        <label>¿Algún miembro de su familia tiene el mismo problema de</label>
+        <label>malposición de los dientes y forma que encaja la mordida?</label>
+      <input
+        type="text"
+        name="antecedentes_familiares" 
+        value={formData.antecedentes_familiares}
+        onChange={handleInputChange}
+      />
+    </div>
+  </div>
 
-          <div className="HistorialOdontologico-botones">
-            {flashMessage && <div className="flash-message">{flashMessage}</div>}
+  <div className="HistorialOdontologico-botones">
+    {flashMessage && <div className="flash-message">{flashMessage}</div>}
 
-            <button type="button" onClick={() => navigate('/agregarpaciente')} className="HistorialOdontologico-btn-regresar">REGRESAR</button>
-            <button type="submit" className="HistorialOdontologico-btn-guardar">GUARDAR</button>
-          </div>
-        </form>
+    <button
+      type="button"
+      onClick={() => navigate('/habitos')}
+      className="HistorialOdontologico-btn-regresar"
+    >
+      REGRESAR
+    </button>
+    <button type="submit" className="HistorialOdontologico-btn-guardar">
+      GUARDAR
+    </button>
+  </div>
+</form>
       </motion.section>
     </main>
   );

@@ -3,24 +3,32 @@ const router = express.Router();
 
 module.exports = function (pool) {
   // Ruta para insertar historial médico
-  router.post('/', async (req, res) => {
+  router.post('/historialmedico', async (req, res) => {
     try {
       const {
         id_paciente,
         fecha_registro,
-        padecimiento,
-        tipo_enfermedad,
-        hospitalizacion,
-        tipo_hospitalizacion,
-        usa_medicamentos,
-        tipos_medicamentos,
-        alergias,
-        tipos_alergias,
-        embarazo,
-        meses_embarazo,
-        lactancia,
-        desarrollo,
+        padecimiento = 0,
+        tipo_enfermedad = null,
+        hospitalizacion = 0,
+        tipo_hospitalizacion = null,
+        usa_medicamentos = 0,
+        tipos_medicamentos = null,
+        alergias = 0,
+        tipos_alergias = null,
+        embarazo = 0,
+        meses_embarazo = null,
+        lactancia = 0,
+        desarrollo = null,
       } = req.body;
+
+      // Validación de campos obligatorios
+      if (!id_paciente || !fecha_registro) {
+      return res.status(400).json({ 
+        success: false,
+        message: "ID de paciente y fecha de registro son obligatorios" 
+      });
+    }
 
       const sql = `
         INSERT INTO historial_medico (
@@ -31,27 +39,38 @@ module.exports = function (pool) {
         ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
       `;
 
-      await pool.query(sql, [
+      const params = [
         id_paciente,
         fecha_registro,
-        padecimiento,
+        padecimiento ? 1 : 0, 
         tipo_enfermedad,
-        hospitalizacion,
+        hospitalizacion ? 1 : 0,
         tipo_hospitalizacion,
-        usa_medicamentos,
+        usa_medicamentos ? 1 : 0,
         tipos_medicamentos,
-        alergias,
+        alergias ? 1 : 0,
         tipos_alergias,
-        embarazo,
+        embarazo ? 1 : 0,
         meses_embarazo,
-        lactancia,
+        lactancia ? 1 : 0,
         desarrollo,
-      ]);
+      ];
 
-      res.status(201).json({ message: '✅ Historial médico guardado con éxito' });
-    } catch (error) {
-      console.error('❌ Error al insertar historial médico:', error);
-      res.status(500).json({ error: 'Error al guardar historial médico' });
+      const [result] = await pool.execute(sql, params);
+      
+      console.log('✅ Historial odontológico guardado. ID:', result.insertId);
+      res.status(201).json({ 
+        success: true,
+        message: "Guardado correctamente",
+        id: result.insertId
+      });
+    } catch (err) {
+      console.error("❌ Error al guardar historial odontológico:", err.message);
+      res.status(500).json({ 
+        success: false,
+        message: "Error en el servidor",
+        error: err.message  // Solo en desarrollo, quitar en producción
+      });
     }
   });
 

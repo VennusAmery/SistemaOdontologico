@@ -12,12 +12,14 @@ const pacientesRoutes = require('./pacientes');
 const habitosRoutes = require('./habitos'); 
 const historialodontoRoutes = require('./historialodonto'); 
 const historialmedicoRoutes = require('./historialmedico'); 
+const listaPacientesRoutes = require('./listapacientes');
 const doctoresRoutes = require('./doctores');
 const listadodoctoresRoutes = require('./listadodoctores');
 const ingresoDoctorRoutes    = require('./ingresodoctor');
 const empleadosRoutes = require('./empleados');
 const empleadoinfoRoutes = require('./empleadoinfo');
 const agregarempleadoRoutes = require('./agregarempleado');
+const citaRoutes = require('./cita'); // Importar las rutas de citas
 
 const app = express();
 app.use(cors());
@@ -27,9 +29,9 @@ async function startServer() {
 
 const pool = mysql.createPool({
   host: process.env.DB_HOST || 'localhost',  
-  user: process.env.DB_USER || 'dani',
+  user: process.env.DB_USER || 'sergio',
   password: process.env.DB_PASSWORD || '1234',
-  database: process.env.DB_NAME || 'ODONTOLOGIA',
+  database: process.env.DB_NAME || 'odontologia',
 });
   await pool.query('SELECT 1');
   console.log('✅ MySQL pool conectado');
@@ -41,18 +43,20 @@ const pool = mysql.createPool({
   app.use('/api/proveedores', proveedoresRoutes(pool));
   app.use('/api/inventario', inventarioRoutes(pool));
   app.use('/api/infomaterial', infomaterialRoutes(pool));
-  app.use('/api, doctores', doctoresRoutes(pool));
+  app.use('/api/ doctores', doctoresRoutes(pool));
   app.use('/api/listadodoctores', listadodoctoresRoutes(pool));
   app.use('/api/ingresodoctor', ingresoDoctorRoutes(pool));
   app.use('/api/inventario', inventarioRoutes(pool));
   app.use('/api/infomaterial', infomaterialRoutes(pool));
-  app.use('/api/pacientes', pacientesRoutes(pool)); // Ruta para pacientes
+  app.use('/api', pacientesRoutes(pool)); // Ruta para pacientes
   app.use('/api/habitos', habitosRoutes(pool)); 
   app.use('/api/historialodonto', historialodontoRoutes(pool)); 
   app.use('/api/historialmedico', historialmedicoRoutes(pool)); 
+  app.use('/api', listaPacientesRoutes(pool)); 
   app.use('/api/empleados', empleadosRoutes(pool)); 
   app.use('/api/empleadoinfo', empleadoinfoRoutes(pool));
-  app.use('/api/agregarempleado', agregarempleadoRoutes(pool)); // Ruta para agregar empleado
+  app.use('/api/agregarempleado', agregarempleadoRoutes(pool)); // Ruta para agregar empleado 
+  app.use('/api/citas', citaRoutes(pool));
 
   // Iniciar el servidor
   app.listen(4000, () => console.log('🟢 Servidor en http://localhost:4000'));

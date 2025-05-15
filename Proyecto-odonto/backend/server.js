@@ -56,7 +56,7 @@ const pool = mysql.createPool({
   app.use('/api/empleados', empleadosRoutes(pool)); 
   app.use('/api/empleadoinfo', empleadoinfoRoutes(pool));
   app.use('/api/agregarempleado', agregarempleadoRoutes(pool)); // Ruta para agregar empleado 
-  app.use('/api/citas', citaRoutes(pool));
+  app.use('/api/cita', citaRoutes(pool));
 
   // Iniciar el servidor
   app.listen(4000, () => console.log('🟢 Servidor en http://localhost:4000'));

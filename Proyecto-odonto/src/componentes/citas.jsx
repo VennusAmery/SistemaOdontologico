@@ -28,27 +28,27 @@ const Citas = () => {
   const [messageType, setMessageType] = useState('');
 
   // Obtener citas del backend
-  useEffect(() => {
-    const fetchCitas = async () => {
-      setIsLoading(true);
-      try {
-        let res;
-        if (id_cita) {
-          res = await axios.get(`http://localhost:4000/api/citas/${id_cita}`);
-          setCitas([res.data]);
-        } else {
-          res = await axios.get('http://localhost:4000/api/citas');
-          setCitas(res.data);
-        }
-      } catch (err) {
-        console.error("Error al obtener citas:", err);
-        showFlash('❌ Error al cargar citas', 'error');
-      } finally {
-        setIsLoading(false);
+ useEffect(() => {
+  const fetchCitas = async () => {
+    setIsLoading(true);
+    try {
+      let res;
+      if (id_cita) {
+        res = await axios.get(`http://localhost:4000/api/listacita/${id_cita}`);
+        setCitas([res.data]);
+      } else {
+        res = await axios.get('http://localhost:4000/api/listacita');
+        setCitas(res.data);
       }
-    };
-    fetchCitas();
-  }, [id_cita]);
+    } catch (err) {
+      console.error("Error al obtener citas:", err);
+      showFlash('❌ Error al cargar citas', 'error');
+    } finally {
+      setIsLoading(false);
+    }
+  };
+  fetchCitas();
+}, [id_cita]);
 
   // Debounce para la búsqueda
   useEffect(() => {
@@ -93,7 +93,7 @@ const Citas = () => {
     if (!window.confirm('¿Está seguro de eliminar esta cita?')) return;
     
     try {
-      await axios.delete(`http://localhost:4000/api/cita/${id_cita}`);
+      await axios.delete(`http://localhost:4000/api/listacita/${id_cita}`);
       setCitas(citas.filter(c => c.id_cita !== id_cita));
       showFlash('🗑️ Cita eliminada correctamente');
     } catch (err) {
@@ -193,7 +193,7 @@ const Citas = () => {
                     <div className="citas-card-body">
                       <p><strong>Doctor:</strong> {cita.doctor_encargado}</p>
                       <p><strong>Clínica:</strong> {cita.codigo_clinica || 'No especificado'}</p>
-                      <p><strong>Monto:</strong> Q{cita.monto_a_cobrar?.toFixed(2) || '0.00'}</p>
+                      <p><strong>Monto:</strong> Q{Number(cita.monto_a_cobrar || 0).toFixed(2) || '0.00'}</p>
                     </div>
                     <div className="citas-card-actions">
                       <button 

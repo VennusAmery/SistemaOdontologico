@@ -17,7 +17,7 @@ module.exports = function (pool) {
   // Obtener un paciente por su DPI con su contacto y dirección
 router.get('/:dpi', async (req, res) => {
   const { dpi } = req.params;
-
+  
     try {
       const [rows] = await pool.query(`
         SELECT 
@@ -41,7 +41,7 @@ router.get('/:dpi', async (req, res) => {
         LEFT JOIN direccion_paciente dp ON dp.id_paciente = p.dpi
         WHERE p.dpi = ?
       `, [dpi]);
-
+      
       if (!rows.length) return res.status(404).json({ error: 'Paciente no encontrado' });
       res.json(rows[0]);
     } catch (err) {

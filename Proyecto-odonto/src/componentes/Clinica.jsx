@@ -22,7 +22,7 @@ const Clinica = () => {
   const [formData, setFormData] = useState({
     nombre: 'Clínica Zona 14',
     ubicacion: 'Ciudad de Guatemala',
-    correo: 'zona14@clinica.gt',
+    correo: 'optimadental@clinica.gt',
     telefono: '2222-3333',
     apertura: '08:00',
     cierre: '17:00',
@@ -33,12 +33,12 @@ useEffect(() => {
     try {
       const clinicaId = tabActiva === 'clinica14' ? 2 : 3; // Aquí defines el ID según la pestaña activa
       const res = await fetch(`/api/clinica/${clinicaId}`);
-      if (!res.ok) throw new Error('Error al cargar datos');
+      if (!res.ok) throw new Error('');
       const data = await res.json();
       setFormData(data);
     } catch (err) {
-      console.error('Error al obtener clínica:', err);
-      setFlashMessage('❌ Error al cargar la clínica');
+      console.error('', err);
+      setFlashMessage('');
     }
   };
 

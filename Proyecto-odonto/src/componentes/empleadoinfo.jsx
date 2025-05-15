@@ -46,8 +46,9 @@ function AgregarEmpleado() {
           horaEntrada: d.hora_entrada || d.horaEntrada || '',
           horaSalida: d.hora_salida || d.horaSalida || '',
           clinica: d.id_clinica || d.clinica || '',
-          telefono: d.telefono || '',
-          correoElectronico: d.correoElectronico || d.correo || ''
+telefono: d.telefono || d.num_telefono || '',
+correoElectronico: d.correoElectronico || d.correo || d.email || '',
+
         });
       })
       .catch(err => setError(err.response?.data?.error || err.message))

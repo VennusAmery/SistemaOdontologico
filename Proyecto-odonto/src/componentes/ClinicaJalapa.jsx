@@ -15,9 +15,12 @@ const slideVariants = {
   transition: { duration: 0.4 },
 };
 
+
 const ClinicaJalapa = () => {
   const navigate = useNavigate();
   const [tabActiva, setTabActiva] = useState(tabConfig[1].id); // Empezamos con la pestaña 'Clinica Jalapa'
+    const [modoEdicion, setModoEdicion] = useState(false); 
+  
 
  /*FLASH DE LOS BOTONES DE ABAJO*/ 
   const [flashMessage, setFlashMessage] = useState('');
@@ -32,6 +35,12 @@ const ClinicaJalapa = () => {
     showFlash('🗑️ Eliminado correctamente');
   };
   
+  const handleInputChange = (e) => {
+  const { name, value } = e.target;
+  setFormData(prev => ({ ...prev, [name]: value }));
+};
+
+
   const handleEdit = (e) => {
     e.preventDefault();
     // aquí tu lógica de edición...
@@ -50,34 +59,93 @@ const ClinicaJalapa = () => {
     navigate(tab.path);
   };
 
-  const renderFormularioClinica = (titulo) => (
+
+    const [formData, setFormData] = useState({
+    nombre: 'Clínica Jalapa',
+    ubicacion: 'Municipio de Jalapa',
+    correo: 'optimadental@clinica.gt',
+    telefono: '2222-3333',
+    apertura: '08:00',
+    cierre: '17:00',
+  });  
+
+   const renderFormularioClinica = (titulo) => (
     <div className="clinica-bloque">
       <h2 className="clinica-titulo">{titulo}</h2>
       <div className="clinica-fila">
         <div className="clinica-columna-izquierda">
           <label>Nombre:</label>
-          <input type="text" className="clinica-input" />
+          <input
+                type="text"
+  className={`clinica-input ${modoEdicion ? 'editable' : 'readonly'}`}
+                name="nombre"
+                value={formData.nombre}
+                onChange={handleInputChange}
+                disabled={!modoEdicion}
+              />
           <label>Ubicación:</label>
-          <input type="text" className="clinica-input" />
+          <input
+              type="text"
+  className={`clinica-input ${modoEdicion ? 'editable' : 'readonly'}`}
+              name="ubicacion"
+              value={formData.ubicacion}
+              onChange={handleInputChange}
+              disabled={!modoEdicion}
+            />
           <label>Correo:</label>
-          <input type="email" className="clinica-input" />
+          <input
+                  type="email"
+  className={`clinica-input ${modoEdicion ? 'editable' : 'readonly'}`}
+                  name="correo"
+                  value={formData.correo}
+                  onChange={handleInputChange}
+                  disabled={!modoEdicion}
+                />
           <label>Teléfono:</label>
-          <input type="tel" className="clinica-input" />
+          <input
+                type="tel"
+  className={`clinica-input ${modoEdicion ? 'editable' : 'readonly'}`}
+                name="telefono"
+                value={formData.telefono}
+                onChange={handleInputChange}
+                disabled={!modoEdicion}
+              />        
         </div>
 
-        <div className="clinica-columna-derecha">
-          <label>Hora Apertura:</label>
-          <input type="time" className="clinica-input horario-input" />
-          <label>Hora Cierre:</label>
-          <input type="time" className="clinica-input horario-input" />
-        </div>
+<div className="clinica-columna-derecha">
+  <label htmlFor="horario-apertura" className="clinica-label apertura-label">
+    Hora Apertura:
+  </label>
+        <input
+          type="time"
+          id="horario-apertura"
+          name="apertura"
+  className={`clinica-input ${modoEdicion ? 'editable' : 'readonly'}`}
+          value={formData.apertura}
+          onChange={handleInputChange}
+          disabled={!modoEdicion}
+        />
+
+  <label htmlFor="horario-cierre" className="clinica-label cierre-label">
+    Hora Cierre:
+  </label>
+        <input
+          type="time"
+          id="horario-cierre"
+          name="cierre"
+  className={`clinica-input ${modoEdicion ? 'editable' : 'readonly'}`}
+          value={formData.cierre}
+          onChange={handleInputChange}
+          disabled={!modoEdicion}
+        />
+</div>
+
       </div>
     </div>
   );
 
   return (
 
-    
     <div className="clinica-contenedor">
       <h2 className="clinica-encabezado">Clínicas</h2>
       <hr />

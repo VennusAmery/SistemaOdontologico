@@ -19,8 +19,8 @@ const ingresoDoctorRoutes    = require('./ingresodoctor');
 const empleadosRoutes = require('./empleados');
 const empleadoinfoRoutes = require('./empleadoinfo');
 const agregarempleadoRoutes = require('./agregarempleado');
-const citaRoutes = require('./cita'); // Importar las rutas de citas
-const listacitaRoutes = require('./listacita'); // Importar las rutas de citas
+const citaRoutes = require('./cita');
+const listacitaRoutes = require('./listacita'); 
 
 const app = express();
 app.use(cors());
@@ -59,6 +59,7 @@ const pool = mysql.createPool({
   app.use('/api/cita', citaRoutes(pool));
   app.use('/api/listacita', listacitaRoutes(pool));
   app.use('/api', listaPacientesRoutes(pool)); 
+
 
 
   // Iniciar el servidor

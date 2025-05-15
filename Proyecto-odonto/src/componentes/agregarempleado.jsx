@@ -49,10 +49,6 @@ function AgregarEmpleado() {
     setEmpleado(prev => ({ ...prev, [name]: value }));
   };
 
-  const showFlash = text => {
-    setFlashMessage(text);
-    setTimeout(() => setFlashMessage(''), 3000);
-  };
 
   const handleTabClick = tab => {
     setTabActiva(tab.id);
@@ -65,7 +61,8 @@ function AgregarEmpleado() {
       ? axios.put(`http://localhost:4000/api/agregarempleado/${id}`, empleado)
       : axios.post(`http://localhost:4000/api/agregarempleado`, empleado);
     fn.then(() => {
-      flashMessage(id ? '🖋️ Editado correctamente' : '💾 Guardado correctamente');
+      
+      setFlashMessage(id ? '🖋️ Editado correctamente' : '💾 Guardado correctamente');
       navigate('/empleados');
     })
     .catch(err => alert('Error al guardar: ' + (err.response?.data?.error || err.message)))
@@ -81,9 +78,6 @@ function AgregarEmpleado() {
 
   if (loading) return <p>Cargando datos…</p>;
   if (error) return <p className="error">Error: {error}</p>;
-
-
-
 
   return (
     <div className="empleinfo-container">

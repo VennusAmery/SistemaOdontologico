@@ -25,12 +25,15 @@ export default function Empleados() {
   // 1️⃣ Lista de empleados del servidor
   const [empleados, setEmpleados] = useState([]);
 
-  useEffect(() => {
-    fetch('http://localhost:4000/api/empleados')  
-      .then(res => res.json())
-      .then(data => setEmpleados(data))
-      .catch(err => console.error('Error al cargar empleados:', err));
-  }, []);
+useEffect(() => {
+  fetch('http://localhost:4000/api/empleados')
+    .then(res => res.json())
+    .then(data => {
+      console.log('Respuesta API empleados:', data);
+      setEmpleados(Array.isArray(data) ? data : []);
+    })
+    .catch(err => console.error('Error al cargar empleados:', err));
+}, []);
 
   // 2️⃣ Debounce para la búsqueda
   useEffect(() => {

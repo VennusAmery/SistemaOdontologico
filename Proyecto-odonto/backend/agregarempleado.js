@@ -54,22 +54,37 @@ module.exports = (pool) => {
   // 2) Crear empleado + contacto
   router.post('/', async (req, res) => {
     const {
-      nombre, apellido, dpi, fecha_nacimiento, direccion,
-      edad, cargo, sueldo, turno, hora_Entrada, hora_Salida,
-      clinica, telefono, correoElectronico
-    } = req.body;
+    dpi,
+    nombre,
+    apellido,
+    fechaNacimiento,
+    direccion,
+    edad,
+    cargo,
+    sueldo,
+    turno,
+    horaEntrada,
+    horaSalida,
+    clinica,
+    telefono,
+    correoElectronico
+  } = req.body;
 
     try {
+      console.log(req.body);
+      
       const [r] = await pool.execute(
         `INSERT INTO empleado
            (dpi, nombre, apellido, fecha_nacimiento, direccion, edad, cargo, sueldo, turno, hora_entrada, hora_salida, id_clinica)
          VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
         [
-          dpi, nombre, apellido, fecha_nacimiento, direccion, edad,
-          cargo, sueldo, turno, hora_Entrada, hora_Salida, clinica
+          dpi, nombre, apellido, fechaNacimiento, direccion, edad,
+          cargo, sueldo, turno, horaEntrada, horaSalida, clinica
         ]
       );
 
+      console.log(r);
+      
       const id_empleado = r.insertId;
 
       await pool.execute(
@@ -81,8 +96,8 @@ module.exports = (pool) => {
 
       res.status(201).json({ id: id_empleado });
     } catch (err) {
-      console.error(err);
-      res.status(500).json({ error: 'Error al crear empleado' });
+      console.error('💥 Error en POST /api/agregarempleado:', err);
+      res.status(500).json({ error: err.message   });
     }
   });
 
@@ -90,10 +105,21 @@ module.exports = (pool) => {
   router.put('/:id', async (req, res) => {
     const { id } = req.params;
     const {
-      dpi, nombre, apellido, fecha_nacimiento, direccion,
-      edad, cargo, sueldo, turno, hora_Entrada, hora_Salida,
-      clinica, telefono, correoElectronico
-    } = req.body;
+    dpi,
+    nombre,
+    apellido,
+    fechaNacimiento,
+    direccion,
+    edad,
+    cargo,
+    sueldo,
+    turno,
+    horaEntrada,
+    horaSalida,
+    clinica,
+    telefono,
+    correoElectronico
+  }= req.body;
 
     try {
       await pool.execute(
@@ -101,8 +127,8 @@ module.exports = (pool) => {
            SET dpi = ?, nombre = ?, apellido = ?, fecha_nacimiento = ?, direccion = ?, edad = ?, cargo = ?, sueldo = ?, turno = ?, hora_entrada = ?, hora_salida = ?, id_clinica = ?
          WHERE id_empleado = ?`,
         [
-          dpi, nombre, apellido, fecha_nacimiento, direccion, edad,
-          cargo, sueldo, turno, hora_Entrada, hora_Salida, clinica, id
+          dpi, nombre, apellido, fechaNacimiento, direccion, edad,
+          cargo, sueldo, turno, horaEntrada, horaSalida, clinica, id
         ]
       );
 
@@ -128,8 +154,8 @@ module.exports = (pool) => {
       }
       res.sendStatus(204);
     } catch (err) {
-      console.error(err);
-      res.status(500).json({ error: 'Error al actualizar empleado' });
+      console.error('💥 Error en PUT /api/agregarempleado/:id:', err);
+      res.status(500).json({ error: err.message });
     }
   });
 

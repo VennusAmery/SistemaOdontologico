@@ -106,29 +106,42 @@
   background-color: #ff8a65; /* linea debajo del boton de navegacion */
 }
 
+.agregar-empleado-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  align-items: start !important; 
+}
+
+
+.agregar-empleado-form {
+  max-height: 400px; /* o el alto que necesites */
+  overflow-y: auto;
+  padding-right: 10px; /* espacio para el scroll */
+}
 
 
 /*Contenido del forms de informacion del empleado*/
 .agregar-empleado-form.grid-2cols {
   padding-right: 3% !important;
   padding-left: 2%;
+  margin-top: 3%;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  column-gap: 40px;
-  padding-top: 15px;
+  column-gap: 20px;
   /*alinea cada celda de grid al centro */
   justify-items: center; /* centra columnas dentro de la grid */
   align-items: center; /* centra filas dentro de la grid */
 }
 
-.agregar-empleado-form .col {
+.agregar-empleado-form .col, .col-der {
   display: flex;
   flex-direction: column;
   row-gap: 20px;
-  /* opcional: alinear todas las filas al inicio de la columna */
   justify-content: start;    
   width: 100%;               /* para que cada columna ocupe todo su 1fr */
 }
+
 
 /* Cada fila l
 abel+input */
@@ -138,14 +151,9 @@ abel+input */
   gap: 12px;
 }
 
-/* Inputs de tiempo un poco más estrechos */
-.agregar-empleado-form .time-field input {
-  width: 100px;
-  height: 20px;
-}
 
 /* Estilo base de los inputs */
-.agregar-empleado-input {
+.agregar-empleado-input, .field input {
   flex: 1;
   padding: 6px 8px;
   border: 1px solid #b2e4e5;
@@ -161,48 +169,68 @@ abel+input */
   font-weight: 600;
   color: #757575;
   text-align: left;
+  font-size: 15px;
 }
 
-
-
-
-/* SELECT */
-.agregar-empleado-form select {
-  width: 100%;
-  color: #37474f;
-  padding: 0.5rem;
-  border: 1px solid #c1ecec;
-  border-radius: 4px;
-  background: #d3f1f1;
-  font-size: 12px;
-  margin-bottom: 1rem;
-  overflow-y: auto;
-  height: 30px;
-}
-
-
-
-.ingreEMPLEADO-form-buttons {
-  margin-top: 1rem; /* Ajusta el valor según lo que necesites */
+.col.form-buttons {
   display: flex;
+  flex-direction: row;
+  justify-content: center;    
+  align-items: center;
+  margin-top: 2rem;
   flex-wrap: wrap;
-  justify-content: center;
-  gap: 12px;
+  gap: 1rem; /* Espacio entre botones */
+  max-width: 600px;  /* Aumenta el ancho para que quepan en línea */
+  width: 100%;
+  grid-column: 1 / -1;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-.ingreEMPLEADO-form-buttons button {
+.col.form-buttons button {
   background-color: #FF987B;
   color: white;
   border: none;
-  padding: 10px 16px;
   border-radius: 8px;
+  width: 20% !important;
   cursor: pointer;
   font-weight: bold;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  font-size: 1rem;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-.ingreEMPLEADO-form-buttons button:hover {
+.col.form-buttons  button:hover{
   opacity: 1;
   transform: scale(1.02);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+
+
+/* Grid de dos columnas para todos los campos */
+.agregar-empleado-form.grid-2cols {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem; /* espacio entre columnas y filas */
+}
+
+/* Hacemos que la columna de botones spanée ambas columnas del grid */
+.agregar-empleado-form.grid-2cols .form-buttons {
+  grid-column: 1 / -1; /* de la columna 1 hasta la última */
+  margin-top: 1.5rem;  /* separa un poco de los inputs */
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+}
+
+.agregar-empleado-form.grid-2cols {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+.agregar-empleado-form .form-buttons {
+  grid-column: 1 / -1; /* span both columns */
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
 }

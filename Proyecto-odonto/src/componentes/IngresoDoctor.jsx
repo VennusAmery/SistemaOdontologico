@@ -19,7 +19,7 @@ const slideVariants = {
 export default function IngresoDoctor() {
   const navigate = useNavigate();
   const location = useLocation();
-  const { id } = useParams(); // <-- obtienes el ID
+  const { id } = useParams();    // <-- obtienes el ID
 
   const [tabActiva, setTabActiva] = useState(
     () => tabsDoctores.find(t => location.pathname.startsWith(t.path))?.id

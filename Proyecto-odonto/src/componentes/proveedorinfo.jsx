@@ -103,10 +103,10 @@ const dataToSend = {
   ubicacion: proveedor.ubicacion,
   nit: proveedor.nit,
   id_tipo_proveedor: proveedor.id_tipo_proveedor,
-  contactos: proveedor.contactos, // ✅ Agregado explícitamente
-  id_proveedor: proveedor.id_proveedor, // <- esto debe ser un número válido
-  telefono: newContacto.telefono  || null,
-  correo: newContacto.correo || null
+  contactos: proveedor.contactos, 
+  id_proveedor: proveedor.id_proveedor, 
+  telefono: proveedor.telefono  || null,
+  correo: proveedor.correo || null
 };
 
     if (id) {
@@ -309,16 +309,13 @@ const addProveedor = async () => {
 {/* Teléfonos */}
 <label>Teléfonos:</label>
 <div className="select-input-wrapper">
-  <select value={selectedPhoneIdx} onChange={e => setSelectedPhoneIdx(e.target.value)}>
-    {phoneOptions}
-    <option value="new">+ Agregar teléfono</option>
-  </select>
+
   {selectedPhoneIdx === 'new' ? (
     <input
       type="text"
       name="telefono"
       placeholder="Nuevo teléfono"
-      value={newContacto.telefono}
+      value={proveedor.telefono}
       onChange={handleNewContactoChange}
     />
   ) : (
@@ -333,16 +330,13 @@ const addProveedor = async () => {
 {/* Correos */}
 <label>Correos:</label>
 <div className="select-input-wrapper">
-  <select value={selectedEmailIdx} onChange={e => setSelectedEmailIdx(e.target.value)}>
-    {emailOptions}
-    <option value="new">+ Agregar correo</option>
-  </select>
+
   {selectedEmailIdx === 'new' ? (
     <input
       type="email"
       name="correo"
       placeholder="Nuevo correo"
-      value={newContacto.correo}
+      value={proveedor.correo}
       onChange={handleNewContactoChange}
     />
   ) : (

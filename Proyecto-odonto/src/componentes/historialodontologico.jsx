@@ -260,3 +260,4 @@ const [formData, setFormData] = useState({
 
 export default Historialodontologico;
 
+

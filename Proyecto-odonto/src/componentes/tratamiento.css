@@ -267,7 +267,6 @@ padding-bottom: 15px;
   height: 20px !important;
 }
 
-
 /*SECCION DE ABAJO*/
 /* layout odontograma */
 .odontograma-layout {
@@ -406,7 +405,6 @@ padding-bottom: 15px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
-
 .odontograma-imagen img {
     width: 100%;
 
@@ -427,7 +425,6 @@ padding-bottom: 15px;
     width: 50%;
 }
 
-
 .odontograma-imagen h3 {
   margin-bottom: 10px; /* Espacio entre título e imagen */
 }
@@ -443,14 +440,12 @@ padding-bottom: 15px;
   border: none;
 }
 
-
 .btn-guardar-pieza{
     background-color: #FF8F6B;
     font-weight: bold;
     display: block;
     margin-left: 4rem ; /* esto lo centra horizontalmente */
 }
-
 
 /* mini-ventana flotante flash */
 .flash-modal {
@@ -485,7 +480,6 @@ padding-bottom: 15px;
   align-items: center;
   justify-content: center;
   z-index: 2000;
-
 }
 
 .modal-content {
@@ -528,7 +522,6 @@ box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
   padding-bottom: 10px;
   gap: 15px;
   margin-bottom: 15px; /* Espacio entre las secciones (Readhesiones, ARS, etc.) */
-
 }
 
 .registro-columna-read {
@@ -546,7 +539,6 @@ box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
   margin-bottom: 15px;
 }
 
-
 .registro-columna-read .mini-listado li {
   display: flex;
   justify-content: space-between;
@@ -554,7 +546,6 @@ box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
   height: 15px; /* Ajusta la altura del elemento li */
   margin-bottom: 0.5rem;
 }
-
 
 .camposs4 {
   display: flex;
@@ -589,7 +580,6 @@ box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
   list-style-type: none;
 }
 
-
 /* Formulario (izquierda) y listado (derecha) */
 .registro-columna > div {
   flex: 1; /* cada sección ocupa 50% */
@@ -605,7 +595,6 @@ box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
   padding-left: 1rem;
 }
 
-
 .camposs4 input {
   background-color: #B4DDDE;
   border: 1px solid #ccc;
@@ -619,7 +608,6 @@ box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
 /* Mini-listado dentro de la columna derecha */
-
 .mini-listado li {
   display: flex;
   border-bottom: 1px solid #ffffff; /* línea gris clara */
@@ -653,7 +641,6 @@ box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 .registro-columna button:hover {
   background: #f29d85;
 }
-
 
 /* Estilos para los mini-listados bajo cada sección */
 .mini-listado {
@@ -712,17 +699,6 @@ box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 .registro-columna > div:last-child .mini-listado::-webkit-scrollbar-thumb:hover {
   background: #a8a8a8;
 }
-
-
-
-
-
-
-
-
-
-
-
 
 /* Estilos para inputs */
 .form-grid4 input {

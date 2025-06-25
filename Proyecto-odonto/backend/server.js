@@ -21,6 +21,8 @@ const empleadoinfoRoutes = require('./empleadoinfo');
 const agregarempleadoRoutes = require('./agregarempleado');
 const citaRoutes = require('./cita');
 const listacitaRoutes = require('./listacita'); 
+const usuarioRoutes = require('./usuario'); // importar ruta de usuarios
+const path = require('path');
 
 const app = express();
 app.use(cors());
@@ -49,18 +51,18 @@ const pool = mysql.createPool({
   app.use('/api/ingresodoctor', ingresoDoctorRoutes(pool));
   app.use('/api/inventario', inventarioRoutes(pool));
   app.use('/api/infomaterial', infomaterialRoutes(pool));
-  app.use('/api', pacientesRoutes(pool)); // Ruta para pacientes
+  app.use('/api', pacientesRoutes(pool)); 
   app.use('/api/habitos', habitosRoutes(pool)); 
   app.use('/api/historialodonto', historialodontoRoutes(pool)); 
   app.use('/api/historialmedico', historialmedicoRoutes(pool)); 
   app.use('/api/empleados', empleadosRoutes(pool)); 
   app.use('/api/empleadoinfo', empleadoinfoRoutes(pool));
-  app.use('/api/agregarempleado', agregarempleadoRoutes(pool)); // Ruta para agregar empleado 
+  app.use('/api/agregarempleado', agregarempleadoRoutes(pool)); 
   app.use('/api/cita', citaRoutes(pool));
   app.use('/api/listacita', listacitaRoutes(pool));
-  app.use('/api', listaPacientesRoutes(pool)); 
-
-
+  app.use('/api/listapacientes', listaPacientesRoutes(pool));
+  app.use('/api/usuarios', usuarioRoutes);
+  app.use('/files', express.static(path.join(__dirname, 'files')));
 
   // Iniciar el servidor
   app.listen(4000, () => console.log('🟢 Servidor en http://localhost:4000'));

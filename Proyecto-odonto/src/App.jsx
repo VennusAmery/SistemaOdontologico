@@ -33,6 +33,8 @@ import Tratamiento from "./componentes/tratamiento";
 import Proveedorinfo from './componentes/proveedorinfo';
 import IngresoDoctor from './componentes/IngresoDoctor';
 import Empleadoinfo from './componentes/empleadoinfo';
+import Infocita from './componentes/infocita';
+import Usuario from './componentes/usuario';
 
 function App() {
   const location = useLocation();
@@ -59,7 +61,10 @@ function App() {
           <Route path="/citas" element={<CitasComponent />} />
           <Route path="/Contactos" element={<ContactosComponent />} />
           <Route path="/Proveedores" element={<ProveedoresComponent />} />
+          
+          <Route path="/programarcita/:id" element={<Infocita />} />
           <Route path="/programarcita" element={<ProgramarCita />} />
+          
           <Route path="/Doctores" element={<Doctores />} />
           <Route path="/empleados" element={<Empleados />} />
           <Route path="/Inventario" element={<Inventario />} />
@@ -73,6 +78,8 @@ function App() {
           <Route path="/proveedores/:id" element={<Proveedorinfo />} />
           <Route path="/ingresodoctor/:id" element={<IngresoDoctor />} />
           <Route path="/empleadoinfo/:id" element={<Empleadoinfo />} />
+
+          <Route path="/usuario" element={<Usuario />} />
 
         </Route>
       </Routes>

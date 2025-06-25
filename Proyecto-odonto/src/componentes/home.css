@@ -40,7 +40,6 @@
     transition: transform 0.2s ease;
   }
 
-  
   /* Colores personalizados */
   .grid-botones button:nth-child(1) { background-color: #6EB8DB; } /* Pacientes */
   .grid-botones button:nth-child(2) { background-color: #6EDBDB; } /* Citas */
@@ -48,11 +47,12 @@
   .grid-botones button:nth-child(4) { background-color: #9BD7D7; } /* Empleados */
   .grid-botones button:nth-child(5) { background-color: #769BDB; } /* Contactos */
   .grid-botones button:nth-child(6) { background-color: #6EDB92; } /* Inventario */
+  .grid-botones button:nth-child(8) { background-color: #A0B8C0 ; } /* usuarios */
   .grid-botones button:nth-child(7) {
     background-color: #7CDDE1; /* Clínica */
-    grid-column: span 2; /* Ocupa dos columnas */
-    justify-self: center; /* Centra el botón horizontalmente */
+    grid-column: span 1; /* Ocupa dos columnas */
     width: 500px;
+    
   }
   .grid-botones button:hover {
     transform: scale(1.05);

@@ -1,0 +1,308 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;600;800&display=swap');
+
+.usuario-container {
+  padding: 2rem;
+  padding-bottom: 0.5rem; /* Reduce si ya tiene más */
+}
+
+.usuario-container2 {
+  display: flex;
+  align-items: center;        /* Alinea verticalmente la imagen y el texto */
+  gap: 1rem;                  /* Espacio entre imagen y texto */
+  margin-bottom: 0.5rem;
+  margin-top: -1rem;
+  padding-left: 35px;
+}
+
+/*Titulo*/
+.usuario-title {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #ff8a65; /* Naranja suave */
+  margin-bottom: 0.2rem;
+  text-align: left;     /* asegura alineación a la izquierda */
+}
+
+h2 {
+  color: #F98972;
+  align-items: flex-start !important;
+}
+
+.usuario-title + hr {
+  border: none;
+  height: 1px;
+  background-color: #74c0c5; /* Verde-azulado */
+  margin-bottom: 0.5rem;
+}
+
+.hringreso {
+  width: 95%;         /* Cambia al porcentaje que quieras para reducir el largo */
+  margin: 0 auto;     /* Centra horizontalmente */
+  border: none;       /* Remueve el borde por defecto */
+  background-color: #74c0c5; /* Color personalizado */
+}
+
+/*LOS TABS*/
+.usuario-tabs {
+  display: flex;
+  gap: 3rem; /*ESPACIO ENTRE LOS BOTONES DE NAGEVACION*/
+  border-bottom: 2px solid #ddd;
+  margin-bottom: 1.5rem;
+}
+
+.usuario-tab {
+  background: none;
+  border: none;
+  padding: 0.5rem 0;
+  font-size: 1rem;
+  color: #497a7d;
+  cursor: pointer;
+  position: relative;
+  transition: color 0.2s;
+}
+
+.usuario-tab:hover {
+  color: #74c0c5;
+}
+
+.usuario-tab.active {
+  color: #ff8a65;
+}
+
+.usuario-tab.active::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background-color: #ff8a65; /* linea debajo del boton de navegacion */
+}
+
+.usuario-circle {
+  width: 50px;                /* diámetro del círculo */  
+  height: 50px;
+  border-radius: 50%;         /* hace el contenedor perfectamente redondo */  
+  overflow: hidden;           /* recorta la imagen al contorno */  
+  flex-shrink: 0;             /* evita que el círculo se encoja */  
+  display: flex;              /* para centrar la img dentro */  
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #74c0c5;     /* borde gris alrededor del círculo */
+  margin-bottom: 0.5rem;      /* separa el círculo del texto de abajo */
+}
+
+.usuario-image {
+  width: 70%; /* ocupa todo el círculo */  
+  height: auto;  /* mantiene proporción */  
+}
+
+.usuario-container h2 {
+  margin-bottom: 0.2rem; /* reduce el espacio entre el título y el hr */
+}
+
+.usuario-container hr {
+  margin: 0.2rem 0; /* reduce espacio vertical del hr */
+}
+
+/*ABAJO DEL ENCABEZADO en gestion de usuario*/
+.usuario-input {
+  width: 50%;
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+  border-radius: 5px;
+  border: 2px solid #74c0c5;
+  background-color: #96e5e9;
+  color: #fff; /* texto blanco para contraste */
+  outline: none;
+  transition: border-color 0.3s;
+  box-sizing: border-box;
+  display: block;
+}
+
+.usuario-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;  /* centra horizontalmente los hijos */
+}
+
+.usuario-input:focus {
+  border-color: #3da7ac;
+  background-color: #96e5e9; /* mantener fondo igual al hacer focus */
+  color: #000000; /* mantener texto blanco */
+}
+
+/* Autofill chrome */
+input:-webkit-autofill {
+  box-shadow: 0 0 0px 1000px #a8ecef inset !important;
+  -webkit-text-fill-color: #343434 !important;
+}
+
+/*FOTO DE USUARIO*/
+.usuario-foto-contenedor {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  position: relative;
+}
+
+.usuario-foto-wrapper {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid #74c0c5;
+  transition: 0.3s ease;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.usuario-foto-circular {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: 0.3s ease;
+}
+
+.usuario-foto-wrapper:hover .usuario-foto-circular {
+  opacity: 0.5;
+}
+
+.usuario-foto-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 1.5rem;
+  opacity: 0;
+  background-color: rgba(0, 0, 0, 0.3);
+  transition: opacity 0.3s ease;
+}
+
+.usuario-foto-wrapper:hover .usuario-foto-overlay {
+  opacity: 1;
+}
+
+.usuario-nombre-preview {
+  margin-top: 0.5rem;
+  font-weight: 600;
+  color: #d4b9b9;
+}
+
+.usuario-nombre-preview{
+    color: #ff8a65;
+}
+
+/* Ocultar input de archivo */
+.usuario-input-file {
+  display: none;
+}
+
+/*RECORTE*/
+.recortador-contenedor {
+  position: fixed;
+  top: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #fff;
+  z-index: 1000;
+  padding: 1rem;
+  border-radius: 12px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  max-width: 400px;
+}
+
+.recortador-area {
+  position: relative;
+  width: 100%;
+  height: 300px;
+  background: #f0f0f0;
+}
+
+.recortador-controles {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/*BOTONES*/
+.usuario-botones {
+  display: flex;
+  gap: 1rem;           /* espacio entre botones */
+  flex-wrap: nowrap;   /* evitar que se vayan a la siguiente línea */
+  align-items: center; /* centrar verticalmente */
+  outline: none; /* quita el outline */
+}
+
+.usuario-button,
+.usuario-button.actualizar,
+.usuario-button.eliminar{
+ background-color: #ff8a65;
+ font-weight: bold;
+ width: 170px;
+ margin-top: 8px;
+ cursor: pointer;
+transition: transform 0.3s ease, box-shadow 0.3s ease;
+outline: none; /* quita el outline */
+box-shadow: none;
+}
+
+.usuario-button:hover,
+.usuario-button.actualizar:hover,
+.usuario-button.eliminar:hover {
+  transform: scale(1.1); /* aumenta 10% el tamaño */
+  outline: none; /* quita el outline */
+}
+
+/*BOTONES DE RECORTAR*/
+.recortador-controles {
+  display: flex;
+  align-items: center;
+  gap: 2rem; /* espacio entre elementos */
+  box-sizing: border-box;
+  margin: auto;               /* centrado horizontal */
+width: 90%;
+max-width: 500px;
+padding: 2rem;
+}
+
+.recortador-controles .MuiSlider-root {
+  flex-grow: 1; /* el slider crece para ocupar el espacio */
+  max-width: 400px; /* o el ancho que quieras máximo */
+  color: #ff8a65;
+}
+
+.MuiSlider-root {
+  width: 500px !important;    /* agranda el ancho total del slider */
+}
+
+.recortador-button {
+  min-width: 120px; /* botones más anchos */
+  padding: 0.6rem 1.2rem;
+  font-weight: bold;
+}
+
+.recortador-button {
+  color: #ff8a65 !important;
+  font-weight: bold;
+  padding: 0.6rem 1.2rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  margin: 0 0.5rem;
+  outline: none; /* elimina borde azul al hacer foco */
+}
+
+

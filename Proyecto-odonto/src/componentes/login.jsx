@@ -6,7 +6,7 @@ import { Link, useNavigate } from 'react-router-dom';
 export default function Login() {
   const navigate = useNavigate();
   const [usuario, setUsuario] = useState('');
-  const [password, setPassword] = useState(''); // Cambio 'contrasena' por 'password'
+  const [password, setPassword] = useState('');
   const [error, setError] = useState('');
 
 const handleSubmit = async (e) => {
@@ -17,14 +17,25 @@ const handleSubmit = async (e) => {
       usuario,
       password,
     });
-    console.log('✅ OK:', data);
-    localStorage.setItem('token', data.token);
+
+    console.log('✅ Login OK:', data);
+
+    // Guarda username + nombre
+localStorage.setItem('user', JSON.stringify({
+  username: data.usuario,
+  nombre: data.nombre
+}));
+
+
+
+  console.log('🔑 User guardado:', localStorage.getItem('user'));
+
     navigate('/home');
   } catch (err) {
     console.error('❌ Login error:', err.response || err);
     if (err.response) {
-      setError(err.response.data.mensaje);
-      console.log('Detalles del error: ', err.response.data);
+      setError(err.response.data.mensaje || 'Error de autenticación');
+      console.log('Detalles del error:', err.response.data);
     } else if (err.request) {
       setError('No se pudo conectar al servidor');
     } else {
@@ -32,7 +43,6 @@ const handleSubmit = async (e) => {
     }
   }
 };
-
 
   return (
     <div className="login-container">
@@ -57,8 +67,8 @@ const handleSubmit = async (e) => {
             <div className="campo">
               <input
                 type="password"
-                value={password}  // Cambio 'contrasena' por 'password'
-                onChange={(e) => setPassword(e.target.value)}  // Cambio 'setContrasena' por 'setPassword'
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
                 required
               />
               <label>Contraseña</label>

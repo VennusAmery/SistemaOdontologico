@@ -615,7 +615,6 @@ const handleDeleteStrip = (index) => {
     </div>
   </div>
 )}
-
           </div>
 
                 {/* Stripping */}
@@ -697,16 +696,14 @@ const handleDeleteStrip = (index) => {
   {/* Listado de Readhesiones */}
   <div className="flex-1">
     <h4>Listado Readhesiones</h4>
-    <ul className="mini-listado">
-      {readhesionPieces.map((p, i) => (
-        <li key={i} className="flex justify-between">
-          <span>{p.pieza || '–'}</span>
-<button className="butonverred" onClick={() => setModalRead(i)}>
-  Ver
-</button>
-        </li>
-      ))}
-    </ul>
+                    <ul className="mini-listado">
+                      {strippingPieces.map((p, i) => (
+                        <li key={i} className="flex justify-between">
+                          <span>{p.pieza || '–'}</span>
+                          <button className="butonverred" onClick={() => setModalStrip(i)}>Ver</button>
+                        </li>
+                      ))}
+                    </ul>
   </div>
 
   {/* Modal para detalle de Readhesión */}

@@ -1,10 +1,23 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './layout.css';
 import { useNavigate, Outlet } from "react-router-dom";
 
 function Layout() {
   const navigate = useNavigate();
   const [showSidebar, setShowSidebar] = useState(true); // Estado para mostrar/ocultar
+
+  const [username, setUsername] = useState('Invitado');
+
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem('user'));
+    if (user && user.username) {
+      setUsername(user.username);
+    }
+  }, []);
+
+  const capitalize = (str) =>
+  str ? str.charAt(0).toUpperCase() + str.slice(1).toLowerCase() : '';
+
 
   return (
     <div className="rectangulo-superior">
@@ -36,7 +49,7 @@ function Layout() {
             </div>
 
             <div className="user-info">
-              <p>USUARIO</p>
+              <p>{username ? username.charAt(0).toUpperCase() + username.slice(1).toLowerCase() : ''}</p>
               <p>usuario@gmail.com</p>
             </div>
 

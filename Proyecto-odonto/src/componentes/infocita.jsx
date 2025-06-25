@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import axios from 'axios';
 import './programarcita.css';
 
-function ProgramarCita() {
+function Infocita() {
   const navigate = useNavigate();
   const location = useLocation();
   const { id } = useParams(); // Para editar una cita existente
@@ -44,7 +44,7 @@ function ProgramarCita() {
   const tabConfig = [
     { id: 'listadoMaterial', label: 'Historial Citas', path: '/citas' },
     { id: 'nuevaCita', label: 'Nueva Cita', path: '/programarcita' },
-     { id: 'info', label: 'Información Cita', path: '/programarcita' },
+    { id: 'info', label: 'Información Cita', path: '/programarcita' },
   ];
 
   const slideVariants = {
@@ -73,7 +73,7 @@ function ProgramarCita() {
     try {
       if (id) {
         // Actualizar cita existente
-        await axios.put(`http://localhost:4000/api/infocita/${id}`, citaData);
+        await axios.put(`http://localhost:4000/api/cita/${id}`, citaData);
         showFlash('💾 Cita actualizada correctamente');
       } else {
         // Crear nueva cita
@@ -148,22 +148,23 @@ function ProgramarCita() {
 
       {/* ——— Tabs ——— */}
       <nav className="programarcita-tabs" aria-label="Secciones de Citas">
-        {tabConfig.map(tab => (
-          <button
-            key={tab.id}
-            type="button"
-            className={`programarcita-tab ${
-                (tab.id === 'listadoMaterial' && location.pathname === '/citas') ||
-                (tab.id === 'nuevaCita' && location.pathname === '/programarcita' && !id) ||
-                (tab.id === 'info' && id)
-                  ? 'active'
-                  : ''
-              }`}
-            onClick={() => navigate(tab.path)}
-          >
-            {tab.label}
-          </button>
-        ))}
+{tabConfig.map(tab => (
+  <button
+    key={tab.id}
+    type="button"
+    className={`programarcita-tab ${
+      (tab.id === 'info' && id) ||
+      (tab.id === 'nuevaCita' && !id) ||
+      (location.pathname === tab.path)
+        ? 'active'
+        : ''
+    }`}
+    onClick={() => navigate(tab.path)}
+  >
+    {tab.label}
+  </button>
+))}
+
       </nav>
 
       <motion.section
@@ -290,4 +291,4 @@ function ProgramarCita() {
   );
 }
 
-export default ProgramarCita;
+export default Infocita;

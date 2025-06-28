@@ -1,9 +1,10 @@
 const express = require('express');
 const cors = require('cors');
 const mysql = require('mysql2/promise');
+const session = require('express-session');
 
 //archivos reados
-const loginRoutes = require('./login'); // Importar las rutas del login
+const loginRoutes = require('./login'); 
 const productosRoutes = require('./productos');  
 const proveedoresRoutes = require('./proveedores');
 const inventarioRoutes = require('./inventario');
@@ -21,17 +22,29 @@ const empleadoinfoRoutes = require('./empleadoinfo');
 const agregarempleadoRoutes = require('./agregarempleado');
 const citaRoutes = require('./cita');
 const listacitaRoutes = require('./listacita'); 
-const usuarioRoutes = require('./usuario'); // importar ruta de usuarios
+const usuarioRoutes = require('./usuario'); 
 const path = require('path');
-const layoutusuarioRoutes = require('./layoutusuario'); // importar ruta de usuarios
+const layoutusuarioRoutes = require('./layoutusuario');
 
+const app = express(); 
 
-const app = express();
-app.use(cors());
+app.use(cors({
+  origin: 'http://localhost:5173',
+  credentials: true
+}));
+app.use(express.json());
+
+ // 🔐 sesión
+  app.use(session({
+    secret: 'un-secreto-muy-seguro',
+    resave: false,
+    saveUninitialized: false,
+    cookie: { secure: false }
+  }));
+
 app.use(express.json());
 
 async function startServer() {
-
 const pool = mysql.createPool({
   host: process.env.DB_HOST || 'localhost',  
   user: process.env.DB_USER || 'sergio',
@@ -65,7 +78,7 @@ const pool = mysql.createPool({
   app.use('/api/listapacientes', listaPacientesRoutes(pool));
   app.use('/api/usuarios', usuarioRoutes);
   app.use('/files', express.static(path.join(__dirname, 'files')));
-  app.use('/api/layoutusuario', layoutusuarioRoutes);
+app.use('/api/layoutusuario', layoutusuarioRoutes);
 
   // Iniciar el servidor
   app.listen(4000, () => console.log('🟢 Servidor en http://localhost:4000'));

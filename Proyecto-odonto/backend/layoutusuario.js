@@ -1,16 +1,25 @@
-//layoutusuario.js
+// routes/layoutusuario.js
 const express = require('express');
 const router = express.Router();
 
-router.get('/usuarios', async (req, res) => {
+router.get('/me', async (req, res) => {
   try {
     const pool = req.app.locals.pool;
-    const [rows] = await pool.query('SELECT id_usuario AS id, usuario, correo FROM usuarios');
-    res.json(rows); // Aquí debe incluir el correo
-  } catch (error) {
-    res.status(500).json({ error: 'Error al obtener usuarios' });
+    const userId = req.session.userId;
+    if (!userId) return res.status(401).json({ error: 'No autenticado' });
+
+    const [rows] = await pool.query(
+      'SELECT id_usuario AS id, Usuario AS usuario, correo FROM usuarios WHERE id_usuario = ?',
+      [userId]
+    );
+    if (!rows.length) return res.status(404).json({ error: 'Usuario no encontrado' });
+
+    res.json(rows[0]);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Error en el servidor' });
   }
 });
 
 
-module.exports = router;  
+module.exports = router;

@@ -5,33 +5,24 @@ import { useNavigate, Outlet } from "react-router-dom";
 
 function Layout() {
   const navigate = useNavigate();
-  const [showSidebar, setShowSidebar] = useState(true); // Estado para mostrar/ocultar
-  const [username, setUsername] = useState('Invitado');
-  const [correo, setCorreo] = useState('Invitado'); 
+  const [showSidebar, setShowSidebar] = useState(true);
+  const [usuario, setusuario] = useState('');
+  const [correo, setCorreo] = useState(''); 
 
   useEffect(() => {
-    const user = JSON.parse(localStorage.getItem('user'));
-    if (user && user.username) {
-      setUsername(user.username);
-    }
-    if (user && user.correo) {
-      setCorreo(user.correo);
-    }
+    axios.get('http://localhost:4000/api/me', { withCredentials: true })
+      .then(res => {
+        setUsuario(res.data.usuario);
+        setCorreo(res.data.correo);
+      })
+      .catch(() => {
+        setUsuario('');
+        setCorreo('');
+      });
   }, []);
 
-useEffect(() => {
-  axios.get('http://localhost:4000/api/layoutusuario', { withCredentials: true })
-    .then(res => {
-      setUsername(res.data.usuario);  // backend usa 'usuario'
-      setCorreo(res.data.correo);
-    })
-    .catch(err => {
-      console.error(err);
-    });
-}, []);
 
-
-  const capitalize = (str) =>
+  const capitaliza = (str) =>
   str ? str.charAt(0).toUpperCase() + str.slice(1).toLowerCase() : '';
 
   return (
@@ -63,10 +54,10 @@ useEffect(() => {
               </div>
             </div>
 
-            <div className="user-info">
-              <p>{username ? username.charAt(0).toUpperCase() + username.slice(1).toLowerCase() : ''}</p>
-              <p>{correo || 'Invitado'}</p>
-            </div>
+          <div className="user-info">
+            <p>{capitaliza(usuario) || 'Invitado'}</p>
+            <p>{correo || 'Invitado@gmail.com'}</p>
+          </div>
 
             <nav className="sidebar-nav">
               <button onClick={() => navigate('/pacientes')}>

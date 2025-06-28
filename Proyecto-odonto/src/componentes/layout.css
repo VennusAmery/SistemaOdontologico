@@ -3,7 +3,7 @@
 /* Estructura general */
 
 .main-content{
-  overflow-y: auto;
+  overflow-y: hidden !important;
 }
 .main-container {
     display: flex; /* Usa un layout flexbox */

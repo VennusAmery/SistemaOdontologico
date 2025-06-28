@@ -1,23 +1,38 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';  
 import './layout.css';
 import { useNavigate, Outlet } from "react-router-dom";
 
 function Layout() {
   const navigate = useNavigate();
   const [showSidebar, setShowSidebar] = useState(true); // Estado para mostrar/ocultar
-
   const [username, setUsername] = useState('Invitado');
+  const [correo, setCorreo] = useState('Invitado'); 
 
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem('user'));
     if (user && user.username) {
       setUsername(user.username);
     }
+    if (user && user.correo) {
+      setCorreo(user.correo);
+    }
   }, []);
+
+useEffect(() => {
+  axios.get('http://localhost:4000/api/layoutusuario', { withCredentials: true })
+    .then(res => {
+      setUsername(res.data.usuario);  // backend usa 'usuario'
+      setCorreo(res.data.correo);
+    })
+    .catch(err => {
+      console.error(err);
+    });
+}, []);
+
 
   const capitalize = (str) =>
   str ? str.charAt(0).toUpperCase() + str.slice(1).toLowerCase() : '';
-
 
   return (
     <div className="rectangulo-superior">
@@ -50,7 +65,7 @@ function Layout() {
 
             <div className="user-info">
               <p>{username ? username.charAt(0).toUpperCase() + username.slice(1).toLowerCase() : ''}</p>
-              <p>usuario@gmail.com</p>
+              <p>{correo || 'Invitado'}</p>
             </div>
 
             <nav className="sidebar-nav">
@@ -71,6 +86,9 @@ function Layout() {
               </button>
               <button onClick={() => navigate('/inventario')}>
                 <img src="/imagenes/inventarioLogo.png" alt="Inventario" className="icono-boton" />INVENTARIO
+              </button>
+              <button onClick={() => navigate('/usuario')}>
+                <img src="/imagenes/iconoUsuario.png" alt="usuarioicono" className="icono-boton" />USUARIO
               </button>
             </nav>
 

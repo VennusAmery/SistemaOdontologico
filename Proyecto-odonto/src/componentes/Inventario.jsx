@@ -93,6 +93,8 @@ export default function Inventario() {
         animate="animate"
         exit="exit"
         transition={slideVariants.transition} >
+      
+      
         {/* ——— Buscador ——— */}
         <form
           className="inv-search-form"

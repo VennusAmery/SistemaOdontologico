@@ -23,6 +23,8 @@ const citaRoutes = require('./cita');
 const listacitaRoutes = require('./listacita'); 
 const usuarioRoutes = require('./usuario'); // importar ruta de usuarios
 const path = require('path');
+const layoutusuarioRoutes = require('./layoutusuario'); // importar ruta de usuarios
+
 
 const app = express();
 app.use(cors());
@@ -63,6 +65,7 @@ const pool = mysql.createPool({
   app.use('/api/listapacientes', listaPacientesRoutes(pool));
   app.use('/api/usuarios', usuarioRoutes);
   app.use('/files', express.static(path.join(__dirname, 'files')));
+  app.use('/api/layoutusuario', layoutusuarioRoutes);
 
   // Iniciar el servidor
   app.listen(4000, () => console.log('🟢 Servidor en http://localhost:4000'));

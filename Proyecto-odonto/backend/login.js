@@ -28,7 +28,7 @@ module.exports = function(pool) {
   // Ruta para login
   router.post('/login', async (req, res) => {
     const { usuario, password } = req.body;
-    console.log("📥 Login recibido:", req.body);
+  console.log(`📥 Login recibido`);
 
     try {
       const [rows] = await pool.query(
@@ -42,8 +42,7 @@ module.exports = function(pool) {
       }
 
       const user = rows[0];
-      console.log("👤 Usuario encontrado:", user);
-
+      console.log("👤 Usuario encontrado");
       const match = await bcrypt.compare(password, user.password);
 
       if (match) {
